@@ -26,6 +26,7 @@ resource "aws_s3_bucket_public_access_block" "wic_mt_host" {
 }
 
 # create iam policy for bucket
+# todo: update the policy document
 data "aws_iam_policy_document" "wic_mt_host_policy" {
   statement {
     sid = "AllowListBucket"
