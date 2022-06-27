@@ -1,9 +1,16 @@
-# This bucket should hold the state for terraform
+# This bucket holds the state for terraform
 
 # bucket for hosting
 resource "aws_s3_bucket" "wic_mt_tf_state" {
   bucket = "wic-mt-tf-state"
   force_destroy = true
+}
+# enable versioning on bucket
+resource "aws_s3_bucket_versioning" "wic_mt_tf_state" {
+  bucket = aws_s3_bucket.wic_mt_tf_state.id
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
 
 # encrypt data

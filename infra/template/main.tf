@@ -9,7 +9,17 @@ terraform {
       version = "~> 4.16.0" 
     }
   }
+  backend "s3" {
+    bucket         = "wic-mt-tf-state"
+    key            = "terraform/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = "true"
+    # dynamodb_table = "terraform_locks" 
+    profile = "wic-mt" 
+  }
 }
+
+#todo create dynamnodb table
 
 provider "aws" {
   region = "us-east-1"
