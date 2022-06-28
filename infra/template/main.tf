@@ -14,12 +14,22 @@ terraform {
     key            = "terraform/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = "true"
-    # dynamodb_table = "terraform_locks" 
+    dynamodb_table = "wic_terraform_locks" 
     profile = "wic-mt" 
   }
 }
 
-#todo create dynamnodb table
+# dynamodb table to support state locking
+resource "aws_dynamodb_table" "tf_state_table" {
+  name = "wic_terraform_locks"
+  hash_key = "LockID"
+  read_capacity = 1
+  write_capacity = 1
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
 
 provider "aws" {
   region = "us-east-1"
