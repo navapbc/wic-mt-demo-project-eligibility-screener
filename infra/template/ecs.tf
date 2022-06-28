@@ -1,20 +1,29 @@
 # configuration for ECS Fargate should go here
 
 # Task def required for docker container
-# resource "aws_ecs_task_definition" "eligibility_screener_task" {
+# resource "aws_ecs_task_definition" "eligibility_screener" {
 #   family = "eligibility_screener"
 #   container_definitions = ""
+#   cpu                      = "2048"
+#   memory                   = "4096"
+#   requires_compatibilities = ["FARGATE"]
+#   execution_role_arn = aws_iam_role.ecs_executor.arn
 # }
 
-# resource "aws_ecs_service" "eligibility_screener_service" {
-#   name = "eligibility_screener_service"
-#   task_definition = aws_ecs_task_definition.eligibility_screener_task.arn
-#   cluster = "" # not sure this is needed
-#   launch_type = "FARGATE"
-#   iam_role = "" # role needs to be created so that the task doesn't need to be manually triggered
+# # Todo: Find a way to tear this down
+# # resource "aws_ecs_service" "eligibility_screener_service" {
+# #   name = "eligibility_screener_service"
+# #   task_definition = aws_ecs_task_definition.eligibility_screener.arn
+# #   cluster = aws_ecs_cluster.cluster.arn
+# #   launch_type = "FARGATE"
+# # }
+
+# # cluster
+# resource "aws_ecs_cluster" "cluster" {
+#   name = "test"
+#   setting {
+#     name = "containerInsights"
+#     value = "enabled"
+#   }
   
 # }
-
-# task execution iam role
-# cluster
-#security group
