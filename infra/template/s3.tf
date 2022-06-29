@@ -57,3 +57,11 @@ resource "aws_s3_bucket_policy" "wic_mt_tf_state_bucket"{
   bucket = aws_s3_bucket.wic_mt_tf_state.id
   policy = data.aws_iam_policy_document.wic_mt_tf_state_policy.json
 }
+
+# enable bucket ownership controls: https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html
+resource "aws_s3_bucket_ownership_controls" "wic_mt_tf_controls" {
+  bucket = aws_s3_bucket.wic_mt_tf_state.id
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
+}
