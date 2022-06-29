@@ -1,0 +1,13 @@
+# terraform metadata
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# terraform plan files
+plan.out
+
+# Next.js build output
+.next/
+
+# TypeScript
+tsconfig.tsbuildinfo
