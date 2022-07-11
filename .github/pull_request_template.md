@@ -9,4 +9,3 @@ https://wicmtdp.atlassian.net/browse/{TICKET_ID}
 
 ## Testing
 > Screenshots, GIF demos, code examples or output to help show the changes working as expected. ProTip: you can drag and drop or paste images into this textbox.
-
