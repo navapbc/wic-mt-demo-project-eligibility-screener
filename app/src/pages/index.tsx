@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 
-import ButtonLink from '../components/ButtonLink'
+import ButtonLink from '@components/ButtonLink'
 
 const Index: NextPage = () => {
   const t = useTranslations('Index')

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import EligibilityPage from '../../src/pages/eligibility'
+import EligibilityPage from '@pages/eligibility'
 
 export default {
   title: 'Pages',

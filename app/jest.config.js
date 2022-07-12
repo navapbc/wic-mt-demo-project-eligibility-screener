@@ -5,7 +5,10 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     '\\.(css|scss)$': '<rootDir>/test/__mocks__/styleMock.js', // sets up routing to mocks style sheet
-    '^@pages(.*)$': '<rootDir>/src/pages$1' //allows module imports of page components
+    '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
+    '^@components(.*)$': '<rootDir>/src/components$1',
+    '^@messages(.*)$': '<rootDir>/src/messages$1',
+    '^@styles(.*)$': '<rootDir>/styles$1'
   },
   setupFilesAfterEnv: ['<rootDir>/test/jest.setup.js'],
   transform: {

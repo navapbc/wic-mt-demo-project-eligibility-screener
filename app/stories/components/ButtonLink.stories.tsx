@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import ButtonLinkComponent from '../../src/components/ButtonLink'
+import ButtonLinkComponent from '@components/ButtonLink'
 
 export default {
   title: 'Components',

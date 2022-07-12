@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import InputChoiceGroupComponent from '../../src/components/InputChoiceGroup'
+import InputChoiceGroupComponent from '@components/InputChoiceGroup'
 
 export default {
   title: 'Components',

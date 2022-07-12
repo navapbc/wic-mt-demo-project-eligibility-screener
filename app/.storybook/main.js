@@ -1,4 +1,5 @@
 const nextConfig = require('../next.config')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   stories: [
@@ -27,7 +28,6 @@ module.exports = {
       use: [
         'style-loader',
         'css-loader',
-
         {
           /**
            * Next.js sets this automatically for us, but we need to manually set it here for Storybook.
@@ -40,7 +40,6 @@ module.exports = {
             }
           }
         },
-
         {
           loader: 'sass-loader',
           options: {
@@ -50,6 +49,13 @@ module.exports = {
       ],
       exclude: /node_modules/
     })
+    /* workaround to support tsconfig module imports */
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin({
+        extensions: config.resolve.extensions,
+      })
+    ]
 
     return config
   }
