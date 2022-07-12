@@ -22,12 +22,33 @@ i.e.
 
 @use 'uswds-core' as *;
 
+/* balsamiq-sans-regular - latin */
+@font-face {
+  font-family: 'Balsamiq Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.svg#BalsamiqSans') format('svg'); /* Legacy iOS */
+}
+
+body {
+  font-family: 'Balsamiq Sans', cursive;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 400;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Balsamiq Sans', cursive;
-  font-weight: 400;
 }
 
 .header {
