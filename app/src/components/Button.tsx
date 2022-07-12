@@ -9,7 +9,7 @@ type Props = {
   width?: string /* TODO: check if there is a type for css widths */
 }
 
-const Button = (props: Props) => {
+const Button = (props: Props): JSX.Element => {
   const { width, text, vector, href } = props
 
   return (

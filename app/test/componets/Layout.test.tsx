@@ -2,12 +2,12 @@
 import { screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Layout from '../../src/components/Layout'
+import Layout from '@components/Layout'
 import renderWithIntl from '../renderWithIntl'
 
 describe('Layout', () => {
   it('should render placeholder header text', () => {
-    renderWithIntl(<Layout />)
+    renderWithIntl(<Layout children={<h1>'child'</h1>} />)
 
     const header = screen.getByText(/Template Header/i)
 
@@ -16,7 +16,7 @@ describe('Layout', () => {
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = renderWithIntl(<Layout />)
+    const { container } = renderWithIntl(<Layout children={<h1>'child'</h1>} />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()

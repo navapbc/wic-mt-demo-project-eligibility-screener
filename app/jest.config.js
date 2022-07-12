@@ -4,10 +4,10 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    '\\.(css|scss)$': '<rootDir>/tests/__mocks__/styleMock.js', // sets up routing to mocks style sheet
+    '\\.(css|scss)$': '<rootDir>/test/__mocks__/styleMock.js', // sets up routing to mocks style sheet
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
   },
-  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/test/jest.setup.js'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   }, //transfrom typescript files to common js for jest compiler
