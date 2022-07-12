@@ -9,6 +9,9 @@ module.exports = {
     'next',
     'nava'
   ],
+  'globals': {
+    'JSX': true
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,

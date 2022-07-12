@@ -1,8 +1,9 @@
+import React from 'react'
 import styled from 'styled-components'
 
 interface Choice {
   checked: boolean
-  handleChange: (e: any) => void
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   label: string
   name?: string
   value: string
