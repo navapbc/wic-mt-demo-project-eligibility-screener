@@ -1,28 +1,24 @@
 import styled from 'styled-components'
 
 interface Choice {
-  checked: boolean,
-  handleChange: (e: any) => void,
-  label: string,
-  name?: string,
+  checked: boolean
+  handleChange: (e: any) => void
+  label: string
+  name?: string
   value: string
 }
 
 type Props = {
-  choices: Choice[],
-  title: string,
+  choices: Choice[]
+  title: string
   type: 'checkbox' | 'radio'
 }
 
 const InputChoiceGroup = (props: Props): JSX.Element => {
-  const { 
-    choices,
-    title,
-    type
-  } = props
+  const { choices, title, type } = props
 
   return (
-    <Fieldset className='usa-fieldset'>
+    <Fieldset className="usa-fieldset">
       <h2>{title}</h2>
       {choices.map((choice: Choice) => (
         <div className={`usa-${type}`} key={choice.value}>
@@ -39,8 +35,7 @@ const InputChoiceGroup = (props: Props): JSX.Element => {
             {choice.label}
           </label>
         </div>
-        ))
-      }
+      ))}
     </Fieldset>
   )
 }

@@ -18,7 +18,12 @@ const Index: NextPage = () => {
       </ul>
       <p>{t('time')}</p>
       <br />
-      <ButtonLink href="/information" label={t('button')} vector width="159px" />
+      <ButtonLink
+        href="/information"
+        label={t('button')}
+        vector
+        width="159px"
+      />
     </>
   )
 }

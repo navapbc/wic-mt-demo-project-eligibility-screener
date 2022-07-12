@@ -26,7 +26,7 @@ const Eligibility: NextPage = () => {
     let newValue = { [value]: !form[value] }
 
     if (name === 'residential') {
-      newValue = {[name]: value}
+      newValue = { [name]: value }
     }
 
     setForm({
@@ -63,41 +63,41 @@ const Eligibility: NextPage = () => {
         type="checkbox"
         choices={[
           {
-            checked:form.pregnant,
+            checked: form.pregnant,
             handleChange,
             label: t('pregnant'),
-            value:'pregnant',
+            value: 'pregnant'
           },
           {
             checked: form.baby,
             handleChange,
             label: t('baby'),
-            value: 'baby',
+            value: 'baby'
           },
           {
             checked: form.child,
             handleChange,
             label: t('child'),
-            value: 'child',
+            value: 'child'
           },
           {
             checked: form.guardian,
             handleChange,
             label: t('guardian'),
-            value: 'guardian',
+            value: 'guardian'
           },
           {
             checked: form.none,
             handleChange,
             label: t('none'),
-            value: 'none',
+            value: 'none'
           },
           {
             checked: form.loss,
             handleChange,
             label: t('loss'),
-            value: 'loss',
-          },
+            value: 'loss'
+          }
         ]}
       />
       <br />
@@ -109,26 +109,26 @@ const Eligibility: NextPage = () => {
             checked: form.insurance,
             handleChange,
             label: t('insurance'),
-            value: 'insurance',
+            value: 'insurance'
           },
           {
             checked: form.snap,
             handleChange,
             label: t('snap'),
-            value: 'snap',
+            value: 'snap'
           },
           {
             checked: form.tanf,
             handleChange,
             label: t('tanf'),
-            value: 'tanf',
+            value: 'tanf'
           },
           {
             checked: form.none2,
             handleChange,
             label: t('none'),
-            value: 'none2',
-          },
+            value: 'none2'
+          }
         ]}
       />
       <br />

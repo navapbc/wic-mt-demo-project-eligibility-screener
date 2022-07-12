@@ -4,10 +4,12 @@ import ButtonLinkComponent from '../../src/components/ButtonLink'
 
 export default {
   title: 'Components',
-  component: ButtonLinkComponent,
+  component: ButtonLinkComponent
 } as ComponentMeta<typeof ButtonLinkComponent>
 
-const Template: ComponentStory<typeof ButtonLinkComponent> = (args) => <ButtonLinkComponent {...args} />
+const Template: ComponentStory<typeof ButtonLinkComponent> = (args) => (
+  <ButtonLinkComponent {...args} />
+)
 
 export const ButtonLink = Template.bind({})
 
@@ -17,4 +19,3 @@ ButtonLink.args = {
   vector: true,
   width: '130px'
 }
-

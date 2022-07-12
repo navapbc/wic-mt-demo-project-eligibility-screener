@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import Layout from '@components/Layout'
+
 import renderWithIntl from '../renderWithIntl'
 
 describe('Layout', () => {

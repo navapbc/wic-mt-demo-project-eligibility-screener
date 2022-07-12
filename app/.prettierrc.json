@@ -8,5 +8,6 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "trailingComma": "none"
 }

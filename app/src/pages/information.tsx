@@ -19,7 +19,12 @@ const Information: NextPage = () => {
       </ol>
       <p>{t('note')}</p>
       <br />
-      <ButtonLink href="/eligibility" label={t('button')} vector width="239px" />
+      <ButtonLink
+        href="/eligibility"
+        label={t('button')}
+        vector
+        width="239px"
+      />
     </>
   )
 }

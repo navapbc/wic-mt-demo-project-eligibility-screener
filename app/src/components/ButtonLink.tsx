@@ -29,7 +29,12 @@ const ButtonLink = (props: Props): JSX.Element => {
   )
 }
 
-const Button: StyledComponent<'a', object, { width?: string }, never> = styled.a<{
+const Button: StyledComponent<
+  'a',
+  object,
+  { width?: string },
+  never
+> = styled.a<{
   width?: string
 }>`
   background-color: black;

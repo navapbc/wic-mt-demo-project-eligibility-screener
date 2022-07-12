@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+
 /* NOTE: This imports custom google font: see https://nextjs.org/docs/advanced-features/custom-document */
 export default function Document() {
   return (

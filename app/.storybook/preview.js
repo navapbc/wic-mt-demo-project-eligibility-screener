@@ -9,7 +9,7 @@ export const decorators = [
     <NextIntlProvider locale="en" messages={en}>
       <Story />
     </NextIntlProvider>
-  ),
+  )
 ]
 
 export const parameters = {
@@ -17,7 +17,7 @@ export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
-    },
-  },
+      date: /Date$/
+    }
+  }
 }

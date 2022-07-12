@@ -4,10 +4,12 @@ import InputChoiceGroupComponent from '../../src/components/InputChoiceGroup'
 
 export default {
   title: 'Components',
-  component: InputChoiceGroupComponent,
+  component: InputChoiceGroupComponent
 } as ComponentMeta<typeof InputChoiceGroupComponent>
 
-const Template: ComponentStory<typeof InputChoiceGroupComponent> = (args) => <InputChoiceGroupComponent {...args} />
+const Template: ComponentStory<typeof InputChoiceGroupComponent> = (args) => (
+  <InputChoiceGroupComponent {...args} />
+)
 
 export const InputChoiceGroup = Template.bind({})
 
