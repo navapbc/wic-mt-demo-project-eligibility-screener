@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 
-import Button from '../components/Button'
+import ButtonLink from '@components/ButtonLink'
 
 const Index: NextPage = () => {
   const t = useTranslations('Index')
@@ -18,7 +18,7 @@ const Index: NextPage = () => {
       </ul>
       <p>{t('time')}</p>
       <br />
-      <Button href="/information" text={t('button')} vector width="159px" />
+      <ButtonLink href="/information" text={t('button')} vector width="159px" />
     </>
   )
 }

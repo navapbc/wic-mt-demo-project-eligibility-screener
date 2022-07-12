@@ -2,7 +2,7 @@
 import { screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Index from '../../src/pages/index'
+import Index from '@pages/index'
 import renderWithIntl from '../renderWithIntl'
 
 describe('Index', () => {

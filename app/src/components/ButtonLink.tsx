@@ -9,12 +9,12 @@ type Props = {
   width?: string /* TODO: check if there is a type for css widths */
 }
 
-const Button = (props: Props): JSX.Element => {
+const ButtonLink = (props: Props): JSX.Element => {
   const { width, text, vector, href } = props
 
   return (
     <Link href={href}>
-      <Btn className="usa-button usa-button--small" width={width}>
+      <Button className="usa-button usa-button--small" width={width}>
         {text}
         {vector && (
           <Image
@@ -24,12 +24,12 @@ const Button = (props: Props): JSX.Element => {
             height={15}
           />
         )}
-      </Btn>
+      </Button>
     </Link>
   )
 }
 
-const Btn: StyledComponent<'a', object, { width?: string }, never> = styled.a<{
+const Button: StyledComponent<'a', object, { width?: string }, never> = styled.a<{
   width?: string
 }>`
   background-color: black;
@@ -40,4 +40,4 @@ const Btn: StyledComponent<'a', object, { width?: string }, never> = styled.a<{
   width: ${(props) => (props.width ? props.width : '90%')};
 `
 
-export default Button
+export default ButtonLink

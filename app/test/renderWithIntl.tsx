@@ -6,7 +6,7 @@ import en from '../src/messages/en.json'
 const renderWithIntl = (component: JSX.Element) => {
   return {
     ...render(
-      <NextIntlProvider locale="en" messages={en}>
+      <NextIntlProvider locale="en">
         {component}
       </NextIntlProvider>
     ),

@@ -1,22 +1,21 @@
-// test/pages/index.test.js
 import { screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Index from '../../src/pages/index'
+import Information from '@pages/information'
 import renderWithIntl from '../renderWithIntl'
 
-describe('Index', () => {
-  it('should render welcome text', () => {
-    renderWithIntl(<Index />)
+describe('Information', () => {
+  it('should render title text', () => {
+    renderWithIntl(<Information />)
 
-    const welcome = screen.getByText(/Welcome to your/i)
+    const title = screen.getByText(/You can start applying for WIC by checking to see if you're eligible/i)
 
-    expect(welcome).toBeInTheDocument()
-    expect(welcome).toMatchSnapshot()
+    expect(title).toBeInTheDocument()
+    expect(title).toMatchSnapshot()
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = renderWithIntl(<Index />)
+    const { container } = renderWithIntl(<Information />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
