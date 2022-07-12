@@ -7,7 +7,7 @@ type Props = {
   children: ReactElement
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children }: Props): JSX.Element => {
   const t = useTranslations('Layout')
 
   return (

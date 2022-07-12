@@ -1,4 +1,0 @@
-{
-  "eslint.workingDirectories": ["../"],
-  "javascript.suggestionActions.enabled": false
-}

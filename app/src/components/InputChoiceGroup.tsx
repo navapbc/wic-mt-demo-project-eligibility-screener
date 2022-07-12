@@ -10,12 +10,11 @@ interface Choice {
 
 type Props = {
   choices: Choice[],
-  label: string,
   title: string,
   type: 'checkbox' | 'radio'
 }
 
-const InputChoiceGroup = (props: Props) => {
+const InputChoiceGroup = (props: Props): JSX.Element => {
   const { 
     choices,
     title,

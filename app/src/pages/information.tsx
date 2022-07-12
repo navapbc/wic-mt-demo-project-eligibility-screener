@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 
-import ButtonLink from '@components/ButtonLink'
+import ButtonLink from '../components/ButtonLink'
 
 const Information: NextPage = () => {
   const t = useTranslations('Information')
@@ -19,7 +19,7 @@ const Information: NextPage = () => {
       </ol>
       <p>{t('note')}</p>
       <br />
-      <ButtonLink href="/eligibility" text={t('button')} vector width="239px" />
+      <ButtonLink href="/eligibility" label={t('button')} vector width="239px" />
     </>
   )
 }

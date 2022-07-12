@@ -3,19 +3,19 @@ import Link from 'next/link'
 import styled, { StyledComponent } from 'styled-components'
 
 type Props = {
-  text: string
+  label: string
   href: string /* TODO: create global type for routes */
   vector?: boolean
   width?: string /* TODO: check if there is a type for css widths */
 }
 
 const ButtonLink = (props: Props): JSX.Element => {
-  const { width, text, vector, href } = props
+  const { width, label, vector, href } = props
 
   return (
     <Link href={href}>
       <Button className="usa-button usa-button--small" width={width}>
-        {text}
+        {label}
         {vector && (
           <Image
             src="/img/vector.svg"

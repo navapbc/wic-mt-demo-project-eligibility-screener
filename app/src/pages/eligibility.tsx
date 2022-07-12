@@ -2,8 +2,8 @@ import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-import ButtonLink from '@components/ButtonLink'
-import InputChoiceGroup from '@components/InputChoiceGroup'
+import ButtonLink from '../components/ButtonLink'
+import InputChoiceGroup from '../components/InputChoiceGroup'
 
 const Eligibility: NextPage = () => {
   const t = useTranslations('Eligibility')
@@ -134,7 +134,7 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href="/" text={t('continue')} vector width="140px" />
+      <ButtonLink href="/" label={t('continue')} vector width="140px" />
     </form>
   )
 }
