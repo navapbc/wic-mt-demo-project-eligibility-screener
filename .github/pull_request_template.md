@@ -1,6 +1,6 @@
 ## Ticket
 
-{LINK TO TICKET}
+https://wicmtdp.atlassian.net/browse/{TICKET_ID}
 
 ## Changes
 > What was added, updated, or removed in this PR.
