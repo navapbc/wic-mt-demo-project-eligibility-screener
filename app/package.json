@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "prettier --write '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}'",
+    "format": "prettier --write '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}' --json-recursive-sort",
     "format-check": "prettier --check '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}'",
     "lint": "next lint",
     "start": "next start",
@@ -65,6 +65,7 @@
     "postcss-loader": "^7.0.0",
     "postcss-preset-env": "^7.7.2",
     "prettier": "^2.6.2",
+    "prettier-plugin-sort-json": "^0.0.2",
     "sass-loader": "^13.0.2",
     "storybook": "^6.5.9",
     "style-loader": "^3.3.1",

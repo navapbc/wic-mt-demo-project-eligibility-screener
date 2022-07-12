@@ -1,9 +1,11 @@
-import '../../styles/styles.scss'
-import type { AppProps } from 'next/app'
 import { AbstractIntlMessages, NextIntlProvider } from 'next-intl'
-import { useEffect, useState } from 'react'
+import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import Layout from 'src/components/Layout'
+import { useEffect, useState } from 'react'
+
+import Layout from '@components/Layout'
+
+import '@styles/styles.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { locale } = useRouter()

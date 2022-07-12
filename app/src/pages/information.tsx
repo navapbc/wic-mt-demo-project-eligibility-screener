@@ -1,4 +1,3 @@
-import { ReactElement } from 'react'
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 
@@ -11,21 +10,16 @@ const Information: NextPage = () => {
   return (
     <>
       <h1>{t('title')}</h1>
-      <ol className='usa-process-list'>
-        {
-          listCopyKeys.map((key: string) => (
-            <li className='usa-process-list__item' key={key}>{t(key)}</li>
-          ))
-        }
+      <ol className="usa-process-list">
+        {listCopyKeys.map((key: string) => (
+          <li className="usa-process-list__item" key={key}>
+            {t(key)}
+          </li>
+        ))}
       </ol>
       <p>{t('note')}</p>
       <br />
-      <Button
-        href='/eligibility'
-        text={t('button')}
-        vector
-        width="239px"
-      />
+      <Button href="/eligibility" text={t('button')} vector width="239px" />
     </>
   )
 }

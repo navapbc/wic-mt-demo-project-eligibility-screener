@@ -13,9 +13,9 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@styles/*": ["./styles/*"]
+      "@components/*": ["./components/*"],
+      "@pages/*": ["./pages/*"],
+      "@styles/*": ["../styles/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -27,6 +27,6 @@
     "../next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./tests/__mocks__/styleMock.js"
+    "../tests/__mocks__/styleMock.js"
   ]
 }
