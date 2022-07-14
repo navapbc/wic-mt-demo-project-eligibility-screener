@@ -13,11 +13,11 @@ const Layout = ({ children }: Props): JSX.Element => {
   return (
     <div className="container">
       <header className="header usa-header">
-        <em className="usa-logo__text">{t('header')}</em>
+        <em className="usa-logo__text">{t('Layout.header')}</em>
       </header>
       <main className="main">{children}</main>
       <footer className="footer">
-        <div>{t('footer')}</div>
+        <div>{t('Layout.footer')}</div>
         <Logos>
           <Image
             src="/img/wic-logo.svg"

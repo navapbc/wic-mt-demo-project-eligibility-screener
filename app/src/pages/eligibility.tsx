@@ -1,12 +1,13 @@
-import { NextPage } from 'next'
-import { useTranslations } from 'next-intl'
+import type { GetServerSideProps, NextPage } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState } from 'react'
 
 import ButtonLink from '../components/ButtonLink'
 import InputChoiceGroup from '../components/InputChoiceGroup'
 
 const Eligibility: NextPage = () => {
-  const t = useTranslations('Eligibility')
+  const { t } = useTranslation('common')
   const [form, setForm] = useState({
     residential: null,
     pregnant: false,
@@ -38,7 +39,7 @@ const Eligibility: NextPage = () => {
   return (
     <form>
       <InputChoiceGroup
-        title={t('residential')}
+        title={t('Eligibility.residential')}
         type="radio"
         choices={[
           {
@@ -59,74 +60,74 @@ const Eligibility: NextPage = () => {
       />
       <br />
       <InputChoiceGroup
-        title={t('categorical')}
+        title={t('Eligibility.categorical')}
         type="checkbox"
         choices={[
           {
             checked: form.pregnant,
             handleChange,
-            label: t('pregnant'),
+            label: t('Eligibility.pregnant'),
             value: 'pregnant'
           },
           {
             checked: form.baby,
             handleChange,
-            label: t('baby'),
+            label: t('Eligibility.baby'),
             value: 'baby'
           },
           {
             checked: form.child,
             handleChange,
-            label: t('child'),
+            label: t('Eligibility.child'),
             value: 'child'
           },
           {
             checked: form.guardian,
             handleChange,
-            label: t('guardian'),
+            label: t('Eligibility.guardian'),
             value: 'guardian'
           },
           {
             checked: form.none,
             handleChange,
-            label: t('none'),
+            label: t('Eligibility.none'),
             value: 'none'
           },
           {
             checked: form.loss,
             handleChange,
-            label: t('loss'),
+            label: t('Eligibility.loss'),
             value: 'loss'
           }
         ]}
       />
       <br />
       <InputChoiceGroup
-        title={t('programs')}
+        title={t('Eligibility.programs')}
         type="checkbox"
         choices={[
           {
             checked: form.insurance,
             handleChange,
-            label: t('insurance'),
+            label: t('Eligibility.insurance'),
             value: 'insurance'
           },
           {
             checked: form.snap,
             handleChange,
-            label: t('snap'),
+            label: t('Eligibility.snap'),
             value: 'snap'
           },
           {
             checked: form.tanf,
             handleChange,
-            label: t('tanf'),
+            label: t('Eligibility.tanf'),
             value: 'tanf'
           },
           {
             checked: form.none2,
             handleChange,
-            label: t('none'),
+            label: t('Eligibility.none'),
             value: 'none2'
           }
         ]}
@@ -134,9 +135,17 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href="/" label={t('continue')} vector width="140px" />
+      <ButtonLink href="/" label={t('Eligibility.continue')} vector width="140px" />
     </form>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'en', ['common']))
+    }
+  }
 }
 
 export default Eligibility

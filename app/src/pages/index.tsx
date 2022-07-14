@@ -4,8 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
 
-
-const Home: NextPage = () => {
+const Index: NextPage = () => {
   const { t } = useTranslation('common')
   const listCopyKeys: string[] = ['benefits', 'supplement', 'voluntary']
 
@@ -15,7 +14,7 @@ const Home: NextPage = () => {
       <p>{t('Index.header')}</p>
       <ul className="usa-list">
         {listCopyKeys.map((key: string) => (
-          <li key={key}>{t(key)}</li>
+          <li key={key}>{t(`Index.${key}`)}</li>
         ))}
       </ul>
       <p>{t('Index.time')}</p>
@@ -38,4 +37,4 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   }
 }
 
-export default Home
+export default Index
