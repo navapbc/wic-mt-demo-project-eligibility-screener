@@ -10,7 +10,8 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '@storybook/preset-scss'
+    '@storybook/preset-scss',
+    'storybook-react-i18next'
   ],
   framework: '@storybook/react',
   core: {
@@ -49,6 +50,7 @@ module.exports = {
       ],
       exclude: /node_modules/
     })
+
     /* workaround to support tsconfig module imports */
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
@@ -56,6 +58,13 @@ module.exports = {
         extensions: config.resolve.extensions,
       })
     ]
+
+    // Required for i18next.
+    config.resolve.fallback = {
+      fs: false,
+      path: false,
+      os: false
+    }
 
     return config
   }

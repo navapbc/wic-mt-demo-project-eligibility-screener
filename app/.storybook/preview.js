@@ -1,16 +1,7 @@
 // Apply global styling to our stories
-import { NextIntlProvider } from 'next-intl'
-
-import en from '@messages/en.json'
 import '@styles/styles.scss'
-
-export const decorators = [
-  (Story) => (
-    <NextIntlProvider locale="en" messages={en}>
-      <Story />
-    </NextIntlProvider>
-  )
-]
+// Import i18next config.
+import i18n from './i18next.js'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -19,5 +10,12 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+  // Configure i18next and locale/dropdown options.
+  i18n,
+  locale: 'en',
+  locales: {
+    en: 'English',
+    es: 'Español'
   }
 }

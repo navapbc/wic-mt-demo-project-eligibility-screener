@@ -1,26 +1,28 @@
-import { NextPage } from 'next'
-import { useTranslations } from 'next-intl'
+import type { GetServerSideProps, NextPage } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
 
-const Index: NextPage = () => {
-  const t = useTranslations('Index')
+
+const Home: NextPage = () => {
+  const { t } = useTranslation('common')
   const listCopyKeys: string[] = ['benefits', 'supplement', 'voluntary']
 
   return (
     <>
-      <h1>{t('title')}</h1>
-      <p>{t('header')}</p>
+      <h1>{t('Index.title')}</h1>
+      <p>{t('Index.header')}</p>
       <ul className="usa-list">
         {listCopyKeys.map((key: string) => (
           <li key={key}>{t(key)}</li>
         ))}
       </ul>
-      <p>{t('time')}</p>
+      <p>{t('Index.time')}</p>
       <br />
       <ButtonLink
         href="/information"
-        label={t('button')}
+        label={t('Index.button')}
         vector
         width="159px"
       />
@@ -28,4 +30,12 @@ const Index: NextPage = () => {
   )
 }
 
-export default Index
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'en', ['common']))
+    }
+  }
+}
+
+export default Home

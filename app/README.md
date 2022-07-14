@@ -56,7 +56,7 @@ Note: make sure TypeScript and Javascript Language Features are enabled in VS Co
   - Disallows usage of `any` type. The usage of `any` defeats the purpose of typescript. Consider using `unknown` type instead instead.
 - "react/resct-in-jsx-scope": "off"
   - suppress errors for missing 'import React' in files because NextJS does this for us.
-- "space-before-function-paren": ["error", "never"]
+- "space-before-function-paren": "off"
   - suppresses errors for lack of space before function parenthesis to allow for `function()`
 
 ### Tsconfig additions to auto-generated file
@@ -99,9 +99,37 @@ Note: make sure TypeScript and Javascript Language Features are enabled in VS Co
 
 ## Design System
 
-<something something USWDS something something>
+We are using the [USWDS 3.0](https://designsystem.digital.gov) design system.
 
-- installed USWDS 3.x following their directions at https://designsystem.digital.gov/documentation/getting-started/developers
-- requires us to use gulp to compile sass rather than getting to use next.js's built-in sass support
-- that means in next.js and in storybook, we include compiled css files rather than sass files
-- when we try to bypass gulp, next.js isn't able to detect the `uswds-core` module used in `/styles/_uswds-theme.scss` and I don't know how to work around this issue, so I just made it work using compiled css instead. this is a probably a place we could refactor
+We did not follow their [install directions](https://designsystem.digital.gov/documentation/getting-started/developers), which require using gulp as a task runner. Instead, we configured `next.config.js` such that we could leverage Next.js's built-in sass compiling and we configured `.storybook/main.js` such that we could leverage Storybook's built-in sass compiling and re-use the same Next.js configuration.
+
+Compiling the USWDS sass is slow, so the initial build step and subsequent sass re-compiles are slow, but after the design system is set up, we shouldn't need to be regularly re-compiling sass.
+
+Copying the USWDS static assets into the project is handled by a [yarn postinstall](https://classic.yarnpkg.com/lang/en/docs/package-json/#toc-scripts) script in `package.json`.
+
+## Internationalization (i18n)
+
+### Next.js i18n
+
+We are using [next-i18next](https://github.com/i18next/next-i18next) for Next.js internationalization. It provides a Next.js wrapper around [i18next](https://www.i18next.com/) and [react-i18next](https://github.com/i18next/react-i18next). Configuration is located in `next-i18next.config.js`. To add a language:
+
+1. Edit `next-i18next.config.js` and add the language to `locales`
+2. Add a language folder: `mkdir -p public/locales/<lang>`
+3. Add a language file: `touch public/locales/<lang>/common.json` and add the translated content
+
+Note that the json structure should be the same for each translation file. However, non-default languages can omit keys, in which case the translation content for the default language will be used.
+
+### Jest i18n
+
+We are using [i18next](https://www.i18next.com/) and [react-i18next](https://github.com/i18next/react-i18next) for jest internationalization. Configuration is located in `jest-i18next.ts`. To add a language:
+
+1. Edit `jest-i18next.ts`, import the language file, and edit the `resources` object.
+
+### Storybook i18n
+
+For storybook, we are using [storybook-react-i18next](https://storybook.js.org/addons/storybook-react-i18next), which adds a globe icon to the add-ons bar for selecting the desired language. To add a language:
+
+1. Edit `.storybook/i18next.js` and add the language to `supportedLngs`. This tells storybook-react-i18next what language files to look for.
+2. Edit `.storybook/preview.js` and add the language to `locales`. This tells storybook-react-i18next the options that the globe icon dropdown should include.
+
+Note that for storybook to support i18next, we need to to set a few webpack settings to false. See `.storybook/main.js`.

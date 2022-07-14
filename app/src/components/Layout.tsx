@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { ReactElement } from 'react'
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ type Props = {
 }
 
 const Layout = ({ children }: Props): JSX.Element => {
-  const t = useTranslations('Layout')
+  const { t } = useTranslation('common')
 
   return (
     <div className="container">
@@ -42,5 +42,4 @@ const Logos = styled.div`
   grid-template-columns: repeat(2, 1fr);
   padding-top: 1rem;
 `
-
 export default Layout

@@ -10,7 +10,10 @@ module.exports = {
     '^@messages(.*)$': '<rootDir>/src/messages$1',
     '^@styles(.*)$': '<rootDir>/styles$1'
   },
-  setupFilesAfterEnv: ['<rootDir>/test/jest.setup.js'],
+  setupFilesAfterEnv: [
+    '<rootDir>/tests/jest.setup.js',
+    '<rootDir>/tests/jest-i18n.ts'
+  ],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   }, //transfrom typescript files to common js for jest compiler
@@ -20,7 +23,7 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$'
   ],
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
-  testRegex: '(/test/.*(test|spec))\\.[jt]sx?$',
+  testRegex: '(/tests/.*(test|spec))\\.[jt]sx?$',
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.ts-jest.json'

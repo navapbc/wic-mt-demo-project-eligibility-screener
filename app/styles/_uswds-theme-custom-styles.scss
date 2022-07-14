@@ -81,7 +81,6 @@ h1 {
 }
 
 .title a {
-  color: #0070f3;
   text-decoration: none;
 }
 
@@ -89,10 +88,4 @@ h1 {
 .title a:focus,
 .title a:active {
   text-decoration: underline;
-}
-
-.title {
-  font-size: 4rem;
-  line-height: 1.15;
-  margin: 0;
 }
