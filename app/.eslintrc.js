@@ -9,8 +9,8 @@ module.exports = {
     'next',
     'nava'
   ],
-  'globals': {
-    'JSX': true
+  globals: {
+    JSX: true
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

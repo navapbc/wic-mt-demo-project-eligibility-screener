@@ -38,7 +38,7 @@ const Layout = ({ children }: Props): JSX.Element => {
 }
 
 const Logos = styled.div`
-  display: grid;
+  display: grid !important;
   grid-template-columns: repeat(2, 1fr);
   padding-top: 1rem;
 `

@@ -29,11 +29,20 @@ i.e.
   font-weight: 400;
   src: url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.eot'); /* IE9 Compat Modes */
   src: local(''),
-       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.svg#BalsamiqSans') format('svg'); /* Legacy iOS */
+    url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */
+      url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.woff')
+      format('woff'),
+    /* Modern Browsers */
+      url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('../public/fonts/balsamiq-sans-v10-latin/balsamiq-sans-v10-latin-regular.svg#BalsamiqSans')
+      format('svg'); /* Legacy iOS */
 }
 
 body {
