@@ -28,6 +28,7 @@ const InputChoiceGroup = (props: Props): JSX.Element => {
             id={choice.value}
             name={choice.name}
             type={type}
+            role={type}
             value={choice.value}
             checked={choice.checked}
             onChange={choice.handleChange}

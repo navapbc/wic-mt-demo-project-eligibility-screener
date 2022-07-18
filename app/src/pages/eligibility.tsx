@@ -1,10 +1,10 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
-import ButtonLink from '../components/ButtonLink'
-import InputChoiceGroup from '../components/InputChoiceGroup'
+import ButtonLink from '@components/ButtonLink'
+import InputChoiceGroup from '@components/InputChoiceGroup'
 
 const Eligibility: NextPage = () => {
   const { t } = useTranslation('common')
@@ -22,13 +22,16 @@ const Eligibility: NextPage = () => {
     none2: false
   })
 
-  const handleChange = (e: { target: HTMLInputElement }) => {
-    const { value, name } = e.target
-    let newValue = { [value]: !form[value] }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name }: { value: string, name: string } = e.target
+    const castValue = value as keyof typeof form
+    let newValue
 
     if (name === 'residential') {
       newValue = { [name]: value }
     }
+
+    newValue = { [castValue]: !form[castValue] }
 
     setForm({
       ...form,

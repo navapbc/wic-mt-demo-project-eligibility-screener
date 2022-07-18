@@ -12,7 +12,7 @@ describe('Layout', () => {
       </Layout>
     )
 
-    const header = screen.getByText(/Template Header/i)
+    const header = screen.getByText(/WIC Eligibility Screener/i)
 
     expect(header).toBeInTheDocument()
     expect(header).toMatchSnapshot()

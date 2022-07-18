@@ -1,13 +1,11 @@
-import { screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import Information from '@pages/information'
 
-import renderWithIntl from '../renderWithIntl'
-
 describe('Information', () => {
   it('should render title text', () => {
-    renderWithIntl(<Information />)
+    render(<Information />)
 
     const title = screen.getByText(
       /You can start applying for WIC by checking to see if you're eligible/i
@@ -18,7 +16,7 @@ describe('Information', () => {
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = renderWithIntl(<Information />)
+    const { container } = render(<Information />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
