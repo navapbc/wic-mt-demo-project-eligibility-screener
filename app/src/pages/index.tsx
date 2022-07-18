@@ -29,11 +29,11 @@ const Index: NextPage = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common']))
-    }
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
   }
 }
 

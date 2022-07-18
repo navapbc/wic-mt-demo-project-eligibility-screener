@@ -4,7 +4,7 @@ import EligibilityPage from '@pages/eligibility'
 
 export default {
   title: 'Pages',
-  component: EligibilityPage
+  component: EligibilityPage,
 } as ComponentMeta<typeof EligibilityPage>
 
 const Template: ComponentStory<typeof EligibilityPage> = () => (

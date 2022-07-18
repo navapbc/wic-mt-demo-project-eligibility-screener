@@ -19,7 +19,7 @@ const Eligibility: NextPage = () => {
     insurance: false,
     snap: false,
     tanf: false,
-    none2: false
+    none2: false,
   })
 
   const handleChange = (e: { target: HTMLInputElement }) => {
@@ -32,7 +32,7 @@ const Eligibility: NextPage = () => {
 
     setForm({
       ...form,
-      ...newValue
+      ...newValue,
     })
   }
 
@@ -47,15 +47,15 @@ const Eligibility: NextPage = () => {
             handleChange,
             label: 'Yes',
             name: 'residential',
-            value: 'yes'
+            value: 'yes',
           },
           {
             checked: form.residential === 'no',
             handleChange,
             label: 'No',
             name: 'residential',
-            value: 'no'
-          }
+            value: 'no',
+          },
         ]}
       />
       <br />
@@ -67,38 +67,38 @@ const Eligibility: NextPage = () => {
             checked: form.pregnant,
             handleChange,
             label: t('Eligibility.pregnant'),
-            value: 'pregnant'
+            value: 'pregnant',
           },
           {
             checked: form.baby,
             handleChange,
             label: t('Eligibility.baby'),
-            value: 'baby'
+            value: 'baby',
           },
           {
             checked: form.child,
             handleChange,
             label: t('Eligibility.child'),
-            value: 'child'
+            value: 'child',
           },
           {
             checked: form.guardian,
             handleChange,
             label: t('Eligibility.guardian'),
-            value: 'guardian'
+            value: 'guardian',
           },
           {
             checked: form.none,
             handleChange,
             label: t('Eligibility.none'),
-            value: 'none'
+            value: 'none',
           },
           {
             checked: form.loss,
             handleChange,
             label: t('Eligibility.loss'),
-            value: 'loss'
-          }
+            value: 'loss',
+          },
         ]}
       />
       <br />
@@ -110,26 +110,26 @@ const Eligibility: NextPage = () => {
             checked: form.insurance,
             handleChange,
             label: t('Eligibility.insurance'),
-            value: 'insurance'
+            value: 'insurance',
           },
           {
             checked: form.snap,
             handleChange,
             label: t('Eligibility.snap'),
-            value: 'snap'
+            value: 'snap',
           },
           {
             checked: form.tanf,
             handleChange,
             label: t('Eligibility.tanf'),
-            value: 'tanf'
+            value: 'tanf',
           },
           {
             checked: form.none2,
             handleChange,
             label: t('Eligibility.none'),
-            value: 'none2'
-          }
+            value: 'none2',
+          },
         ]}
       />
       <br />
@@ -145,11 +145,11 @@ const Eligibility: NextPage = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || 'en', ['common']))
-    }
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
   }
 }
 

@@ -4,7 +4,7 @@ import ButtonLinkComponent from '@components/ButtonLink'
 
 export default {
   title: 'Components',
-  component: ButtonLinkComponent
+  component: ButtonLinkComponent,
 } as ComponentMeta<typeof ButtonLinkComponent>
 
 const Template: ComponentStory<typeof ButtonLinkComponent> = (args) => (
@@ -17,5 +17,5 @@ ButtonLink.args = {
   href: '/test',
   label: 'Primary',
   vector: true,
-  width: '130px'
+  width: '130px',
 }

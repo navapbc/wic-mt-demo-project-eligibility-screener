@@ -4,7 +4,7 @@ import { NextIntlProvider } from 'next-intl'
 
 const renderWithIntl = (component: JSX.Element) => {
   return {
-    ...render(<NextIntlProvider locale="en">{component}</NextIntlProvider>)
+    ...render(<NextIntlProvider locale="en">{component}</NextIntlProvider>),
   }
 }
 
