@@ -136,7 +136,7 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <ButtonLink
-        href="/"
+        href="/contact"
         label={t('Eligibility.continue')}
         vector
         width="140px"
