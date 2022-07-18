@@ -1,4 +1,11 @@
 {
+  "Contact": {
+    "firstName": "What's your first name?",
+    "lastName": "What's your last name?",
+    "phone": "What's the best phone number to reach you at?",
+    "other": "Is there anything else you want to share with us?",
+    "button": "Submit"
+  },
   "Eligibility": {
     "baby": "I've had a baby in the past 12 months",
     "categorical": "2. Please select all the following that apply to your family:",
