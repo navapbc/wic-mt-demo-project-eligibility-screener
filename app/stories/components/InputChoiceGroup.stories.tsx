@@ -4,7 +4,7 @@ import InputChoiceGroupComponent from '@components/InputChoiceGroup'
 
 export default {
   title: 'Components',
-  component: InputChoiceGroupComponent
+  component: InputChoiceGroupComponent,
 } as ComponentMeta<typeof InputChoiceGroupComponent>
 
 const Template: ComponentStory<typeof InputChoiceGroupComponent> = (args) => (
@@ -19,15 +19,15 @@ InputChoiceGroup.args = {
       checked: true,
       handleChange: () => {},
       label: 'Yes',
-      value: 'yes'
+      value: 'yes',
     },
     {
       checked: false,
       handleChange: () => {},
       label: 'No',
-      value: 'no'
-    }
+      value: 'no',
+    },
   ],
   type: 'radio',
-  title: 'Choice Group Options'
+  title: 'Choice Group Options',
 }

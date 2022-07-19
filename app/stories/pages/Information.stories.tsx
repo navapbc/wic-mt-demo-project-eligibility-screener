@@ -4,7 +4,7 @@ import InformationPage from '@pages/information'
 
 export default {
   title: 'Pages',
-  component: InformationPage
+  component: InformationPage,
 } as ComponentMeta<typeof InformationPage>
 
 const Template: ComponentStory<typeof InformationPage> = () => (

@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { axe } from 'jest-axe'
 
 import Contact from '@pages/contact'
 
@@ -26,9 +25,9 @@ describe('Contact', () => {
   describe('phone number input', () => {
     it('should not allow non-numbers', () => {
       render(<Contact />)
-  
+
       const phoneNumber = screen.getByLabelText(/What's the best phone number to reach you at?/i) as HTMLInputElement
-  
+
       expect(phoneNumber.value).toBe('')
       fireEvent.change(phoneNumber, { target: { value: 'not a number' } })
       expect(phoneNumber.value).toBe('')
@@ -36,9 +35,9 @@ describe('Contact', () => {
 
     it('should format number', () => {
       render(<Contact />)
-  
+
       const phoneNumber = screen.getByLabelText(/What's the best phone number to reach you at?/i) as HTMLInputElement
-  
+
       expect(phoneNumber.value).toBe('')
       fireEvent.change(phoneNumber, { target: { value: '1111111111' } })
       expect(phoneNumber.value).toBe('111-111-1111')

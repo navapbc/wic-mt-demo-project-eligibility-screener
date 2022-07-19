@@ -4,7 +4,7 @@ import IndexPage from '@pages/index'
 
 export default {
   title: 'Pages',
-  component: IndexPage
+  component: IndexPage,
 } as ComponentMeta<typeof IndexPage>
 
 const Template: ComponentStory<typeof IndexPage> = () => <IndexPage />

@@ -2,22 +2,13 @@ const nextConfig = require('../next.config')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
-  stories: [
-    '../stories/**/*.stories.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx)'
-  ],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/preset-scss',
-    'storybook-react-i18next'
-  ],
+  stories: ['../stories/**/*.stories.@(mdx|js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-essentials', 'storybook-react-i18next'],
   framework: '@storybook/react',
   core: {
-    // Use webpack5 instead of webpack4
+    // Use webpack5 instead of webpack4.
     builder: 'webpack5',
-    disableTelemetry: true
+    disableTelemetry: true,
   },
   // Tell storybook where to find USWDS static assets
   staticDirs: ['../public'],
@@ -37,35 +28,35 @@ module.exports = {
           loader: 'postcss-loader',
           options: {
             postcssOptions: {
-              plugins: ['postcss-preset-env']
-            }
-          }
+              plugins: ['postcss-preset-env'],
+            },
+          },
         },
         {
           loader: 'sass-loader',
           options: {
-            sassOptions: nextConfig.sassOptions
-          }
-        }
+            sassOptions: nextConfig.sassOptions,
+          },
+        },
       ],
-      exclude: /node_modules/
+      exclude: /node_modules/,
     })
 
     /* workaround to support tsconfig module imports */
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
       new TsconfigPathsPlugin({
-        extensions: config.resolve.extensions
-      })
+        extensions: config.resolve.extensions,
+      }),
     ]
 
     // Required for i18next.
     config.resolve.fallback = {
       fs: false,
       path: false,
-      os: false
+      os: false,
     }
 
     return config
-  }
+  },
 }

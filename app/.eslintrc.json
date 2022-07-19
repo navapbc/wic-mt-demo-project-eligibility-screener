@@ -5,13 +5,10 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier",
     "next",
-    "nava"
+    "nava",
+    "prettier"
   ],
-  "globals": {
-    "JSX": true
-  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": ["./tsconfig.json"],
