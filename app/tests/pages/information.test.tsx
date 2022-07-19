@@ -15,7 +15,7 @@ describe('Information', () => {
     expect(title).toMatchSnapshot()
   })
 
-  it('should pass accessibility scan', async () => {
+  it('should pass accessibility scan', async() => {
     const { container } = render(<Information />)
     const results = await axe(container)
 

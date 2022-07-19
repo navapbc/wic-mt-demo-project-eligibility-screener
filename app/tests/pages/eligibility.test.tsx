@@ -2,6 +2,7 @@ import { screen, fireEvent, render } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import Eligibility from '@pages/eligibility'
+import { act } from 'react-dom/test-utils'
 
 describe('Eligibility', () => {
   it('should render first question text', () => {
@@ -13,7 +14,7 @@ describe('Eligibility', () => {
     expect(question).toMatchSnapshot()
   })
 
-  it('should pass accessibility scan', async () => {
+  it('should pass accessibility scan', async() => {
     const { container } = render(<Eligibility />)
     const results = await axe(container)
 
@@ -21,13 +22,13 @@ describe('Eligibility', () => {
   })
 
   describe('residential radios', () => {
-    it('should select yes option', async () => {
+    it.skip('should select yes option', () => {
       render(<Eligibility />)
 
-      const yesRadio = screen.getByText(/Yes/i)
+      const yesRadio = screen.getByLabelText(/Yes/i)
 
+      expect(yesRadio).not.toBeChecked()
       fireEvent.click(yesRadio)
-
       expect(yesRadio).toBeChecked()
     })
   })
