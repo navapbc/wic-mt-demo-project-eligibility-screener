@@ -1,14 +1,11 @@
-import { screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { screen, fireEvent, render } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import Eligibility from '@pages/eligibility'
 
-import renderWithIntl from '../renderWithIntl'
-
 describe('Eligibility', () => {
   it('should render first question text', () => {
-    renderWithIntl(<Eligibility />)
+    render(<Eligibility />)
 
     const question = screen.getByText(/1. Do you live or work in Montana?/i)
 
@@ -17,7 +14,7 @@ describe('Eligibility', () => {
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = renderWithIntl(<Eligibility />)
+    const { container } = render(<Eligibility />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()
@@ -25,11 +22,11 @@ describe('Eligibility', () => {
 
   describe('residential radios', () => {
     it('should select yes option', async () => {
-      renderWithIntl(<Eligibility />)
+      render(<Eligibility />)
 
       const yesRadio = screen.getByText(/Yes/i)
 
-      await userEvent.click(yesRadio)
+      fireEvent.click(yesRadio)
 
       expect(yesRadio).toBeChecked()
     })
