@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { ReactElement } from 'react'
 import styled, { StyledComponent } from 'styled-components'
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
   width?: string /* TODO: check if there is a type for css widths */
 }
 
-const ButtonLink = (props: Props): JSX.Element => {
+const ButtonLink = (props: Props): ReactElement => {
   const { width, label, vector, href } = props
 
   return (

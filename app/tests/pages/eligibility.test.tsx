@@ -1,8 +1,7 @@
-import { screen, fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import Eligibility from '@pages/eligibility'
-import { act } from 'react-dom/test-utils'
 
 describe('Eligibility', () => {
   it('should render first question text', () => {
@@ -14,7 +13,7 @@ describe('Eligibility', () => {
     expect(question).toMatchSnapshot()
   })
 
-  it('should pass accessibility scan', async() => {
+  it('should pass accessibility scan', async () => {
     const { container } = render(<Eligibility />)
     const results = await axe(container)
 

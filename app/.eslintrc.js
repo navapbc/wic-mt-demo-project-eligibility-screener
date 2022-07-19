@@ -9,9 +9,6 @@ module.exports = {
     'next',
     'nava',
   ],
-  globals: {
-    JSX: true,
-  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -20,9 +17,10 @@ module.exports = {
   plugins: ['@typescript-eslint', 'jest'],
   root: true,
   rules: {
+    'comma-dangle': ['error', 'only-multiline'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': 'off',
   },
 }
