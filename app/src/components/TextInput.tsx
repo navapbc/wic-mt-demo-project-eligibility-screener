@@ -1,13 +1,14 @@
+import { ReactElement, ChangeEvent } from 'react'
 import styled from 'styled-components'
 
 type Props = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void,
   id: string,
   label: string,
   value: string
 }
 
-const TextInput = (props: Props): JSX.Element => {
+const TextInput = (props: Props): ReactElement => {
   const { handleChange, id, label, value } = props
 
   return (
