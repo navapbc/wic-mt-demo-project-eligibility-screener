@@ -21,7 +21,7 @@ describe('Eligibility', () => {
   })
 
   describe('residential radios', () => {
-    it.skip('should select yes option', () => {
+    it('should select yes option', () => {
       render(<Eligibility />)
 
       const yesRadio = screen.getByLabelText(/Yes/i)
