@@ -1,4 +1,4 @@
-module.exports = {
+{
   "env": {
     "jest/globals": true,
   },
@@ -11,7 +11,7 @@ module.exports = {
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "tsconfigRootDir": __dirname,
+    "tsconfigRootDir": "./",
     "project": "./tsconfig.json",
   },
   "plugins": ["@typescript-eslint", "jest"],
