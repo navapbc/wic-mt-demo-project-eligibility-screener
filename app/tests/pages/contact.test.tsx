@@ -15,7 +15,9 @@ describe('Contact', () => {
   it('should update name input value', () => {
     render(<Contact />)
 
-    const nameInput = screen.getByLabelText(/What's your first name?/i) as HTMLInputElement
+    const nameInput = screen.getByLabelText(
+      /What's your first name?/i
+    ) as HTMLInputElement
 
     expect(nameInput.value).toBe('')
     fireEvent.change(nameInput, { target: { value: 'Jane' } })
@@ -26,7 +28,9 @@ describe('Contact', () => {
     it('should not allow non-numbers', () => {
       render(<Contact />)
 
-      const phoneNumber = screen.getByLabelText(/What's the best phone number to reach you at?/i) as HTMLInputElement
+      const phoneNumber = screen.getByLabelText(
+        /What's the best phone number to reach you at?/i
+      ) as HTMLInputElement
 
       expect(phoneNumber.value).toBe('')
       fireEvent.change(phoneNumber, { target: { value: 'not a number' } })
@@ -36,7 +40,9 @@ describe('Contact', () => {
     it('should format number', () => {
       render(<Contact />)
 
-      const phoneNumber = screen.getByLabelText(/What's the best phone number to reach you at?/i) as HTMLInputElement
+      const phoneNumber = screen.getByLabelText(
+        /What's the best phone number to reach you at?/i
+      ) as HTMLInputElement
 
       expect(phoneNumber.value).toBe('')
       fireEvent.change(phoneNumber, { target: { value: '1111111111' } })

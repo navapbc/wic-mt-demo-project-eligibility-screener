@@ -13,7 +13,7 @@ describe('Eligibility', () => {
     expect(question).toMatchSnapshot()
   })
 
-  it('should pass accessibility scan', async() => {
+  it('should pass accessibility scan', async () => {
     const { container } = render(<Eligibility />)
     const results = await axe(container)
 

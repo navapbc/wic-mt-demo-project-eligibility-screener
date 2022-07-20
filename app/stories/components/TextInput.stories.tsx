@@ -4,7 +4,7 @@ import TextInputComponent from '@components/TextInput'
 
 export default {
   title: 'Components',
-  component: TextInputComponent
+  component: TextInputComponent,
 } as ComponentMeta<typeof TextInputComponent>
 
 const Template: ComponentStory<typeof TextInputComponent> = (args) => (
@@ -14,5 +14,5 @@ const Template: ComponentStory<typeof TextInputComponent> = (args) => (
 export const TextInput = Template.bind({})
 
 TextInput.args = {
-  label: 'Text Input'
+  label: 'Text Input',
 }
