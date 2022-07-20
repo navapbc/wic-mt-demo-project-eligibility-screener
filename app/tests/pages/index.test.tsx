@@ -14,7 +14,7 @@ describe('Index', () => {
     expect(heading).toMatchSnapshot()
   })
 
-  it('should pass accessibility scan', async() => {
+  it('should pass accessibility scan', async () => {
     const { container } = render(<Index />)
     const results = await axe(container)
 

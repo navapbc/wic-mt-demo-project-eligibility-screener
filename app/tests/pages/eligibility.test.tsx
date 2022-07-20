@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
 import Eligibility from '@pages/eligibility'
@@ -21,15 +20,15 @@ describe('Eligibility', () => {
     expect(results).toHaveNoViolations()
   })
 
-  // describe('residential radios', () => {
-  //   it('should select yes option', async() => {
-  //     render(<Eligibility />)
+  describe('residential radios', () => {
+    it.skip('should select yes option', () => {
+      render(<Eligibility />)
 
-  //     const radio = screen.getByDisplayValue('yes')
+      const yesRadio = screen.getByLabelText(/Yes/i)
 
-  //     await userEvent.click(radio)
-
-  //     expect(radio).toBeChecked()
-  //   })
-  // })
+      expect(yesRadio).not.toBeChecked()
+      fireEvent.click(yesRadio)
+      expect(yesRadio).toBeChecked()
+    })
+  })
 })

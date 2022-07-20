@@ -23,7 +23,7 @@ const Eligibility: NextPage = () => {
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name }: { value: string, name: string } = e.target
+    const { value, name }: { value: string; name: string } = e.target
     const castValue = value as keyof typeof form
     let newValue
 

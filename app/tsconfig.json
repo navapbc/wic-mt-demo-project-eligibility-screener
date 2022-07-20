@@ -14,7 +14,6 @@
     "noEmit": true,
     "paths": {
       "@components/*": ["./src/components/*"],
-      "@messages/*": ["./src/messages/*"],
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./styles/*"]
     },

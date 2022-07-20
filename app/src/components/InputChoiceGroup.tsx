@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 
 interface Choice {
@@ -15,7 +15,7 @@ type Props = {
   type: 'checkbox' | 'radio'
 }
 
-const InputChoiceGroup = (props: Props): JSX.Element => {
+const InputChoiceGroup = (props: Props): ReactElement => {
   const { choices, title, type } = props
 
   return (
