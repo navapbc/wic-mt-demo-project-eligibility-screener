@@ -9,7 +9,7 @@ import InputChoiceGroup from '@components/InputChoiceGroup'
 const Eligibility: NextPage = () => {
   const { t } = useTranslation('common')
   const [form, setForm] = useState({
-    residential: null,
+    residential: '',
     pregnant: false,
     baby: false,
     child: false,
@@ -29,9 +29,9 @@ const Eligibility: NextPage = () => {
 
     if (name === 'residential') {
       newValue = { [name]: value }
+    } else {
+      newValue = { [castValue]: !form[castValue] }
     }
-
-    newValue = { [castValue]: !form[castValue] }
 
     setForm({
       ...form,
