@@ -12,8 +12,15 @@ const Layout = ({ children }: Props): ReactElement => {
 
   return (
     <div className="container">
-      <header className="header usa-header">
-        <em className="usa-logo__text">{t('Layout.header')}</em>
+      <header className="usa-header usa-header--basic">
+        <div className="usa-nav-container">
+          <div className='usa-navbar'>
+            <div className='usa-logo'>
+              <em className="usa-logo__text">{t('Layout.header')}</em>
+            </div>
+            <button className="usa-menu-btn">{t('Layout.menu')}</button>
+          </div>
+        </div>
       </header>
       <main className="main">{children}</main>
       <footer className="footer">
