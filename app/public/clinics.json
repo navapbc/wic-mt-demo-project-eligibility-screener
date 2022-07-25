@@ -1,0 +1,892 @@
+[
+  {
+    "Agency": "BEAVERHEAD COUNTY PUBLIC HEALTH",
+    "Agency Address": "41 Barrett Street Dillon, MT 59725",
+    "Agency Telephone": "(406) 683-4771",
+    "Clinic": "BEAVERHEAD CPH WIC",
+    "Clinic Address": "41 Barrett Street Dillon, MT 59725",
+    "County": "BEAVERHEAD",
+    "Clinic Telephone": "(406) 683-4771",
+    "Zip": "59725"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "SHERIDAN WIC CLINIC",
+    "Clinic Address": "Ruby Valley Hospital 220 E. Crofoot Sheridan, MT 59749",
+    "County": "MADISON",
+    "Clinic Telephone": "(406) 683-4771",
+    "Zip": "59749"
+  },
+  {
+    "Agency": "BIG HORN HEALTH DEPARTMENT",
+    "Agency Address": "809 N. Custer Ave Hardin, MT 59034",
+    "Agency Telephone": "(406) 665-8726",
+    "Clinic": "HARDIN WIC (BIG HORN)",
+    "Clinic Address": "809 N. Custer Ave Hardin, MT 59034",
+    "County": "BIG HORN",
+    "Clinic Telephone": "(406) 665-8726",
+    "Zip": "59034"
+  },
+  {
+    "Agency": "BLACKFEET",
+    "Agency Address": "P. O. Box 2969 Browning, MT 59417",
+    "Agency Telephone": "(406) 338-5321",
+    "Clinic": "BROWNING WIC",
+    "Clinic Address": "Next To Tribal Complex Gov Square -- House #4 Browning, MT 59417",
+    "County": "GLACIER",
+    "Clinic Telephone": "(406) 338-5321",
+    "Zip": "59417"
+  },
+  {
+    "Agency": "BUTTE-SILVER BOW",
+    "Agency Address": "25 West Front Street Butte, MT 59701",
+    "Agency Telephone": "(406) 497-5060",
+    "Clinic": "BUTTE WIC",
+    "Clinic Address": "25 W. Front Street Butte, MT 59701",
+    "County": "SILVER BOW",
+    "Clinic Telephone": "(406) 497-5060",
+    "Zip": "59701"
+  },
+  {
+    "Agency": "CASCADE",
+    "Agency Address": "115 4th Street, South Great Falls, MT 59401",
+    "Agency Telephone": "(406) 454-6953",
+    "Clinic": "CASCADE COUNTY WIC",
+    "Clinic Address": "115 4th Street South Great Falls, MT 59401",
+    "County": "CASCADE",
+    "Clinic Telephone": "(406) 454-6953",
+    "Zip": "59401"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "MALMSTROM AFB WIC",
+    "Clinic Address": "115 4th St So C/O Cascade Co Wic Great Falls, MT 59401",
+    "County": "CASCADE",
+    "Clinic Telephone": "(406) 454-6953",
+    "Zip": "59401"
+  },
+  {
+    "Agency": "CROW",
+    "Agency Address": "Po Box 670 Crow Agency, MT 59022",
+    "Agency Telephone": "(406) 679-5398",
+    "Clinic": "CROW WIC",
+    "Clinic Address": "129 Bacheeitche Ave. Crow Agency, MT 59022",
+    "County": "BIG HORN",
+    "Clinic Telephone": "(406) 679-5398",
+    "Zip": "59022"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "LODGE GRASS WIC",
+    "Clinic Address": "Po Box 780 Lodge Grass, MT 59050",
+    "County": "BIG HORN",
+    "Clinic Telephone": "(406) 639-2246",
+    "Zip": "59050"
+  },
+  {
+    "Agency": "CUSTER ONE HEALTH",
+    "Agency Address": "515 Main St. Miles City, MT 59301",
+    "Agency Telephone": "(406) 854-5050",
+    "Clinic": "ASHLAND WIC (ONE HEALTH)",
+    "Clinic Address": "501 Main Hwy 12a Ashland, MT 59003",
+    "County": "ROSEBUD",
+    "Clinic Telephone": "(406) 784-2346",
+    "Zip": "59003"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "BAKER WIC (ONE HEALTH)",
+    "Clinic Address": "225 South 3rd St W Baker, MT 59313",
+    "County": "FALLON",
+    "Clinic Telephone": "(406) 778-2824",
+    "Zip": "59313"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "BROADUS WIC (ONE HEALTH)",
+    "Clinic Address": "507 N Lincoln Ave Broadus, MT 59317",
+    "County": "POWDER RIVER",
+    "Clinic Telephone": "(406) 436-2297",
+    "Zip": "59317"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "FORSYTH WIC (ONE HEALTH)",
+    "Clinic Address": "383 N. 17th, Pob 268 Forsyth, MT 59327",
+    "County": "ROSEBUD",
+    "Clinic Telephone": "(406) 346-4350",
+    "Zip": "59327"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "HYSHAM WIC (ONE HEALTH)",
+    "Clinic Address": "405-1/2 Pioneer Blvd Hysham, MT 59308",
+    "County": "TREASURE",
+    "Clinic Telephone": "(406) 342-5886",
+    "Zip": "59308"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "MILES CITY WIC (ONE HEALTH)",
+    "Clinic Address": "2811 Comstock Miles City, MT 59301",
+    "County": "CUSTER",
+    "Clinic Telephone": "(406) 854-5050",
+    "Zip": "59301"
+  },
+  {
+    "Agency": "DAWSON",
+    "Agency Address": "207 West Bell Glendive, MT 59330",
+    "Agency Telephone": "(406) 377-5213",
+    "Clinic": "CIRCLE WIC",
+    "Clinic Address": "605 Sullivan Circle, MT 59259",
+    "County": "MCCONE",
+    "Clinic Telephone": "(406) 377-5213",
+    "Zip": "59259"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "GLENDIVE WIC",
+    "Clinic Address": "Dawson Co. Health Dept -- 207 West Bell Glendive, MT 59330",
+    "County": "DAWSON",
+    "Clinic Telephone": "(406) 377-5213",
+    "Zip": "59330"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "JORDAN WIC",
+    "Clinic Address": "332 Leavitte Avenue Jordan, MT 59337",
+    "County": "GARFIELD",
+    "Clinic Telephone": "(406) 377-5213",
+    "Zip": "59337"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "TERRY WIC",
+    "Clinic Address": "Public Health Office --  203 South Logan Terry, MT 59349",
+    "County": "PRAIRIE",
+    "Clinic Telephone": "(406) 377-5213",
+    "Zip": "59349"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "WIBAUX WIC",
+    "Clinic Address": "Courthouse 203 Wibaux St S. Wibaux, MT 59353",
+    "County": "WIBAUX",
+    "Clinic Telephone": "(406) 377-5213",
+    "Zip": "59353"
+  },
+  {
+    "Agency": "DEER LODGE",
+    "Agency Address": "Po Box 970 Anaconda, MT 59711",
+    "Agency Telephone": "(406) 563-7862",
+    "Clinic": "ANACONDA WIC, SUITE 1E",
+    "Clinic Address": "118 E 7th Street Anaconda, MT 59711",
+    "County": "DEER LODGE",
+    "Clinic Telephone": "(406) 563-7863",
+    "Zip": "59711"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "DEER LODGE",
+    "Clinic Address": "1100 Hollenback Lane Deer Lodge, MT 59722",
+    "County": "POWELL",
+    "Clinic Telephone": "(406) 563-7863",
+    "Zip": "59722"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "DRUMMOND WIC",
+    "Clinic Address": "212 E Front St. Drummond, MT 59832",
+    "County": "GRANITE",
+    "Clinic Telephone": "(406) 563-7863",
+    "Zip": "59832"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "PHILIPSBURG WIC",
+    "Clinic Address": "220 North Sansome, Po Box 399 Philipsburg, MT 59858",
+    "County": "GRANITE",
+    "Clinic Telephone": "(406) 563-7863",
+    "Zip": "59858"
+  },
+  {
+    "Agency": "FERGUS/HRDC",
+    "Agency Address": "300 1st Avenue North Lewistown, MT 59457",
+    "Agency Telephone": "(406) 535-7488",
+    "Clinic": "HARLOWTON WIC",
+    "Clinic Address": "13 Central Ave South Harlowton, MT 59036",
+    "County": "WHEATLAND",
+    "Clinic Telephone": "(406) 535-7488",
+    "Zip": "59036"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "LEWISTOWN WIC",
+    "Clinic Address": "Dist6 Hrdc 300 1st Avenue North Lewistown, MT 59457",
+    "County": "FERGUS",
+    "Clinic Telephone": "(406) 535-7488",
+    "Zip": "59457"
+  },
+  {
+    "Agency": "FLATHEAD",
+    "Agency Address": "1035 1st Avenue West Kalispell, MT 59901",
+    "Agency Telephone": "(406) 751-8170",
+    "Clinic": "COLUMBIA FALLS WIC",
+    "Clinic Address": "501 6th Street West Columbia Falls, MT 59912",
+    "County": "FLATHEAD",
+    "Clinic Telephone": "(406) 892-4811",
+    "Zip": "59912"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "KALISPELL WIC",
+    "Clinic Address": "1035 1st Avenue West Kalispell, MT 59901",
+    "County": "FLATHEAD",
+    "Clinic Telephone": "(406) 751-8170",
+    "Zip": "59901"
+  },
+  {
+    "Agency": "FORT BELKNAP",
+    "Agency Address": "Rr1, Box 66 456 Gros Ventre Avenue Harlem, MT 59526",
+    "Agency Telephone": "(406) 353-3157",
+    "Clinic": "HARLEM WIC",
+    "Clinic Address": "456 Gros Ventre Ave Harlem, MT 59526",
+    "County": "BLAINE",
+    "Clinic Telephone": "(406) 353-3157",
+    "Zip": "59526"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "HAYS WIC",
+    "Clinic Address": "123 White Cow Canyon Rd Hays, MT 59527",
+    "County": "BLAINE",
+    "Clinic Telephone": "(406) 673-3777",
+    "Zip": "59527"
+  },
+  {
+    "Agency": "FORT PECK",
+    "Agency Address": "Po Box1027 Poplar, MT 59255",
+    "Agency Telephone": "(406) 768-3491",
+    "Clinic": "POPLAR WIC",
+    "Clinic Address": "107 H St. E. Poplar, MT 59255",
+    "County": "ROOSEVELT",
+    "Clinic Telephone": "(406) 768-2209",
+    "Zip": "59255"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "WOLF POINT WIC",
+    "Clinic Address": "550-6th Ave. N. Wolf Point, MT 59201",
+    "County": "ROOSEVELT",
+    "Clinic Telephone": "(406) 653-5622",
+    "Zip": "59201"
+  },
+  {
+    "Agency": "GALLATIN",
+    "Agency Address": "215 W. Mendenhall, Rm 123 Bozeman, MT 59715",
+    "Agency Telephone": "(406) 582-3115",
+    "Clinic": "BELGRADE WIC",
+    "Clinic Address": "201 W Madison Building 2 Belgrade, MT 59714",
+    "County": "GALLATIN",
+    "Clinic Telephone": "(406) 539-7070",
+    "Zip": "59714"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "BOZEMAN WIC",
+    "Clinic Address": "215 W. Mendenhall, Rm 123 Bozeman, MT 59715",
+    "County": "GALLATIN",
+    "Clinic Telephone": "(406) 582-3115",
+    "Zip": "59715"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "MSU WIC",
+    "Clinic Address": "1218 S 15th Bozeman, MT 59715",
+    "County": "GALLATIN",
+    "Clinic Telephone": "(406) 539-7070",
+    "Zip": "59715"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "WEST YELLOWSTONE WIC",
+    "Clinic Address": "10 South Geyser (Corner Of Geyser And Yellowstone) West Yellowstone, MT 59758",
+    "County": "GALLATIN",
+    "Clinic Telephone": "(406) 539-7070",
+    "Zip": "59758"
+  },
+  {
+    "Agency": "HILL",
+    "Agency Address": "315 4th Street Havre, MT 59501",
+    "Agency Telephone": "(406) 400-2421",
+    "Clinic": "CHESTER WIC",
+    "Clinic Address": "315 W Madison Ave / Po Box 705 Chester, MT 59522",
+    "County": "LIBERTY",
+    "Clinic Telephone": "(406) 400-2421",
+    "Zip": "59522"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "CHINOOK WIC",
+    "Clinic Address": "Courthouse Annex 420 Ohio Chinook, MT 59523",
+    "County": "BLAINE",
+    "Clinic Telephone": "(406) 400-2421",
+    "Zip": "59523"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "HAVRE WIC",
+    "Clinic Address": "302 4th Avenue Havre, MT 59501",
+    "County": "HILL",
+    "Clinic Telephone": "(406) 400-2421",
+    "Zip": "59501"
+  },
+  {
+    "Agency": "JEFFERSON COUNTY HEALTH DEPARTMENT",
+    "Agency Address": "214 South Main, Po Box 872 Boulder, MT 59632",
+    "Agency Telephone": "(406) 225-4007",
+    "Clinic": "JEFFERSON COUNTY WIC",
+    "Clinic Address": "214 South Main, Po Box 872 Boulder, MT 59632",
+    "County": "JEFFERSON",
+    "Clinic Telephone": "(406) 225-4007",
+    "Zip": "59632"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "WHITEHALL WIC",
+    "Clinic Address": "11 E. Legion Whitehall, MT 59644",
+    "County": "BROADWATER",
+    "Clinic Telephone": "(406) 287-3249",
+    "Zip": "59644"
+  },
+  {
+    "Agency": "LAKE",
+    "Agency Address": "802 Main Street Polson, MT 59860",
+    "Agency Telephone": "(406) 883-7308",
+    "Clinic": "POLSON WIC",
+    "Clinic Address": "802 Main Street, Ste B Polson, MT 59860",
+    "County": "LAKE",
+    "Clinic Telephone": "(406) 883-7307",
+    "Zip": "59860"
+  },
+  {
+    "Agency": "LEWIS & CLARK",
+    "Agency Address": "1930 9th Avenue Suite 207 Helena, MT 59601",
+    "Agency Telephone": "(406) 457-8912",
+    "Clinic": "BROADWATER WIC (L&C)",
+    "Clinic Address": "110 North Oak Street Townsend, MT 59644",
+    "County": "BROADWATER",
+    "Clinic Telephone": "(406) 457-8958",
+    "Zip": "59644"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "HELENA WIC",
+    "Clinic Address": "1930 9th Avenue Helena, MT 59601",
+    "County": "LEWIS AND CLARK",
+    "Clinic Telephone": "(406) 457-8912",
+    "Zip": "59601"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "WHITE SULPHUR SPRINGS WIC (L&C)",
+    "Clinic Address": "15 West White Sulphur Springs, MT 59645",
+    "County": "MEAGHER",
+    "Clinic Telephone": "(406) 457-8900",
+    "Zip": "59645"
+  },
+  {
+    "Agency": "LINCOLN",
+    "Agency Address": "320 E 2nd St Libby, MT 59923",
+    "Agency Telephone": "(406) 283-6900",
+    "Clinic": "EUREKA WIC",
+    "Clinic Address": "152 Mt 37 Eureka, MT 59917",
+    "County": "LINCOLN",
+    "Clinic Telephone": "(406) 297-7220",
+    "Zip": "59917"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "LIBBY WIC",
+    "Clinic Address": "320 E 2nd St Libby, MT 59923",
+    "County": "LINCOLN",
+    "Clinic Telephone": "(406) 283-6900",
+    "Zip": "59923"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "TROY WIC",
+    "Clinic Address": "102 Sandalwood Ct Troy, MT 59935",
+    "County": "LINCOLN",
+    "Clinic Telephone": "(406) 283-6900",
+    "Zip": "59935"
+  },
+  {
+    "Agency": "MISSOULA",
+    "Agency Address": "301 West Alder Street Missoula, MT 59802",
+    "Agency Telephone": "(406) 258-4740",
+    "Clinic": "LOLO WIC",
+    "Clinic Address": "5475 Farm Lane Lolo, MT 59847",
+    "County": "MISSOULA",
+    "Clinic Telephone": "(406) 258-4740",
+    "Zip": "59847"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "MISSOULA FOOD BANK",
+    "Clinic Address": "1720 Wyoming St Missoula, MT 59801",
+    "County": "MISSOULA",
+    "Clinic Telephone": "(406) 240-3849",
+    "Zip": "59801"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "MISSOULA WIC",
+    "Clinic Address": "301 W. Alder Street Missoula, MT 59802",
+    "County": "MISSOULA",
+    "Clinic Telephone": "(406) 258-4740",
+    "Zip": "59802"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "SEELEY LAKE WIC",
+    "Clinic Address": "Hwy 83 N, Faith Chapel Sign Seeley Lake, MT 59868",
+    "County": "MISSOULA",
+    "Clinic Telephone": "(406) 258-4740",
+    "Zip": "59868"
+  },
+  {
+    "Agency": "N. CHEYENNE",
+    "Agency Address": "P. O. Box 67 Lame Deer, MT 59043",
+    "Agency Telephone": "(406) 477-4527",
+    "Clinic": "LAME DEER WIC",
+    "Clinic Address": "Hwy 39 Box 67 Lame Deer, MT 59043",
+    "County": "ROSEBUD",
+    "Clinic Telephone": "(406) 477-4527",
+    "Zip": "59043"
+  },
+  {
+    "Agency": "PARK COUNTY HEALTH DEPT",
+    "Agency Address": "414 E Callender St Livingston, MT 59047",
+    "Agency Telephone": "(406) 222-4145",
+    "Clinic": "COMMUNITY HEALTH PARTNERS",
+    "Clinic Address": "112 W Lewis Livingston, MT 59047",
+    "County": "PARK",
+    "Clinic Telephone": "(406) 222-4145",
+    "Zip": "59047"
+  },
+  {
+    "Agency": "RAVALLI",
+    "Agency Address": "205 Bedford Suit P Hamilton, MT 59840",
+    "Agency Telephone": "(406) 802-7180",
+    "Clinic": "DARBY WIC",
+    "Clinic Address": "Darby Public Library -- 101 South Marshall Street Darby, MT 59829",
+    "County": "RAVALLI",
+    "Clinic Telephone": "(406) 802-7180",
+    "Zip": "59829"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "HAMILTON WIC",
+    "Clinic Address": "205 Bedford  Ste. P Hamilton, MT 59840",
+    "County": "RAVALLI",
+    "Clinic Telephone": "(406) 802-7180",
+    "Zip": "59840"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "STEVENSVILLE WIC",
+    "Clinic Address": "United Methodist Church 216 College Street Stevensville, MT 59870",
+    "County": "RAVALLI",
+    "Clinic Telephone": "(406) 802-7180",
+    "Zip": "59870"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "VICTOR WIC",
+    "Clinic Address": "Church Of Nazarene A Street Victor, MT 59875",
+    "County": "RAVALLI",
+    "Clinic Telephone": "(406) 802-7180",
+    "Zip": "59875"
+  },
+  {
+    "Agency": "REMOTE CLINIC",
+    "Agency Address": "1625 11th Ave Helena, MT 59620",
+    "Agency Telephone": "(406) 444-4747",
+    "Clinic": "REMOTE CLINIC",
+    "Clinic Address": "1625 11th Ave Helena, MT 59620",
+    "County": "LEWIS AND CLARK",
+    "Clinic Telephone": "(406) 444-4747",
+    "Zip": "59620"
+  },
+  {
+    "Agency": "RIVERSTONE",
+    "Agency Address": "123 S. 27th Street Billings, MT 59107",
+    "Agency Telephone": "(406) 247-3370",
+    "Clinic": "COLUMBUS WIC",
+    "Clinic Address": "44 W. 4th Ave. N Columbus, MT 59019",
+    "County": "STILLWATER",
+    "Clinic Telephone": "(406) 322-4296",
+    "Zip": "59019"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "JOLIET WIC",
+    "Clinic Address": "County Extension Office, 128 S. Main Joliet, MT 59041",
+    "County": "CARBON",
+    "Clinic Telephone": "(406) 247-3370",
+    "Zip": "59041"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "LAUREL WIC",
+    "Clinic Address": "319 1st Avenue North Laurel, MT 59044",
+    "County": "YELLOWSTONE",
+    "Clinic Telephone": "(406) 861-4294",
+    "Zip": "59044"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "RED LODGE WIC",
+    "Clinic Address": "St Agnes Catholic Church, 1 N. Word Avenue Red Lodge, MT 59068",
+    "County": "CARBON",
+    "Clinic Telephone": "(406) 247-3370",
+    "Zip": "59068"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "RIVERSTONE WIC PROGRAM",
+    "Clinic Address": "123 S. 27th Street Billings, MT 59101",
+    "County": "YELLOWSTONE",
+    "Clinic Telephone": "(406) 247-3370",
+    "Zip": "59101"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "ROUNDUP WIC",
+    "Clinic Address": "704 1st Street East Roundup, MT 59072",
+    "County": "MUSSELSHELL",
+    "Clinic Telephone": "(406) 861-4294",
+    "Zip": "59072"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "YOUNG FAMILIES CLINIC",
+    "Clinic Address": "1020 Cook Ave. Billings, MT 59102",
+    "County": "YELLOWSTONE",
+    "Clinic Telephone": "(406) 861-4294",
+    "Zip": "59102"
+  },
+  {
+    "Agency": "ROCKY BOY",
+    "Agency Address": "Rocky Boy Route Po Box 664 Box Elder, MT 59521",
+    "Agency Telephone": "(406) 395-4486",
+    "Clinic": "ROCKY BOY WIC",
+    "Clinic Address": "Rr 1 Box 66 Box Elder, MT 59521",
+    "County": "HILL",
+    "Clinic Telephone": "(406) 395-4486",
+    "Zip": "59521"
+  },
+  {
+    "Agency": "SALISH & KOOTENAI",
+    "Agency Address": "Tribal Health Dept Po Box 880 St. Ignatius, MT 59865",
+    "Agency Telephone": "(406) 745-3525",
+    "Clinic": "ARLEE WIC",
+    "Clinic Address": "Arlee Community Center Arlee, MT 59821",
+    "County": "LAKE",
+    "Clinic Telephone": "(406) 726-2302",
+    "Zip": "59821"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "ELMO WIC",
+    "Clinic Address": "33116 Highway 93 Elmo, MT 59915",
+    "County": "LAKE",
+    "Clinic Telephone": "(406) 849-5798",
+    "Zip": "59915"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "HOT SPRINGS WIC (CSKT)",
+    "Clinic Address": "208 Arlee St. S. Hot Springs, MT 59845",
+    "County": "SANDERS",
+    "Clinic Telephone": "(406) 741-3266",
+    "Zip": "59845"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "PABLO WIC",
+    "Clinic Address": "35928 Joe Mcdonald Drive Pablo, MT 59855",
+    "County": "LAKE",
+    "Clinic Telephone": "(406) 745-3528",
+    "Zip": "59855"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "RONAN WIC",
+    "Clinic Address": "22 Round Butte Rd West Ronan, MT 59864",
+    "County": "LAKE",
+    "Clinic Telephone": "(406) 675-2700",
+    "Zip": "59864"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "ST. IGNATIUS WIC",
+    "Clinic Address": "880 Mission Drive St. Ignatius, MT 59865",
+    "County": "LAKE",
+    "Clinic Telephone": "(406) 745-3525",
+    "Zip": "59865"
+  },
+  {
+    "Agency": "SANDERS",
+    "Agency Address": "Po Box 519 Thompson Falls, MT 59873",
+    "Agency Telephone": "(406) 827-6931",
+    "Clinic": "HOT SPRINGS WIC",
+    "Clinic Address": "Senior Center -- 104 Main Street Hot Springs, MT 59845",
+    "County": "SANDERS",
+    "Clinic Telephone": "(406) 827-6931",
+    "Zip": "59845"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "NOXON",
+    "Clinic Address": "Noxon: Sr Ctr/207 2nd St. Heron Community Center Noxon, MT 59853",
+    "County": "SANDERS",
+    "Clinic Telephone": "(406) 827-6931",
+    "Zip": "59853"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "PLAINS WIC",
+    "Clinic Address": "501 W. 5th Avenue Plains, MT 59873",
+    "County": "SANDERS",
+    "Clinic Telephone": "(406) 827-6931",
+    "Zip": "59873"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "SUPERIOR WIC",
+    "Clinic Address": "1203 5th Ave East Superior, MT 59872",
+    "County": "MINERAL",
+    "Clinic Telephone": "(406) 822-3564",
+    "Zip": "59872"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "THOMPSON FALLS",
+    "Clinic Address": "1111  Main St. Room 120 Thompson Falls, MT 59873",
+    "County": "SANDERS",
+    "Clinic Telephone": "(406) 827-6931",
+    "Zip": "59873"
+  },
+  {
+    "Agency": "SHERIDAN",
+    "Agency Address": "100 W. Laurel Plentywood, MT 59254",
+    "Agency Telephone": "(406) 765-3473",
+    "Clinic": "PLENTYWOOD WIC",
+    "Clinic Address": "100 W. Laurel Plentywood, MT 59254",
+    "County": "SHERIDAN",
+    "Clinic Telephone": "(406) 765-3473",
+    "Zip": "59254"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "RICHLAND COUNTY WIC",
+    "Clinic Address": "1201 W. Holly #1 Sidney, MT 59270",
+    "County": "RICHLAND",
+    "Clinic Telephone": "(406) 433-2207",
+    "Zip": "59270"
+  },
+  {
+    "Agency": "TETON",
+    "Agency Address": "905 4th Street, Nw Choteau, MT 59422",
+    "Agency Telephone": "(406) 466-2562",
+    "Clinic": "AUGUSTA WIC",
+    "Clinic Address": "132 Main Street Augusta, MT 59410",
+    "County": "LEWIS AND CLARK",
+    "Clinic Telephone": "(406) 466-2562",
+    "Zip": "59410"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "CHOTEAU WIC",
+    "Clinic Address": "905 4th Street Nw Choteau, MT 59422",
+    "County": "TETON",
+    "Clinic Telephone": "(406) 466-2562",
+    "Zip": "59422"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "CONRAD WIC",
+    "Clinic Address": "One 4th Ave Se Conrad, MT 59425",
+    "County": "PONDERA",
+    "Clinic Telephone": "(406) 271-2007",
+    "Zip": "59425"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "CUT BANK WIC",
+    "Clinic Address": "1210 E. Main Cut Bank, MT 59427",
+    "County": "GLACIER",
+    "Clinic Telephone": "(406) 873-2969",
+    "Zip": "59427"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "FAIRFIELD WIC",
+    "Clinic Address": "201 1st Ave North, Fairfield Fairfield, MT 59436",
+    "County": "TETON",
+    "Clinic Telephone": "(406) 466-2562",
+    "Zip": "59436"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "FT. BENTON WIC",
+    "Clinic Address": "1020 13th Street Po Box 459 Fort Benton, MT 59442",
+    "County": "CHOUTEAU",
+    "Clinic Telephone": "(406) 622-3771",
+    "Zip": "59442"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "SHELBY WIC - TOOLE COUNTY HEALTH DEPARTMENT",
+    "Clinic Address": "402 1st Street S. Shelby, MT 59474",
+    "County": "TOOLE",
+    "Clinic Telephone": "(406) 424-5169",
+    "Zip": "59474"
+  },
+  {
+    "Agency": "VALLEY",
+    "Agency Address": "Frances Mahon Deaconess Hospital 621 3rd Street, S Glasgow, MT 59230",
+    "Agency Telephone": "(406) 228-3626",
+    "Clinic": "GLASGOW WIC",
+    "Clinic Address": "621-3rd St. S Glasgow, MT 59230",
+    "County": "VALLEY",
+    "Clinic Telephone": "(406) 228-3626",
+    "Zip": "59230"
+  },
+  {
+    "Agency": "",
+    "Agency Address": "",
+    "Agency Telephone": "",
+    "Clinic": "MALTA WIC",
+    "Clinic Address": "311 S 8th Ave East Malta, MT 59538",
+    "County": "PHILLIPS",
+    "Clinic Telephone": "(406) 654-1380",
+    "Zip": "59538"
+  }
+]
