@@ -131,3 +131,23 @@ For storybook, we are using [storybook-react-i18next](https://storybook.js.org/a
 2. Edit `.storybook/preview.js` and add the language to `locales`. This tells storybook-react-i18next the options that the globe icon dropdown should include.
 
 Note that for storybook to support i18next, we need to to set a few webpack settings to false. See `.storybook/main.js`.
+
+## Chromatic: Saas Storybook
+
+### CI using Github Actions
+
+For this project, we are using [Chromatic](https://chromatic.com) to host our storybook. We've configured a Github Actions CI job to automatically push a storybook build to chromatic whenever a PR has been merged to main. As part of the one time setup, we created a Github Secret with the chromatic project token.
+
+### Local Development
+
+For local development, we can also manually push a storybook build to Chromatic.
+
+One time setup:
+
+1. Log into Chromatic
+2. Click on the project and then click on "Manage" in the left sidebar. Click on the "Configure" tab and copy the project token.
+3. Create a `app/.env` file and create a `CHROMATIC_PROJECT_TOKEN=<paste project token here>`
+
+To push a build:
+
+1. Run `yarn chromatic`

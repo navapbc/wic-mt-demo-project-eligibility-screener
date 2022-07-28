@@ -11,3 +11,6 @@ plan.out
 
 # TypeScript
 tsconfig.tsbuildinfo
+
+# All .env files
+.env

@@ -5,6 +5,7 @@
   "scripts": {
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
     "dev": "NEXT_TELEMETRY_DISABLED=1 next dev",
+    "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --zip --exit-zero-on-changes",
     "format": "prettier --write '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}'",
     "format-check": "prettier --check '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}'",
     "lint": "NEXT_TELEMETRY_DISABLED=1 next lint",
