@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Eligibility should render first question text 1`] = `
+<h2>
+  1. Do you live or work in Montana?
+</h2>
+`;

@@ -1,14 +1,14 @@
 // test/pages/index.test.js
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Index from '../../src/pages/index'
+import Index from '@pages/index'
 
 describe('Index', () => {
   it('should render the heading', () => {
     render(<Index />)
 
-    const heading = screen.getByText(/Welcome/i)
+    const heading = screen.getByText(/Start an application for WIC/i)
 
     expect(heading).toBeInTheDocument()
     expect(heading).toMatchSnapshot()
@@ -18,6 +18,8 @@ describe('Index', () => {
     const { container } = render(<Index />)
     const results = await axe(container)
 
-    expect(results).toHaveNoViolations()
+    await waitFor(() => {
+      expect(results).toHaveNoViolations()
+    })
   })
 })

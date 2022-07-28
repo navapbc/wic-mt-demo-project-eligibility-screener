@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact should render first name prompt 1`] = `
+<label
+  class="sc-dkzDqf caEyMW usa-label"
+  for="firstName"
+>
+  What's your first name?
+</label>
+`;
