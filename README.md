@@ -47,3 +47,9 @@ The docker-compose file bind mounts `app` on the host machine to `/srv` in the g
 ## Git Precommit Hook
 
 We use [husky](https://typicode.github.io/husky/#/) to run linting and formatting checks before each commit. Because our husky directory is in `app`, we configured husky with a [custom directory](https://typicode.github.io/husky/#/?id=custom-directory).
+
+One time setup:
+
+1. `cd app`
+2. `yarn install`
+3. `yarn husky-prepare`
