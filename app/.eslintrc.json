@@ -11,8 +11,8 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json",
-    "tsconfigRootDir": "./"
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "jest"],
   "root": true,
