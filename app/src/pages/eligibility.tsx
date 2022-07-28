@@ -3,8 +3,8 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useState } from 'react'
 
-import ButtonLink from '../components/ButtonLink'
-import InputChoiceGroup from '../components/InputChoiceGroup'
+import ButtonLink from '@components/ButtonLink'
+import InputChoiceGroup from '@components/InputChoiceGroup'
 
 const Eligibility: NextPage = () => {
   const { t } = useTranslation('common')
@@ -139,7 +139,7 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <ButtonLink
-        href="/"
+        href="/contact"
         label={t('Eligibility.continue')}
         vector
         width="140px"

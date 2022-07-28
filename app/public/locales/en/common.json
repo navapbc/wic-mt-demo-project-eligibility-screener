@@ -1,4 +1,12 @@
 {
+  "Contact": {
+    "button": "Submit",
+    "firstName": "What's your first name?",
+    "lastName": "What's your last name?",
+    "other": "Is there anything else you want to share with us?",
+    "phone": "What's the best phone number to reach you at?",
+    "phoneHelper": "Your chosen WIC clinic will contact you to set up a time for a certification appointment during business hours."
+  },
   "Eligibility": {
     "baby": "I've had a baby in the past 12 months",
     "categorical": "2. Please select all the following that apply to your family:",
