@@ -151,3 +151,10 @@ One time setup:
 To push a build:
 
 1. Run `yarn chromatic`
+
+To access Chromatic storybook builds (such as for UAT):
+
+1. Log into Chromatic
+2. Click on the project and then click on "Builds" in the left sidebar
+3. Select the build you are interested in. Look at the branch name. For UAT, make sure to select a build for the `main` branch.
+4. Click the "View storybook" button on the right
