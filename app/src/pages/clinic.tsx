@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import clinics from '@public/clinics.json'
 
@@ -11,9 +11,13 @@ const Clinic: NextPage = () => {
   const [search, setSearch] = useState('')
   console.log(clinics)
 
-  const handleSearch = () => {
-    const filtered = clinics.
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const filtered = clinics
+      .filter(clinic => clinic.zip === search)
+      .map(clinic => ({...clinic, selected: false}))
 
+    console.log(filtered)
     setFilteredClinics(filtered)
   }
 
@@ -27,7 +31,7 @@ const Clinic: NextPage = () => {
         <form
           className="usa-search usa-search--small"
           role="search"
-          onsubmit={handleSearch}
+          onSubmit={handleSearch}
           >
           <input
             className="usa-input"
@@ -45,8 +49,33 @@ const Clinic: NextPage = () => {
           </button>
         </form>
       </section>
-      {
-        filteredClinics && <h2>Choose a clinic from the following list:</h2>
+      <br />
+      { filteredClinics && (
+        <>
+          <h2>Choose a clinic from the following list:</h2>
+          <form className="usa-form">
+            <fieldset className="usa-fieldset">
+            { filteredClinics.map((clinic) => (
+              <div className="usa-radio">
+                <input
+                  className="usa-radio__input usa-radio__input--tile"
+                  id={clinic.clinic}
+                  type="radio"
+                  value={clinic.clinic}
+                />
+                <label className="usa-radio__label" htmlFor={clinic.clinic}>
+                  {clinic.clinic}
+                  <span className="usa-checkbox__label-description">
+                    <em>{clinic.clinicAddress}</em>
+                    <br />
+                    <em>{clinic.clinicTelephone}</em>
+                  </span>
+                </label>
+              </div>
+            ))}
+            </fieldset>
+          </form>
+        </>)
       }
     </>
   )
