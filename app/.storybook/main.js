@@ -1,4 +1,5 @@
 const nextConfig = require('../next.config')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   stories: ['../stories/**/*.stories.@(mdx|js|jsx|ts|tsx)'],
@@ -40,6 +41,14 @@ module.exports = {
       ],
       exclude: /node_modules/,
     })
+
+    /* workaround to support tsconfig module imports */
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin({
+        extensions: config.resolve.extensions,
+      }),
+    ]
 
     // Required for i18next.
     config.resolve.fallback = {

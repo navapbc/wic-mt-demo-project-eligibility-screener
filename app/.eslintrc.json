@@ -12,10 +12,12 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "tsconfigRootDir": "./",
-    "project": ["./tsconfig.json"]
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "jest"],
+  "root": true,
   "rules": {
+    "comma-dangle": ["error", "only-multiline"],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error"
