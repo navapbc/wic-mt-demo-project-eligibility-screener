@@ -29,3 +29,5 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           # Enable zip because USWDS static files are huge
           zip: true
+          # Runs chromatic in the `app` subdirectory
+          workingDir: app
