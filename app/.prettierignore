@@ -5,3 +5,6 @@ storybook-static/
 
 # Ignore USWDS static assets
 public/uswds
+
+# Ignore test coverage files
+coverage/
