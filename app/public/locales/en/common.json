@@ -1,6 +1,8 @@
 {
   "Clinic": {
     "body": "You’ll need to visit a clinic in person to complete a certification appointment for WIC. Choose the clinic you would like to go to during business hours.",
+    "continue": "Select this clinic",
+    "listTitle": "Choose a clinic from the following list:",
     "title": "Choose a clinic",
     "searchLabel": "Enter your ZIP code to search for a clinic"
   },
