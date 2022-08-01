@@ -1,24 +1,34 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
+import ButtonLink from '@components/ButtonLink'
 import clinics from '@public/clinics.json'
 
 const Clinic: NextPage = () => {
   const { t } = useTranslation('common')
-  const [filteredClinics, setFilteredClinics] = useState(null)
+  const [filteredClinics, setFilteredClinics] = useState<typeof clinics>([])
+  const [selectedClinic, setSelectedClinic] = useState<typeof clinics[0] | undefined>(undefined)
   const [search, setSearch] = useState('')
-  console.log(clinics)
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const filtered = clinics
       .filter(clinic => clinic.zip === search)
-      .map(clinic => ({...clinic, selected: false}))
 
-    console.log(filtered)
     setFilteredClinics(filtered)
+  }
+
+  const handleSelection = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value }: { value: string } = e.target
+    const clinicIndex = filteredClinics?.findIndex(clinic => clinic.clinic === value)
+
+    setSelectedClinic(filteredClinics[clinicIndex])
+  }
+
+  const selected = (clinic: typeof clinics[0]) => {
+    return clinic.clinic === selectedClinic?.clinic
   }
 
   return (
@@ -52,14 +62,16 @@ const Clinic: NextPage = () => {
       <br />
       { filteredClinics && (
         <>
-          <h2>Choose a clinic from the following list:</h2>
+          <h2>{t('Clinic.listTitle')}</h2>
           <form className="usa-form">
             <fieldset className="usa-fieldset">
-            { filteredClinics.map((clinic) => (
-              <div className="usa-radio">
+            { filteredClinics?.map((clinic, index) => (
+              <div className="usa-radio" key={index}>
                 <input
+                  checked={selected(clinic)}
                   className="usa-radio__input usa-radio__input--tile"
                   id={clinic.clinic}
+                  onChange={handleSelection}
                   type="radio"
                   value={clinic.clinic}
                 />
@@ -77,6 +89,14 @@ const Clinic: NextPage = () => {
           </form>
         </>)
       }
+      <br />
+      <ButtonLink
+        disabled={selectedClinic === undefined}
+        href="/"
+        label={t('Clinic.continue')}
+        vector
+        width="194px"
+      />
     </>
   )
 }
