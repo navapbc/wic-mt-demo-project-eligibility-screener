@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
-import clinics from '@public/clinics.json'
+import clinics from '@public/data/clinics.json'
 
 const Clinic: NextPage = () => {
   const { t } = useTranslation('common')
@@ -61,7 +61,7 @@ const Clinic: NextPage = () => {
         </form>
       </section>
       <br />
-      { filteredClinics && (
+      { filteredClinics.length > 0 && (
         <>
           <h2>{t('Clinic.listTitle')}</h2>
           <form className="usa-form">
@@ -93,8 +93,8 @@ const Clinic: NextPage = () => {
       <br />
       <ButtonLink
         disabled={selectedClinic === undefined}
-        href="/"
-        label={t('Clinic.continue')}
+        href="/contact"
+        label={t('Clinic.button')}
         vector
         width="194px"
       />

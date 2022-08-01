@@ -65,7 +65,7 @@ const Contact: NextPage = () => {
       />
       <br />
       <br />
-      <ButtonLink href="/clinic" label={t('Contact.button')} width="100px" />
+      <ButtonLink href="/" label={t('Contact.button')} width="100px" />
     </form>
   )
 }

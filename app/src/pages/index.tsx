@@ -11,7 +11,7 @@ const Index: NextPage = () => {
   return (
     <>
       <h1>{t('Index.title')}</h1>
-      <p>{t('Index.header')}</p>
+      <p>{t('Index.description')}</p>
       <ul className="usa-list">
         {listCopyKeys.map((key: string) => (
           <li key={key}>{t(`Index.${key}`)}</li>

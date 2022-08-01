@@ -1,7 +1,8 @@
 {
+  "continue": "Continue",
   "Clinic": {
     "body": "You’ll need to visit a clinic in person to complete a certification appointment for WIC. Choose the clinic you would like to go to during business hours.",
-    "continue": "Select this clinic",
+    "button": "Select this clinic",
     "listTitle": "Choose a clinic from the following list:",
     "title": "Choose a clinic",
     "searchLabel": "Enter your ZIP code to search for a clinic"
@@ -18,7 +19,6 @@
     "baby": "I've had a baby in the past 12 months",
     "categorical": "2. Please select all the following that apply to your family:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
-    "continue": "Continue",
     "guardian": "I'm the guardian or foster parent of an infant or child under the age of 5 years old",
     "insurance": "Medicaid and/or Healthy Montana Kids Plus",
     "loss": "I've experienced a loss of pregnancy in the past 6 months",
@@ -29,10 +29,18 @@
     "snap": "SNAP",
     "tanf": "TANF"
   },
+  "Income": {
+    "estimatedIncome": "Estimated maximum income before taxes",
+    "dropdownLabel": "What is your household size?",
+    "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
+    "title": "To be eligible for WIC, your income before taxes must be at or below a certain income level.",
+    "enrolled": "If you are currently enrolled in Medicaid, Healthy Montana Kids, Healthy Montana Kids Plus, SNAP, TANF, or FDPIR (Food Distribution Program on Indian Reservations), you may have automatic eligibility for WIC.",
+    "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level."
+  },
   "Index": {
     "benefits": "There are many benefits, including healthy food, support, connections to local resources, and more.",
     "button": "Get Started ",
-    "header": "WIC is a program designed to help families and young children during an important time in growth and development.",
+    "description": "WIC is a program designed to help families and young children during an important time in growth and development.",
     "list": ["a", "b"],
     "supplement": "WIC is meant to supplement your food budget and compliment your use of other resources.",
     "time": "This form should take about 10 minutes to complete.",
