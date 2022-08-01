@@ -74,7 +74,7 @@ const Table = styled.table`
     font-family: 'Balsamiq Sans', cursive;
   }
   font-family: 'Balsamiq Sans', cursive;
-  width: 70%;
+  width: 95%;
 `
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
