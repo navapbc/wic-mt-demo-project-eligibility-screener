@@ -4,7 +4,7 @@ import { ReactElement } from 'react'
 import styled, { StyledComponent } from 'styled-components'
 
 type Props = {
-  disabled?: boolean,
+  disabled?: boolean
   label: string
   href: string /* TODO: create global type for routes */
   vector?: boolean
@@ -12,13 +12,7 @@ type Props = {
 }
 
 const ButtonLink = (props: Props): ReactElement => {
-  const { 
-    disabled,
-    href,
-    label,
-    vector,
-    width
-  } = props
+  const { disabled, href, label, vector, width } = props
 
   return (
     <Link href={href}>
@@ -45,12 +39,12 @@ const Button: StyledComponent<
   'a',
   object,
   {
-    disabled?: boolean,
+    disabled?: boolean
     width?: string
   },
   never
 > = styled.a<{
-  disabled?: boolean,
+  disabled?: boolean
   width?: string
 }>`
   background-color: ${(props) => (props.disabled ? 'grey' : 'black')};
@@ -58,7 +52,7 @@ const Button: StyledComponent<
   font-family: 'Balsamiq Sans', cursive;
   font-weight: 400;
   gap: 10px;
-  pointer-events: ${(props) => (props.disabled && 'none')};
+  pointer-events: ${(props) => props.disabled && 'none'};
   width: ${(props) => (props.width ? props.width : '90%')};
 `
 

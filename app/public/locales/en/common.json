@@ -1,11 +1,10 @@
 {
-  "continue": "Continue",
   "Clinic": {
     "body": "You’ll need to visit a clinic in person to complete a certification appointment for WIC. Choose the clinic you would like to go to during business hours.",
     "button": "Select this clinic",
     "listTitle": "Choose a clinic from the following list:",
-    "title": "Choose a clinic",
-    "searchLabel": "Enter your ZIP code to search for a clinic"
+    "searchLabel": "Enter your ZIP code to search for a clinic",
+    "title": "Choose a clinic"
   },
   "Contact": {
     "button": "Submit",
@@ -30,12 +29,12 @@
     "tanf": "TANF"
   },
   "Income": {
-    "estimatedIncome": "Estimated maximum income before taxes",
     "dropdownLabel": "What is your household size?",
-    "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
-    "title": "To be eligible for WIC, your income before taxes must be at or below a certain income level.",
     "enrolled": "If you are currently enrolled in Medicaid, Healthy Montana Kids, Healthy Montana Kids Plus, SNAP, TANF, or FDPIR (Food Distribution Program on Indian Reservations), you may have automatic eligibility for WIC.",
-    "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level."
+    "estimatedIncome": "Estimated maximum income before taxes",
+    "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
+    "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.",
+    "title": "To be eligible for WIC, your income before taxes must be at or below a certain income level."
   },
   "Index": {
     "benefits": "There are many benefits, including healthy food, support, connections to local resources, and more.",
@@ -58,5 +57,6 @@
   "Layout": {
     "footer": "Lorem ipsum odor amet, consectetuer adipiscing elit. Metus himenaeos proin. Non sapien. Habitant lorem nascetur pretium.",
     "header": "WIC Eligibility Screener"
-  }
+  },
+  "continue": "Continue"
 }
