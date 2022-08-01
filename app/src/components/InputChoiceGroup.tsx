@@ -24,13 +24,13 @@ const InputChoiceGroup = (props: Props): ReactElement => {
       {choices.map((choice: Choice) => (
         <div className={`usa-${type}`} key={choice.value}>
           <input
+            checked={choice.checked}
             className={`usa-${type}__input`}
             id={choice.value}
             name={choice.name}
+            onChange={choice.handleChange}
             type={type}
             value={choice.value}
-            checked={choice.checked}
-            onChange={choice.handleChange}
           />
           <label className={`usa-${type}__label`} htmlFor={choice.value}>
             {choice.label}

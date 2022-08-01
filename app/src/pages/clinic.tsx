@@ -14,6 +14,7 @@ const Clinic: NextPage = () => {
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSelectedClinic(undefined)
     const filtered = clinics
       .filter(clinic => clinic.zip === search)
 
