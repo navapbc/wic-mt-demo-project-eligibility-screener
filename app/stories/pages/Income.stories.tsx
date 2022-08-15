@@ -7,8 +7,6 @@ export default {
   component: IncomePage,
 } as ComponentMeta<typeof IncomePage>
 
-const Template: ComponentStory<typeof IncomePage> = () => (
-  <IncomePage />
-)
+const Template: ComponentStory<typeof IncomePage> = () => <IncomePage />
 
 export const Income = Template.bind({})

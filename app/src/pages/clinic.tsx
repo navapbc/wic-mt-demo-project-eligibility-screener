@@ -2,8 +2,8 @@ import clinics from '@public/data/clinics.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEvent, FormEvent, useState } from 'react'
 import Image from 'next/image'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
 
@@ -48,7 +48,9 @@ const Clinic: NextPage = () => {
           role="search"
           onSubmit={handleSearch}
         >
-          <label className="usa-sr-only" htmlFor="search-field-en-small">{t('Clinic.searchLabel')}</label>
+          <label className="usa-sr-only" htmlFor="search-field-en-small">
+            {t('Clinic.searchLabel')}
+          </label>
           <input
             className="usa-input"
             id="search-field-en-small"
@@ -57,8 +59,10 @@ const Clinic: NextPage = () => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <button className="usa-button" type="submit">
-            <img
+            <Image
               src="/img/search.svg"
+              height="24px"
+              width="24px"
               className="usa-search__submit-icon"
               alt="Search"
             />

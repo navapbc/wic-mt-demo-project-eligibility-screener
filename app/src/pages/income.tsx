@@ -11,11 +11,14 @@ import Dropdown from '@components/Dropdown'
 const Income: NextPage = () => {
   const { t } = useTranslation('common')
   const [householdSize, setHouseholdSize] = useState<keyof typeof incomeData>()
-  // @ts-ignore TODO: PAIR WITH ROCKET ON THIS
-  const householdSizes: keyof typeof incomeData[] = Object.keys(incomeData)
+  const householdSizes: string[] = Object.keys(incomeData)
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement> & { target: { value: keyof typeof incomeData }}) => {
-    setHouseholdSize(e.target.value) 
+  const handleChange = (
+    e: ChangeEvent<HTMLSelectElement> & {
+      target: { value: keyof typeof incomeData }
+    }
+  ) => {
+    setHouseholdSize(e.target.value)
   }
 
   return (
@@ -26,9 +29,7 @@ const Income: NextPage = () => {
       <Dropdown
         id="income"
         label={t('Income.dropdownLabel')}
-        // @ts-ignore
         handleChange={handleChange}
-        // @ts-ignore
         options={householdSizes}
       />
       <Helper>{t('Income.helper')}</Helper>
@@ -45,9 +46,15 @@ const Income: NextPage = () => {
         </thead>
         <tbody>
           <tr>
-            <th scope="row">{householdSize && incomeData[householdSize]?.annual || '-'}</th>
-            <td>{householdSize && incomeData[householdSize]?.monthly || '-'}</td>
-            <td>{householdSize && incomeData[householdSize]?.weekly || '-'}</td>
+            <th scope="row">
+              {(householdSize && incomeData[householdSize]?.annual) || '-'}
+            </th>
+            <td>
+              {(householdSize && incomeData[householdSize]?.monthly) || '-'}
+            </td>
+            <td>
+              {(householdSize && incomeData[householdSize]?.weekly) || '-'}
+            </td>
           </tr>
         </tbody>
       </Table>

@@ -8,7 +8,9 @@ describe('Income', () => {
   it('should render the heading', () => {
     render(<Income />)
 
-    const heading = screen.getByText(/To be eligible for WIC, your income before taxes must be at or below a certain income level./i)
+    const heading = screen.getByText(
+      /To be eligible for WIC, your income before taxes must be at or below a certain income level./i
+    )
 
     expect(heading).toBeInTheDocument()
     expect(heading).toMatchSnapshot()
