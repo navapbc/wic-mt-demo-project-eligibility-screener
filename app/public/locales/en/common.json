@@ -8,16 +8,19 @@
   },
   "Contact": {
     "button": "Submit",
-    "firstName": "What's your first name?",
-    "lastName": "What's your last name?",
-    "other": "Is there anything else you want to share with us?",
+    "firstName": "First name",
+    "header": "Contact information",
+    "lastName": "Last name",
+    "name": "What's your name?",
+    "other": "Is there anything else you'd like to share with us?",
+    "otherLabel": "Comments, questions, other information",
     "phone": "What's the best phone number to reach you at?",
-    "phoneHelper": "Your chosen WIC clinic will contact you to set up a time for a certification appointment during business hours."
+    "phoneAlert": "Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.",
+    "phoneLabel": "Phone number"
   },
   "Eligibility": {
     "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your family may qualify for.",
     "accordionHeader": "Why are we asking this?",
-    "asterisk": "All required questions are marked with an asterisk",
     "baby": "I've had a baby in the past 12 months",
     "categorical": "2. Please select all the following that apply to your family:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
@@ -35,6 +38,7 @@
   "Income": {
     "accordionBody": "A household is defined as all persons, related or unrelated, living together in thesame dwelling and sharing financial resources and costs, with the exception of foster children. If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "accordionHeader": "Who counts in my household?",
+    "assistance": "Learn about other assistance",
     "dropdownLabel": "Household size",
     "enrolled": "If you are currently enrolled in <b>Medicaid, Healthy Montana Kids Plus, Healthy Montana Kids Plus</b>, Supplemental Nutrition Assistance Program (<b>SNAP</b>), Temporary Assistance for Needy Families (<b>TANF</b>), or Food Distribution Program on Indian Reservations (<b>FDPIR</b>), you may be automatically eligible for WIC.",
     "estimatedIncome": "Estimated maximum income limit before taxes",
@@ -72,5 +76,6 @@
     "header": "Apply for WIC in Montana",
     "menu": "Menu"
   },
+  "asterisk": "All required questions are marked with an asterisk",
   "continue": "Continue"
 }

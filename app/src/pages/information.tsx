@@ -16,9 +16,9 @@ const Information: NextPage = () => {
       <ol className="usa-process-list">
         {listCopyKeys.map((key: string) => (
           <li className="usa-process-list__item" key={key}>
-            <h4 className="usa-process-list__heading">
+            <h2 className="usa-process-list__heading">
               {t(`Information.${key}Header`)}
-            </h4>
+            </h2>
             <p
               className="margin-top-1"
               dangerouslySetInnerHTML={{ __html: t(`Information.${key}`) }}

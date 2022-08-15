@@ -42,15 +42,15 @@ const Clinic: NextPage = () => {
       <Link href="/income">Back</Link>
       <h1>{t('Clinic.title')}</h1>
       <p>
-        {t('Eligibility.asterisk')} (
-        <abbr className="usa-hint usa-hint--required">*</abbr>).
+        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+        ).
       </p>
       <p>{t('Clinic.body')}</p>
       <br />
-      <h3>
+      <h2>
         {t('Clinic.searchLabel')}{' '}
         <abbr className="usa-hint usa-hint--required"> *</abbr>
-      </h3>
+      </h2>
       <section aria-label="Search clinic by zip">
         <form
           className="usa-search usa-search--small"
@@ -110,7 +110,7 @@ const Clinic: NextPage = () => {
             disabled={selectedClinic === undefined}
             href="/contact"
             label={t('Clinic.button')}
-            width="155px"
+            width="251px"
           />
         </>
       ) : (

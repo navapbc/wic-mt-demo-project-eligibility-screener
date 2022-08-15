@@ -15,7 +15,7 @@ const Accordion = (props: Props): ReactElement => {
 
   return (
     <div className="usa-accordion usa-accordion--bordered">
-      <h4 className="usa-accordion__heading">
+      <h3 className="usa-accordion__heading">
         <button
           aria-controls="b-a1"
           aria-expanded={isExpanded}
@@ -25,7 +25,7 @@ const Accordion = (props: Props): ReactElement => {
         >
           {header}
         </button>
-      </h4>
+      </h3>
       <div
         className="usa-accordion__content usa-prose"
         hidden={!isExpanded}

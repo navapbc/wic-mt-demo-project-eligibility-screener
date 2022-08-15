@@ -75,11 +75,11 @@ const Income: NextPage = () => {
       </div>
       <p>
         <a className="usa-link" href="https://dphhs.mt.gov/Assistance">
-          Learn about other assistance
+          {t('Income.assistance')}
         </a>
       </p>
       <br />
-      <ButtonLink href="/clinic" label={t('continue')} width="110px" />
+      <ButtonLink href="/clinic" label={t('continue')} width="105px" />
       <br />
     </>
   )

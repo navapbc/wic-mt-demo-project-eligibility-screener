@@ -9,7 +9,7 @@ describe('Income', () => {
     render(<Income />)
 
     const heading = screen.getByText(
-      /To be eligible for WIC, your income before taxes must be at or below a certain income level./i
+      /To be eligible for WIC, your household income before taxes must be at or below a certain income level./i
     )
 
     expect(heading).toBeInTheDocument()

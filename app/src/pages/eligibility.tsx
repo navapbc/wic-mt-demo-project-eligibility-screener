@@ -45,8 +45,8 @@ const Eligibility: NextPage = () => {
       <Link href="/information">Back</Link>
       <h1>{t('Eligibility.header')}</h1>
       <p>
-        {t('Eligibility.asterisk')} (
-        <abbr className="usa-hint usa-hint--required">*</abbr>).
+        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+        ).
       </p>
       <InputChoiceGroup
         required
