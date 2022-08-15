@@ -28,6 +28,7 @@ const Alternate: NextPage = () => {
       />
       <br />
       <br />
+      <br />
       <StyledButton href="/" label={t('Alternate.button')} width="180px" />
       <br />
     </>
