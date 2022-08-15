@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
 import { ChangeEvent, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
@@ -41,7 +42,14 @@ const Eligibility: NextPage = () => {
 
   return (
     <form>
+      <Link href="/information">Back</Link>
+      <h1>{t('Eligibility.header')}</h1>
+      <p>
+        {t('Eligibility.asterisk')} (
+        <abbr className="usa-hint usa-hint--required">*</abbr>).
+      </p>
       <InputChoiceGroup
+        required
         title={t('Eligibility.residential')}
         type="radio"
         choices={[
@@ -63,6 +71,11 @@ const Eligibility: NextPage = () => {
       />
       <br />
       <InputChoiceGroup
+        accordion={{
+          body: t('Eligibility.accordionBody'),
+          header: t('Eligibility.accordionHeader'),
+        }}
+        required
         title={t('Eligibility.categorical')}
         type="checkbox"
         choices={[
@@ -106,6 +119,7 @@ const Eligibility: NextPage = () => {
       />
       <br />
       <InputChoiceGroup
+        required
         title={t('Eligibility.programs')}
         type="checkbox"
         choices={[
@@ -138,7 +152,8 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href="/income" label={t('continue')} vector width="140px" />
+      <ButtonLink href="/income" label={t('continue')} width="105px" />
+      <br />
     </form>
   )
 }

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 import styled, { StyledComponent } from 'styled-components'
@@ -7,12 +6,11 @@ type Props = {
   disabled?: boolean
   label: string
   href: string /* TODO: create global type for routes */
-  vector?: boolean
   width?: string /* TODO: check if there is a type for css widths */
 }
 
 const ButtonLink = (props: Props): ReactElement => {
-  const { disabled, href, label, vector, width } = props
+  const { disabled, href, label, width } = props
 
   return (
     <Link href={href}>
@@ -22,14 +20,6 @@ const ButtonLink = (props: Props): ReactElement => {
         width={width}
       >
         {label}
-        {vector && (
-          <Image
-            src="/img/vector.svg"
-            alt="continue vector"
-            width={20}
-            height={15}
-          />
-        )}
       </Button>
     </Link>
   )
@@ -47,9 +37,8 @@ const Button: StyledComponent<
   disabled?: boolean
   width?: string
 }>`
-  background-color: ${(props) => (props.disabled ? 'grey' : 'black')};
+  background-color: ${(props) => props.disabled && 'grey'};
   display: flex;
-  font-family: 'Balsamiq Sans', cursive;
   font-weight: 400;
   gap: 10px;
   pointer-events: ${(props) => props.disabled && 'none'};
