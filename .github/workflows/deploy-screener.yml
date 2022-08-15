@@ -1,0 +1,44 @@
+# This action deploys changes to the eligibility screener
+# Deploy steps:
+# - Build a docker release image and upload it to ECR and tag it.
+# - Apply the terraform changes (if applicable), pointing it to the docker image that was uploaded
+
+name: Elibility Screener Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        default_value: "test"
+        description: |
+          Choose an environment to deploy changes to.
+        type: choice
+        options:
+          - test
+          - stage
+  push:
+    - branches:
+      - main
+      - alsia/add-cd # this is for testing purposes
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Authenticate with AWS
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-region: us-east-1
+            role-to-assume: wic-mt-deploy
+            role-duration-seconds: 3600
+
+        - name: Build and Tag Image
+          run: |
+          docker-compose build
+          docker push 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
+
+        - name: Push to ECR
+          run: |
+          aws ecs update-service --cluster ${{github.event.inputs.environment || 'test' }} --service ${{github.event.inputs.environment || 'test' }}-ecs-service --force-new-deployment

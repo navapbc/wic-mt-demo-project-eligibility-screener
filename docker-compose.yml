@@ -17,6 +17,7 @@ services:
       - ./app:/srv
       # Use a named volume for the node_modules so that the container uses the guest machine's node_modules dir instead of the host machine's node_modules directory, which might be divergent.
       - nextjs_nodemodules:/srv/node_modules
+    image: 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
 
 volumes:
   nextjs_nodemodules:
