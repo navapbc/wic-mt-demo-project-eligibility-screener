@@ -17,12 +17,13 @@ on:
           - test
           - stage
   push:
-    - branches:
+    branches:
       - main
       - alsia/add-cd # this is for testing purposes
 
 jobs:
   build:
+    name: Build and Deploy Screener
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
