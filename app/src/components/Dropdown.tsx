@@ -16,7 +16,7 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
   return (
     <form className="usa-form">
       <Label className="usa-label" htmlFor={id}>
-        <b>{label}</b>
+        <strong>{label}</strong>
       </Label>
       <select className="usa-select" id={id} onChange={handleChange}>
         <option value={undefined}>- Select -</option>
