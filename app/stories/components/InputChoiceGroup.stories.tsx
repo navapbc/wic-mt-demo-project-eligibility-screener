@@ -14,6 +14,10 @@ const Template: ComponentStory<typeof InputChoiceGroupComponent> = (args) => (
 export const InputChoiceGroup = Template.bind({})
 
 InputChoiceGroup.args = {
+  accordion: {
+    body: 'test body',
+    header: 'test header',
+  },
   choices: [
     {
       checked: true,
@@ -28,6 +32,7 @@ InputChoiceGroup.args = {
       value: 'no',
     },
   ],
+  required: true,
   type: 'radio',
   title: 'Choice Group Options',
 }
