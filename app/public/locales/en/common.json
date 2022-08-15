@@ -1,4 +1,11 @@
 {
+  "Alternate": {
+    "assistance": "We recommend visiting <0>https://dphhs.mt.gov/Assistance</0> to learn about other assistance in Montana.",
+    "button": "Return to start page",
+    "location": "If you are not currently living or working in Montana, visit <0>SignUpWIC.com</0> to find a clinic near you.",
+    "subHeader": "Given your responses, you are likely not eligible for WIC.",
+    "title": "Your eligibility"
+  },
   "Clinic": {
     "body": "You’ll need to visit a clinic in person to complete a certification appointment for WIC. Choose the clinic you would like to go to during business hours.",
     "button": "Select this clinic and continue",
