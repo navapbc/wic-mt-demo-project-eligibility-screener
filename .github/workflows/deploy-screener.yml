@@ -25,6 +25,9 @@ jobs:
   build:
     name: Build and Deploy Screener
     runs-on: ubuntu-latest
+    permissions: # required for AWS
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v2
 
