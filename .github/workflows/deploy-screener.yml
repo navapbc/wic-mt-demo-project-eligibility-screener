@@ -41,6 +41,7 @@ jobs:
       - name: Build and Tag Image
         run: |
           docker-compose build
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo
           docker push 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
 
       - name: Push to ECR
