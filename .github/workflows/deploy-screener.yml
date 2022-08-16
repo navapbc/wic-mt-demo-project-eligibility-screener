@@ -25,16 +25,16 @@ jobs:
   build:
     name: Build and Deploy Screener
     runs-on: ubuntu-latest
-    permissions: # required for AWS
-      id-token: write
-      contents: read
+
     steps:
       - uses: actions/checkout@v2
-
+      # add secret key  + acct key to GH secrets
       - name: Authenticate with AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: us-east-1
+          aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           role-to-assume: arn:aws:iam::546642427916:role/deployment-action
           role-duration-seconds: 3600
 
