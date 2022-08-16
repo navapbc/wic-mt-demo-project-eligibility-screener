@@ -32,7 +32,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-region: us-east-1
-          role-to-assume: wic-mt-deploy
+          role-to-assume: arn:aws:iam::546642427916:role/deployment-action
           role-duration-seconds: 3600
 
       - name: Build and Tag Image
