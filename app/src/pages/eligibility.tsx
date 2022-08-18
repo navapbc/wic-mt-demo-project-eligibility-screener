@@ -2,13 +2,15 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 
 const Eligibility: NextPage = () => {
   const { t } = useTranslation('common')
+  const incomeRoute = '/income'
+  const [continueLink, setContinueLink] = useState(incomeRoute)
   const [form, setForm] = useState({
     residential: '',
     pregnant: false,
@@ -22,6 +24,12 @@ const Eligibility: NextPage = () => {
     tanf: false,
     none2: false,
   })
+
+  useEffect(() => {
+    if (form.none) {
+      setContinueLink('/alternate')
+    } else setContinueLink(incomeRoute)
+  }, [form.none])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
@@ -104,16 +112,16 @@ const Eligibility: NextPage = () => {
             value: 'guardian',
           },
           {
-            checked: form.none,
-            handleChange,
-            label: t('Eligibility.none'),
-            value: 'none',
-          },
-          {
             checked: form.loss,
             handleChange,
             label: t('Eligibility.loss'),
             value: 'loss',
+          },
+          {
+            checked: form.none,
+            handleChange,
+            label: t('Eligibility.none'),
+            value: 'none',
           },
         ]}
       />
@@ -152,7 +160,7 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href="/income" label={t('continue')} width="105px" />
+      <ButtonLink href={continueLink} label={t('continue')} width="105px" />
       <br />
     </form>
   )
