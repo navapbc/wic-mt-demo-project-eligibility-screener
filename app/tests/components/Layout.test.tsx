@@ -8,7 +8,7 @@ describe('Layout', () => {
   it('should render placeholder header text', () => {
     render(<Layout children={<h1>'child'</h1>} />)
 
-    const header = screen.getByText(/WIC Eligibility Screener/i)
+    const header = screen.getByText(/Apply for WIC in Montana/i)
 
     expect(header).toBeInTheDocument()
     expect(header).toMatchSnapshot()

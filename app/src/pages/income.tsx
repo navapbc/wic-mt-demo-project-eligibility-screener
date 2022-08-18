@@ -2,79 +2,91 @@ import incomeData from '@public/data/income.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
 import { ChangeEvent, useState } from 'react'
 import styled from 'styled-components'
 
+import Accordion from '@components/Accordion'
 import ButtonLink from '@components/ButtonLink'
 import Dropdown from '@components/Dropdown'
 
 const Income: NextPage = () => {
   const { t } = useTranslation('common')
   const [householdSize, setHouseholdSize] = useState<keyof typeof incomeData>()
-  // @ts-ignore TODO: PAIR WITH ROCKET ON THIS
-  const householdSizes: keyof typeof incomeData[] = Object.keys(incomeData)
+  const householdSizes: string[] = Object.keys(incomeData)
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement> & { target: { value: keyof typeof incomeData }}) => {
-    setHouseholdSize(e.target.value) 
+  const handleChange = (
+    e: ChangeEvent<HTMLSelectElement> & {
+      target: { value: keyof typeof incomeData }
+    }
+  ) => {
+    setHouseholdSize(e.target.value)
   }
 
   return (
     <>
-      <h1>{t('Income.title')}</h1>
-      <p>{t('Income.enrolled')}</p>
+      <Link href="/eligibility">Back</Link>
+      <h1>{t('Income.header')}</h1>
+      <h2>{t('Income.title')}</h2>
+      <p dangerouslySetInnerHTML={{ __html: t('Income.enrolled') }} />
       <p>{t('Income.notEnrolled')}</p>
+      <p dangerouslySetInnerHTML={{ __html: t('Income.unsure') }} />
+      <br />
+      <h2>{t('Income.householdSize')}</h2>
+      <Accordion
+        body={t('Income.accordionBody')}
+        header={t('Income.accordionHeader')}
+      />
       <Dropdown
         id="income"
         label={t('Income.dropdownLabel')}
-        // @ts-ignore
         handleChange={handleChange}
-        // @ts-ignore
         options={householdSizes}
       />
-      <Helper>{t('Income.helper')}</Helper>
-      <Table className="usa-table usa-table--borderless">
-        <caption>
-          <h2>{t('Income.estimatedIncome')}</h2>
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Annual</th>
-            <th scope="col">Monthly</th>
-            <th scope="col">Weekly</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">{householdSize && incomeData[householdSize]?.annual || '-'}</th>
-            <td>{householdSize && incomeData[householdSize]?.monthly || '-'}</td>
-            <td>{householdSize && incomeData[householdSize]?.weekly || '-'}</td>
-          </tr>
-        </tbody>
-      </Table>
+      <div className="width-mobile">
+        <table className="usa-table usa-table--stacked usa-table--borderless">
+          <caption>
+            <h2>{t('Income.estimatedIncome')}</h2>
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Annual</th>
+              <th scope="col">Monthly</th>
+              <th scope="col">Weekly</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th data-label="Annual" scope="row">
+                {(householdSize && incomeData[householdSize]?.annual) ||
+                  '$XX,XXXX'}
+              </th>
+              <TD data-label="Monthly">
+                {(householdSize && incomeData[householdSize]?.monthly) ||
+                  '$X,XXXX'}
+              </TD>
+              <TD data-label="Weekly">
+                {(householdSize && incomeData[householdSize]?.weekly) ||
+                  '$XXXX'}
+              </TD>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p>
         <a className="usa-link" href="https://dphhs.mt.gov/Assistance">
-          Learn about other assistance
+          {t('Income.assistance')}
         </a>
       </p>
       <br />
-      <ButtonLink href="/clinic" label={t('continue')} vector width="140px" />
+      <ButtonLink href="/clinic" label={t('continue')} width="105px" />
+      <br />
     </>
   )
 }
 
-const Helper = styled.div`
-  color: #666666;
-  font-size: 12px;
-  max-width: 30rem;
-  padding: 9px;
-}`
-
-const Table = styled.table`
-  h2 {
-    font-family: 'Balsamiq Sans', cursive;
-  }
-  font-family: 'Balsamiq Sans', cursive;
-  width: 95%;
+const TD = styled.td`
+  min-width: 20rem;
 `
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {

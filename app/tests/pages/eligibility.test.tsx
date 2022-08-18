@@ -31,4 +31,28 @@ describe('Eligibility', () => {
       expect(yesRadio).toBeChecked()
     })
   })
+
+  describe('continue link', () => {
+    it('should link to income page by default', () => {
+      render(<Eligibility />)
+
+      const continueBtn = screen.getByText(/Continue/i)
+
+      expect(continueBtn.getAttribute('href')).toBe('/income')
+    })
+
+    it('should link to alternate page if none is selected for question 2', () => {
+      render(<Eligibility />)
+
+      const noneBtn = screen.getAllByLabelText(/None of the above/i)[0]
+
+      expect(noneBtn).not.toBeChecked()
+      fireEvent.click(noneBtn)
+      expect(noneBtn).toBeChecked()
+
+      const continueBtn = screen.getByText(/Continue/i)
+
+      expect(continueBtn.getAttribute('href')).toBe('/alternate')
+    })
+  })
 })

@@ -1,9 +1,9 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
 import { ChangeEvent, useState } from 'react'
 import NumberFormat from 'react-number-format'
-import styled from 'styled-components'
 
 import ButtonLink from '@components/ButtonLink'
 import TextInput from '@components/TextInput'
@@ -29,24 +29,46 @@ const Contact: NextPage = () => {
 
   return (
     <form>
+      <Link href="/clinic">Back</Link>
+      <h1>{t('Contact.header')}</h1>
+      <p>
+        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+        ).
+      </p>
+      <h2>
+        {t('Contact.name')}
+        <abbr className="usa-hint usa-hint--required"> *</abbr>
+      </h2>
       <TextInput
         handleChange={handleChange}
         id="firstName"
         label={t('Contact.firstName')}
+        required
         value={form.firstName}
       />
-      <br />
       <TextInput
         handleChange={handleChange}
         id="lastName"
         label={t('Contact.lastName')}
+        required
         value={form.lastName}
       />
       <br />
-      <Label className="usa-label" htmlFor="phone">
-        {t('Contact.phone')}
-      </Label>
-      <PhoneInput
+      <br />
+      <h2>
+        {t('Contact.phone')}{' '}
+        <abbr className="usa-hint usa-hint--required"> *</abbr>
+      </h2>
+      <div className="usa-alert usa-alert--info usa-alert--no-icon">
+        <div className="usa-alert__body">
+          <p className="usa-alert__text">{t('Contact.phoneAlert')}</p>
+        </div>
+      </div>
+      <label className="usa-label" htmlFor="phone">
+        {t('Contact.phoneLabel')}
+        <abbr className="usa-hint usa-hint--required"> *</abbr>
+      </label>
+      <NumberFormat
         format="###-###-####"
         mask="_"
         role="textbox"
@@ -55,39 +77,23 @@ const Contact: NextPage = () => {
         value={form.phone}
         onChange={handleChange}
       />
-      <Helper>{t('Contact.phoneHelper')}</Helper>
       <br />
+      <br />
+      <h2>{t('Contact.other')}</h2>
       <TextInput
         handleChange={handleChange}
         id="other"
-        label={t('Contact.other')}
+        label={t('Contact.otherLabel')}
+        type="area"
         value={form.other}
       />
       <br />
       <br />
-      <ButtonLink href="/" label={t('Contact.button')} width="100px" />
+      <ButtonLink href="/" label={t('continue')} width="105px" />
+      <br />
     </form>
   )
 }
-
-const Helper = styled.div`
-  color: #666666;
-  font-size: 12px;
-  max-width: 30rem;
-  padding: 9px;
-}
-`
-
-const Label = styled.label`
-  font-family: 'Balsamiq Sans', cursive;
-  font-size: 20px;
-`
-
-const PhoneInput = styled(NumberFormat)`
-  border: 1px solid #b3b3b3;
-  border-radius: 4px;
-  height: 48px;
-`
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
