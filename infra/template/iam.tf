@@ -5,7 +5,7 @@
 # ----------------------------------------------------------
 # IAM roles/users created here:
 # wic-mt-github-actions: this is the user that will hold temporary credentials to AWS when the deploy action is running
-# wic-mt-deploy: gives the user permission to perform all ECR services (will be narrowed down later), and Update actions for ECS
+# deployment-action: gives the user permission to perform all ECR services (will be narrowed down later), and Update actions for ECS
 
 # resource "aws_iam_user" "github_actions" {
 #   name = "wic-mt-github-actions"

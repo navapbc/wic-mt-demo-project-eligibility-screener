@@ -1,9 +1,13 @@
-# This action deploys changes to the eligibility screener
+# This action deploys changes to the eligibility screener next.js application. 
+#
 # Deploy steps:
-# - Build a docker release image and upload it to ECR and tag it.
-# - Apply the terraform changes (if applicable), pointing it to the docker image that was uploaded
+# - Build and tag a docker release image
+# - Upload the docker image to ECR
+# - Trigger a rotation of the ECS service containers
+#
+# The underlying terraform is managed in the wic-mt-demo-project repo and references the uploaded docker image.
 
-name: Elibility Screener Deploy
+name: Eligibility Screener Deploy
 on:
   workflow_dispatch:
     inputs:
@@ -40,7 +44,7 @@ jobs:
 
       - name: Build and Tag Image
         run: |
-          docker-compose build
+          docker build --tag 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo
           docker push 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
 
