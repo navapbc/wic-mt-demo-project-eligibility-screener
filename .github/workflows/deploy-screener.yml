@@ -23,7 +23,6 @@ on:
   push:
     branches:
       - main
-      - alsia/add-cd # this is for testing purposes
 
 jobs:
   build:
@@ -32,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      # add secret key  + acct key to GH secrets
+
       - name: Authenticate with AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
