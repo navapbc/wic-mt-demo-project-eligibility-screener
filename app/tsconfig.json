@@ -13,7 +13,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@clinics/*": ["./public/clinic-output/clinic-zip-code-lookup/*"],
+      "@clinics/*": ["./public/clinic-output/clinics-zip-code-lookup/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@public/*": ["./public/*"],

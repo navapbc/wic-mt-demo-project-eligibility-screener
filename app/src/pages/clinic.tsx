@@ -1,4 +1,4 @@
-import clinics from '@clinics/../clinics-with-ids.json'
+import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
