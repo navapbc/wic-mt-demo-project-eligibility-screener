@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Information should render title text 1`] = `
-<li
-  class="usa-process-list__item"
+<p
+  class="margin-top-1"
 >
   You can start applying for WIC by checking to see if you're eligible.
-</li>
+</p>
 `;

@@ -2,9 +2,14 @@
 
 exports[`Contact should render first name prompt 1`] = `
 <label
-  class="sc-dkzDqf caEyMW usa-label"
+  class="usa-label"
   for="firstName"
 >
-  What's your first name?
+  First name
+  <abbr
+    class="usa-hint usa-hint--required"
+  >
+     *
+  </abbr>
 </label>
 `;

@@ -11,20 +11,16 @@ const Index: NextPage = () => {
   return (
     <>
       <h1>{t('Index.title')}</h1>
-      <p>{t('Index.header')}</p>
+      <p dangerouslySetInnerHTML={{ __html: t('Index.header') }} />
       <ul className="usa-list">
         {listCopyKeys.map((key: string) => (
           <li key={key}>{t(`Index.${key}`)}</li>
         ))}
       </ul>
-      <p>{t('Index.time')}</p>
+      <p dangerouslySetInnerHTML={{ __html: t('Index.time') }} />
       <br />
-      <ButtonLink
-        href="/information"
-        label={t('Index.button')}
-        vector
-        width="159px"
-      />
+      <ButtonLink href="/information" label={t('Index.button')} width="125px" />
+      <br />
     </>
   )
 }

@@ -15,4 +15,5 @@ export const TextInput = Template.bind({})
 
 TextInput.args = {
   label: 'Text Input',
+  required: true,
 }

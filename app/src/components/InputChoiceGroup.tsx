@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
-import styled from 'styled-components'
+
+import Accordion from '@components/Accordion'
 
 interface Choice {
   checked: boolean
@@ -10,47 +11,46 @@ interface Choice {
 }
 
 type Props = {
+  accordion?: {
+    header: string
+    body: string
+  }
   choices: Choice[]
   title: string
+  required?: boolean
   type: 'checkbox' | 'radio'
 }
 
 const InputChoiceGroup = (props: Props): ReactElement => {
-  const { choices, title, type } = props
+  const { accordion, choices, title, required, type } = props
 
   return (
-    <Fieldset className="usa-fieldset">
-      <h2>{title}</h2>
+    <fieldset className="usa-fieldset">
+      <h2>
+        {title}
+        {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
+      </h2>
+      {accordion && (
+        <Accordion header={accordion.header} body={accordion.body} />
+      )}
       {choices.map((choice: Choice) => (
         <div className={`usa-${type}`} key={choice.value}>
           <input
-            className={`usa-${type}__input`}
+            checked={choice.checked}
+            className={`usa-${type}__input usa-${type}__input--tile`}
             id={choice.value}
             name={choice.name}
+            onChange={choice.handleChange}
             type={type}
             value={choice.value}
-            checked={choice.checked}
-            onChange={choice.handleChange}
           />
           <label className={`usa-${type}__label`} htmlFor={choice.value}>
             {choice.label}
           </label>
         </div>
       ))}
-    </Fieldset>
+    </fieldset>
   )
 }
-
-const Fieldset = styled.fieldset`
-  border: none;
-  h2 {
-    font-family: 'Balsamiq Sans', cursive;
-    font-weight: 300;
-  }
-  label {
-    font-family: 'Balsamiq Sans', cursive;
-    font-weight: 300;
-  }
-`
 
 export default InputChoiceGroup
