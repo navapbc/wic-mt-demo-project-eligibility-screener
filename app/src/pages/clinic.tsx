@@ -1,4 +1,4 @@
-import clinics from '@public/data/clinics.json'
+import clinics from '@clinics/../clinics-with-ids.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -10,6 +10,7 @@ import ButtonLink from '@components/ButtonLink'
 
 const Clinic: NextPage = () => {
   const { t } = useTranslation('common')
+  const [expandList, setExpandList] = useState<boolean>(false)
   const [filteredClinics, setFilteredClinics] = useState<typeof clinics>([])
   const [selectedClinic, setSelectedClinic] = useState<
     typeof clinics[0] | undefined
@@ -19,9 +20,28 @@ const Clinic: NextPage = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSelectedClinic(undefined)
-    const filtered = clinics.filter((clinic) => clinic.zip === search)
 
-    setFilteredClinics(filtered)
+    if (search) {
+      import(
+        `../../public/clinic-output/clinics-zip-code-lookup/${search}.json`
+      )
+        .then(
+          (sortedClinics: { default: { id: number; distance: string }[] }) => {
+            const clinicsWithDetails: typeof clinics = sortedClinics.default
+              .slice(0, 8)
+              .map(
+                (clinic: typeof sortedClinics.default[0]) =>
+                  clinics.find(
+                    (clinicDetails: typeof clinics[0]) =>
+                      clinicDetails.id === clinic.id
+                  ) || clinics[0]
+              )
+
+            setFilteredClinics(clinicsWithDetails)
+          }
+        )
+        .catch(console.error)
+    }
   }
 
   const handleSelection = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,8 +90,8 @@ const Clinic: NextPage = () => {
           <button className="usa-button" type="submit">
             <Image
               src="/img/search.svg"
-              height="24px"
-              width="24px"
+              height="20px"
+              width="20px"
               className="usa-search__submit-icon"
               alt="Search"
             />
@@ -83,26 +103,36 @@ const Clinic: NextPage = () => {
           <h2>{t('Clinic.listTitle')}</h2>
           <form className="usa-form">
             <fieldset className="usa-fieldset">
-              {filteredClinics?.map((clinic, index) => (
-                <div className="usa-radio" key={index}>
-                  <input
-                    checked={selected(clinic)}
-                    className="usa-radio__input usa-radio__input--tile"
-                    id={clinic.clinic}
-                    onChange={handleSelection}
-                    type="radio"
-                    value={clinic.clinic}
-                  />
-                  <label className="usa-radio__label" htmlFor={clinic.clinic}>
-                    {clinic.clinic}
-                    <span className="usa-checkbox__label-description">
-                      <em>{clinic.clinicAddress}</em>
-                      <br />
-                      <em>{clinic.clinicTelephone}</em>
-                    </span>
-                  </label>
-                </div>
-              ))}
+              {filteredClinics
+                ?.slice(0, expandList ? 8 : 4)
+                .map((clinic, index) => (
+                  <div className="usa-radio" key={index}>
+                    <input
+                      checked={selected(clinic)}
+                      className="usa-radio__input usa-radio__input--tile"
+                      id={clinic.clinic}
+                      onChange={handleSelection}
+                      type="radio"
+                      value={clinic.clinic}
+                    />
+                    <label className="usa-radio__label" htmlFor={clinic.clinic}>
+                      {clinic.clinic}
+                      <span className="usa-checkbox__label-description">
+                        <em>{clinic.clinicAddress}</em>
+                        <br />
+                        <em>{clinic.clinicTelephone}</em>
+                      </span>
+                    </label>
+                  </div>
+                ))}
+              {!expandList && (
+                <button
+                  onClick={() => setExpandList(true)}
+                  className="usa-button usa-button--unstyled"
+                >
+                  Show more clinic options
+                </button>
+              )}
             </fieldset>
           </form>
           <br />
