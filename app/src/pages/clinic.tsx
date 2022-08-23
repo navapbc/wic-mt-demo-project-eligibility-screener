@@ -3,6 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
@@ -38,10 +39,18 @@ const Clinic: NextPage = () => {
 
   return (
     <>
-      <h2>{t('Clinic.title')}</h2>
+      <Link href="/income">Back</Link>
+      <h1>{t('Clinic.title')}</h1>
+      <p>
+        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+        ).
+      </p>
       <p>{t('Clinic.body')}</p>
       <br />
-      <em>{t('Clinic.searchLabel')}</em>
+      <h2>
+        {t('Clinic.searchLabel')}{' '}
+        <abbr className="usa-hint usa-hint--required"> *</abbr>
+      </h2>
       <section aria-label="Search clinic by zip">
         <form
           className="usa-search usa-search--small"
@@ -69,8 +78,7 @@ const Clinic: NextPage = () => {
           </button>
         </form>
       </section>
-      <br />
-      {filteredClinics.length > 0 && (
+      {filteredClinics.length > 0 ? (
         <>
           <h2>{t('Clinic.listTitle')}</h2>
           <form className="usa-form">
@@ -97,16 +105,22 @@ const Clinic: NextPage = () => {
               ))}
             </fieldset>
           </form>
+          <br />
+          <ButtonLink
+            disabled={selectedClinic === undefined}
+            href="/contact"
+            label={t('Clinic.button')}
+            width="251px"
+          />
+        </>
+      ) : (
+        <>
+          <br />
+          <br />
+          <br />
+          <br />
         </>
       )}
-      <br />
-      <ButtonLink
-        disabled={selectedClinic === undefined}
-        href="/contact"
-        label={t('Clinic.button')}
-        vector
-        width="194px"
-      />
     </>
   )
 }

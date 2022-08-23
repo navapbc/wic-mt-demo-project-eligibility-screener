@@ -1,5 +1,4 @@
 import { ChangeEvent, ReactElement } from 'react'
-import styled from 'styled-components'
 
 interface Props<T> {
   handleChange: (
@@ -15,9 +14,9 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
 
   return (
     <form className="usa-form">
-      <Label className="usa-label" htmlFor={id}>
-        <strong>{label}</strong>
-      </Label>
+      <label className="usa-label" htmlFor={id}>
+        {label}
+      </label>
       <select className="usa-select" id={id} onChange={handleChange}>
         <option value={undefined}>- Select -</option>
         {options.map((option: string) => (
@@ -29,9 +28,5 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
     </form>
   )
 }
-
-const Label = styled.label`
-  font-family: 'Balsamiq Sans', cursive;
-`
 
 export default Dropdown

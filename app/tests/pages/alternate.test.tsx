@@ -1,23 +1,20 @@
-// test/pages/index.test.js
 import { render, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Income from '@pages/income'
+import Alternate from '@pages/alternate'
 
-describe('Income', () => {
+describe('Alternate', () => {
   it('should render the heading', () => {
-    render(<Income />)
+    render(<Alternate />)
 
-    const heading = screen.getByText(
-      /To be eligible for WIC, your household income before taxes must be at or below a certain income level./i
-    )
+    const heading = screen.getByText(/Your eligibility/i)
 
     expect(heading).toBeInTheDocument()
     expect(heading).toMatchSnapshot()
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = render(<Income />)
+    const { container } = render(<Alternate />)
     const results = await axe(container)
 
     await waitFor(() => {

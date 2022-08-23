@@ -6,7 +6,7 @@ describe('Contact', () => {
   it('should render first name prompt', () => {
     render(<Contact />)
 
-    const prompt = screen.getByText(/What's your first name?/i)
+    const prompt = screen.getByText(/First name/i)
 
     expect(prompt).toBeInTheDocument()
     expect(prompt).toMatchSnapshot()
@@ -15,9 +15,7 @@ describe('Contact', () => {
   it('should update name input value', () => {
     render(<Contact />)
 
-    const nameInput = screen.getByLabelText(
-      /What's your first name?/i
-    ) as HTMLInputElement
+    const nameInput = screen.getByLabelText(/First name/i) as HTMLInputElement
 
     expect(nameInput.value).toBe('')
     fireEvent.change(nameInput, { target: { value: 'Jane' } })
@@ -29,7 +27,7 @@ describe('Contact', () => {
       render(<Contact />)
 
       const phoneNumber = screen.getByLabelText(
-        /What's the best phone number to reach you at?/i
+        /Phone number/i
       ) as HTMLInputElement
 
       expect(phoneNumber.value).toBe('')
@@ -41,7 +39,7 @@ describe('Contact', () => {
       render(<Contact />)
 
       const phoneNumber = screen.getByLabelText(
-        /What's the best phone number to reach you at?/i
+        /Phone number/i
       ) as HTMLInputElement
 
       expect(phoneNumber.value).toBe('')
