@@ -15,7 +15,7 @@ const ButtonLink = (props: Props): ReactElement => {
   return (
     <Link href={href}>
       <Button
-        className={`usa-button usa-button--small`}
+        className="usa-button usa-button--small"
         disabled={disabled}
         href={href}
         width={width}
