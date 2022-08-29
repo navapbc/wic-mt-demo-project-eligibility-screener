@@ -34,8 +34,8 @@ const Clinic: NextPage = () => {
                   clinics.find(
                     (clinicDetails: typeof clinics[0]) =>
                       clinicDetails.id === clinic.id
-                  ) || clinics[0]
-              )
+                  )
+              ).filter(Boolean);
 
             setFilteredClinics(clinicsWithDetails)
           }
