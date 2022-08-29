@@ -11,7 +11,7 @@ import ButtonLink from '@components/ButtonLink'
 const Clinic: NextPage = () => {
   const { t } = useTranslation('common')
   const [expandList, setExpandList] = useState<boolean>(false)
-  const numberOfClinicsToReturn: number = 8
+  const numberOfClinicsToReturn = 8
   const [filteredClinics, setFilteredClinics] = useState<typeof clinics>([])
   const [selectedClinic, setSelectedClinic] = useState<
     typeof clinics[0] | undefined
