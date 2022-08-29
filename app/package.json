@@ -51,7 +51,7 @@
     "@typescript-eslint/parser": "^5.31.0",
     "babel-jest": "^28.1.0",
     "chromatic": "^6.7.1",
-    "eslint": "^8.15.0",
+    "eslint": "^8.23.0",
     "eslint-config-nava": "^11.0.0",
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",
