@@ -11,6 +11,7 @@ import ButtonLink from '@components/ButtonLink'
 const Clinic: NextPage = () => {
   const { t } = useTranslation('common')
   const [expandList, setExpandList] = useState<boolean>(false)
+  const numberOfClinicsToReturn: number = 8
   const [filteredClinics, setFilteredClinics] = useState<typeof clinics>([])
   const [selectedClinic, setSelectedClinic] = useState<
     typeof clinics[0] | undefined
@@ -28,7 +29,7 @@ const Clinic: NextPage = () => {
         .then(
           (sortedClinics: { default: { id: number; distance: string }[] }) => {
             const clinicsWithDetails: typeof clinics = sortedClinics.default
-              .slice(0, 8)
+              .slice(0, numberOfClinicsToReturn)
               .map(
                 (clinic: typeof sortedClinics.default[0]) =>
                   clinics.find(
@@ -104,7 +105,7 @@ const Clinic: NextPage = () => {
           <form className="usa-form">
             <fieldset className="usa-fieldset">
               {filteredClinics
-                ?.slice(0, expandList ? 8 : 4)
+                ?.slice(0, expandList ? filteredClinics.length : 4)
                 .map((clinic, index) => (
                   <div className="usa-radio" key={index}>
                     <input
