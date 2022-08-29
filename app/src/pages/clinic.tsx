@@ -27,7 +27,7 @@ const Clinic: NextPage = () => {
       )
         .then(
           (sortedClinics: { default: { id: number; distance: string }[] }) => {
-            const clinicsWithDetails: typeof clinics = sortedClinics.default
+            const clinicsWithDetails: (typeof clinics[0] | undefined)[] = sortedClinics.default
               .slice(0, 8)
               .map(
                 (clinic: typeof sortedClinics.default[0]) =>
