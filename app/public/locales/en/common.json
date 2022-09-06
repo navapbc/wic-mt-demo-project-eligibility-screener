@@ -16,20 +16,20 @@
   "Contact": {
     "button": "Submit",
     "firstName": "First name",
-    "header": "Contact information",
     "lastName": "Last name",
     "name": "What's your name?",
     "other": "Is there anything else you'd like to share with us?",
     "otherLabel": "Comments, questions, other information",
     "phone": "What's the best phone number to reach you at?",
     "phoneAlert": "Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.",
-    "phoneLabel": "Phone number"
+    "phoneLabel": "Phone number",
+    "title": "Contact information"
   },
   "Eligibility": {
     "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your family may qualify for.",
     "accordionHeader": "Why are we asking this?",
     "baby": "I've had a baby in the past 12 months",
-    "categorical": "2. Please select all the following that apply to your family:",
+    "categorical": "Please select all the following that apply to your family:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
     "guardian": "I'm the guardian or foster parent of an infant or child under the age of 5 years old",
     "header": "Check your eligibility",
@@ -37,8 +37,8 @@
     "loss": "I've experienced a loss of pregnancy in the past 6 months",
     "none": "None of the above",
     "pregnant": "I'm pregnant",
-    "programs": "3. Are you currently enrolled in any of the following programs?",
-    "residential": "1. Do you live or work in Montana?",
+    "programs": "Are you currently enrolled in any of the following programs?",
+    "residential": "Do you live or work in Montana?",
     "snap": "SNAP",
     "tanf": "TANF"
   },
@@ -82,6 +82,17 @@
     "footer2": "<0>USDA Non-Discrimination Statement</0>: This institution is an equal opportunity provider.",
     "header": "Apply for WIC in Montana",
     "menu": "Menu"
+  },
+  "Review": {
+    "button": "Submit",
+    "clinicSelected": "You selected this WIC Clinic to visit",
+    "eligibilityTitle": "Eligibility questions",
+    "subHeader": "Review the information on this page before submitting. If you want to make changes, select \"Edit\" to go to the section you want to change.",
+    "title": "Review and submit your information"
+  },
+  "Summary": {
+    "body": "Thank you for submitting your information. If you're eligible, you should hear from WIC staff at your chosen clinic within 20 days.",
+    "title": "Your confirmation"
   },
   "asterisk": "All required questions are marked with an asterisk",
   "continue": "Continue"

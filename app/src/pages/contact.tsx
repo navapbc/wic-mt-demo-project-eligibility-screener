@@ -30,7 +30,7 @@ const Contact: NextPage = () => {
   return (
     <form>
       <Link href="/clinic">Back</Link>
-      <h1>{t('Contact.header')}</h1>
+      <h1>{t('Contact.title')}</h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
