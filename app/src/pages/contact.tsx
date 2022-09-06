@@ -12,14 +12,16 @@ import TextInput from '@components/TextInput'
 const Contact: NextPage = () => {
   const { t } = useTranslation('common')
   const { session, setSession } = useAppContext()
-  const [form, setForm] = useState(session && session.contact || {
-    contact: {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      other: '',
+  const [form, setForm] = useState(
+    (session && session.contact) || {
+      contact: {
+        firstName: '',
+        lastName: '',
+        phone: '',
+        other: '',
+      },
     }
-  })
+  )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, id }: { value: string; id: string } = e.target
@@ -27,7 +29,7 @@ const Contact: NextPage = () => {
     const newForm = { ...form, [castId]: value }
 
     setForm(newForm)
-    setSession(newForm)
+    setSession({ contact: newForm })
   }
 
   return (

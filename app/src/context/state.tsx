@@ -10,19 +10,32 @@ type DefaultState = {
 }
 interface AppContextType {
   session: DefaultState
-  setSession: Dispatch<SetStateAction<undefined>> | (() => {})
+  setSession:
+    | Dispatch<
+        SetStateAction<{
+          contact: {
+            firstName: string
+            lastName: string
+            phone: string
+            other: string
+          }
+        }>
+      >
+    | (() => unknown)
 }
 
 export const AppContext = createContext<AppContextType>({
-  session: { 
+  session: {
     contact: {
       firstName: '',
       lastName: '',
       phone: '',
-      other: ''
-    }
+      other: '',
+    },
   },
-  setSession: () => {}
+  setSession: () => {
+    console.log('here')
+  },
 })
 
 export function useAppContext() {

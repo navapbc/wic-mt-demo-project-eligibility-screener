@@ -9,7 +9,14 @@ import '@styles/styles.scss'
 import { AppContext } from '../context/state'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [session, setSession] = useState()
+  const [session, setSession] = useState({
+    contact: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      other: '',
+    },
+  })
 
   return (
     <AppContext.Provider value={{ session, setSession }}>

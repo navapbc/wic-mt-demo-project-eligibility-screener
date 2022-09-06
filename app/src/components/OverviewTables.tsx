@@ -49,19 +49,19 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Contact.firstName'),
-            body: (session && session.firstName) || '',
+            body: (session && session.contact.firstName) || '',
           },
           {
             header: t('Contact.lastName'),
-            body: (session && session.lastName) || '',
+            body: (session && session.contact.lastName) || '',
           },
           {
             header: t('Contact.phoneLabel'),
-            body: (session && session.phone) || '',
+            body: (session && session.contact.phone) || '',
           },
           {
             header: t('Contact.otherLabel'),
-            body: (session && session.other) || '',
+            body: (session && session.contact.other) || '',
           },
         ]}
       />
