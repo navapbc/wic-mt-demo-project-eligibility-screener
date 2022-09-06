@@ -1,0 +1,52 @@
+# This action deploys changes to the eligibility screener next.js application. 
+#
+# Deploy steps:
+# - Build and tag a docker release image
+# - Upload the docker image to ECR
+# - Trigger a rotation of the ECS service containers
+#
+# The underlying terraform is managed in the wic-mt-demo-project repo and references the uploaded docker image.
+
+name: Eligibility Screener Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        default_value: "test"
+        description: |
+          Choose an environment to deploy changes to.
+        type: choice
+        options:
+          - test
+          - stage
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Deploy Screener
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::546642427916:role/deployment-action
+          role-duration-seconds: 3600
+
+      - name: Build and Tag Image
+        run: |
+          docker build --tag 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest ./app
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo
+          docker push 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
+
+      - name: Push to ECR
+        run: |
+          aws ecs update-service --cluster ${{github.event.inputs.environment || 'test' }} --service ${{github.event.inputs.environment || 'test' }}-ecs-service --force-new-deployment
