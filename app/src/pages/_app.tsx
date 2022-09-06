@@ -16,6 +16,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       phone: '',
       other: '',
     },
+    eligibility: {
+      residential: '',
+      pregnant: false,
+      baby: false,
+      child: false,
+      guardian: false,
+      none: false,
+      loss: false,
+      insurance: false,
+      snap: false,
+      tanf: false,
+      none2: false,
+    }
   })
 
   return (

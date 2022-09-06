@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { useAppContext } from 'src/context/state'
 
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
@@ -33,6 +34,7 @@ const Eligibility: NextPage = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
+    const { session, setSession } = useAppContext()
     const castValue = value as keyof typeof form
     let newValue
 
@@ -42,10 +44,10 @@ const Eligibility: NextPage = () => {
       newValue = { [castValue]: !form[castValue] }
     }
 
-    setForm({
-      ...form,
-      ...newValue,
-    })
+    const newForm = {...form, ...newValue}
+
+    setForm(newForm)
+    setSession({...session, eligibility: newForm})
   }
 
   return (

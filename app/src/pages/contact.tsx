@@ -29,7 +29,7 @@ const Contact: NextPage = () => {
     const newForm = { ...form, [castId]: value }
 
     setForm(newForm)
-    setSession({ contact: newForm })
+    setSession({...session, contact: newForm})
   }
 
   return (
