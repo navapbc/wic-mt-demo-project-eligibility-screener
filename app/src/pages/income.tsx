@@ -27,7 +27,7 @@ const Income: NextPage = () => {
     <>
       <Link href="/eligibility">Back</Link>
       <h1>{t('Income.header')}</h1>
-      <h2>{t('Income.title')}</h2>
+      <h2 dangerouslySetInnerHTML={{ __html: t('Income.title') }} />
       <p dangerouslySetInnerHTML={{ __html: t('Income.enrolled') }} />
       <p>{t('Income.notEnrolled')}</p>
       <p dangerouslySetInnerHTML={{ __html: t('Income.unsure') }} />
