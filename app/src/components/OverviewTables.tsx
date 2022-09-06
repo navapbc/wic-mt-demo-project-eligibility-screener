@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
+import { useAppContext } from 'src/context/state'
 
 import Table from '@components/Table'
 
@@ -9,6 +10,7 @@ interface Props {
 
 const OverviewTables = (props: Props): ReactElement => {
   const { t } = useTranslation('common')
+  const { session } = useAppContext()
   const { editable } = props
 
   return (
@@ -47,19 +49,19 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Contact.firstName'),
-            body: 'answer',
+            body: (session && session.firstName) || '',
           },
           {
             header: t('Contact.lastName'),
-            body: 'answer',
+            body: (session && session.lastName) || '',
           },
           {
             header: t('Contact.phoneLabel'),
-            body: 'answer',
+            body: (session && session.phone) || '',
           },
           {
             header: t('Contact.otherLabel'),
-            body: 'answer',
+            body: (session && session.other) || '',
           },
         ]}
       />

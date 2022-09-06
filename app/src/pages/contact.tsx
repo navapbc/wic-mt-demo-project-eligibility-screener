@@ -4,27 +4,30 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { ChangeEvent, useState } from 'react'
 import NumberFormat from 'react-number-format'
+import { useAppContext } from 'src/context/state'
 
 import ButtonLink from '@components/ButtonLink'
 import TextInput from '@components/TextInput'
 
 const Contact: NextPage = () => {
   const { t } = useTranslation('common')
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    other: '',
+  const { session, setSession } = useAppContext()
+  const [form, setForm] = useState(session && session.contact || {
+    contact: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      other: '',
+    }
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, id }: { value: string; id: string } = e.target
     const castId = id as keyof typeof form
+    const newForm = { ...form, [castId]: value }
 
-    setForm({
-      ...form,
-      [castId]: value,
-    })
+    setForm(newForm)
+    setSession(newForm)
   }
 
   return (
@@ -89,7 +92,7 @@ const Contact: NextPage = () => {
       />
       <br />
       <br />
-      <ButtonLink href="/" label={t('continue')} width="105px" />
+      <ButtonLink href="/review" label={t('continue')} width="105px" />
       <br />
     </form>
   )
