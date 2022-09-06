@@ -21,7 +21,7 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Eligibility.residential'),
-            body: 'answer',
+            body: (session && session.eligibility.residential) || '',
           },
           {
             header: t('Eligibility.categorical'),

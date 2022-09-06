@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       snap: false,
       tanf: false,
       none2: false,
-    }
+    },
   })
 
   return (

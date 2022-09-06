@@ -6,7 +6,7 @@ type DefaultState = {
     lastName: string
     phone: string
     other: string
-  },
+  }
   eligibility: {
     residential: string
     pregnant: boolean
@@ -23,11 +23,7 @@ type DefaultState = {
 }
 interface AppContextType {
   session: DefaultState
-  setSession:
-    | Dispatch<
-        SetStateAction<DefaultState>
-      >
-    | (() => unknown)
+  setSession: Dispatch<SetStateAction<DefaultState>> | (() => unknown)
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -50,7 +46,7 @@ export const AppContext = createContext<AppContextType>({
       snap: false,
       tanf: false,
       none2: false,
-    }
+    },
   },
   setSession: () => {
     console.log('here')

@@ -11,6 +11,7 @@ import InputChoiceGroup from '@components/InputChoiceGroup'
 const Eligibility: NextPage = () => {
   const { t } = useTranslation('common')
   const incomeRoute = '/income'
+  const { session, setSession } = useAppContext()
   const [continueLink, setContinueLink] = useState(incomeRoute)
   const [form, setForm] = useState({
     residential: '',
@@ -34,7 +35,6 @@ const Eligibility: NextPage = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
-    const { session, setSession } = useAppContext()
     const castValue = value as keyof typeof form
     let newValue
 
@@ -44,10 +44,10 @@ const Eligibility: NextPage = () => {
       newValue = { [castValue]: !form[castValue] }
     }
 
-    const newForm = {...form, ...newValue}
+    const newForm = { ...form, ...newValue }
 
     setForm(newForm)
-    setSession({...session, eligibility: newForm})
+    setSession({ ...session, eligibility: newForm })
   }
 
   return (
