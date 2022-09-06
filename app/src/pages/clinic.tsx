@@ -5,12 +5,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChangeEvent, FormEvent, useState } from 'react'
+import { useAppContext } from 'src/context/state'
 
 import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'
 
 const Clinic: NextPage = () => {
   const { t } = useTranslation('common')
+  const { session, setSession } = useAppContext()
   const [expandList, setExpandList] = useState<boolean>(false)
   const numberOfClinicsToReturn = 8
   const [filteredClinics, setFilteredClinics] = useState<
@@ -18,7 +20,7 @@ const Clinic: NextPage = () => {
   >([])
   const [selectedClinic, setSelectedClinic] = useState<
     typeof clinics[0] | undefined
-  >(undefined)
+  >(session && session.clinic)
   const [search, setSearch] = useState('')
   const [searchError, setSearchError] = useState<boolean>(false)
   const [zipValidationError, setZipValidationError] = useState<boolean>(false)
@@ -68,8 +70,10 @@ const Clinic: NextPage = () => {
     const clinicIndex = filteredClinics?.findIndex(
       (clinic) => clinic && clinic.clinic === value
     )
+    const selectedClinic = filteredClinics[clinicIndex]
 
-    setSelectedClinic(filteredClinics[clinicIndex])
+    setSelectedClinic(selectedClinic)
+    setSession({ ...session, clinic: selectedClinic })
   }
 
   const selected = (clinic: typeof clinics[0]) => {

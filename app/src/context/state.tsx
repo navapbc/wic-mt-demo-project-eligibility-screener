@@ -1,6 +1,8 @@
+import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction, createContext, useContext } from 'react'
 
 type DefaultState = {
+  clinic: typeof clinics[0] | undefined
   contact: {
     firstName: string
     lastName: string
@@ -28,6 +30,7 @@ interface AppContextType {
 
 export const AppContext = createContext<AppContextType>({
   session: {
+    clinic: undefined,
     contact: {
       firstName: '',
       lastName: '',

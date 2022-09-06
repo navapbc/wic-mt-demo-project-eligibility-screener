@@ -13,19 +13,7 @@ const Eligibility: NextPage = () => {
   const incomeRoute = '/income'
   const { session, setSession } = useAppContext()
   const [continueLink, setContinueLink] = useState(incomeRoute)
-  const [form, setForm] = useState({
-    residential: '',
-    pregnant: false,
-    baby: false,
-    child: false,
-    guardian: false,
-    none: false,
-    loss: false,
-    insurance: false,
-    snap: false,
-    tanf: false,
-    none2: false,
-  })
+  const [form, setForm] = useState(session && session.eligibility)
 
   useEffect(() => {
     if (form.none) {

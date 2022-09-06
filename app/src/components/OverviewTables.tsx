@@ -4,6 +4,10 @@ import { useAppContext } from 'src/context/state'
 
 import Table from '@components/Table'
 
+type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
+
+type Program = 'insurance' | 'snap' | 'tanf'
+
 interface Props {
   editable?: boolean
 }
@@ -12,11 +16,46 @@ const OverviewTables = (props: Props): ReactElement => {
   const { t } = useTranslation('common')
   const { session } = useAppContext()
   const { editable } = props
+  const categoryKeys: Category[] = [
+    'pregnant',
+    'baby',
+    'child',
+    'guardian',
+    'loss',
+  ]
+  const programKeys: Program[] = ['insurance', 'snap', 'tanf']
+
+  const formatClinic = (): string => {
+    const clinic = session && session.clinic
+
+    return `
+      ${(clinic && clinic.clinic) || ''}
+      <br />
+      ${(clinic && clinic.clinicAddress) || ''}
+      <br />
+      ${(clinic && clinic.clinicTelephone) || ''}
+    `
+  }
+
+  const formatEligibilitySelections = (
+    keys: (Category | Program)[]
+  ): string => {
+    let returnVal = ''
+
+    keys.forEach((key: Category | Program) => {
+      if (session.eligibility[key]) {
+        returnVal = returnVal.concat(t(`Eligibility.${key}`), '<br /> ')
+      }
+    })
+
+    return returnVal
+  }
 
   return (
     <>
       <Table
         editable={editable}
+        editLink="eligibility"
         title={t('Review.eligibilityTitle')}
         rows={[
           {
@@ -25,26 +64,28 @@ const OverviewTables = (props: Props): ReactElement => {
           },
           {
             header: t('Eligibility.categorical'),
-            body: 'string',
+            body: formatEligibilitySelections(categoryKeys),
           },
           {
             header: t('Eligibility.programs'),
-            body: 'string',
+            body: formatEligibilitySelections(programKeys),
           },
         ]}
       />
       <Table
         editable={editable}
+        editLink="/clinic"
         title={t('Clinic.title')}
         rows={[
           {
             header: t('Review.clinicSelected'),
-            body: 'answer',
+            body: (session && session.clinic && formatClinic()) || '',
           },
         ]}
       />
       <Table
         editable={editable}
+        editLink="/contact"
         title={t('Contact.title')}
         rows={[
           {

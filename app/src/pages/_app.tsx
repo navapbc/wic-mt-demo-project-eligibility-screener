@@ -10,6 +10,7 @@ import { AppContext } from '../context/state'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [session, setSession] = useState({
+    clinic: undefined,
     contact: {
       firstName: '',
       lastName: '',
