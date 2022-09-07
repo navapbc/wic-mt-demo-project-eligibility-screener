@@ -2,17 +2,38 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { useAppContext } from 'src/context/state'
 
 import ButtonLink from '@components/ButtonLink'
 import TextInput from '@components/TextInput'
 
-const Contact: NextPage = () => {
+interface Props {
+  previousRoute: string
+}
+
+// @ts-ignore
+const Contact: NextPage = (props: Props) => {
   const { t } = useTranslation('common')
   const { session, setSession } = useAppContext()
   const [form, setForm] = useState(session && session.contact)
+  const [continueBtn, setContinueBtn] = useState<{
+    label: string
+    width: string
+  }>({ label: t('continue'), width: '105px' })
+
+  useEffect(() => {
+    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
+    const previousRoute = props.previousRoute.substring(prevRouteIndex)
+
+    if (previousRoute === '/review') {
+      setContinueBtn({
+        label: t('updateAndReturn'),
+        width: '239px',
+      })
+    }
+  }, [props.previousRoute, t])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, id }: { value: string; id: string } = e.target
@@ -85,15 +106,23 @@ const Contact: NextPage = () => {
       />
       <br />
       <br />
-      <ButtonLink href="/review" label={t('continue')} width="105px" />
+      <ButtonLink
+        href="/review"
+        label={continueBtn.label}
+        width={continueBtn.width}
+      />
       <br />
     </form>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
   return {
     props: {
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }

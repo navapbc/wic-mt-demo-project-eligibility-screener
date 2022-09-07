@@ -1,7 +1,7 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction, createContext, useContext } from 'react'
 
-type DefaultState = {
+export type DefaultState = {
   clinic: typeof clinics[0] | undefined
   contact: {
     firstName: string

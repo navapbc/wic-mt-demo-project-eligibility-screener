@@ -17,6 +17,7 @@
   "plugins": ["@typescript-eslint", "jest"],
   "root": true,
   "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "comma-dangle": ["error", "only-multiline"],

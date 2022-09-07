@@ -17,7 +17,6 @@ const ButtonLink = (props: Props): ReactElement => {
       <Button
         className="usa-button usa-button--small disabled"
         disabled={disabled}
-        href={href}
         width={width}
       >
         {label}

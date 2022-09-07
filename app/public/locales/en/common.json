@@ -97,5 +97,6 @@
     "title": "Your confirmation"
   },
   "asterisk": "All required questions are marked with an asterisk",
-  "continue": "Continue"
+  "continue": "Continue",
+  "updateAndReturn": "Update and return to review"
 }

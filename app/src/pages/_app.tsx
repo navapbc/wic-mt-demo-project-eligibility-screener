@@ -1,6 +1,6 @@
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
-import { useState } from 'react'
+import useLocalStorage from 'src/hooks/useLocalStorage'
 
 import Layout from '@components/Layout'
 
@@ -9,7 +9,7 @@ import '@styles/styles.scss'
 import { AppContext } from '../context/state'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [session, setSession] = useState({
+  const [session, setSession] = useLocalStorage('session', {
     clinic: undefined,
     contact: {
       firstName: '',
@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
 
   return (
+    // @ts-ignore
     <AppContext.Provider value={{ session, setSession }}>
       <Layout>
         <Component {...pageProps} />
