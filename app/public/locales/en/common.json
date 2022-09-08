@@ -11,7 +11,9 @@
     "button": "Select this clinic and continue",
     "listTitle": "Choose a clinic from the following list:",
     "searchLabel": "Enter your residential ZIP code to search for a clinic",
-    "title": "Choose a clinic"
+    "title": "Choose a clinic",
+    "zipSearchError": "Sorry, we could not find a match for this ZIP code in Montana. Please check what you entered and try again.",
+    "zipValidationError": "Please enter 5 digits for the ZIP code."
   },
   "Contact": {
     "button": "Submit",
