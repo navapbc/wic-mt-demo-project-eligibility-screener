@@ -92,8 +92,7 @@ const Clinic: NextPage = () => {
       </h2>
       <section aria-label="Search clinic by zip">
         {zipValidationError && (
-          <span className="usa-error-message"
-          >{t('Clinic.zipValidationError')}</span>
+          <span className="usa-error-message">{t('Clinic.zipValidationError')}</span>
         )}
         <form
           className="usa-search usa-search--small"
