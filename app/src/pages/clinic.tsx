@@ -134,7 +134,6 @@ const Clinic: NextPage = () => {
               {filteredClinics
                 ?.slice(0, expandList ? filteredClinics.length : 4)
                 .map((clinic, index) => (
-                  clinic &&
                   <div className="usa-radio" key={index}>
                     <input
                       checked={selected(clinic)}
