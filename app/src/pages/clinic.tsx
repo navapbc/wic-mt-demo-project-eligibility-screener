@@ -92,7 +92,9 @@ const Clinic: NextPage = () => {
       </h2>
       <section aria-label="Search clinic by zip">
         {zipValidationError && (
-          <span className="usa-error-message">{t('Clinic.zipValidationError')}</span>
+          <span className="usa-error-message">
+            {t('Clinic.zipValidationError')}
+          </span>
         )}
         <form
           className="usa-search usa-search--small"
@@ -116,16 +118,11 @@ const Clinic: NextPage = () => {
               width="20px"
               className="usa-search__submit-icon"
               alt="Search"
-              />
+            />
           </button>
         </form>
       </section>
-      {searchError && (
-        <Alert
-          type="error"
-          text={t('Clinic.zipSearchError')}
-        />
-      )}
+      {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
       {filteredClinics.length > 0 ? (
         <>
           <h2>{t('Clinic.listTitle')}</h2>
