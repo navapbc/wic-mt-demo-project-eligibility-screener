@@ -13,8 +13,7 @@ interface Props {
   previousRoute: string
 }
 
-// @ts-ignore
-const Contact: NextPage = (props: Props) => {
+const Contact: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
   const { session, setSession } = useAppContext()
   const [form, setForm] = useState(session && session.contact)

@@ -8,18 +8,34 @@ import { useAppContext } from 'src/context/state'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 
-const Eligibility: NextPage = () => {
+interface Props {
+  previousRoute: string
+}
+
+const Eligibility: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
   const incomeRoute = '/income'
   const { session, setSession } = useAppContext()
-  const [continueLink, setContinueLink] = useState(incomeRoute)
+  const [continueBtn, setContinueBtn] = useState({
+    label: t('continue'),
+    route: incomeRoute,
+    width: '105px',
+  })
   const [form, setForm] = useState(session && session.eligibility)
 
   useEffect(() => {
+    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
+    const previousRoute = props.previousRoute.substring(prevRouteIndex)
     if (form.none) {
-      setContinueLink('/alternate')
-    } else setContinueLink(incomeRoute)
-  }, [form.none])
+      setContinueBtn({ ...continueBtn, route: '/alternate' })
+    } else if (previousRoute === '/review') {
+      setContinueBtn({
+        label: t('updateAndReturn'),
+        route: previousRoute,
+        width: '239px',
+      })
+    } else setContinueBtn({ ...continueBtn, route: incomeRoute })
+  }, [form.none, props.previousRoute])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
@@ -150,15 +166,23 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href={continueLink} label={t('continue')} width="105px" />
+      <ButtonLink
+        href={continueBtn.route}
+        label={continueBtn.label}
+        width={continueBtn.width}
+      />
       <br />
     </form>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
   return {
     props: {
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
