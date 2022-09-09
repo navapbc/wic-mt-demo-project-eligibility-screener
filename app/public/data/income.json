@@ -2,41 +2,49 @@
   "1": {
     "annual": "$25,142",
     "monthly": "$2,096",
-    "weekly": "$484"
+    "weekly": "$484",
+    "biweekly": "$967"
   },
   "2": {
     "annual": "$33,874",
     "monthly": "$2,823",
-    "weekly": "$652"
+    "weekly": "$652",
+    "biweekly": "$1,303"
   },
   "3": {
     "annual": "$42,606",
     "monthly": "$3,551",
-    "weekly": "$820"
+    "weekly": "$820",
+    "biweekly": "$1,639"
   },
   "4": {
     "annual": "$51,338",
     "monthly": "$4,279",
-    "weekly": "$988"
+    "weekly": "$988",
+    "biweekly": "$1,975"
   },
   "5": {
     "annual": "$60,070",
     "monthly": "$5,006",
-    "weekly": "$1,156"
+    "weekly": "$1,156",
+    "biweekly": "$2,311"
   },
   "6": {
     "annual": "$68,802",
     "monthly": "$5,734",
-    "weekly": "$1,324"
+    "weekly": "$1,324",
+    "biweekly": "$2,647"
   },
   "7": {
     "annual": "$77,534",
     "monthly": "$6,462",
-    "weekly": "$1,492"
+    "weekly": "$1,492",
+    "biweekly": "$2,983"
   },
   "8": {
     "annual": "$86,266",
     "monthly": "$7,189",
-    "weekly": "$1,659"
+    "weekly": "$1,659",
+    "biweekly": "$3,318"
   }
 }
