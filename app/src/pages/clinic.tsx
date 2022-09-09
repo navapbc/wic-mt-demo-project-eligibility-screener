@@ -92,7 +92,9 @@ const Clinic: NextPage = () => {
       </h2>
       <section aria-label="Search clinic by zip">
         {zipValidationError && (
-          <span className="usa-error-message">{t('Clinic.zipValidationError')}</span>
+          <span className="usa-error-message">
+            {t('Clinic.zipValidationError')}
+          </span>
         )}
         <form
           className="usa-search usa-search--small"
@@ -116,16 +118,11 @@ const Clinic: NextPage = () => {
               width="20px"
               className="usa-search__submit-icon"
               alt="Search"
-              />
+            />
           </button>
         </form>
       </section>
-      {searchError && (
-        <Alert
-          type="error"
-          text={t('Clinic.zipSearchError')}
-        />
-      )}
+      {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
       {filteredClinics.length > 0 ? (
         <>
           <h2>{t('Clinic.listTitle')}</h2>
@@ -133,26 +130,32 @@ const Clinic: NextPage = () => {
             <fieldset className="usa-fieldset">
               {filteredClinics
                 ?.slice(0, expandList ? filteredClinics.length : 4)
-                .map((clinic, index) => (
-                  <div className="usa-radio" key={index}>
-                    <input
-                      checked={selected(clinic)}
-                      className="usa-radio__input usa-radio__input--tile"
-                      id={clinic.clinic}
-                      onChange={handleSelection}
-                      type="radio"
-                      value={clinic.clinic}
-                    />
-                    <label className="usa-radio__label" htmlFor={clinic.clinic}>
-                      {clinic.clinic}
-                      <span className="usa-checkbox__label-description">
-                        <em>{clinic.clinicAddress}</em>
-                        <br />
-                        <em>{clinic.clinicTelephone}</em>
-                      </span>
-                    </label>
-                  </div>
-                ))}
+                .map(
+                  (clinic, index) =>
+                    clinic && (
+                      <div className="usa-radio" key={index}>
+                        <input
+                          checked={selected(clinic)}
+                          className="usa-radio__input usa-radio__input--tile"
+                          id={clinic.clinic}
+                          onChange={handleSelection}
+                          type="radio"
+                          value={clinic.clinic}
+                        />
+                        <label
+                          className="usa-radio__label"
+                          htmlFor={clinic.clinic}
+                        >
+                          {clinic.clinic}
+                          <span className="usa-checkbox__label-description">
+                            <em>{clinic.clinicAddress}</em>
+                            <br />
+                            <em>{clinic.clinicTelephone}</em>
+                          </span>
+                        </label>
+                      </div>
+                    )
+                )}
               {!expandList && (
                 <button
                   onClick={() => setExpandList(true)}
