@@ -39,10 +39,11 @@
     "loss": "I have had a pregnancy end in the last 6 months",
     "none": "None of the above",
     "pregnant": "I'm pregnant",
-    "programs": "3. Are you currently enrolled in any of the following programs?",
+    "programs": "3. Are you or someone in your family currently enrolled in any of the following programs in Montana?",
     "residential": "1. Do you live or work in Montana?",
     "snap": "SNAP (Supplemental Nutrition Assistance Program)",
-    "tanf": "TANF (Temporary Assistance for Needy Families)"
+    "tanf": "TANF (Temporary Assistance for Needy Families)",
+    "fdpir": "FDPIR (Food Distribution Program on Indian Reservations)"
   },
   "Income": {
     "accordionBody": "A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.<br />If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
