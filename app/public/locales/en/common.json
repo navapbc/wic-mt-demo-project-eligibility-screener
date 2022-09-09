@@ -73,10 +73,10 @@
     "apply": "You can start applying for WIC by checking to see if you're eligible.",
     "applyHeader": "Check your eligibility",
     "appointment": "During your appointment, you'll need to show documentation of your income, indentity, and residence.",
-    "appointmentHeader": "Attend your appointment at your local WIC clinic",
+    "appointmentHeader": "Complete your appointment with your local WIC clinic",
     "button": "Check your availability",
     "eligible": "<strong>If you are eligible</strong>, a staff member from your local WIC office will call you for additional information and to set up a certification appointment.",
-    "eligibleHeader": "Schedule a certification appointment",
+    "eligibleHeader": "WIC clinic staff will schedule a certification appointment",
     "note": "<strong>Note:</strong> this form does not guarantee enrollment in WIC, your eligibility will be confirmed when you have your first appointment with WIC.",
     "title": "How it works"
   },
