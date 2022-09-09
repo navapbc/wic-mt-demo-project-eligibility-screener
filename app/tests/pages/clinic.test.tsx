@@ -6,7 +6,7 @@ import Clinic from '@pages/clinic'
 
 describe('Clinic', () => {
   it('should render the heading', () => {
-    render(<Clinic />)
+    render(<Clinic previousRoute="/review" />)
 
     const heading = screen.getByText(/Choose a clinic/i)
 
@@ -15,7 +15,7 @@ describe('Clinic', () => {
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = render(<Clinic />)
+    const { container } = render(<Clinic previousRoute="/review" />)
     const results = await axe(container)
 
     await waitFor(() => {

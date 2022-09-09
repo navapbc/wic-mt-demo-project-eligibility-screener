@@ -4,13 +4,17 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useAppContext } from 'src/context/state'
 
 import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'
 
-const Clinic: NextPage = () => {
+interface Props {
+  previousRoute: string
+}
+
+const Clinic: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
   const { session, setSession } = useAppContext()
   const [expandList, setExpandList] = useState<boolean>(false)
@@ -24,6 +28,24 @@ const Clinic: NextPage = () => {
   const [search, setSearch] = useState('')
   const [searchError, setSearchError] = useState<boolean>(false)
   const [zipValidationError, setZipValidationError] = useState<boolean>(false)
+  const [continueBtn, setContinueBtn] = useState<{
+    label: string
+    route: string
+    width: string
+  }>({ label: t('Clinic.button'), route: '/contact', width: '251px' })
+
+  useEffect(() => {
+    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
+    const previousRoute = props.previousRoute.substring(prevRouteIndex)
+
+    if (previousRoute === '/review') {
+      setContinueBtn({
+        label: t('updateAndReturn'),
+        route: previousRoute,
+        width: '239px',
+      })
+    }
+  }, [props.previousRoute, t])
 
   const isValidZip = (zip: string) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)
@@ -173,9 +195,9 @@ const Clinic: NextPage = () => {
           <br />
           <ButtonLink
             disabled={selectedClinic === undefined}
-            href="/contact"
-            label={t('Clinic.button')}
-            width="251px"
+            href={continueBtn.route}
+            label={continueBtn.label}
+            width={continueBtn.width}
           />
         </>
       ) : (
@@ -190,9 +212,13 @@ const Clinic: NextPage = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
   return {
     props: {
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }

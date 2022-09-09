@@ -16,7 +16,7 @@ interface Props {
 const Contact: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
   const { session, setSession } = useAppContext()
-  const [form, setForm] = useState(session && session.contact)
+  const [form, setForm] = useState(session?.contact)
   const [continueBtn, setContinueBtn] = useState<{
     label: string
     width: string
