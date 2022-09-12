@@ -11,7 +11,7 @@ const Alert = (props: Props): ReactElement => {
   return (
     <div className={`usa-alert usa-alert--${type}`} role="alert">
       <div className="usa-alert__body">
-        <p
+      <p
           className="usa-alert__text"
           dangerouslySetInnerHTML={{ __html: text }}
         />
