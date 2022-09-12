@@ -21,6 +21,15 @@ const Contact: NextPage<Props> = (props: Props) => {
     label: string
     width: string
   }>({ label: t('continue'), width: '105px' })
+  const requiredMet = (): boolean => {
+    // @ts-ignore
+    return ['firstName', 'lastName', 'phone'].every((field) => form[field])
+  }
+  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
+
+  useEffect(() => {
+    setDisabled(!requiredMet())
+  }, [form])
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -85,6 +94,7 @@ const Contact: NextPage<Props> = (props: Props) => {
         <abbr className="usa-hint usa-hint--required"> *</abbr>
       </label>
       <NumberFormat
+        required
         format="###-###-####"
         mask="_"
         role="textbox"
@@ -106,6 +116,7 @@ const Contact: NextPage<Props> = (props: Props) => {
       <br />
       <br />
       <ButtonLink
+        disabled={disabled}
         href="/review"
         label={continueBtn.label}
         width={continueBtn.width}

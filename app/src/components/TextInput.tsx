@@ -19,6 +19,7 @@ const TextInput = (props: Props): ReactElement => {
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </label>
       <input
+        required
         className={`${type === 'area' ? 'usa-textarea' : 'usa-input'}`}
         id={id}
         onChange={handleChange}

@@ -13,10 +13,11 @@ const ButtonLink = (props: Props): ReactElement => {
   const { disabled, href, label, width } = props
 
   return (
-    <Link href={href}>
+    <Link href={href} type="submit">
       <Button
         className="usa-button usa-button--small disabled"
         disabled={disabled}
+        type="submit"
         width={width}
       >
         {label}

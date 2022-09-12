@@ -22,6 +22,22 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     width: '105px',
   })
   const [form, setForm] = useState(session?.eligibility)
+  const requiredMet = () => {
+    const categorical = [
+      'pregnant',
+      'baby',
+      'child',
+      'guardian',
+      'pregnant',
+      'none',
+    ].some((category) => form[category as keyof typeof form])
+    const programs = ['insurance', 'snap', 'tanf', 'none2'].some(
+      (program) => form[program as keyof typeof form]
+    )
+
+    return form.residential && categorical && form.before && programs
+  }
+  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -36,6 +52,10 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
   }, [form.none, props.previousRoute])
+
+  useEffect(() => {
+    setDisabled(!requiredMet())
+  }, [form])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
@@ -190,6 +210,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <ButtonLink
         href={continueBtn.route}
+        disabled={disabled}
         label={continueBtn.label}
         width={continueBtn.width}
       />
