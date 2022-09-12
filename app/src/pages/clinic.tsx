@@ -19,12 +19,12 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const { session, setSession } = useAppContext()
   const [expandList, setExpandList] = useState<boolean>(false)
   const numberOfClinicsToReturn = 8
-  const [filteredClinics, setFilteredClinics] = useState<
-    (typeof clinics[0] | undefined)[]
-  >([])
   const [selectedClinic, setSelectedClinic] = useState<
     typeof clinics[0] | undefined
-  >(session && session.clinic)
+  >(session?.clinic)
+  const [filteredClinics, setFilteredClinics] = useState<
+    (typeof clinics[0] | undefined)[]
+  >(session?.clinic ? [selectedClinic] : [])
   const [search, setSearch] = useState('')
   const [searchError, setSearchError] = useState<boolean>(false)
   const [zipValidationError, setZipValidationError] = useState<boolean>(false)
