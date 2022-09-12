@@ -4,7 +4,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleNameMapper: {
-    '\\.(css|scss)$': '<rootDir>/test/__mocks__/styleMock.js', // sets up routing to mocks style sheet
+    '\\.(css|scss)$': '<rootDir>/tests/__mocks__/styleMock.js', // sets up routing to mocks style sheet
     '^@clinics/*': '<rootDir>/public/clinic-output/clinics-zip-code-lookup$1',
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
