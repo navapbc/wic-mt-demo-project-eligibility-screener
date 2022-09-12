@@ -21,7 +21,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     route: incomeRoute,
     width: '105px',
   })
-  const [form, setForm] = useState(session && session.eligibility)
+  const [form, setForm] = useState(session?.eligibility)
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -42,7 +42,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     const castValue = value as keyof typeof form
     let newValue
 
-    if (name === 'residential') {
+    if (['residential', 'before'].includes(name)) {
       newValue = { [name]: value }
     } else {
       newValue = { [castValue]: !form[castValue] }
@@ -134,7 +134,29 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <InputChoiceGroup
         required
-        title={`3. ${t('Eligibility.programs')}`}
+        title={`3. ${t('Eligibility.before')}`}
+        type="radio"
+        choices={[
+          {
+            checked: form.before === 'yes2',
+            handleChange,
+            label: 'Yes',
+            name: 'before',
+            value: 'yes2' /* TODO: refactor */,
+          },
+          {
+            checked: form.before === 'no2',
+            handleChange,
+            label: 'No',
+            name: 'before',
+            value: 'no2',
+          },
+        ]}
+      />
+      <br />
+      <InputChoiceGroup
+        required
+        title={`4. ${t('Eligibility.programs')}`}
         type="checkbox"
         choices={[
           {

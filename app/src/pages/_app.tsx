@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       guardian: false,
       none: false,
       loss: false,
+      before: '',
       insurance: false,
       snap: false,
       tanf: false,
