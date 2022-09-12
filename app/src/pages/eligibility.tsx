@@ -1,9 +1,9 @@
+import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useAppContext } from 'src/context/state'
 
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'

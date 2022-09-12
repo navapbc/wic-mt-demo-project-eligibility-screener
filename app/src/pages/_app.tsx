@@ -1,3 +1,4 @@
+import { AppContext } from '@context/state'
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import useLocalStorage from 'src/hooks/useLocalStorage'
@@ -5,8 +6,6 @@ import useLocalStorage from 'src/hooks/useLocalStorage'
 import Layout from '@components/Layout'
 
 import '@styles/styles.scss'
-
-import { AppContext } from '../context/state'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [session, setSession] = useLocalStorage('session', {

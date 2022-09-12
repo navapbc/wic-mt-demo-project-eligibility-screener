@@ -1,6 +1,5 @@
+import { DefaultState } from '@context/state'
 import { useState } from 'react'
-
-import { DefaultState } from '../context/state'
 
 // Custom hook to persist state across page refresh
 export default function useLocalStorage(

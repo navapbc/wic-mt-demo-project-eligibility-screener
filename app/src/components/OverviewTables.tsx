@@ -1,6 +1,6 @@
+import { useAppContext } from '@context/state'
 import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
-import { useAppContext } from 'src/context/state'
 
 import Table from '@components/Table'
 

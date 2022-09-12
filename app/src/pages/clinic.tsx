@@ -1,3 +1,4 @@
+import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
@@ -5,7 +6,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { useAppContext } from 'src/context/state'
 
 import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'

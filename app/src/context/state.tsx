@@ -52,7 +52,7 @@ export const AppContext = createContext<AppContextType>({
     },
   },
   setSession: () => {
-    console.log('here')
+    console.log('default context')
   },
 })
 
