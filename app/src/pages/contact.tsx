@@ -22,8 +22,13 @@ const Contact: NextPage<Props> = (props: Props) => {
     width: string
   }>({ label: t('continue'), width: '105px' })
   const requiredMet = (): boolean => {
-    // @ts-ignore
-    return ['firstName', 'lastName', 'phone'].every((field) => form[field])
+    const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
+    return (
+      validPhoneLength &&
+      ['firstName', 'lastName', 'phone'].every(
+        (field) => form[field as keyof typeof form]
+      )
+    )
   }
   const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
@@ -94,14 +99,13 @@ const Contact: NextPage<Props> = (props: Props) => {
         <abbr className="usa-hint usa-hint--required"> *</abbr>
       </label>
       <NumberFormat
-        required
-        format="###-###-####"
-        mask="_"
-        role="textbox"
         className="usa-input"
+        format="###-###-####"
         id="phone"
-        value={form.phone}
+        mask="_"
         onChange={handleChange}
+        role="textbox"
+        value={form.phone}
       />
       <br />
       <br />
