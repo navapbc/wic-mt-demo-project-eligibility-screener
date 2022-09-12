@@ -60,11 +60,15 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Eligibility.residential'),
-            body: session?.eligibility.residential || '',
+            body: session?.eligibility?.residential || '',
           },
           {
             header: t('Eligibility.categorical'),
             body: formatEligibilitySelections(categoryKeys),
+          },
+          {
+            header: t('Eligibility.before'),
+            body: session?.eligibility?.before.replace(/[2]/g, '') || '',
           },
           {
             header: t('Eligibility.programs'),
