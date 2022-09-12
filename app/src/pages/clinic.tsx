@@ -90,7 +90,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const handleSelection = (e: ChangeEvent<HTMLInputElement>) => {
     const { value }: { value: string } = e.target
     const clinicIndex = filteredClinics?.findIndex(
-      (clinic) => clinic && clinic.clinic === value
+      (clinic) => clinic?.clinic === value
     )
     const selectedClinic = filteredClinics[clinicIndex]
 

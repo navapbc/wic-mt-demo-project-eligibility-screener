@@ -12,7 +12,7 @@
     "listTitle": "Choose a clinic from the following list:",
     "searchLabel": "Enter your residential ZIP code to search for a clinic",
     "title": "Choose a clinic",
-    "zipSearchError": "Sorry, we could not find a match for this ZIP code in Montana. Please check what you enetered and try again.",
+    "zipSearchError": "Sorry, we could not find a match for this ZIP code in Montana. Please check what you entered and try again.",
     "zipValidationError": "Please enter 5 digits for the ZIP code."
   },
   "Contact": {
@@ -35,36 +35,36 @@
     "child": "I'm the parent of an infant or child under the age of 5 years old",
     "guardian": "I'm the guardian or foster parent of an infant or child under the age of 5 years old",
     "header": "Check your eligibility",
-    "insurance": "Medicaid and/or Healthy Montana Kids Plus",
-    "loss": "I've experienced a loss of pregnancy in the past 6 months",
+    "insurance": "Medicaid/Healthy Montana Kids Plus",
+    "loss": "I have had a pregnancy end in the last 6 months",
     "none": "None of the above",
     "pregnant": "I'm pregnant",
     "programs": "Are you currently enrolled in any of the following programs?",
     "residential": "Do you live or work in Montana?",
-    "snap": "SNAP",
-    "tanf": "TANF"
+    "snap": "SNAP (Supplemental Nutrition Assistance Program)",
+    "tanf": "TANF (Temporary Assistance for Needy Families)"
   },
   "Income": {
-    "accordionBody": "A household is defined as all persons, related or unrelated, living together in thesame dwelling and sharing financial resources and costs, with the exception of foster children. If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
+    "accordionBody": "A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.<br />If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "accordionHeader": "Who counts in my household?",
     "assistance": "Learn about other assistance",
     "dropdownLabel": "Household size",
-    "enrolled": "If you are currently enrolled in <b>Medicaid, Healthy Montana Kids Plus, Healthy Montana Kids Plus</b>, Supplemental Nutrition Assistance Program (<b>SNAP</b>), Temporary Assistance for Needy Families (<b>TANF</b>), or Food Distribution Program on Indian Reservations (<b>FDPIR</b>), you may be automatically eligible for WIC.",
+    "enrolled": "If you are currently enrolled in <strong>Medicaid, Healthy Montana Kids Plus, Healthy Montana Kids Plus</strong>, Supplemental Nutrition Assistance Program (<strong>SNAP</strong>), Temporary Assistance for Needy Families (<strong>TANF</strong>), or Food Distribution Program on Indian Reservations (<strong>FDPIR</strong>), you may be automatically eligible for WIC.",
     "estimatedIncome": "Estimated maximum income limit before taxes",
     "header": "Check your eligibility",
     "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "householdSize": "What is your household size?",
     "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.",
-    "title": "To be eligible for WIC, your household income before taxes must be at or below a certain income level.",
-    "unsure": "<b>If you are unsure about your income, please continue to apply.</b> A WIC staff member can answer more specific questions about your situation."
+    "title": "To be eligible for WIC, your <strong>household income before taxes</strong> must be <strong>at</strong> or <strong>below</strong> a certain income level.",
+    "unsure": "<strong>If you are unsure about your income, please continue to apply.</strong> A WIC staff member can answer more specific questions about your situation."
   },
   "Index": {
     "benefits": "There are many benefits including healthy food, breastfeeding support, nutrition education, and connections to local resources.",
     "button": "Get Started ",
-    "header": "<b>WIC (Women, Infants, and Children)</b> is a program designed to help families and young children during an important time in growth and development.",
+    "header": "<strong>WIC (Women, Infants, and Children)</strong> is a program designed to help families and young children during an important time in growth and development.",
     "list": ["a", "b"],
-    "supplement": "WIC is meant to supplement your food budget and compliment your use of other resources.",
-    "time": "<b>This form should take about 10 minutes to complete.</b>",
+    "supplement": "WIC is meant to supplement your food budget and complement your use of other resources.",
+    "time": "<strong>You can start the application process for WIC now.</strong> This form should take about 10 minutes to complete.",
     "title": "Start an application for WIC",
     "voluntary": "WIC is a voluntary program and participation will not interfere with use of other programs like SNAP or Medicaid."
   },
@@ -74,9 +74,9 @@
     "appointment": "During your appointment, you'll need to show documentation of your income, indentity, and residence.",
     "appointmentHeader": "Attend your appointment at your local WIC clinic",
     "button": "Check your availability",
-    "eligible": "<b>If you are eligible</b>, a staff member from your local WIC office will call you for additional information and to set up a certification appointment.",
+    "eligible": "<strong>If you are eligible</strong>, a staff member from your local WIC office will call you for additional information and to set up a certification appointment.",
     "eligibleHeader": "Schedule a certification appointment",
-    "note": "Note: this form does not guarantee enrollment in WIC, your eligibility will be confirmed when you have your first appointment with WIC.",
+    "note": "<strong>Note:</strong> this form does not guarantee enrollment in WIC, your eligibility will be confirmed when you have your first appointment with WIC.",
     "title": "How it works"
   },
   "Layout": {

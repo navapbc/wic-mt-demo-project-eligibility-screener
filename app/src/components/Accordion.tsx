@@ -31,7 +31,7 @@ const Accordion = (props: Props): ReactElement => {
         hidden={!isExpanded}
         id="b-a1"
       >
-        <p>{body}</p>
+        <p dangerouslySetInnerHTML={{ __html: body }} />
       </div>
     </div>
   )
