@@ -22,6 +22,7 @@ const Eligibility: NextPage = () => {
     insurance: false,
     snap: false,
     tanf: false,
+    fdpir: false,
     none2: false,
   })
 
@@ -148,6 +149,12 @@ const Eligibility: NextPage = () => {
             handleChange,
             label: t('Eligibility.tanf'),
             value: 'tanf',
+          },
+          {
+            checked: form.fdpir,
+            handleChange,
+            label: t('Eligibility.fdpir'),
+            value: 'fdpir',
           },
           {
             checked: form.none2,
