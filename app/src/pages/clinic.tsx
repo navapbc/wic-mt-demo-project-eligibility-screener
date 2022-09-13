@@ -174,7 +174,6 @@ const Clinic: NextPage = () => {
             disabled={selectedClinic === undefined}
             href="/contact"
             label={t('Clinic.button')}
-            width="251px"
           />
         </>
       ) : (

@@ -84,7 +84,7 @@ const Income: NextPage = () => {
         </a>
       </p>
       <br />
-      <ButtonLink href="/clinic" label={t('continue')} width="105px" />
+      <ButtonLink href="/clinic" label={t('continue')} />
       <br />
     </>
   )
