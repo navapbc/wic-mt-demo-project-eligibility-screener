@@ -33,6 +33,7 @@
     "baby": "I've had a baby in the past 12 months",
     "categorical": "2. Please select all the following that apply to your family:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
+    "fdpir": "FDPIR (Food Distribution Program on Indian Reservations)",
     "guardian": "I'm the guardian or foster parent of an infant or child under the age of 5 years old",
     "header": "Check your eligibility",
     "insurance": "Medicaid/Healthy Montana Kids Plus",
@@ -42,8 +43,7 @@
     "programs": "3. Are you or someone in your family currently enrolled in any of the following programs in Montana?",
     "residential": "1. Do you live or work in Montana?",
     "snap": "SNAP (Supplemental Nutrition Assistance Program)",
-    "tanf": "TANF (Temporary Assistance for Needy Families)",
-    "fdpir": "FDPIR (Food Distribution Program on Indian Reservations)"
+    "tanf": "TANF (Temporary Assistance for Needy Families)"
   },
   "Income": {
     "accordionBody": "A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.<br />If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
