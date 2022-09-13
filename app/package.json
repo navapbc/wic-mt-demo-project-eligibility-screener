@@ -54,7 +54,7 @@
     "eslint-config-nava": "^11.0.0",
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-storybook": "^0.6.1",
     "husky": "^8.0.1",
     "i18next-browser-languagedetector": "^6.1.4",
