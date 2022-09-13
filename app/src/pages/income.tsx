@@ -27,7 +27,7 @@ const Income: NextPage = () => {
     <>
       <Link href="/eligibility">Back</Link>
       <h1>{t('Income.header')}</h1>
-      <h2>{t('Income.title')}</h2>
+      <h2 dangerouslySetInnerHTML={{ __html: t('Income.title') }} />
       <p dangerouslySetInnerHTML={{ __html: t('Income.enrolled') }} />
       <p>{t('Income.notEnrolled')}</p>
       <p dangerouslySetInnerHTML={{ __html: t('Income.unsure') }} />
@@ -52,6 +52,7 @@ const Income: NextPage = () => {
             <tr>
               <th scope="col">Annual</th>
               <th scope="col">Monthly</th>
+              <th scope="col">Bi-weekly</th>
               <th scope="col">Weekly</th>
             </tr>
           </thead>
@@ -59,15 +60,19 @@ const Income: NextPage = () => {
             <tr>
               <th data-label="Annual" scope="row">
                 {(householdSize && incomeData[householdSize]?.annual) ||
-                  '$XX,XXXX'}
+                  '$XX,XXX'}
               </th>
               <TD data-label="Monthly">
                 {(householdSize && incomeData[householdSize]?.monthly) ||
-                  '$X,XXXX'}
+                  '$X,XXX'}
+              </TD>
+              <TD data-label="Bi-weekly">
+                {(householdSize && incomeData[householdSize]?.biweekly) ||
+                  '$X,XXX'}
               </TD>
               <TD data-label="Weekly">
                 {(householdSize && incomeData[householdSize]?.weekly) ||
-                  '$XXXX'}
+                  '$X,XXX'}
               </TD>
             </tr>
           </tbody>
