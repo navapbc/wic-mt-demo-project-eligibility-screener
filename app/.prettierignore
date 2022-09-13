@@ -8,3 +8,8 @@ public/uswds
 
 # Ignore test coverage files
 coverage/
+
+
+# Ignore data files
+public/data
+public/clinic-output
