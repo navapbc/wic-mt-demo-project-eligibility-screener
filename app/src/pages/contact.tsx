@@ -19,8 +19,7 @@ const Contact: NextPage<Props> = (props: Props) => {
   const [form, setForm] = useState(session?.contact)
   const [continueBtn, setContinueBtn] = useState<{
     label: string
-    width: string
-  }>({ label: t('continue'), width: '105px' })
+  }>({ label: t('continue') })
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -29,7 +28,6 @@ const Contact: NextPage<Props> = (props: Props) => {
     if (previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
-        width: '239px',
       })
     }
   }, [props.previousRoute, t])
@@ -108,7 +106,6 @@ const Contact: NextPage<Props> = (props: Props) => {
       <ButtonLink
         href="/review"
         label={continueBtn.label}
-        width={continueBtn.width}
       />
       <br />
     </form>

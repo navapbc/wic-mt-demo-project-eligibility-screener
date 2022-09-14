@@ -19,7 +19,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState({
     label: t('continue'),
     route: incomeRoute,
-    width: '105px',
   })
   const [form, setForm] = useState(session?.eligibility)
 
@@ -32,7 +31,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       setContinueBtn({
         label: t('updateAndReturn'),
         route: previousRoute,
-        width: '239px',
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
   }, [form.none, props.previousRoute])
@@ -178,6 +176,12 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             value: 'tanf',
           },
           {
+            checked: form.fdpir,
+            handleChange,
+            label: t('Eligibility.fdpir'),
+            value: 'fdpir',
+          },
+          {
             checked: form.none2,
             handleChange,
             label: t('Eligibility.none'),
@@ -191,7 +195,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <ButtonLink
         href={continueBtn.route}
         label={continueBtn.label}
-        width={continueBtn.width}
       />
       <br />
     </form>
