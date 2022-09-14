@@ -167,7 +167,7 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href={continueLink} label={t('continue')} width="105px" />
+      <ButtonLink href={continueLink} label={t('continue')} />
       <br />
     </form>
   )
