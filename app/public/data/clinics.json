@@ -34,7 +34,7 @@
     "agencyAddress": "P. O. Box 2969 Browning, MT 59417",
     "agencyTelephone": "(406) 338-5321",
     "clinic": "BROWNING WIC",
-    "clinicAddress": "Next To Tribal Complex Gov Square -- House #4 Browning, MT 59417",
+    "clinicAddress": "#6 Old person Street, Browning, MT 59417",
     "clinicTelephone": "(406) 338-5321",
     "county": "GLACIER",
     "zip": "59417"
@@ -74,7 +74,7 @@
     "agencyAddress": "Po Box 670 Crow agency, MT 59022",
     "agencyTelephone": "(406) 679-5398",
     "clinic": "CROW WIC",
-    "clinicAddress": "129 Bacheeitche Ave. Crow agency, MT 59022",
+    "clinicAddress": "129 Butchetche Ave. Crow Agency, MT 59022",
     "clinicTelephone": "(406) 679-5398",
     "county": "BIG HORN",
     "zip": "59022"
@@ -134,7 +134,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "HYSHAM WIC (ONE HEALTH)",
-    "clinicAddress": "405-1/2 Pioneer Blvd Hysham, MT 59308",
+    "clinicAddress": "405 Pioneer Ave. Hysham, MT 59038",
     "clinicTelephone": "(406) 342-5886",
     "county": "TREASURE",
     "zip": "59308"
@@ -284,7 +284,7 @@
     "agencyAddress": "Rr1, Box 66 456 Gros Ventre Avenue Harlem, MT 59526",
     "agencyTelephone": "(406) 353-3157",
     "clinic": "HARLEM WIC",
-    "clinicAddress": "456 Gros Ventre Ave Harlem, MT 59526",
+    "clinicAddress": "656 Agency Main St. Harlem, MT 59526",
     "clinicTelephone": "(406) 353-3157",
     "county": "BLAINE",
     "zip": "59526"
@@ -304,7 +304,7 @@
     "agencyAddress": "Po Box1027 Poplar, MT 59255",
     "agencyTelephone": "(406) 768-3491",
     "clinic": "POPLAR WIC",
-    "clinicAddress": "107 H St. E. Poplar, MT 59255",
+    "clinicAddress": "107 H St. W, Poplar, MT 59255",
     "clinicTelephone": "(406) 768-2209",
     "county": "ROOSEVELT",
     "zip": "59255"
@@ -444,7 +444,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "WHITE SULPHUR SPRINGS WIC (L&C)",
-    "clinicAddress": "15 West White Sulphur Springs, MT 59645",
+    "clinicAddress": "16 West Main St. White Sulphur Springs, MT 59645",
     "clinicTelephone": "(406) 457-8900",
     "county": "MEAGHER",
     "zip": "59645"
@@ -514,7 +514,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "SEELEY LAKE WIC",
-    "clinicAddress": "Hwy 83 N, Faith Chapel Sign Seeley Lake, MT 59868",
+    "clinicAddress": "3260 Hwy 83, Seeley Lake, MT 59868",
     "clinicTelephone": "(406) 258-4740",
     "county": "MISSOULA",
     "zip": "59868"
@@ -524,7 +524,7 @@
     "agencyAddress": "P. O. Box 67 Lame Deer, MT 59043",
     "agencyTelephone": "(406) 477-4527",
     "clinic": "LAME DEER WIC",
-    "clinicAddress": "Hwy 39 Box 67 Lame Deer, MT 59043",
+    "clinicAddress": "100 Cheyenne Ave. Lame Deer, MT 59043",
     "clinicTelephone": "(406) 477-4527",
     "county": "ROSEBUD",
     "zip": "59043"
@@ -604,7 +604,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "JOLIET WIC",
-    "clinicAddress": "county Extension Office, 128 S. Main Joliet, MT 59041",
+    "clinicAddress": "202 State St. Joliet, MT 59041",
     "clinicTelephone": "(406) 247-3370",
     "county": "CARBON",
     "zip": "59041"
@@ -734,7 +734,7 @@
     "agencyAddress": "Po Box 519 Thompson Falls, MT 59873",
     "agencyTelephone": "(406) 827-6931",
     "clinic": "HOT SPRINGS WIC",
-    "clinicAddress": "Senior Center -- 104 Main Street Hot Springs, MT 59845",
+    "clinicAddress": "214 Spring St. Hot Springs, MT 59845",
     "clinicTelephone": "(406) 827-6931",
     "county": "SANDERS",
     "zip": "59845"
@@ -744,7 +744,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "NOXON",
-    "clinicAddress": "Noxon: Sr Ctr/207 2nd St. Heron Community Center Noxon, MT 59853",
+    "clinicAddress": "1419 Hwy 200, Noxon, MT 59853",
     "clinicTelephone": "(406) 827-6931",
     "county": "SANDERS",
     "zip": "59853"
@@ -754,7 +754,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "PLAINS WIC",
-    "clinicAddress": "501 W. 5th Avenue Plains, MT 59873",
+    "clinicAddress": "505 5th St. Plains, MT 59873 ",
     "clinicTelephone": "(406) 827-6931",
     "county": "SANDERS",
     "zip": "59873"
