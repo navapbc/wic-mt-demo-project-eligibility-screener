@@ -9,4 +9,4 @@ export default {
 
 const Template: ComponentStory<typeof AlternatePage> = () => <AlternatePage />
 
-export const Clinic = Template.bind({})
+export const Alternate = Template.bind({})

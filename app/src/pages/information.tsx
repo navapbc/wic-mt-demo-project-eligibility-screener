@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 
+import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'
 
 const Information: NextPage = () => {
@@ -26,13 +27,10 @@ const Information: NextPage = () => {
           </li>
         ))}
       </ol>
-      <ButtonLink
-        href="/eligibility"
-        label={t('Information.button')}
-        width="200px"
-      />
+      <Alert text={t('Information.note')} type="warning" />
       <br />
       <br />
+      <ButtonLink href="/eligibility" label={t('Information.button')} />
     </>
   )
 }
