@@ -6,13 +6,14 @@ import type {
 } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
 import { ChangeEvent, useState } from 'react'
 import styled from 'styled-components'
 
 import Accordion from '@components/Accordion'
+import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import Dropdown from '@components/Dropdown'
+import StyledLink from '@components/StyledLink'
 
 const Income: NextPage = () => {
   const { t } = useTranslation('common')
@@ -29,7 +30,7 @@ const Income: NextPage = () => {
 
   return (
     <>
-      <Link href="/eligibility">Back</Link>
+      <BackLink href="/eligibility" />
       <h1>{t('Income.header')}</h1>
       <h2>
         <Trans i18nKey="Income.title" />
@@ -91,9 +92,7 @@ const Income: NextPage = () => {
         </table>
       </div>
       <p>
-        <a className="usa-link" href="https://dphhs.mt.gov/Assistance">
-          {t('Income.assistance')}
-        </a>
+        <StyledLink href="https://dphhs.mt.gov/Assistance" text={t('Income.assistance')} external={true} />
       </p>
       <br />
       <ButtonLink href="/clinic" label={t('continue')} />

@@ -8,10 +8,10 @@ import type {
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
-import Link from 'next/link'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
+import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
 interface Props {
@@ -103,7 +103,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <Link href="/income">Back</Link>
+      <BackLink href="/income" />
       <h1>{t('Clinic.title')}</h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
