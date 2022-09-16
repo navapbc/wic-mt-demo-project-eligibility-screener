@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react'
+import { Trans } from 'react-i18next'
 
 type Props = {
   body: string
@@ -31,7 +32,7 @@ const Accordion = (props: Props): ReactElement => {
         hidden={!isExpanded}
         id="b-a1"
       >
-        <p dangerouslySetInnerHTML={{ __html: body }} />
+        <Trans i18nKey={body} />
       </div>
     </div>
   )

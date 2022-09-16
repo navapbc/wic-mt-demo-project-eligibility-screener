@@ -1,5 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 
@@ -20,10 +20,9 @@ const Information: NextPage = () => {
             <h2 className="usa-process-list__heading">
               {t(`Information.${key}Header`)}
             </h2>
-            <p
-              className="margin-top-1"
-              dangerouslySetInnerHTML={{ __html: t(`Information.${key}`) }}
-            />
+            <p className="margin-top-1">
+              <Trans i18nKey={`Information.${key}`} />
+            </p>
           </li>
         ))}
       </ol>
