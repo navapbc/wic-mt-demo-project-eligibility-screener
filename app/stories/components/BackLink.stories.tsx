@@ -1,6 +1,9 @@
-import { Story, Meta } from '@storybook/react'
+import { Meta, Story } from '@storybook/react'
 
-import { BackLink as BackLinkComponent, BackLinkProps } from '@components/BackLink'
+import {
+  BackLink as BackLinkComponent,
+  BackLinkProps,
+} from '@components/BackLink'
 
 export default {
   title: 'Components',
