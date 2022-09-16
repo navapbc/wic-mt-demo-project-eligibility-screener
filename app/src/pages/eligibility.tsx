@@ -24,6 +24,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   const [form, setForm] = useState(session && session.eligibility)
 
   useEffect(() => {
+    /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
     const previousRoute = props.previousRoute.substring(prevRouteIndex)
     if (form.none) {
