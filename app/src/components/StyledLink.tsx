@@ -8,16 +8,16 @@ export interface StyledLinkProps {
 }
 
 export const StyledLink: React.FC<StyledLinkProps> = ({href, text, external = false}) => {
-  let className = 'usa-link'
   if (external) {
-    className += ' usa-link--external'
+    return <a className="usa-link usa-link--external" href={href} target="_blank" rel="noopener noreferrer">{text}</a>
+  } else {
+    // Only use the next/link component for internal routing.
+    return (
+      <Link href={href} passHref>
+        <a className="usa-link">{text}</a>
+      </Link>
+    )
   }
-
-  return (
-    <Link href={href} passHref>
-      <a className={className}>{text}</a>
-    </Link>
-  )
 }
 
 export default StyledLink
