@@ -7,7 +7,7 @@
     "dev": "NEXT_TELEMETRY_DISABLED=1 next dev",
     "chromatic": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --zip --exit-zero-on-changes",
     "format": "prettier --write '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}' --json-recursive-sort",
-    "format-check": "prettier --check '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}'",
+    "format-check": "prettier --check '**/*.{js,json,md,mdx,ts,tsx,scss,yaml,yml}' --json-recursive-sort",
     "husky-prepare": "cd .. && husky install app/.husky",
     "lint": "NEXT_TELEMETRY_DISABLED=1 next lint",
     "postinstall": "mkdir -p ./public && cp -R ./node_modules/@uswds/uswds/dist/ ./public/uswds/",
