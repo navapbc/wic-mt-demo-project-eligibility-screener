@@ -11,7 +11,7 @@ const Layout = ({ children }: Props): ReactElement => {
 
   return (
     <div className="container">
-      <header className="header usa-header usa-header--basic">
+      <header className="header usa-header usa-header--basic" role="banner">
         <div className="usa-navbar">
           <div className="grid-row">
             <div className="desktop:grid-col-8 desktop:grid-offset-2">
