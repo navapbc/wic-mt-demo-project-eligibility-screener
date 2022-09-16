@@ -14,5 +14,7 @@ in the form $setting: value,
   // Specify USWDS font and image paths.
   // Same paths are successfully used for both Next.js and Storybook.
   $theme-font-path: '/uswds/fonts',
-  $theme-image-path: '/uswds/img'
+  $theme-image-path: '/uswds/img',
+
+  $theme-header-logo-text-width: 100%
 );
