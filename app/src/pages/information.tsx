@@ -1,10 +1,10 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
 
 import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'
+import BackLink from '@components/BackLink'
 
 const Information: NextPage = () => {
   const { t } = useTranslation('common')
@@ -12,7 +12,7 @@ const Information: NextPage = () => {
 
   return (
     <>
-      <Link href="/">Back</Link>
+      <BackLink href="/" />
       <h1>{t('Information.title')}</h1>
       <ol className="usa-process-list">
         {listCopyKeys.map((key: string) => (

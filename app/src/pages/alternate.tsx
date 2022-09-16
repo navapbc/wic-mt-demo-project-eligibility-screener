@@ -1,16 +1,16 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
 
 import ButtonLink from '@components/ButtonLink'
+import BackLink from '@components/BackLink'
 
 const Alternate: NextPage = () => {
   const { t } = useTranslation('common')
 
   return (
     <>
-      <Link href="/eligibility">Back</Link>
+      <BackLink href="/eligibility" />
       <h1>{t('Alternate.title')}</h1>
       <h2>{t('Alternate.subHeader')}</h2>
       <Trans
