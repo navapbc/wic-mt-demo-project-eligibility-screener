@@ -26,14 +26,14 @@ const OverviewTables = (props: Props): ReactElement => {
   const programKeys: Program[] = ['insurance', 'snap', 'tanf']
 
   const formatClinic = (): string => {
-    const clinic = session && session.clinic
+    const clinic = session?.clinic
 
     return `
-      ${(clinic && clinic.clinic) || ''}
+      ${clinic?.clinic || ''}
       <br />
-      ${(clinic && clinic.clinicAddress) || ''}
+      ${clinic?.clinicAddress || ''}
       <br />
-      ${(clinic && clinic.clinicTelephone) || ''}
+      ${clinic?.clinicTelephone || ''}
     `
   }
 
@@ -60,7 +60,7 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Eligibility.residential'),
-            body: (session && session.eligibility.residential) || '',
+            body: session?.eligibility.residential || '',
           },
           {
             header: t('Eligibility.categorical'),
@@ -79,7 +79,7 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Review.clinicSelected'),
-            body: (session && session.clinic && formatClinic()) || '',
+            body: (session?.clinic && formatClinic()) || '',
           },
         ]}
       />
@@ -90,19 +90,19 @@ const OverviewTables = (props: Props): ReactElement => {
         rows={[
           {
             header: t('Contact.firstName'),
-            body: (session && session.contact.firstName) || '',
+            body: session?.contact.firstName || '',
           },
           {
             header: t('Contact.lastName'),
-            body: (session && session.contact.lastName) || '',
+            body: session?.contact.lastName || '',
           },
           {
             header: t('Contact.phoneLabel'),
-            body: (session && session.contact.phone) || '',
+            body: session?.contact.phone || '',
           },
           {
             header: t('Contact.otherLabel'),
-            body: (session && session.contact.other) || '',
+            body: session?.contact.other || '',
           },
         ]}
       />
