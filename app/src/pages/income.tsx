@@ -92,7 +92,11 @@ const Income: NextPage = () => {
         </table>
       </div>
       <p>
-        <StyledLink href="https://dphhs.mt.gov/Assistance" text={t('Income.assistance')} external={true} />
+        <StyledLink
+          href="https://dphhs.mt.gov/Assistance"
+          text={t('Income.assistance')}
+          external={true}
+        />
       </p>
       <br />
       <ButtonLink href="/clinic" label={t('continue')} />
