@@ -27,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       insurance: false,
       snap: false,
       tanf: false,
+      fdpir: false,
       none2: false,
     },
   })
