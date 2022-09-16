@@ -7,7 +7,7 @@ describe('Eligibility', () => {
   it('should render first question text', () => {
     render(<Eligibility previousRoute="/review" />)
 
-    const question = screen.getByText(/1. Do you live or work in Montana?/i)
+    const question = screen.getByText(/Do you live or work in Montana?/i)
 
     expect(question).toBeInTheDocument()
     expect(question).toMatchSnapshot()
