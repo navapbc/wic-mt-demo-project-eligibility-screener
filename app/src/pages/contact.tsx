@@ -2,10 +2,10 @@ import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 
+import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import TextInput from '@components/TextInput'
 
@@ -45,7 +45,7 @@ const Contact: NextPage<Props> = (props: Props) => {
 
   return (
     <form>
-      <Link href="/clinic">Back</Link>
+      <BackLink href="/clinic" />
       <h1>{t('Contact.title')}</h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>

@@ -2,9 +2,9 @@ import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
 import { ChangeEvent, useEffect, useState } from 'react'
 
+import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 
@@ -55,7 +55,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
 
   return (
     <form>
-      <Link href="/information">Back</Link>
+      <BackLink href="/information" />
       <h1>{t('Eligibility.header')}</h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
