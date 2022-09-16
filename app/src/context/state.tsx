@@ -21,6 +21,7 @@ export type DefaultState = {
     insurance: boolean
     snap: boolean
     tanf: boolean
+    fdpir: boolean
     none2: boolean
   }
 }
@@ -50,6 +51,7 @@ export const AppContext = createContext<AppContextType>({
       insurance: false,
       snap: false,
       tanf: false,
+      fdpir: false,
       none2: false,
     },
   },
