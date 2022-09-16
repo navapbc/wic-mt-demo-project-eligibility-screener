@@ -31,8 +31,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState<{
     label: string
     route: string
-    width: string
-  }>({ label: t('Clinic.button'), route: '/contact', width: '251px' })
+  }>({ label: t('Clinic.button'), route: '/contact' })
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -42,7 +41,6 @@ const Clinic: NextPage<Props> = (props: Props) => {
       setContinueBtn({
         label: t('updateAndReturn'),
         route: previousRoute,
-        width: '239px',
       })
     }
   }, [props.previousRoute, t])

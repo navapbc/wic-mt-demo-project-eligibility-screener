@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { ReactElement } from 'react'
-import styled from 'styled-components'
 
 interface Props {
   editable?: boolean
@@ -17,17 +16,15 @@ const Table = (props: Props): ReactElement => {
 
   return (
     <div className="width-mobile">
-      <StyledTable className="usa-table usa-table--stacked usa-table--borderless">
-        <Title>
-          <span>{title}</span>
-          {editable && editLink && (
-            <Link href={editLink}>
-              <button className="usa-button usa-button--secondary usa-button--unstyled">
-                Edit
-              </button>
-            </Link>
-          )}
-        </Title>
+      <table className="usa-table usa-table--stacked usa-table--borderless">
+        <h2>{title}</h2>
+        {editable && editLink && (
+          <Link href={editLink}>
+            <button className="usa-button usa-button--secondary usa-button--unstyled">
+              Edit
+            </button>
+          </Link>
+        )}
         <thead></thead>
         <tbody>
           <tr>
@@ -40,26 +37,9 @@ const Table = (props: Props): ReactElement => {
             ))}
           </tr>
         </tbody>
-      </StyledTable>
+      </table>
     </div>
   )
 }
-
-const StyledTable = styled.table`
-  margin-top: 3em;
-  min-width: 21em;
-`
-
-const Title = styled.caption`
-  gap: 6rem;
-  display: inline-flex !important;
-  font-size: 1.5em !important;
-  button {
-    float: right;
-  }
-  span {
-    width: 15rem;
-  }
-`
 
 export default Table
