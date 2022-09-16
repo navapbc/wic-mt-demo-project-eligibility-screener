@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof EligibilityPage>
 
 const Template: ComponentStory<typeof EligibilityPage> = () => (
-  <EligibilityPage />
+  <EligibilityPage previousRoute="review" />
 )
 
 export const Eligibility = Template.bind({})
