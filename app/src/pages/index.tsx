@@ -19,7 +19,7 @@ const Index: NextPage = () => {
       </ul>
       <p dangerouslySetInnerHTML={{ __html: t('Index.time') }} />
       <br />
-      <ButtonLink href="/information" label={t('Index.button')} width="125px" />
+      <ButtonLink href="/information" label={t('Index.button')} />
       <br />
     </>
   )
