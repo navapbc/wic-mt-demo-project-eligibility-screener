@@ -60,6 +60,7 @@ const Income: NextPage = () => {
             <tr>
               <th scope="col">Annual</th>
               <th scope="col">Monthly</th>
+              <th scope="col">Bi-weekly</th>
               <th scope="col">Weekly</th>
             </tr>
           </thead>
@@ -67,15 +68,19 @@ const Income: NextPage = () => {
             <tr>
               <th data-label="Annual" scope="row">
                 {(householdSize && incomeData[householdSize]?.annual) ||
-                  '$XX,XXXX'}
+                  '$XX,XXX'}
               </th>
               <TD data-label="Monthly">
                 {(householdSize && incomeData[householdSize]?.monthly) ||
-                  '$X,XXXX'}
+                  '$X,XXX'}
+              </TD>
+              <TD data-label="Bi-weekly">
+                {(householdSize && incomeData[householdSize]?.biweekly) ||
+                  '$X,XXX'}
               </TD>
               <TD data-label="Weekly">
                 {(householdSize && incomeData[householdSize]?.weekly) ||
-                  '$XXXX'}
+                  '$X,XXX'}
               </TD>
             </tr>
           </tbody>
@@ -87,7 +92,7 @@ const Income: NextPage = () => {
         </a>
       </p>
       <br />
-      <ButtonLink href="/clinic" label={t('continue')} width="105px" />
+      <ButtonLink href="/clinic" label={t('continue')} />
       <br />
     </>
   )

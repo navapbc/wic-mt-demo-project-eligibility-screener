@@ -125,7 +125,10 @@ const Clinic: NextPage = () => {
       {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
       {filteredClinics.length > 0 ? (
         <>
-          <h2>{t('Clinic.listTitle')}</h2>
+          <h2>
+            {t('Clinic.listTitle')}{' '}
+            <abbr className="usa-hint usa-hint--required"> *</abbr>
+          </h2>
           <form className="usa-form">
             <fieldset className="usa-fieldset">
               {filteredClinics
@@ -148,9 +151,9 @@ const Clinic: NextPage = () => {
                         >
                           {clinic.clinic}
                           <span className="usa-checkbox__label-description">
-                            <em>{clinic.clinicAddress}</em>
+                            {clinic.clinicAddress}
                             <br />
-                            <em>{clinic.clinicTelephone}</em>
+                            {clinic.clinicTelephone}
                           </span>
                         </label>
                       </div>
@@ -171,7 +174,6 @@ const Clinic: NextPage = () => {
             disabled={selectedClinic === undefined}
             href="/contact"
             label={t('Clinic.button')}
-            width="251px"
           />
         </>
       ) : (

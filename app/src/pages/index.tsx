@@ -20,7 +20,7 @@ const Index: NextPage = () => {
       <Trans i18nKey="Index.time" />
       <br />
       <br />
-      <ButtonLink href="/information" label={t('Index.button')} width="125px" />
+      <ButtonLink href="/information" label={t('Index.button')} />
       <br />
     </>
   )

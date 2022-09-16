@@ -89,7 +89,7 @@ const Contact: NextPage = () => {
       />
       <br />
       <br />
-      <ButtonLink href="/" label={t('continue')} width="105px" />
+      <ButtonLink href="/" label={t('continue')} />
       <br />
     </form>
   )

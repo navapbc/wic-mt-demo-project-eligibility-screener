@@ -29,11 +29,7 @@ const Information: NextPage = () => {
       <Alert text={t('Information.note')} type="warning" />
       <br />
       <br />
-      <ButtonLink
-        href="/eligibility"
-        label={t('Information.button')}
-        width="200px"
-      />
+      <ButtonLink href="/eligibility" label={t('Information.button')} />
     </>
   )
 }
