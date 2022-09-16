@@ -22,7 +22,8 @@ i.e.
 
 @use 'uswds-core' as *;
 
-// Sticky footer
+// Sticky footer:
+// USWDS surprisingly doesn't support this with any of their utilities or components.
 .container {
   min-height: 100vh;
   display: flex;
@@ -33,9 +34,13 @@ i.e.
   flex: 1;
 }
 
-// Footer
-.footer .logos .logo-image {
-  margin-right: 1rem;
+// Footer logo spacing:
+// Currently the next/image component wraps the <img> tag in a bunch of <spans>
+// and applies direct css onto all those elements. To overcome it, we need
+// to manually override the parent element span using the unfortunate !important
+// See https://github.com/vercel/next.js/discussions/18312
+.footer .logos > span {
+  margin-right: 1.5rem !important;
 }
 
 // .title a {
