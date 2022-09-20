@@ -220,12 +220,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
   const previousRoute =
     prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object | string}> = {
-    props: {
-      previousRoute: previousRoute as string,
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
-    },
-  }
+  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
+    {
+      props: {
+        previousRoute: previousRoute as string,
+        ...(await serverSideTranslations(locale || 'en', ['common'])),
+      },
+    }
 
   if (!['/income', '/review', '/contact'].includes(previousRoute as string)) {
     returnval = {
