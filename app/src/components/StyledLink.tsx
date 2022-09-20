@@ -1,5 +1,5 @@
-import React from "react";
 import Link from 'next/link'
+import React from 'react'
 
 export interface StyledLinkProps {
   href: string
@@ -7,9 +7,22 @@ export interface StyledLinkProps {
   external?: boolean
 }
 
-export const StyledLink: React.FC<StyledLinkProps> = ({href, text, external = false}) => {
+export const StyledLink: React.FC<StyledLinkProps> = ({
+  href,
+  text,
+  external = false,
+}) => {
   if (external) {
-    return <a className="usa-link usa-link--external" href={href} target="_blank" rel="noopener noreferrer">{text}</a>
+    return (
+      <a
+        className="usa-link usa-link--external"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {text}
+      </a>
+    )
   } else {
     // Only use the next/link component for internal routing.
     return (

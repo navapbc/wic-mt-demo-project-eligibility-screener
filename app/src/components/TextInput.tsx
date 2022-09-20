@@ -14,22 +14,25 @@ const TextInput = (props: Props): ReactElement => {
 
   let textElement: ReactElement
   if (type === 'area') {
-    textElement = <textarea
-      className={'usa-textarea'}
-      id={id}
-      onChange={handleChange}
-      role="textbox"
-      value={value}
-    />
-  }
-  else {
-    textElement = <input
-      className={'usa-input'}
-      id={id}
-      onChange={handleChange}
-      role="textbox"
-      value={value}
-    />
+    textElement = (
+      <textarea
+        className={'usa-textarea'}
+        id={id}
+        onChange={handleChange}
+        role="textbox"
+        value={value}
+      />
+    )
+  } else {
+    textElement = (
+      <input
+        className={'usa-input'}
+        id={id}
+        onChange={handleChange}
+        role="textbox"
+        value={value}
+      />
+    )
   }
 
   return (

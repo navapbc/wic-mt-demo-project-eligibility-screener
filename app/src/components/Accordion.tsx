@@ -1,6 +1,5 @@
-import { ReactElement, useState } from 'react'
 import { Trans } from 'next-i18next'
-
+import { ReactElement, useState } from 'react'
 
 type Props = {
   bodyKey: string
@@ -28,11 +27,7 @@ const Accordion = (props: Props): ReactElement => {
           <Trans i18nKey={headerKey} />
         </button>
       </h3>
-      <div
-        className="usa-accordion__content"
-        hidden={!isExpanded}
-        id="b-a1"
-      >
+      <div className="usa-accordion__content" hidden={!isExpanded} id="b-a1">
         <Trans i18nKey={bodyKey} />
       </div>
     </div>
