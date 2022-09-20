@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
 import { Trans } from 'next-i18next'
+import { ReactElement } from 'react'
 
 type Props = {
   text: string

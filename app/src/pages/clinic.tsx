@@ -1,6 +1,10 @@
 import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
-import type { GetServerSideProps, GetServerSidePropsResult, NextPage } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
+} from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
@@ -214,8 +218,9 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
 }) => {
   const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute = prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: any; }> = {
+  const previousRoute =
+    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: any }> = {
     props: {
       previousRoute: previousRoute,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
@@ -228,8 +233,8 @@ export const getServerSideProps: GetServerSideProps = async ({
       redirect: {
         destination: previousRoute || '/',
         permanent: false,
-      }
-    } 
+      },
+    }
   }
 
   return returnval
