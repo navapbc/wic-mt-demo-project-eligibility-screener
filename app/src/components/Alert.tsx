@@ -4,14 +4,15 @@ import { Trans } from 'next-i18next'
 type Props = {
   alertBody: string
   type: 'error' | 'info' | 'success' | 'warning'
+  icon?: boolean
 }
 
 const Alert = (props: Props): ReactElement => {
-  const { alertBody, type } = props
+  const { alertBody, type, icon } = props
 
   return (
     <div
-      className={`usa-alert usa-alert--${type} usa-alert--no-icon`}
+      className={`usa-alert usa-alert--${type} ${icon ? '' : 'usa-alert--no-icon'}`}
       role="alert"
     >
       <div className="usa-alert__body">
