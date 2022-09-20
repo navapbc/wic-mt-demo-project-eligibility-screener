@@ -2,7 +2,7 @@
 
 exports[`Eligibility should render first question text 1`] = `
 <h2>
-  1. Do you live or work in Montana?
+  Do you live or work in Montana?
   <abbr
     class="usa-hint usa-hint--required"
   >

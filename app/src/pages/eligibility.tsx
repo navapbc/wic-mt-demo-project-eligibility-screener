@@ -83,7 +83,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       </p>
       <InputChoiceGroup
         required
-        title={`1. ${t('Eligibility.residential')}`}
+        title={t('Eligibility.residential')}
         type="radio"
         choices={[
           {
@@ -109,7 +109,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           header: t('Eligibility.accordionHeader'),
         }}
         required
-        title={`2. ${t('Eligibility.categorical')}`}
+        title={t('Eligibility.categorical')}
         type="checkbox"
         choices={[
           {
