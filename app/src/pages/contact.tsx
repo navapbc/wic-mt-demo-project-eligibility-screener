@@ -59,7 +59,8 @@ const Contact: NextPage<Props> = (props: Props) => {
       <form className="usa-form--large">
         <h1>{t('Contact.title')}</h1>
         <p>
-          {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+          {t('asterisk')} (
+          <abbr className="usa-hint usa-hint--required">*</abbr>
           ).
         </p>
         <fieldset className="usa-fieldset">

@@ -208,8 +208,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
           />
         </>
       ) : (
-        <>
-        </>
+        <></>
       )}
     </>
   )

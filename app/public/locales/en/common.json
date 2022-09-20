@@ -84,8 +84,7 @@
   "Layout": {
     "footer1": "This site is a demonstration project built with <0>Montana WIC</0> and is for example purposes only. If you need to submit an application for WIC, please use <1>SignUpWIC.com</1> to find a location near you.",
     "footer2": "<0>USDA Non-Discrimination Statement</0>: This institution is an equal opportunity provider.",
-    "header": "Apply for WIC in Montana",
-    "menu": "Menu"
+    "header": "Apply for WIC in Montana"
   },
   "Review": {
     "button": "Submit",
