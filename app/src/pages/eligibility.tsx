@@ -19,7 +19,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState({
     label: t('continue'),
     route: incomeRoute,
-    width: '105px',
   })
   const [form, setForm] = useState(session?.eligibility)
   const requiredMet = () => {
@@ -40,6 +39,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
+    /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
     const previousRoute = props.previousRoute.substring(prevRouteIndex)
     if (form.none) {
@@ -48,7 +48,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       setContinueBtn({
         label: t('updateAndReturn'),
         route: previousRoute,
-        width: '239px',
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
   }, [form.none, props.previousRoute])
@@ -154,7 +153,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <InputChoiceGroup
         required
-        title={`3. ${t('Eligibility.before')}`}
+        title={t('Eligibility.before')}
         type="radio"
         choices={[
           {
@@ -176,7 +175,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <InputChoiceGroup
         required
-        title={`4. ${t('Eligibility.programs')}`}
+        title={t('Eligibility.programs')}
         type="checkbox"
         choices={[
           {
@@ -198,6 +197,12 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             value: 'tanf',
           },
           {
+            checked: form.fdpir,
+            handleChange,
+            label: t('Eligibility.fdpir'),
+            value: 'fdpir',
+          },
+          {
             checked: form.none2,
             handleChange,
             label: t('Eligibility.none'),
@@ -212,7 +217,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         href={continueBtn.route}
         disabled={disabled}
         label={continueBtn.label}
-        width={continueBtn.width}
       />
       <br />
     </form>

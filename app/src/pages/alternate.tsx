@@ -2,7 +2,6 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import styled from 'styled-components'
 
 import ButtonLink from '@components/ButtonLink'
 
@@ -29,15 +28,11 @@ const Alternate: NextPage = () => {
       <br />
       <br />
       <br />
-      <StyledButton href="/" label={t('Alternate.button')} width="180px" />
+      <ButtonLink href="/" label={t('Alternate.button')} />
       <br />
     </>
   )
 }
-
-const StyledButton = styled(ButtonLink)`
-  margin: 2rem 0;
-`
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {

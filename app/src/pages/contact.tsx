@@ -123,7 +123,6 @@ const Contact: NextPage<Props> = (props: Props) => {
         disabled={disabled}
         href="/review"
         label={continueBtn.label}
-        width={continueBtn.width}
       />
       <br />
     </form>

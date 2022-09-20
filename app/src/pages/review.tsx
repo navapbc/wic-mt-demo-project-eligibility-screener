@@ -13,7 +13,7 @@ const Review: NextPage = () => {
       <h1>{t('Review.title')}</h1>
       <p>{t('Review.subHeader')}</p>
       <OverviewTables editable />
-      <ButtonLink href="/summary" label={t('Review.button')} width="95px" />
+      <ButtonLink href="/summary" label={t('Review.button')} />
       <br />
     </>
   )

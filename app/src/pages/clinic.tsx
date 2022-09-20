@@ -31,8 +31,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState<{
     label: string
     route: string
-    width: string
-  }>({ label: t('Clinic.button'), route: '/contact', width: '251px' })
+  }>({ label: t('Clinic.button'), route: '/contact' })
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -42,7 +41,6 @@ const Clinic: NextPage<Props> = (props: Props) => {
       setContinueBtn({
         label: t('updateAndReturn'),
         route: previousRoute,
-        width: '239px',
       })
     }
   }, [props.previousRoute, t])
@@ -151,7 +149,10 @@ const Clinic: NextPage<Props> = (props: Props) => {
       {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
       {filteredClinics.length > 0 ? (
         <>
-          <h2>{t('Clinic.listTitle')}</h2>
+          <h2>
+            {t('Clinic.listTitle')}{' '}
+            <abbr className="usa-hint usa-hint--required"> *</abbr>
+          </h2>
           <form className="usa-form">
             <fieldset className="usa-fieldset">
               {filteredClinics
@@ -174,9 +175,9 @@ const Clinic: NextPage<Props> = (props: Props) => {
                         >
                           {clinic.clinic}
                           <span className="usa-checkbox__label-description">
-                            <em>{clinic.clinicAddress}</em>
+                            {clinic.clinicAddress}
                             <br />
-                            <em>{clinic.clinicTelephone}</em>
+                            {clinic.clinicTelephone}
                           </span>
                         </label>
                       </div>
@@ -197,7 +198,6 @@ const Clinic: NextPage<Props> = (props: Props) => {
             disabled={selectedClinic === undefined}
             href={continueBtn.route}
             label={continueBtn.label}
-            width={continueBtn.width}
           />
         </>
       ) : (
