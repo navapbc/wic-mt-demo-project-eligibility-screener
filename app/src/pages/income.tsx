@@ -27,7 +27,11 @@ const Income: NextPage = () => {
   return (
     <>
       <BackLink href="/eligibility" />
-      <h1>{t('Income.header')}</h1>
+      <h1><Trans i18nKey='Income.header' /></h1>
+      <p>
+        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+        ).
+      </p>
       <h2>
         <Trans i18nKey="Income.title" />
       </h2>
@@ -51,6 +55,7 @@ const Income: NextPage = () => {
         label={t('Income.dropdownLabel')}
         handleChange={handleChange}
         options={householdSizes}
+        required={true}
       />
       <div className="width-mobile">
         <table className="usa-table usa-table--stacked usa-table--borderless">
