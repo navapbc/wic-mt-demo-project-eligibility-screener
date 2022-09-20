@@ -23,6 +23,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   const [form, setForm] = useState(session?.eligibility)
 
   useEffect(() => {
+    /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
     const previousRoute = props.previousRoute.substring(prevRouteIndex)
     if (form.none) {
@@ -132,7 +133,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <InputChoiceGroup
         required
-        title={`3. ${t('Eligibility.before')}`}
+        title={t('Eligibility.before')}
         type="radio"
         choices={[
           {
@@ -154,7 +155,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <InputChoiceGroup
         required
-        title={`4. ${t('Eligibility.programs')}`}
+        title={t('Eligibility.programs')}
         type="checkbox"
         choices={[
           {
@@ -192,10 +193,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <br />
       <br />
-      <ButtonLink
-        href={continueBtn.route}
-        label={continueBtn.label}
-      />
+      <ButtonLink href={continueBtn.route} label={continueBtn.label} />
       <br />
     </form>
   )
