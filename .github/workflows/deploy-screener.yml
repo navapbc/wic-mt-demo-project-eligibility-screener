@@ -49,4 +49,4 @@ jobs:
 
       - name: Push to ECR
         run: |
-          aws ecs update-service --cluster ${{github.event.inputs.environment || 'test' }} --service ${{github.event.inputs.environment || 'test' }}-ecs-service --force-new-deployment
+          aws ecs update-service --cluster ${{github.event.inputs.environment || 'test' }} --service ${{github.event.inputs.environment || 'test' }}-screener-ecs-service --force-new-deployment

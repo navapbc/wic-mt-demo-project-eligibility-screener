@@ -16,5 +16,4 @@ export const ButtonLink = Template.bind({})
 ButtonLink.args = {
   href: '/test',
   label: 'Primary',
-  width: '130px',
 }

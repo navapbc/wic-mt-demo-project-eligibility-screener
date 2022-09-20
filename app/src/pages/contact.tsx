@@ -105,11 +105,7 @@ const Contact: NextPage<Props> = (props: Props) => {
       />
       <br />
       <br />
-      <ButtonLink
-        href="/review"
-        label={continueBtn.label}
-        width={continueBtn.width}
-      />
+      <ButtonLink href="/review" label={continueBtn.label} />
       <br />
     </form>
   )
