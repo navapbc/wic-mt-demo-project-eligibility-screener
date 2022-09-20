@@ -29,7 +29,7 @@ const Accordion = (props: Props): ReactElement => {
         </button>
       </h3>
       <div
-        className="usa-accordion__content usa-prose"
+        className="usa-accordion__content"
         hidden={!isExpanded}
         id="b-a1"
       >
