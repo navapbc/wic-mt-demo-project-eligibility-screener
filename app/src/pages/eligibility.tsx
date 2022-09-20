@@ -85,8 +85,8 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <br />
       <InputChoiceGroup
         accordion={{
-          body: t('Eligibility.accordionBody'),
-          header: t('Eligibility.accordionHeader'),
+          bodyKey: 'Eligibility.accordionBody',
+          headerKey: 'Eligibility.accordionHeader',
         }}
         required
         title={t('Eligibility.categorical')}

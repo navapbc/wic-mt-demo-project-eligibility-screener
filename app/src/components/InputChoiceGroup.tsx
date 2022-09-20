@@ -12,8 +12,8 @@ interface Choice {
 
 type Props = {
   accordion?: {
-    header: string
-    body: string
+    headerKey: string
+    bodyKey: string
   }
   choices: Choice[]
   title: string
@@ -31,7 +31,7 @@ const InputChoiceGroup = (props: Props): ReactElement => {
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </h2>
       {accordion && (
-        <Accordion header={accordion.header} body={accordion.body} />
+        <Accordion headerKey={accordion.headerKey} bodyKey={accordion.bodyKey} />
       )}
       {choices.map((choice: Choice) => (
         <div className={`usa-${type}`} key={choice.value}>

@@ -43,8 +43,8 @@ const Income: NextPage = () => {
       <br />
       <h2>{t('Income.householdSize')}</h2>
       <Accordion
-        body={t('Income.accordionBody')}
-        header={t('Income.accordionHeader')}
+        bodyKey={'Income.accordionBody'}
+        headerKey={'Income.accordionHeader'}
       />
       <Dropdown
         id="income"
