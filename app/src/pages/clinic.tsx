@@ -1,6 +1,6 @@
 import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetServerSideProps, GetServerSidePropsResult, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
@@ -34,13 +34,10 @@ const Clinic: NextPage<Props> = (props: Props) => {
   }>({ label: t('Clinic.button'), route: '/contact' })
 
   useEffect(() => {
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
-
-    if (previousRoute === '/review') {
+    if (props.previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
-        route: previousRoute,
+        route: props.previousRoute,
       })
     }
   }, [props.previousRoute, t])
@@ -216,12 +213,26 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  return {
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute = prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: any; }> = {
     props: {
-      previousRoute: req.headers.referer,
+      previousRoute: previousRoute,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
+
+  if (!['/income', '/review', '/contact'].includes(previousRoute as string)) {
+    returnval = {
+      ...returnval,
+      redirect: {
+        destination: previousRoute || '/',
+        permanent: false,
+      }
+    } 
+  }
+
+  return returnval
 }
 
 export default Clinic

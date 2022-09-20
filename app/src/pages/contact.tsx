@@ -1,5 +1,5 @@
 import { useAppContext } from '@context/state'
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetServerSideProps, GetServerSidePropsResult, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
@@ -112,22 +112,25 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
   const previousRoute = prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: object = {
+  let returnval: GetServerSidePropsResult<{ [key: string]: any; }> = {
     props: {
       previousRoute: previousRoute,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
 
-  if (previousRoute !== '/eligibility') {
+  if (!['/clinic', '/review'].includes(previousRoute as string)) {
     returnval = {
+      ...returnval,
       redirect: {
-        destination: previousRoute,
+        destination: previousRoute || '/',
         permanent: false,
       }
+    } 
   }
 
   return returnval
 }
 
 export default Contact
+

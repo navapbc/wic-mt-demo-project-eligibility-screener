@@ -68,7 +68,7 @@ const OverviewTables = (props: Props): ReactElement => {
           },
           {
             header: t('Eligibility.before'),
-            body: session?.eligibility?.before.replace(/[2]/g, '') || '',
+            body: session?.eligibility?.before?.replace(/[2]/g, '') || '',
           },
           {
             header: t('Eligibility.programs'),
