@@ -31,7 +31,10 @@ const InputChoiceGroup = (props: Props): ReactElement => {
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </h2>
       {accordion && (
-        <Accordion headerKey={accordion.headerKey} bodyKey={accordion.bodyKey} />
+        <Accordion
+          headerKey={accordion.headerKey}
+          bodyKey={accordion.bodyKey}
+        />
       )}
       {choices.map((choice: Choice) => (
         <div className={`usa-${type}`} key={choice.value}>

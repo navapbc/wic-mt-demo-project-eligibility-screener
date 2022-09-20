@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
 import { Trans } from 'next-i18next'
+import { ReactElement } from 'react'
 
 type Props = {
   alertBody: string
@@ -12,7 +12,9 @@ const Alert = (props: Props): ReactElement => {
 
   return (
     <div
-      className={`usa-alert usa-alert--${type} ${icon ? '' : 'usa-alert--no-icon'}`}
+      className={`usa-alert usa-alert--${type} ${
+        icon ? '' : 'usa-alert--no-icon'
+      }`}
       role="alert"
     >
       <div className="usa-alert__body">

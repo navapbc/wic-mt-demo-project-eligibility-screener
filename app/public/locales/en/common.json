@@ -99,7 +99,7 @@
     "title": "Your confirmation"
   },
   "asterisk": "All required questions are marked with an asterisk",
+  "backlinkText": "Back",
   "continue": "Continue",
-  "updateAndReturn": "Update and return to review",
-  "backlinkText": "Back"
+  "updateAndReturn": "Update and return to review"
 }

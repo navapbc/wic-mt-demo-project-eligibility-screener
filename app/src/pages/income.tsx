@@ -27,7 +27,9 @@ const Income: NextPage = () => {
   return (
     <>
       <BackLink href="/eligibility" />
-      <h1><Trans i18nKey='Income.header' /></h1>
+      <h1>
+        <Trans i18nKey="Income.header" />
+      </h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
