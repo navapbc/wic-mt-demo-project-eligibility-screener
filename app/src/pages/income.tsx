@@ -7,7 +7,6 @@ import type {
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useState } from 'react'
-import styled from 'styled-components'
 
 import Accordion from '@components/Accordion'
 import BackLink from '@components/BackLink'
@@ -115,10 +114,6 @@ const Income: NextPage = () => {
     </>
   )
 }
-
-const TD = styled.td`
-  min-width: 20rem;
-`
 
 export const getServerSideProps: GetServerSideProps = async ({
   locale,
