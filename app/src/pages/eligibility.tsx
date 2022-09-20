@@ -20,7 +20,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     label: t('continue'),
     route: incomeRoute,
   })
-  const [form, setForm] = useState(session && session.eligibility)
+  const [form, setForm] = useState(session?.eligibility)
 
   useEffect(() => {
     /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
@@ -41,7 +41,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     const castValue = value as keyof typeof form
     let newValue
 
-    if (name === 'residential') {
+    if (['residential', 'before'].includes(name)) {
       newValue = { [name]: value }
     } else {
       newValue = { [castValue]: !form[castValue] }
@@ -127,6 +127,28 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             handleChange,
             label: t('Eligibility.none'),
             value: 'none',
+          },
+        ]}
+      />
+      <br />
+      <InputChoiceGroup
+        required
+        title={t('Eligibility.before')}
+        type="radio"
+        choices={[
+          {
+            checked: form.before === 'yes2',
+            handleChange,
+            label: 'Yes',
+            name: 'before',
+            value: 'yes2' /* TODO: refactor */,
+          },
+          {
+            checked: form.before === 'no2',
+            handleChange,
+            label: 'No',
+            name: 'before',
+            value: 'no2',
           },
         ]}
       />

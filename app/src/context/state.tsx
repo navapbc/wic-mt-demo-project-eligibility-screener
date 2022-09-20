@@ -17,6 +17,7 @@ export type DefaultState = {
     guardian: boolean
     none: boolean
     loss: boolean
+    before: string
     insurance: boolean
     snap: boolean
     tanf: boolean
@@ -46,6 +47,7 @@ export const AppContext = createContext<AppContextType>({
       guardian: false,
       none: false,
       loss: false,
+      before: '',
       insurance: false,
       snap: false,
       tanf: false,

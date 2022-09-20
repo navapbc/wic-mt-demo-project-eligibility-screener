@@ -24,7 +24,7 @@ describe('Eligibility', () => {
     it('should select yes option', () => {
       render(<Eligibility previousRoute="/review" />)
 
-      const yesRadio = screen.getByLabelText(/Yes/i)
+      const yesRadio = screen.getAllByLabelText(/Yes/i)[0]
 
       expect(yesRadio).not.toBeChecked()
       fireEvent.click(yesRadio)
