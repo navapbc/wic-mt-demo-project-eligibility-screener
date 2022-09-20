@@ -14,6 +14,6 @@ const Template: ComponentStory<typeof AlertComponent> = (args) => (
 export const Alert = Template.bind({})
 
 Alert.args = {
-  text: 'This is an Alert!',
+  alertBody: 'This is an Alert!',
   type: 'info',
 }
