@@ -14,7 +14,7 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
   const { handleChange, id, label, options, required } = props
 
   return (
-    <form className="usa-form">
+    <form className="usa-form--large">
       <label className="usa-label" htmlFor={id}>
         {label}
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}

@@ -27,8 +27,6 @@ const Information: NextPage = () => {
         ))}
       </ol>
       <Alert alertBody="Information.note" type="warning" />
-      <br />
-      <br />
       <ButtonLink href="/eligibility" label={t('Information.button')} />
     </>
   )

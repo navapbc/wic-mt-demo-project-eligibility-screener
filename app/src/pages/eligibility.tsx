@@ -54,7 +54,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   }
 
   return (
-    <form>
+    <form className="usa-form--large">
       <BackLink href="/information" />
       <h1>{t('Eligibility.header')}</h1>
       <p>
@@ -82,7 +82,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           },
         ]}
       />
-      <br />
       <InputChoiceGroup
         accordion={{
           bodyKey: 'Eligibility.accordionBody',
@@ -130,7 +129,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           },
         ]}
       />
-      <br />
       <InputChoiceGroup
         required
         title={t('Eligibility.before')}
@@ -152,7 +150,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           },
         ]}
       />
-      <br />
       <InputChoiceGroup
         required
         title={t('Eligibility.programs')}
@@ -190,11 +187,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           },
         ]}
       />
-      <br />
-      <br />
-      <br />
       <ButtonLink href={continueBtn.route} label={continueBtn.label} />
-      <br />
     </form>
   )
 }
