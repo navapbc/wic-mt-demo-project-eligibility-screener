@@ -24,6 +24,20 @@ const Contact: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState<{
     label: string
   }>({ label: t('continue') })
+  const requiredMet = (): boolean => {
+    const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
+    return (
+      validPhoneLength &&
+      ['firstName', 'lastName', 'phone'].every(
+        (field) => form[field as keyof typeof form]
+      )
+    )
+  }
+  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
+
+  useEffect(() => {
+    setDisabled(!requiredMet())
+  }, [form])
 
   useEffect(() => {
     if (props.previousRoute === '/review') {
@@ -84,13 +98,13 @@ const Contact: NextPage<Props> = (props: Props) => {
         <abbr className="usa-hint usa-hint--required"> *</abbr>
       </label>
       <NumberFormat
-        format="###-###-####"
-        mask="_"
-        role="textbox"
         className="usa-input"
+        format="###-###-####"
         id="phone"
-        value={form.phone}
+        mask="_"
         onChange={handleChange}
+        role="textbox"
+        value={form.phone}
       />
       <br />
       <br />
@@ -104,7 +118,11 @@ const Contact: NextPage<Props> = (props: Props) => {
       />
       <br />
       <br />
-      <ButtonLink href="/review" label={continueBtn.label} />
+      <ButtonLink
+        disabled={disabled}
+        href="/review"
+        label={continueBtn.label}
+      />
       <br />
     </form>
   )
