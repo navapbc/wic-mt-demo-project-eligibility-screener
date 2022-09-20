@@ -26,7 +26,7 @@ const Information: NextPage = () => {
           </li>
         ))}
       </ol>
-      <Alert text={t('Information.note')} type="warning" />
+      <Alert alertBody="Information.note" type="warning" />
       <br />
       <br />
       <ButtonLink href="/eligibility" label={t('Information.button')} />

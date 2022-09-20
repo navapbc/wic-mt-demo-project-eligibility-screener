@@ -1,13 +1,14 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
+import { Trans } from 'next-i18next'
 
 type Props = {
-  text: string
+  alertBody: string
   type: 'error' | 'info' | 'success' | 'warning'
 }
 
 const Alert = (props: Props): ReactElement => {
-  const { text, type } = props
+  const { alertBody, type } = props
 
   return (
     <div
@@ -15,7 +16,9 @@ const Alert = (props: Props): ReactElement => {
       role="alert"
     >
       <div className="usa-alert__body">
-        <Trans className="usa-alert__text" i18nKey={text} />
+        <p className="usa-alert__text">
+          <Trans i18nKey={alertBody} />
+        </p>
       </div>
     </div>
   )

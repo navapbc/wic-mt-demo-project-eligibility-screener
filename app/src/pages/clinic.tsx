@@ -147,7 +147,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
           </button>
         </form>
       </section>
-      {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
+      {searchError && <Alert type="error" alertBody="Clinic.zipSearchError" />}
       {filteredClinics.length > 0 ? (
         <>
           <h2>
