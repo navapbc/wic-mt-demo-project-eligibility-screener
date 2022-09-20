@@ -16,20 +16,13 @@ const Alternate: NextPage = () => {
       <Trans
         components={[<a key="0" href="https://dphhs.mt.gov/Assistance" />]}
         i18nKey={'Alternate.assistance'}
-        t={t}
       />
-      <br />
-      <br />
       <Trans
         components={[<a key="0" href="https://www.signupwic.com/" />]}
         i18nKey={'Alternate.location'}
         t={t}
       />
-      <br />
-      <br />
-      <br />
       <ButtonLink href="/" label={t('Alternate.button')} />
-      <br />
     </>
   )
 }

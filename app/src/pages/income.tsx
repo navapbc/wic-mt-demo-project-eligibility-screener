@@ -38,32 +38,38 @@ const Income: NextPage = () => {
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
       </p>
-      <h2>
-        <Trans i18nKey="Income.title" />
-      </h2>
-      <p>
-        <Trans i18nKey="Income.enrolled" />
-      </p>
-      <p>
-        <Trans i18nKey="Income.notEnrolled" />
-      </p>
-      <p>
-        <Trans i18nKey="Income.unsure" />
-      </p>
-      <br />
-      <h2>{t('Income.householdSize')}</h2>
-      <Accordion
-        bodyKey={'Income.accordionBody'}
-        headerKey={'Income.accordionHeader'}
-      />
-      <Dropdown
-        id="income"
-        label={t('Income.dropdownLabel')}
-        handleChange={handleChange}
-        options={householdSizes}
-        required={true}
-      />
-      <div className="width-mobile">
+
+      <div className="content-group">
+        <h2>
+          <Trans i18nKey="Income.title" />
+        </h2>
+        <p>
+          <Trans i18nKey="Income.enrolled" />
+        </p>
+        <p>
+          <Trans i18nKey="Income.notEnrolled" />
+        </p>
+        <p>
+          <Trans i18nKey="Income.unsure" />
+        </p>
+      </div>
+
+      <div className="content-group">
+        <h2>{t('Income.householdSize')}</h2>
+        <Accordion
+          bodyKey={'Income.accordionBody'}
+          headerKey={'Income.accordionHeader'}
+        />
+        <Dropdown
+          id="income"
+          label={t('Income.dropdownLabel')}
+          handleChange={handleChange}
+          options={householdSizes}
+          required={true}
+        />
+      </div>
+
+      <div className="width-mobile content-group">
         <table className="usa-table usa-table--stacked usa-table--borderless">
           <caption>
             <h2>{t('Income.estimatedIncome')}</h2>
@@ -82,32 +88,30 @@ const Income: NextPage = () => {
                 {(householdSize && incomeData[householdSize]?.annual) ||
                   '$XX,XXX'}
               </th>
-              <TD data-label="Monthly">
+              <td data-label="Monthly">
                 {(householdSize && incomeData[householdSize]?.monthly) ||
                   '$X,XXX'}
-              </TD>
-              <TD data-label="Bi-weekly">
+              </td>
+              <td data-label="Bi-weekly">
                 {(householdSize && incomeData[householdSize]?.biweekly) ||
                   '$X,XXX'}
-              </TD>
-              <TD data-label="Weekly">
+              </td>
+              <td data-label="Weekly">
                 {(householdSize && incomeData[householdSize]?.weekly) ||
                   '$X,XXX'}
-              </TD>
+              </td>
             </tr>
           </tbody>
         </table>
+        <p>
+          <StyledLink
+            href="https://dphhs.mt.gov/Assistance"
+            text={t('Income.assistance')}
+            external={true}
+          />
+        </p>
       </div>
-      <p>
-        <StyledLink
-          href="https://dphhs.mt.gov/Assistance"
-          text={t('Income.assistance')}
-          external={true}
-        />
-      </p>
-      <br />
       <ButtonLink href="/clinic" label={t('continue')} />
-      <br />
     </>
   )
 }

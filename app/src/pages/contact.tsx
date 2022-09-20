@@ -67,62 +67,70 @@ const Contact: NextPage<Props> = (props: Props) => {
   }
 
   return (
-    <form>
+    <>
       <BackLink href="/clinic" />
-      <h1>{t('Contact.title')}</h1>
-      <p>
-        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
-        ).
-      </p>
-      <h2>
-        {t('Contact.name')}
-        <abbr className="usa-hint usa-hint--required"> *</abbr>
-      </h2>
-      <TextInput
-        handleChange={handleChange}
-        id="firstName"
-        label={t('Contact.firstName')}
-        required
-        value={form.firstName}
-      />
-      <TextInput
-        handleChange={handleChange}
-        id="lastName"
-        label={t('Contact.lastName')}
-        required
-        value={form.lastName}
-      />
-      <h2>
-        {t('Contact.phone')}{' '}
-        <abbr className="usa-hint usa-hint--required"> *</abbr>
-      </h2>
-      <div className="usa-alert usa-alert--info usa-alert--no-icon">
-        <div className="usa-alert__body">
-          <p className="usa-alert__text">{t('Contact.phoneAlert')}</p>
-        </div>
-      </div>
-      <label className="usa-label" htmlFor="phone">
-        {t('Contact.phoneLabel')}
-        <abbr className="usa-hint usa-hint--required"> *</abbr>
-      </label>
-      <NumberFormat
-        className="usa-input"
-        format="###-###-####"
-        id="phone"
-        mask="_"
-        onChange={handleChange}
-        role="textbox"
-        value={form.phone}
-      />
-      <h2>{t('Contact.other')}</h2>
-      <TextArea
-        handleChange={handleChangeTextArea}
-        id="other"
-        label={t('Contact.otherLabel')}
-        value={form.other}
-      />
+      <form className="usa-form--large">
+        <h1>{t('Contact.title')}</h1>
+        <p>
+          {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
+          ).
+        </p>
+        <fieldset className="usa-fieldset">
+          <h2>
+            {t('Contact.name')}
+            <abbr className="usa-hint usa-hint--required"> *</abbr>
+          </h2>
+          <TextInput
+            handleChange={handleChange}
+            id="firstName"
+            label={t('Contact.firstName')}
+            required
+            value={form.firstName}
+          />
+          <TextInput
+            handleChange={handleChange}
+            id="lastName"
+            label={t('Contact.lastName')}
+            required
+            value={form.lastName}
+          />
+        </fieldset>
+        <fieldset className="usa-fieldset">
+          <h2>
+            {t('Contact.phone')}{' '}
+            <abbr className="usa-hint usa-hint--required"> *</abbr>
+          </h2>
+          <div className="usa-alert usa-alert--info usa-alert--no-icon">
+            <div className="usa-alert__body">
+              <p className="usa-alert__text">{t('Contact.phoneAlert')}</p>
+            </div>
+          </div>
+          <label className="usa-label" htmlFor="phone">
+            {t('Contact.phoneLabel')}
+            <abbr className="usa-hint usa-hint--required"> *</abbr>
+          </label>
+          <NumberFormat
+            format="###-###-####"
+            mask="_"
+            role="textbox"
+            className="usa-input"
+            id="phone"
+            value={form.phone}
+            onChange={handleChange}
+          />
+        </fieldset>
+        <fieldset className="usa-fieldset">
+          <h2>{t('Contact.other')}</h2>
+          <TextArea
+            handleChange={handleChangeTextArea}
+            id="other"
+            label={t('Contact.otherLabel')}
+            value={form.other}
+          />
+        </fieldset>
+      </form>
       <ButtonLink href="/review" label={continueBtn.label} disabled={disabled} />
-    </form>
+    </>
   )
 }
 

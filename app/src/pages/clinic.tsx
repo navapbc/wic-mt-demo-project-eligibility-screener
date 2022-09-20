@@ -109,47 +109,53 @@ const Clinic: NextPage<Props> = (props: Props) => {
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
       </p>
-      <p>{t('Clinic.body')}</p>
-      <br />
-      <h2>
-        {t('Clinic.searchLabel')}{' '}
-        <abbr className="usa-hint usa-hint--required"> *</abbr>
-      </h2>
-      <section aria-label="Search clinic by zip">
-        {zipValidationError && (
-          <span className="usa-error-message">
-            {t('Clinic.zipValidationError')}
-          </span>
-        )}
-        <form
-          className="usa-search usa-search--small"
-          role="search"
-          onSubmit={handleSearch}
-        >
-          <label className="usa-sr-only" htmlFor="search-field-en-small">
-            {t('Clinic.searchLabel')}
-          </label>
-          <input
-            className="usa-input usa-input-error"
-            id="search-field-en-small"
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="usa-button" type="submit">
-            <Image
-              src="/img/search.svg"
-              height="20px"
-              width="20px"
-              className="usa-search__submit-icon"
-              alt="Search"
+
+      <div className="content-group">
+        <p>{t('Clinic.body')}</p>
+      </div>
+
+      <div className="content-group">
+        <h2>
+          {t('Clinic.searchLabel')}{' '}
+          <abbr className="usa-hint usa-hint--required"> *</abbr>
+        </h2>
+        <section aria-label="Search clinic by zip">
+          {zipValidationError && (
+            <span className="usa-error-message">
+              {t('Clinic.zipValidationError')}
+            </span>
+          )}
+          <form
+            className="usa-search usa-search--small"
+            role="search"
+            onSubmit={handleSearch}
+          >
+            <label className="usa-sr-only" htmlFor="search-field-en-small">
+              {t('Clinic.searchLabel')}
+            </label>
+            <input
+              className="usa-input usa-input-error"
+              id="search-field-en-small"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </button>
-        </form>
-      </section>
-      {searchError && (
-        <Alert type="error" alertBody="Clinic.zipSearchError" icon={true} />
-      )}
+            <button className="usa-button" type="submit">
+              <Image
+                src="/img/search.svg"
+                height="20px"
+                width="20px"
+                className="usa-search__submit-icon"
+                alt="Search"
+              />
+            </button>
+          </form>
+        </section>
+        {searchError && (
+          <Alert type="error" alertBody="Clinic.zipSearchError" icon={true} />
+        )}
+      </div>
+
       {filteredClinics.length > 0 ? (
         <>
           <h2>
@@ -196,7 +202,6 @@ const Clinic: NextPage<Props> = (props: Props) => {
               )}
             </fieldset>
           </form>
-          <br />
           <ButtonLink
             disabled={selectedClinic === undefined}
             href={continueBtn.route}
@@ -205,10 +210,6 @@ const Clinic: NextPage<Props> = (props: Props) => {
         </>
       ) : (
         <>
-          <br />
-          <br />
-          <br />
-          <br />
         </>
       )}
     </>

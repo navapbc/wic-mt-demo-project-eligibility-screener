@@ -12,7 +12,7 @@ const ButtonLink = (props: Props): ReactElement => {
 
   return (
     <Link href={href} passHref>
-      <button className="usa-button usa-button--small" disabled={disabled}>
+      <button className="usa-button usa-button--small display-block margin-top-3" disabled={disabled}>
         {label}
       </button>
     </Link>
