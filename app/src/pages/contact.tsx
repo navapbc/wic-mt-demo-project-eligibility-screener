@@ -19,8 +19,7 @@ const Contact: NextPage<Props> = (props: Props) => {
   const [form, setForm] = useState(session?.contact)
   const [continueBtn, setContinueBtn] = useState<{
     label: string
-    width: string
-  }>({ label: t('continue'), width: '105px' })
+  }>({ label: t('continue') })
   const requiredMet = (): boolean => {
     const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
     return (
@@ -43,7 +42,6 @@ const Contact: NextPage<Props> = (props: Props) => {
     if (previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
-        width: '239px',
       })
     }
   }, [props.previousRoute, t])
