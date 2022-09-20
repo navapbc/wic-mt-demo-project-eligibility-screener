@@ -6,11 +6,12 @@ import type {
 } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEventHandler, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
+import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
 
 interface Props {
@@ -47,7 +48,16 @@ const Contact: NextPage<Props> = (props: Props) => {
     }
   }, [props.previousRoute, t])
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { value, id }: { value: string; id: string } = e.target
+    const castId = id as keyof typeof form
+    const newForm = { ...form, [castId]: value }
+
+    setForm(newForm)
+    setSession({ ...session, contact: newForm })
+  }
+
+  const handleChangeTextArea: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     const { value, id }: { value: string; id: string } = e.target
     const castId = id as keyof typeof form
     const newForm = { ...form, [castId]: value }
@@ -82,8 +92,6 @@ const Contact: NextPage<Props> = (props: Props) => {
         required
         value={form.lastName}
       />
-      <br />
-      <br />
       <h2>
         {t('Contact.phone')}{' '}
         <abbr className="usa-hint usa-hint--required"> *</abbr>
@@ -106,24 +114,14 @@ const Contact: NextPage<Props> = (props: Props) => {
         role="textbox"
         value={form.phone}
       />
-      <br />
-      <br />
       <h2>{t('Contact.other')}</h2>
-      <TextInput
-        handleChange={handleChange}
+      <TextArea
+        handleChange={handleChangeTextArea}
         id="other"
         label={t('Contact.otherLabel')}
-        type="area"
         value={form.other}
       />
-      <br />
-      <br />
-      <ButtonLink
-        disabled={disabled}
-        href="/review"
-        label={continueBtn.label}
-      />
-      <br />
+      <ButtonLink href="/review" label={continueBtn.label} disabled={disabled} />
     </form>
   )
 }
