@@ -22,10 +22,7 @@ const Contact: NextPage<Props> = (props: Props) => {
   }>({ label: t('continue') })
 
   useEffect(() => {
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
-
-    if (previousRoute === '/review') {
+    if (props.previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
       })
@@ -113,12 +110,24 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  return {
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute = prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: object = {
     props: {
-      previousRoute: req.headers.referer,
+      previousRoute: previousRoute,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
+
+  if (previousRoute !== '/eligibility') {
+    returnval = {
+      redirect: {
+        destination: previousRoute,
+        permanent: false,
+      }
+  }
+
+  return returnval
 }
 
 export default Contact
