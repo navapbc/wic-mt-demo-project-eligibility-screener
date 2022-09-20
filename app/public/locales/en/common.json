@@ -47,7 +47,7 @@
     "tanf": "TANF (Temporary Assistance for Needy Families)"
   },
   "Income": {
-    "accordionBody": "A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.<br />If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
+    "accordionBody": "<p>A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.</p><p>If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.</p>",
     "accordionHeader": "Who counts in my household?",
     "assistance": "Learn about other assistance",
     "dropdownLabel": "Household size",
@@ -57,8 +57,8 @@
     "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "householdSize": "What is your household size?",
     "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.",
-    "title": "To be eligible for WIC, your <b>household income before taxes</b> must be <b>at</b> or <b>below</b> a certain income level.",
-    "unsure": "<b>If you are unsure about your income, please continue to apply.</b> A WIC staff member can answer more specific questions about your situation."
+    "title": "To be eligible for WIC, your <strong>household income before taxes</strong> must be <strong>at</strong> or <strong>below</strong> a certain income level.",
+    "unsure": "<strong>If you are unsure about your income, please continue to apply.</strong> A WIC staff member can answer more specific questions about your situation."
   },
   "Index": {
     "benefits": "There are many benefits including healthy food, breastfeeding support, nutrition education, and connections to local resources.",
