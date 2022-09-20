@@ -55,7 +55,6 @@ const Layout = ({ children }: Props): ReactElement => {
                       <a key="1" href="https://www.signupwic.com/" />,
                     ]}
                     i18nKey={'Layout.footer1'}
-                    t={t}
                   />
                 </p>
                 <p>
@@ -67,7 +66,6 @@ const Layout = ({ children }: Props): ReactElement => {
                       />,
                     ]}
                     i18nKey={'Layout.footer2'}
-                    t={t}
                   />
                 </p>
               </div>
