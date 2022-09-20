@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
 
   if (
-    !['/clinic', 'eligibility', '/contact'].includes(previousRoute as string)
+    !['/clinic', '/eligibility', '/contact'].includes(previousRoute as string)
   ) {
     returnval = {
       ...returnval,
