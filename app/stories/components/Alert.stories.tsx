@@ -16,4 +16,5 @@ export const Alert = Template.bind({})
 Alert.args = {
   alertBody: 'This is an Alert!',
   type: 'info',
+  icon: false
 }
