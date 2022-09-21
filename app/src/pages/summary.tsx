@@ -20,7 +20,11 @@ const Summary: NextPage = () => {
       <p>
         <Trans i18nKey="Summary.interestedIn" />
         <div>
-          <StyledLink href="" text={t('Summary.learnAbout')} external={true} />
+          <StyledLink
+            href="https://dphhs.mt.gov/Assistance"
+            text={t('Summary.learnAbout')}
+            external={true}
+          />
         </div>
       </p>
       <p>
