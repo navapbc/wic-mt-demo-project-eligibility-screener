@@ -200,12 +200,12 @@ const Clinic: NextPage<Props> = (props: Props) => {
                 </button>
               )}
             </fieldset>
+            <ButtonLink
+              disabled={selectedClinic === undefined}
+              href={continueBtn.route}
+              label={continueBtn.label}
+            />
           </form>
-          <ButtonLink
-            disabled={selectedClinic === undefined}
-            href={continueBtn.route}
-            label={continueBtn.label}
-          />
         </>
       ) : (
         <></>
