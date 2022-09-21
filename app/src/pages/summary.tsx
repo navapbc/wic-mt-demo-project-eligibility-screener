@@ -31,6 +31,9 @@ const Summary: NextPage = () => {
         <Trans i18nKey="Summary.submitAnother" />
         <ButtonLink label={t('Summary.startNew')} href="/" style="outline" />
       </p>
+      <p>
+        <Trans i18nKey="Summary.keepCopy" />
+      </p>
       <OverviewTables />
     </>
   )
