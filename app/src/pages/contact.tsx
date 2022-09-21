@@ -1,36 +1,52 @@
+import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 
 import ButtonLink from '@components/ButtonLink'
 import TextInput from '@components/TextInput'
 
-const Contact: NextPage = () => {
+interface Props {
+  previousRoute: string
+}
+
+const Contact: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    other: '',
-  })
+  const { session, setSession } = useAppContext()
+  const [form, setForm] = useState(session?.contact)
+  const [continueBtn, setContinueBtn] = useState<{
+    label: string
+    width: string
+  }>({ label: t('continue'), width: '105px' })
+
+  useEffect(() => {
+    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
+    const previousRoute = props.previousRoute.substring(prevRouteIndex)
+
+    if (previousRoute === '/review') {
+      setContinueBtn({
+        label: t('updateAndReturn'),
+        width: '239px',
+      })
+    }
+  }, [props.previousRoute, t])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, id }: { value: string; id: string } = e.target
     const castId = id as keyof typeof form
+    const newForm = { ...form, [castId]: value }
 
-    setForm({
-      ...form,
-      [castId]: value,
-    })
+    setForm(newForm)
+    setSession({ ...session, contact: newForm })
   }
 
   return (
     <form>
       <Link href="/clinic">Back</Link>
-      <h1>{t('Contact.header')}</h1>
+      <h1>{t('Contact.title')}</h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
@@ -89,15 +105,19 @@ const Contact: NextPage = () => {
       />
       <br />
       <br />
-      <ButtonLink href="/" label={t('continue')} width="105px" />
+      <ButtonLink href="/review" label={continueBtn.label} />
       <br />
     </form>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
   return {
     props: {
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }

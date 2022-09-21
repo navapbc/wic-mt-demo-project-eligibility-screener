@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Review should render the heading 1`] = `
+<h1>
+  Review and submit your information
+</h1>
+`;
