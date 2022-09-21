@@ -53,64 +53,66 @@ const Income: NextPage = () => {
         </p>
       </div>
 
-      <div className="content-group">
-        <h2>{t('Income.householdSize')}</h2>
-        <Accordion
-          bodyKey={'Income.accordionBody'}
-          headerKey={'Income.accordionHeader'}
-        />
-        <Dropdown
-          id="income"
-          label={t('Income.dropdownLabel')}
-          handleChange={handleChange}
-          options={householdSizes}
-          required={true}
-        />
-      </div>
-
-      <div className="content-group">
-        <table className="usa-table usa-table--stacked usa-table--borderless">
-          <caption>
-            <h2>{t('Income.estimatedIncome')}</h2>
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Annual</th>
-              <th scope="col">Monthly</th>
-              <th scope="col">Bi-weekly</th>
-              <th scope="col">Weekly</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th data-label="Annual" scope="row">
-                {(householdSize && incomeData[householdSize]?.annual) ||
-                  '$XX,XXX'}
-              </th>
-              <td data-label="Monthly">
-                {(householdSize && incomeData[householdSize]?.monthly) ||
-                  '$X,XXX'}
-              </td>
-              <td data-label="Bi-weekly">
-                {(householdSize && incomeData[householdSize]?.biweekly) ||
-                  '$X,XXX'}
-              </td>
-              <td data-label="Weekly">
-                {(householdSize && incomeData[householdSize]?.weekly) ||
-                  '$X,XXX'}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          <StyledLink
-            href="https://dphhs.mt.gov/Assistance"
-            text={t('Income.assistance')}
-            external={true}
+      <form className="usa-form usa-form--large">
+        <fieldset className="usa-fieldset">
+          <h2>{t('Income.householdSize')}</h2>
+          <Accordion
+            bodyKey={'Income.accordionBody'}
+            headerKey={'Income.accordionHeader'}
           />
-        </p>
-      </div>
-      <ButtonLink href="/clinic" label={t('continue')} />
+          <Dropdown
+            id="income"
+            label={t('Income.dropdownLabel')}
+            handleChange={handleChange}
+            options={householdSizes}
+            required={true}
+          />
+        </fieldset>
+
+        <fieldset className="usa-fieldset">
+          <table className="usa-table usa-table--stacked usa-table--borderless">
+            <caption>
+              <h2>{t('Income.estimatedIncome')}</h2>
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Annual</th>
+                <th scope="col">Monthly</th>
+                <th scope="col">Bi-weekly</th>
+                <th scope="col">Weekly</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th data-label="Annual" scope="row">
+                  {(householdSize && incomeData[householdSize]?.annual) ||
+                    '$XX,XXX'}
+                </th>
+                <td data-label="Monthly">
+                  {(householdSize && incomeData[householdSize]?.monthly) ||
+                    '$X,XXX'}
+                </td>
+                <td data-label="Bi-weekly">
+                  {(householdSize && incomeData[householdSize]?.biweekly) ||
+                    '$X,XXX'}
+                </td>
+                <td data-label="Weekly">
+                  {(householdSize && incomeData[householdSize]?.weekly) ||
+                    '$X,XXX'}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <StyledLink
+              href="https://dphhs.mt.gov/Assistance"
+              text={t('Income.assistance')}
+              external={true}
+            />
+          </p>
+        </fieldset>
+        <ButtonLink href="/clinic" label={t('continue')} />
+      </form>
     </>
   )
 }

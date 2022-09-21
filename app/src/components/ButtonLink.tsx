@@ -15,7 +15,7 @@ const ButtonLink = (props: Props): ReactElement => {
   if (style) {
     buttonStyle = `usa-button--${style} margin-top-1`
   } else {
-    buttonStyle = 'margin-top-3'
+    buttonStyle = 'margin-top-6'
   }
 
   return (
