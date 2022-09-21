@@ -28,11 +28,11 @@
     "title": "Contact information"
   },
   "Eligibility": {
-    "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your family may qualify for.",
+    "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your household may qualify for.",
     "accordionHeader": "Why are we asking this?",
     "baby": "I've had a baby in the past 12 months",
     "before": "Have you or someone in your household received WIC benefits before?",
-    "categorical": "Please select all the following that apply to your family:",
+    "categorical": "Please select all the following that apply to your household:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
     "fdpir": "FDPIR (Food Distribution Program on Indian Reservations)",
     "guardian": "I'm the guardian or foster parent of an infant or child under the age of 5 years old",
@@ -41,7 +41,7 @@
     "loss": "I have had a pregnancy end in the last 6 months",
     "none": "None of the above",
     "pregnant": "I'm pregnant",
-    "programs": "Are you or someone in your family currently enrolled in any of the following programs in Montana?",
+    "programs": "Are you or someone in your household currently enrolled in any of the following programs in Montana?",
     "residential": "Do you live or work in Montana?",
     "snap": "SNAP (Supplemental Nutrition Assistance Program)",
     "tanf": "TANF (Temporary Assistance for Needy Families)"
