@@ -1,6 +1,6 @@
 import incomeData from '@public/data/income.json'
 import type { GetServerSideProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { ChangeEvent, useState } from 'react'
@@ -27,10 +27,18 @@ const Income: NextPage = () => {
     <>
       <Link href="/eligibility">Back</Link>
       <h1>{t('Income.header')}</h1>
-      <h2 dangerouslySetInnerHTML={{ __html: t('Income.title') }} />
-      <p dangerouslySetInnerHTML={{ __html: t('Income.enrolled') }} />
-      <p>{t('Income.notEnrolled')}</p>
-      <p dangerouslySetInnerHTML={{ __html: t('Income.unsure') }} />
+      <h2>
+        <Trans i18nKey="Income.title" />
+      </h2>
+      <p>
+        <Trans i18nKey="Income.enrolled" />
+      </p>
+      <p>
+        <Trans i18nKey="Income.notEnrolled" />
+      </p>
+      <p>
+        <Trans i18nKey="Income.unsure" />
+      </p>
       <br />
       <h2>{t('Income.householdSize')}</h2>
       <Accordion
@@ -52,6 +60,7 @@ const Income: NextPage = () => {
             <tr>
               <th scope="col">Annual</th>
               <th scope="col">Monthly</th>
+              <th scope="col">Bi-weekly</th>
               <th scope="col">Weekly</th>
             </tr>
           </thead>
@@ -59,15 +68,19 @@ const Income: NextPage = () => {
             <tr>
               <th data-label="Annual" scope="row">
                 {(householdSize && incomeData[householdSize]?.annual) ||
-                  '$XX,XXXX'}
+                  '$XX,XXX'}
               </th>
               <TD data-label="Monthly">
                 {(householdSize && incomeData[householdSize]?.monthly) ||
-                  '$X,XXXX'}
+                  '$X,XXX'}
+              </TD>
+              <TD data-label="Bi-weekly">
+                {(householdSize && incomeData[householdSize]?.biweekly) ||
+                  '$X,XXX'}
               </TD>
               <TD data-label="Weekly">
                 {(householdSize && incomeData[householdSize]?.weekly) ||
-                  '$XXXX'}
+                  '$X,XXX'}
               </TD>
             </tr>
           </tbody>
@@ -79,7 +92,7 @@ const Income: NextPage = () => {
         </a>
       </p>
       <br />
-      <ButtonLink href="/clinic" label={t('continue')} width="105px" />
+      <ButtonLink href="/clinic" label={t('continue')} />
       <br />
     </>
   )

@@ -1,21 +1,20 @@
-// test/pages/index.test.js
 import { render, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Clinic from '@pages/clinic'
+import Summary from '@pages/summary'
 
-describe('Clinic', () => {
+describe('Summary', () => {
   it('should render the heading', () => {
-    render(<Clinic previousRoute="/review" />)
+    render(<Summary />)
 
-    const heading = screen.getByText(/Choose a clinic/i)
+    const heading = screen.getByText(/Your confirmation/i)
 
     expect(heading).toBeInTheDocument()
     expect(heading).toMatchSnapshot()
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = render(<Clinic previousRoute="/review" />)
+    const { container } = render(<Summary />)
     const results = await axe(container)
 
     await waitFor(() => {
