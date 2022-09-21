@@ -7,6 +7,8 @@ export default {
   component: ContactPage,
 } as ComponentMeta<typeof ContactPage>
 
-const Template: ComponentStory<typeof ContactPage> = () => <ContactPage />
+const Template: ComponentStory<typeof ContactPage> = () => (
+  <ContactPage previousRoute="/review" />
+)
 
 export const Contact = Template.bind({})

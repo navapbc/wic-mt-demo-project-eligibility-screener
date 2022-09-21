@@ -1,27 +1,49 @@
+import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'
 
-const Clinic: NextPage = () => {
+interface Props {
+  previousRoute: string
+}
+
+const Clinic: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
+  const { session, setSession } = useAppContext()
   const [expandList, setExpandList] = useState<boolean>(false)
   const numberOfClinicsToReturn = 8
-  const [filteredClinics, setFilteredClinics] = useState<
-    (typeof clinics[0] | undefined)[]
-  >([])
   const [selectedClinic, setSelectedClinic] = useState<
     typeof clinics[0] | undefined
-  >(undefined)
+  >(session?.clinic)
+  const [filteredClinics, setFilteredClinics] = useState<
+    (typeof clinics[0] | undefined)[]
+  >(session?.clinic ? [selectedClinic] : [])
   const [search, setSearch] = useState('')
   const [searchError, setSearchError] = useState<boolean>(false)
   const [zipValidationError, setZipValidationError] = useState<boolean>(false)
+  const [continueBtn, setContinueBtn] = useState<{
+    label: string
+    route: string
+  }>({ label: t('Clinic.button'), route: '/contact' })
+
+  useEffect(() => {
+    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
+    const previousRoute = props.previousRoute.substring(prevRouteIndex)
+
+    if (previousRoute === '/review') {
+      setContinueBtn({
+        label: t('updateAndReturn'),
+        route: previousRoute,
+      })
+    }
+  }, [props.previousRoute, t])
 
   const isValidZip = (zip: string) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)
@@ -68,8 +90,10 @@ const Clinic: NextPage = () => {
     const clinicIndex = filteredClinics?.findIndex(
       (clinic) => clinic?.clinic === value
     )
+    const selectedClinic = filteredClinics[clinicIndex]
 
-    setSelectedClinic(filteredClinics[clinicIndex])
+    setSelectedClinic(selectedClinic)
+    setSession({ ...session, clinic: selectedClinic })
   }
 
   const selected = (clinic: typeof clinics[0]) => {
@@ -125,7 +149,10 @@ const Clinic: NextPage = () => {
       {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
       {filteredClinics.length > 0 ? (
         <>
-          <h2>{t('Clinic.listTitle')}</h2>
+          <h2>
+            {t('Clinic.listTitle')}{' '}
+            <abbr className="usa-hint usa-hint--required"> *</abbr>
+          </h2>
           <form className="usa-form">
             <fieldset className="usa-fieldset">
               {filteredClinics
@@ -148,9 +175,9 @@ const Clinic: NextPage = () => {
                         >
                           {clinic.clinic}
                           <span className="usa-checkbox__label-description">
-                            <em>{clinic.clinicAddress}</em>
+                            {clinic.clinicAddress}
                             <br />
-                            <em>{clinic.clinicTelephone}</em>
+                            {clinic.clinicTelephone}
                           </span>
                         </label>
                       </div>
@@ -169,9 +196,8 @@ const Clinic: NextPage = () => {
           <br />
           <ButtonLink
             disabled={selectedClinic === undefined}
-            href="/contact"
-            label={t('Clinic.button')}
-            width="251px"
+            href={continueBtn.route}
+            label={continueBtn.label}
           />
         </>
       ) : (
@@ -186,9 +212,13 @@ const Clinic: NextPage = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
   return {
     props: {
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }

@@ -4,7 +4,7 @@ import Contact from '@pages/contact'
 
 describe('Contact', () => {
   it('should render first name prompt', () => {
-    render(<Contact />)
+    render(<Contact previousRoute="/review" />)
 
     const prompt = screen.getByText(/First name/i)
 
@@ -13,7 +13,7 @@ describe('Contact', () => {
   })
 
   it('should update name input value', () => {
-    render(<Contact />)
+    render(<Contact previousRoute="/review" />)
 
     const nameInput = screen.getByLabelText(/First name/i) as HTMLInputElement
 
@@ -24,7 +24,7 @@ describe('Contact', () => {
 
   describe('phone number input', () => {
     it('should not allow non-numbers', () => {
-      render(<Contact />)
+      render(<Contact previousRoute="/review" />)
 
       const phoneNumber = screen.getByLabelText(
         /Phone number/i
@@ -36,7 +36,7 @@ describe('Contact', () => {
     })
 
     it('should format number', () => {
-      render(<Contact />)
+      render(<Contact previousRoute="/review" />)
 
       const phoneNumber = screen.getByLabelText(
         /Phone number/i

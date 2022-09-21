@@ -3,17 +3,11 @@
 exports[`Income should render the heading 1`] = `
 <h2>
   To be eligible for WIC, your 
-  <strong>
-    household income before taxes
-  </strong>
+  &lt;b&gt;household income before taxes&lt;/b&gt;
    must be 
-  <strong>
-    at
-  </strong>
+  &lt;b&gt;at&lt;/b&gt;
    or 
-  <strong>
-    below
-  </strong>
+  &lt;b&gt;below&lt;/b&gt;
    a certain income level.
 </h2>
 `;
