@@ -4,6 +4,7 @@
 # - Build and tag a docker release image
 # - Upload the docker image to ECR
 # - Trigger a rotation of the ECS service containers
+# - Automatically tag the branch with the environment name
 #
 # The underlying terraform is managed in the wic-mt-demo-project repo and references the uploaded docker image.
 
@@ -43,10 +44,24 @@ jobs:
 
       - name: Build and Tag Image
         run: |
-          docker build --tag 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest ./app
+          docker build --tag 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest-${{github.event.inputs.environment || 'test' }} ./app
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo
-          docker push 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest
+          docker push 546642427916.dkr.ecr.us-east-1.amazonaws.com/eligibility-screener-repo:latest-${{github.event.inputs.environment || 'test' }}
 
       - name: Push to ECR
         run: |
           aws ecs update-service --cluster ${{github.event.inputs.environment || 'test' }} --service ${{github.event.inputs.environment || 'test' }}-screener-ecs-service --force-new-deployment
+
+  create-tag:
+    needs: [build]
+    name: Create Github Tag
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      # https://github.com/rickstaa/action-create-tag
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "deployed/${{github.event.inputs.environment || 'test' }}"
+          message: "from branch ${{github.ref_name}}\nTag created in workflow:\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          force_push_tag: true
