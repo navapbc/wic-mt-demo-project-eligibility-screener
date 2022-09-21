@@ -162,7 +162,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
             {t('Clinic.listTitle')}{' '}
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </h2>
-          <form className="usa-form">
+          <form className="usa-form usa-form--large">
             <fieldset className="usa-fieldset">
               {filteredClinics
                 ?.slice(0, expandList ? filteredClinics.length : 4)

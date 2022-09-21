@@ -81,7 +81,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
       </p>
-      <form className="usa-form--large">
+      <form className="usa-form usa-form--large">
         <InputChoiceGroup
           required
           title={t('Eligibility.residential')}

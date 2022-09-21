@@ -43,14 +43,6 @@ i.e.
   margin-right: 1.5rem !important;
 }
 
-// USWDS form:
-// Override max-width for desktop.
-// Ideally there should be a setting for this.
-// See https://github.com/uswds/uswds/issues/4607
-.usa-form--large {
-  max-width: 100%;
-}
-
 // USWDS Process List:
 // Remove margin on last child
 .usa-process-list__item:last-child {
