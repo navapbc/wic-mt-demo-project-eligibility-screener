@@ -56,7 +56,7 @@ const Contact: NextPage<Props> = (props: Props) => {
   return (
     <>
       <BackLink href="/clinic" />
-      <form className="usa-form--large">
+      <form className="usa-form usa-form--large">
         <h1>{t('Contact.title')}</h1>
         <p>
           {t('asterisk')} (
