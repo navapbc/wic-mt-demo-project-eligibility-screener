@@ -64,7 +64,7 @@ const Income: NextPage = () => {
         />
       </div>
 
-      <div className="width-mobile content-group">
+      <div className="content-group">
         <table className="usa-table usa-table--stacked usa-table--borderless">
           <caption>
             <h2>{t('Income.estimatedIncome')}</h2>
