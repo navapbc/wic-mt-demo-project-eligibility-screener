@@ -7,7 +7,6 @@ type Props = {
 }
 
 const Layout = ({ children }: Props): ReactElement => {
-
   return (
     <div className="container">
       <header className="header usa-header usa-header--basic" role="banner">
