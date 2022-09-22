@@ -50,7 +50,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         route: previousRoute,
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
-  }, [form.none, props.previousRoute])
+  }, [form.none, props.previousRoute, continueBtn, t])
 
   useEffect(() => {
     setDisabled(!requiredMet())
