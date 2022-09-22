@@ -1,15 +1,16 @@
+import { Trans } from 'next-i18next'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
 type Props = {
   disabled?: boolean
-  label: string
+  labelKey: string
   href: string /* TODO: create global type for routes */
   style?: string
 }
 
 const ButtonLink = (props: Props): ReactElement => {
-  const { disabled, href, label, style } = props
+  const { disabled, href, labelKey, style } = props
 
   let buttonStyle = ''
   if (style) {
@@ -24,7 +25,7 @@ const ButtonLink = (props: Props): ReactElement => {
         className={`usa-button usa-button--small display-block ${buttonStyle}`}
         disabled={disabled}
       >
-        {label}
+        <Trans i18nKey={labelKey} />
       </button>
     </Link>
   )

@@ -17,7 +17,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   const incomeRoute = '/income'
   const { session, setSession } = useAppContext()
   const [continueBtn, setContinueBtn] = useState({
-    label: t('continue'),
+    labelKey: 'continue',
     route: incomeRoute,
   })
   const [form, setForm] = useState(session?.eligibility)
@@ -30,7 +30,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       setContinueBtn({ ...continueBtn, route: '/alternate' })
     } else if (previousRoute === '/review') {
       setContinueBtn({
-        label: t('updateAndReturn'),
+        labelKey: 'updateAndReturn',
         route: previousRoute,
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
@@ -188,7 +188,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             },
           ]}
         />
-        <ButtonLink href={continueBtn.route} label={continueBtn.label} />
+        <ButtonLink href={continueBtn.route} labelKey={continueBtn.labelKey} />
       </form>
     </>
   )

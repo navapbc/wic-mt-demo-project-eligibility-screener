@@ -22,7 +22,7 @@ const Alternate: NextPage = () => {
         i18nKey={'Alternate.location'}
         t={t}
       />
-      <ButtonLink href="/" label={t('Alternate.button')} />
+      <ButtonLink href="/" labelKey="Alternate.button" />
     </>
   )
 }

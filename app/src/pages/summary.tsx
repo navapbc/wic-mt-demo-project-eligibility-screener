@@ -22,14 +22,14 @@ const Summary: NextPage = () => {
         <div>
           <StyledLink
             href="https://dphhs.mt.gov/Assistance"
-            text={t('Summary.learnAbout')}
+            textKey="Summary.learnAbout"
             external={true}
           />
         </div>
       </p>
       <p>
         <Trans i18nKey="Summary.submitAnother" />
-        <ButtonLink label={t('Summary.startNew')} href="/" style="outline" />
+        <ButtonLink labelKey="Summary.startNew" href="/" style="outline" />
       </p>
       <p>
         <Trans i18nKey="Summary.keepCopy" />

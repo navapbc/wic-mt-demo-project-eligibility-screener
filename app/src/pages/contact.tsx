@@ -19,9 +19,8 @@ const Contact: NextPage<Props> = (props: Props) => {
   const { session, setSession } = useAppContext()
   const [form, setForm] = useState(session?.contact)
   const [continueBtn, setContinueBtn] = useState<{
-    label: string
-    width: string
-  }>({ label: t('continue'), width: '105px' })
+    labelKey: string
+  }>({ labelKey: 'continue' })
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -29,8 +28,7 @@ const Contact: NextPage<Props> = (props: Props) => {
 
     if (previousRoute === '/review') {
       setContinueBtn({
-        label: t('updateAndReturn'),
-        width: '239px',
+        labelKey: 'updateAndReturn',
       })
     }
   }, [props.previousRoute, t])
@@ -116,7 +114,7 @@ const Contact: NextPage<Props> = (props: Props) => {
             value={form.other}
           />
         </fieldset>
-        <ButtonLink href="/review" label={continueBtn.label} />
+        <ButtonLink href="/review" labelKey={continueBtn.labelKey} />
       </form>
     </>
   )

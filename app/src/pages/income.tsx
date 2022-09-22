@@ -102,12 +102,12 @@ const Income: NextPage = () => {
           <p>
             <StyledLink
               href="https://dphhs.mt.gov/Assistance"
-              text={t('Income.assistance')}
+              textKey="Income.assistance"
               external={true}
             />
           </p>
         </fieldset>
-        <ButtonLink href="/clinic" label={t('continue')} />
+        <ButtonLink href="/clinic" labelKey="continue" />
       </form>
     </>
   )

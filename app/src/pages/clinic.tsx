@@ -29,9 +29,9 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const [searchError, setSearchError] = useState<boolean>(false)
   const [zipValidationError, setZipValidationError] = useState<boolean>(false)
   const [continueBtn, setContinueBtn] = useState<{
-    label: string
+    labelKey: string
     route: string
-  }>({ label: t('Clinic.button'), route: '/contact' })
+  }>({ labelKey: 'Clinic.button', route: '/contact' })
 
   useEffect(() => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
@@ -39,7 +39,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
 
     if (previousRoute === '/review') {
       setContinueBtn({
-        label: t('updateAndReturn'),
+        labelKey: 'updateAndReturn',
         route: previousRoute,
       })
     }
@@ -203,7 +203,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
             <ButtonLink
               disabled={selectedClinic === undefined}
               href={continueBtn.route}
-              label={continueBtn.label}
+              labelKey={continueBtn.labelKey}
             />
           </form>
         </>
