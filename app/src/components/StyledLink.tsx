@@ -1,9 +1,10 @@
+import { Trans } from 'next-i18next'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
 export interface StyledLinkProps {
   href: string
-  text: string
+  textKey: string
   external?: boolean
 }
 
@@ -17,14 +18,16 @@ export const StyledLink = (props: StyledLinkProps): ReactElement => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {text}
+        <Trans i18nKey={textKey} />
       </a>
     )
   } else {
     // Only use the next/link component for internal routing.
     return (
       <Link href={href} passHref>
-        <a className="usa-link">{text}</a>
+        <a className="usa-link">
+          <Trans i18nKey={textKey} />
+        </a>
       </Link>
     )
   }
