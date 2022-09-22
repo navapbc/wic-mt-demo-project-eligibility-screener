@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'next-i18next'
+import { Trans } from 'next-i18next'
 import Image from 'next/image'
 import { ReactElement } from 'react'
 
@@ -7,7 +7,6 @@ type Props = {
 }
 
 const Layout = ({ children }: Props): ReactElement => {
-  const { t } = useTranslation('common')
 
   return (
     <div className="container">
