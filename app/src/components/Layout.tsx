@@ -16,7 +16,9 @@ const Layout = ({ children }: Props): ReactElement => {
           <div className="grid-row">
             <div className="desktop:grid-col-8 desktop:grid-offset-2">
               <div className="usa-logo margin-left-2">
-                <em className="usa-logo__text">{t('Layout.header')}</em>
+                <em className="usa-logo__text">
+                  <Trans i18nKey="Layout.header" />
+                </em>
               </div>
             </div>
           </div>
