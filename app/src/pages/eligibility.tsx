@@ -1,19 +1,19 @@
 import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { Trans } from 'next-i18next'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
+import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
   previousRoute: string
 }
 
 const Eligibility: NextPage<Props> = (props: Props) => {
-  const { t } = useTranslation('common')
   const incomeRoute = '/income'
   const { session, setSession } = useAppContext()
   const [continueBtn, setContinueBtn] = useState({
@@ -56,11 +56,8 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   return (
     <>
       <BackLink href="/information" />
-      <h1>{t('Eligibility.header')}</h1>
-      <p>
-        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
-        ).
-      </p>
+      <h1><Trans i18nKey="Eligibility.header" /></h1>
+      <RequiredQuestionStatement />
       <form className="usa-form usa-form--large">
         <InputChoiceGroup
           required
