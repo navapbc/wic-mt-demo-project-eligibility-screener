@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import StyledLink from '@components/StyledLink'
+import ButtonLink from '@components/ButtonLink'
 
 export interface BackLinkProps {
   href: string
@@ -8,7 +8,7 @@ export interface BackLinkProps {
 
 export const BackLink = (props: BackLinkProps): ReactElement => {
   const { href } = props
-  return <StyledLink href={href} textKey="backlinkText" />
+  return <ButtonLink labelKey="backlinkText" href={href} style="unstyled" />
 }
 
 export default BackLink

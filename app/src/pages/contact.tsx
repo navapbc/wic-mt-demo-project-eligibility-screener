@@ -69,14 +69,14 @@ const Contact: NextPage<Props> = (props: Props) => {
           <TextInput
             handleChange={handleChange}
             id="firstName"
-            label={t('Contact.firstName')}
+            labelKey="Contact.firstName"
             required
             value={form.firstName}
           />
           <TextInput
             handleChange={handleChange}
             id="lastName"
-            label={t('Contact.lastName')}
+            labelKey="Contact.lastName"
             required
             value={form.lastName}
           />
@@ -110,7 +110,7 @@ const Contact: NextPage<Props> = (props: Props) => {
           <TextArea
             handleChange={handleChangeTextArea}
             id="other"
-            label={t('Contact.otherLabel')}
+            labelKey="Contact.otherLabel"
             value={form.other}
           />
         </fieldset>

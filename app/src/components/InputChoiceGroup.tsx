@@ -1,3 +1,4 @@
+import { Trans } from 'next-i18next'
 import React, { ReactElement } from 'react'
 
 import Accordion from '@components/Accordion'
@@ -5,7 +6,7 @@ import Accordion from '@components/Accordion'
 interface Choice {
   checked: boolean
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  label: string
+  labelKey: string
   name?: string
   value: string
 }
@@ -16,18 +17,18 @@ type Props = {
     bodyKey: string
   }
   choices: Choice[]
-  title: string
+  titleKey: string
   required?: boolean
   type: 'checkbox' | 'radio'
 }
 
 const InputChoiceGroup = (props: Props): ReactElement => {
-  const { accordion, choices, title, required, type } = props
+  const { accordion, choices, titleKey, required, type } = props
 
   return (
     <fieldset className="usa-fieldset">
       <h2>
-        {title}
+        <Trans i18nKey={titleKey} />
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </h2>
       {accordion && (
@@ -48,7 +49,7 @@ const InputChoiceGroup = (props: Props): ReactElement => {
             value={choice.value}
           />
           <label className={`usa-${type}__label`} htmlFor={choice.value}>
-            {choice.label}
+            <Trans i18nKey={choice.labelKey} />
           </label>
         </div>
       ))}

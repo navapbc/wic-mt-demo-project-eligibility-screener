@@ -1,5 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans, useTranslation } from 'next-i18next'
+import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
@@ -7,8 +7,6 @@ import OverviewTables from '@components/OverviewTables'
 import StyledLink from '@components/StyledLink'
 
 const Summary: NextPage = () => {
-  const { t } = useTranslation('common')
-
   return (
     <>
       <h1>

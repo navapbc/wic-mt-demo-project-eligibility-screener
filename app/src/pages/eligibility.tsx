@@ -64,20 +64,20 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       <form className="usa-form usa-form--large">
         <InputChoiceGroup
           required
-          title={t('Eligibility.residential')}
+          titleKey="Eligibility.residential"
           type="radio"
           choices={[
             {
               checked: form.residential === 'yes',
               handleChange,
-              label: 'Yes',
+              labelKey: 'Eligibility.yes',
               name: 'residential',
               value: 'yes',
             },
             {
               checked: form.residential === 'no',
               handleChange,
-              label: 'No',
+              labelKey: 'Eligibility.no',
               name: 'residential',
               value: 'no',
             },
@@ -89,63 +89,63 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             headerKey: 'Eligibility.accordionHeader',
           }}
           required
-          title={t('Eligibility.categorical')}
+          titleKey="Eligibility.categorical"
           type="checkbox"
           choices={[
             {
               checked: form.pregnant,
               handleChange,
-              label: t('Eligibility.pregnant'),
+              labelKey: 'Eligibility.pregnant',
               value: 'pregnant',
             },
             {
               checked: form.baby,
               handleChange,
-              label: t('Eligibility.baby'),
+              labelKey: 'Eligibility.baby',
               value: 'baby',
             },
             {
               checked: form.child,
               handleChange,
-              label: t('Eligibility.child'),
+              labelKey: 'Eligibility.child',
               value: 'child',
             },
             {
               checked: form.guardian,
               handleChange,
-              label: t('Eligibility.guardian'),
+              labelKey: 'Eligibility.guardian',
               value: 'guardian',
             },
             {
               checked: form.loss,
               handleChange,
-              label: t('Eligibility.loss'),
+              labelKey: 'Eligibility.loss',
               value: 'loss',
             },
             {
               checked: form.none,
               handleChange,
-              label: t('Eligibility.none'),
+              labelKey: 'Eligibility.none',
               value: 'none',
             },
           ]}
         />
         <InputChoiceGroup
           required
-          title={t('Eligibility.before')}
+          titleKey="Eligibility.before"
           type="radio"
           choices={[
             {
               checked: form.before === 'yes2',
               handleChange,
-              label: 'Yes',
+              labelKey: 'Eligibility.yes',
               name: 'before',
               value: 'yes2' /* TODO: refactor */,
             },
             {
               checked: form.before === 'no2',
               handleChange,
-              label: 'No',
+              labelKey: 'Eligibility.no',
               name: 'before',
               value: 'no2',
             },
@@ -153,37 +153,37 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         />
         <InputChoiceGroup
           required
-          title={t('Eligibility.programs')}
+          titleKey="Eligibility.programs"
           type="checkbox"
           choices={[
             {
               checked: form.insurance,
               handleChange,
-              label: t('Eligibility.insurance'),
+              labelKey: 'Eligibility.insurance',
               value: 'insurance',
             },
             {
               checked: form.snap,
               handleChange,
-              label: t('Eligibility.snap'),
+              labelKey: 'Eligibility.snap',
               value: 'snap',
             },
             {
               checked: form.tanf,
               handleChange,
-              label: t('Eligibility.tanf'),
+              labelKey: 'Eligibility.tanf',
               value: 'tanf',
             },
             {
               checked: form.fdpir,
               handleChange,
-              label: t('Eligibility.fdpir'),
+              labelKey: 'Eligibility.fdpir',
               value: 'fdpir',
             },
             {
               checked: form.none2,
               handleChange,
-              label: t('Eligibility.none'),
+              labelKey: 'Eligibility.none',
               value: 'none2',
             },
           ]}
