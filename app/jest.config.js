@@ -7,6 +7,7 @@ module.exports = {
     '\\.(css|scss)$': '<rootDir>/tests/__mocks__/styleMock.js', // sets up routing to mocks style sheet
     '^@clinics/*': '<rootDir>/public/clinic-output/clinics-zip-code-lookup$1',
     '^@components(.*)$': '<rootDir>/src/components$1',
+    '^@context(.*)$': '<rootDir>/src/context$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
     '^@public(.*)$': '<rootDir>/public$1',
     '^@styles(.*)$': '<rootDir>/styles$1',

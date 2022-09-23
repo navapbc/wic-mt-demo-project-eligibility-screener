@@ -18,19 +18,20 @@
   "Contact": {
     "button": "Submit",
     "firstName": "First name",
-    "header": "Contact information",
     "lastName": "Last name",
     "name": "What's your name?",
     "other": "Is there anything else you'd like to share with us?",
     "otherLabel": "Comments, questions, other information",
     "phone": "What's the best phone number to reach you at?",
     "phoneAlert": "Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.",
-    "phoneLabel": "Phone number"
+    "phoneLabel": "Phone number",
+    "title": "Contact information"
   },
   "Eligibility": {
     "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your family may qualify for.",
     "accordionHeader": "Why are we asking this?",
     "baby": "I've had a baby in the past 12 months",
+    "before": "Have you or someone in your household received WIC benefits before?",
     "categorical": "Please select all the following that apply to your family:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
     "fdpir": "FDPIR (Food Distribution Program on Indian Reservations)",
@@ -56,8 +57,8 @@
     "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "householdSize": "What is your household size?",
     "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.",
-    "title": "To be eligible for WIC, your <strong>household income before taxes</strong> must be <strong>at</strong> or <strong>below</strong> a certain income level.",
-    "unsure": "<strong>If you are unsure about your income, please continue to apply.</strong> A WIC staff member can answer more specific questions about your situation."
+    "title": "To be eligible for WIC, your <b>household income before taxes</b> must be <b>at</b> or <b>below</b> a certain income level.",
+    "unsure": "<b>If you are unsure about your income, please continue to apply.</b> A WIC staff member can answer more specific questions about your situation."
   },
   "Index": {
     "benefits": "There are many benefits including healthy food, breastfeeding support, nutrition education, and connections to local resources.",
@@ -86,6 +87,18 @@
     "header": "Apply for WIC in Montana",
     "menu": "Menu"
   },
+  "Review": {
+    "button": "Submit",
+    "clinicSelected": "You selected this WIC Clinic to visit",
+    "eligibilityTitle": "Eligibility questions",
+    "subHeader": "Review the information on this page before submitting. If you want to make changes, select \"Edit\" to go to the section you want to change.",
+    "title": "Review and submit your information"
+  },
+  "Summary": {
+    "body": "Thank you for submitting your information. If you're eligible, you should hear from WIC staff at your chosen clinic within 20 days.",
+    "title": "Your confirmation"
+  },
   "asterisk": "All required questions are marked with an asterisk",
-  "continue": "Continue"
+  "continue": "Continue",
+  "updateAndReturn": "Update and return to review"
 }

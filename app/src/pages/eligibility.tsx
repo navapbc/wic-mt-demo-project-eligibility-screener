@@ -1,3 +1,4 @@
+import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -7,46 +8,49 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 
-const Eligibility: NextPage = () => {
+interface Props {
+  previousRoute: string
+}
+
+const Eligibility: NextPage<Props> = (props: Props) => {
   const { t } = useTranslation('common')
   const incomeRoute = '/income'
-  const [continueLink, setContinueLink] = useState(incomeRoute)
-  const [form, setForm] = useState({
-    residential: '',
-    pregnant: false,
-    baby: false,
-    child: false,
-    guardian: false,
-    none: false,
-    loss: false,
-    insurance: false,
-    snap: false,
-    tanf: false,
-    fdpir: false,
-    none2: false,
+  const { session, setSession } = useAppContext()
+  const [continueBtn, setContinueBtn] = useState({
+    label: t('continue'),
+    route: incomeRoute,
   })
+  const [form, setForm] = useState(session?.eligibility)
 
   useEffect(() => {
+    /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
+    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
+    const previousRoute = props.previousRoute.substring(prevRouteIndex)
     if (form.none) {
-      setContinueLink('/alternate')
-    } else setContinueLink(incomeRoute)
-  }, [form.none])
+      setContinueBtn({ ...continueBtn, route: '/alternate' })
+    } else if (previousRoute === '/review') {
+      setContinueBtn({
+        label: t('updateAndReturn'),
+        route: previousRoute,
+      })
+    } else setContinueBtn({ ...continueBtn, route: incomeRoute })
+  }, [form.none, props.previousRoute])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
     const castValue = value as keyof typeof form
     let newValue
 
-    if (name === 'residential') {
+    if (['residential', 'before'].includes(name)) {
       newValue = { [name]: value }
     } else {
       newValue = { [castValue]: !form[castValue] }
     }
 
-    setForm({
-      ...form,
-      ...newValue,
-    })
+    const newForm = { ...form, ...newValue }
+
+    setForm(newForm)
+    setSession({ ...session, eligibility: newForm })
   }
 
   return (
@@ -129,6 +133,28 @@ const Eligibility: NextPage = () => {
       <br />
       <InputChoiceGroup
         required
+        title={t('Eligibility.before')}
+        type="radio"
+        choices={[
+          {
+            checked: form.before === 'yes2',
+            handleChange,
+            label: 'Yes',
+            name: 'before',
+            value: 'yes2' /* TODO: refactor */,
+          },
+          {
+            checked: form.before === 'no2',
+            handleChange,
+            label: 'No',
+            name: 'before',
+            value: 'no2',
+          },
+        ]}
+      />
+      <br />
+      <InputChoiceGroup
+        required
         title={t('Eligibility.programs')}
         type="checkbox"
         choices={[
@@ -167,15 +193,19 @@ const Eligibility: NextPage = () => {
       <br />
       <br />
       <br />
-      <ButtonLink href={continueLink} label={t('continue')} />
+      <ButtonLink href={continueBtn.route} label={continueBtn.label} />
       <br />
     </form>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
   return {
     props: {
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
