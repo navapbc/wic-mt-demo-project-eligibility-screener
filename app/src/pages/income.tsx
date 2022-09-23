@@ -8,12 +8,14 @@ import Accordion from '@components/Accordion'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import Dropdown from '@components/Dropdown'
+import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
 const Income: NextPage = () => {
   const { t } = useTranslation('common')
   const [householdSize, setHouseholdSize] = useState<keyof typeof incomeData>()
   const householdSizes: string[] = Object.keys(incomeData)
+  const incomePeriods: string[] = ['annual', 'monthly', 'biweekly', 'weekly']
 
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement> & {
@@ -29,10 +31,7 @@ const Income: NextPage = () => {
       <h1>
         <Trans i18nKey="Income.header" />
       </h1>
-      <p>
-        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
-        ).
-      </p>
+      <RequiredQuestionStatement />
 
       <div className="content-group">
         <h2>
@@ -51,7 +50,9 @@ const Income: NextPage = () => {
 
       <form className="usa-form usa-form--large">
         <fieldset className="usa-fieldset">
-          <h2>{t('Income.householdSize')}</h2>
+          <h2>
+            <Trans i18nKey="Income.householdSize" />
+          </h2>
           <Accordion
             bodyKey={'Income.accordionBody'}
             headerKey={'Income.accordionHeader'}
@@ -68,34 +69,28 @@ const Income: NextPage = () => {
         <fieldset className="usa-fieldset">
           <table className="usa-table usa-table--stacked usa-table--borderless">
             <caption>
-              <h2>{t('Income.estimatedIncome')}</h2>
+              <h2>
+                <Trans i18nKey="Income.estimatedIncome" />
+              </h2>
             </caption>
             <thead>
               <tr>
-                <th scope="col">Annual</th>
-                <th scope="col">Monthly</th>
-                <th scope="col">Bi-weekly</th>
-                <th scope="col">Weekly</th>
+                {incomePeriods.map((key: string) => (
+                  <th scope="col">{t(`Income.incomePeriods.${key}`)}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th data-label="Annual" scope="row">
-                  {(householdSize && incomeData[householdSize]?.annual) ||
-                    '$XX,XXX'}
-                </th>
-                <td data-label="Monthly">
-                  {(householdSize && incomeData[householdSize]?.monthly) ||
-                    '$X,XXX'}
-                </td>
-                <td data-label="Bi-weekly">
-                  {(householdSize && incomeData[householdSize]?.biweekly) ||
-                    '$X,XXX'}
-                </td>
-                <td data-label="Weekly">
-                  {(householdSize && incomeData[householdSize]?.weekly) ||
-                    '$X,XXX'}
-                </td>
+                {incomePeriods.map((key: string) => (
+                  <td data-label={t(`Income.incomePeriods.${key}`)} scope="col">
+                    {(householdSize &&
+                      incomeData[householdSize][
+                        key as keyof typeof incomeData[1]
+                      ]) ||
+                      '$XX,XXX'}
+                  </td>
+                ))}
               </tr>
             </tbody>
           </table>
