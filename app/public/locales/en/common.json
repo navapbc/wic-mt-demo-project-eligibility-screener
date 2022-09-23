@@ -104,11 +104,11 @@
   },
   "Summary": {
     "body": "Thank you for submitting your information. If you're eligible, you should hear from WIC staff at your chosen clinic within 20 days.",
-    "interestedIn": "<strong>Interested in other available assistance and benefits?</strong>",
-    "keepCopy": "<strong>Keep a copy of your confirmation for your records.</strong>",
+    "interestedIn": "Interested in other available assistance and benefits?",
+    "keepCopy": "Keep a copy of your confirmation for your records.",
     "learnAbout": "Learn about other assistance",
     "startNew": "Start a new application",
-    "submitAnother": "<strong>Do you need to submit another application for someone else?</strong>",
+    "submitAnother": "Do you need to submit another application for someone else?",
     "title": "Your confirmation"
   },
   "asterisk": "All required questions are marked with an asterisk",

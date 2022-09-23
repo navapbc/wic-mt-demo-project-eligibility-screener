@@ -37,7 +37,7 @@ i.e.
 // Header:
 // Set custom background and text colors.
 .header {
-  background-color: #162E51;
+  background-color: #162e51;
   color: #fff;
 }
 
@@ -70,5 +70,19 @@ i.e.
 
   p:last-child {
     margin-bottom: 0;
+  }
+}
+
+// A logical content grouping for content.
+// Used on the summary page.
+.content-group-small {
+  @include u-margin-bottom(4);
+
+  h4 {
+    @include u-margin-bottom(0);
+  }
+
+  p {
+    @include u-margin-top(1);
   }
 }
