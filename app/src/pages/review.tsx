@@ -6,12 +6,14 @@ import type {
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import OverviewTables from '@components/OverviewTables'
 
 const Review: NextPage = () => {
   return (
     <>
+      <BackLink href="/contact" />
       <h1>
         <Trans i18nKey="Review.title" />
       </h1>
