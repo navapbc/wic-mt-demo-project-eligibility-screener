@@ -58,7 +58,7 @@ const Income: NextPage = () => {
           />
           <Dropdown
             id="income"
-            label={t('Income.dropdownLabel')}
+            labelKey="Income.dropdownLabel"
             handleChange={handleChange}
             options={householdSizes}
             required={true}
