@@ -24,9 +24,9 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
       </label>
       <select className="usa-select" id={id} onChange={handleChange}>
         <option value={undefined}>
-          &mdash;&nbsp;
+          -&nbsp;
           <Trans i18nKey="select" />
-          &nbsp;&mdash;
+          &nbsp;-
         </option>
         {options.map((option: string) => (
           <option value={option} key={option}>
