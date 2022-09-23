@@ -9,7 +9,7 @@ export interface StyledLinkProps {
 }
 
 export const StyledLink = (props: StyledLinkProps): ReactElement => {
-  const { href, text, external = false } = props
+  const { href, textKey, external = false } = props
   if (external) {
     return (
       <a
