@@ -75,18 +75,23 @@ const Income: NextPage = () => {
             </caption>
             <thead>
               <tr>
-                {incomePeriods.map((key: string) => (
-                  <th scope="col">{t(`Income.incomePeriods.${key}`)}</th>
+                {incomePeriods.map((period: string) => (
+                  <th scope="col" key={period}>
+                    {t(`Income.incomePeriods.${period}`)}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               <tr>
-                {incomePeriods.map((key: string) => (
-                  <td data-label={t(`Income.incomePeriods.${key}`)} scope="col">
+                {incomePeriods.map((period: string) => (
+                  <td
+                    data-label={t(`Income.incomePeriods.${period}`)}
+                    key={period}
+                  >
                     {(householdSize &&
                       incomeData[householdSize][
-                        key as keyof typeof incomeData[1]
+                        period as keyof typeof incomeData[1]
                       ]) ||
                       '$XX,XXX'}
                   </td>
