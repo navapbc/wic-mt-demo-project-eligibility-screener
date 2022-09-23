@@ -34,7 +34,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         route: previousRoute,
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
-  }, [form.none, props.previousRoute, continueBtn, t])
+  }, [form.none, props.previousRoute])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
