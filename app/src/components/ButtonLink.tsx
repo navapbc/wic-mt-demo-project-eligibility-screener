@@ -2,6 +2,8 @@ import { Trans } from 'next-i18next'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
+import Button from '@components/Button'
+
 type Props = {
   disabled?: boolean
   labelKey: string
@@ -12,21 +14,13 @@ type Props = {
 const ButtonLink = (props: Props): ReactElement => {
   const { disabled, href, labelKey, style } = props
 
-  let buttonStyle = ''
-  if (style) {
-    buttonStyle = `usa-button--${style} margin-top-1`
-  } else {
-    buttonStyle = 'margin-top-6'
-  }
-
   return (
     <Link href={href} passHref>
-      <button
-        className={`usa-button usa-button--small display-block ${buttonStyle}`}
+      <Button
         disabled={disabled}
-      >
-        <Trans i18nKey={labelKey} />
-      </button>
+        labelKey={labelKey}
+        style={style}
+      />
     </Link>
   )
 }

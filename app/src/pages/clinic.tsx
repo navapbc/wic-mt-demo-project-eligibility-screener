@@ -9,6 +9,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
+import Button from '@components/Button'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
@@ -193,12 +194,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
                     )
                 )}
               {!expandList && (
-                <button
-                  onClick={() => setExpandList(true)}
-                  className="usa-button usa-button--unstyled"
-                >
-                  Show more clinic options
-                </button>
+                <Button labelKey="Clinic.showMoreOptions" style="unstyled" onClick={() => setExpandList(true)} />
               )}
             </fieldset>
             <ButtonLink
