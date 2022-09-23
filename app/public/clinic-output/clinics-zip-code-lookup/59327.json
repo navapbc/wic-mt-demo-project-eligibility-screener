@@ -32,23 +32,23 @@
         "distance": "90.7 mi"
     },
     {
-        "id": 63,
+        "id": 62,
         "distance": "100 mi"
     },
     {
-        "id": 64,
+        "id": 63,
         "distance": "101 mi"
     },
     {
-        "id": 65,
+        "id": 64,
         "distance": "102 mi"
     },
     {
         "id": 8,
-        "distance": "111 mi"
+        "distance": "112 mi"
     },
     {
-        "id": 61,
+        "id": 60,
         "distance": "116 mi"
     },
     {
@@ -68,11 +68,11 @@
         "distance": "128 mi"
     },
     {
-        "id": 60,
+        "id": 59,
         "distance": "134 mi"
     },
     {
-        "id": 59,
+        "id": 58,
         "distance": "141 mi"
     },
     {
@@ -84,7 +84,7 @@
         "distance": "148 mi"
     },
     {
-        "id": 62,
+        "id": 61,
         "distance": "160 mi"
     },
     {
@@ -92,7 +92,7 @@
         "distance": "171 mi"
     },
     {
-        "id": 79,
+        "id": 77,
         "distance": "171 mi"
     },
     {
@@ -116,7 +116,7 @@
         "distance": "221 mi"
     },
     {
-        "id": 87,
+        "id": 85,
         "distance": "224 mi"
     },
     {
@@ -140,11 +140,11 @@
         "distance": "253 mi"
     },
     {
-        "id": 78,
+        "id": 76,
         "distance": "255 mi"
     },
     {
-        "id": 88,
+        "id": 86,
         "distance": "259 mi"
     },
     {
@@ -152,7 +152,7 @@
         "distance": "264 mi"
     },
     {
-        "id": 85,
+        "id": 83,
         "distance": "277 mi"
     },
     {
@@ -172,10 +172,6 @@
         "distance": "297 mi"
     },
     {
-        "id": 58,
-        "distance": "298 mi"
-    },
-    {
         "id": 38,
         "distance": "299 mi"
     },
@@ -184,11 +180,11 @@
         "distance": "300 mi"
     },
     {
-        "id": 84,
+        "id": 82,
         "distance": "318 mi"
     },
     {
-        "id": 66,
+        "id": 65,
         "distance": "323 mi"
     },
     {
@@ -204,7 +200,7 @@
         "distance": "331 mi"
     },
     {
-        "id": 81,
+        "id": 79,
         "distance": "336 mi"
     },
     {
@@ -216,11 +212,11 @@
         "distance": "337 mi"
     },
     {
-        "id": 80,
+        "id": 78,
         "distance": "337 mi"
     },
     {
-        "id": 82,
+        "id": 80,
         "distance": "343 mi"
     },
     {
@@ -236,7 +232,7 @@
         "distance": "363 mi"
     },
     {
-        "id": 86,
+        "id": 84,
         "distance": "368 mi"
     },
     {
@@ -244,7 +240,7 @@
         "distance": "378 mi"
     },
     {
-        "id": 83,
+        "id": 81,
         "distance": "389 mi"
     },
     {
@@ -276,7 +272,7 @@
         "distance": "453 mi"
     },
     {
-        "id": 67,
+        "id": 66,
         "distance": "468 mi"
     },
     {
@@ -292,7 +288,7 @@
         "distance": "478 mi"
     },
     {
-        "id": 72,
+        "id": 70,
         "distance": "483 mi"
     },
     {
@@ -304,39 +300,35 @@
         "distance": "494 mi"
     },
     {
-        "id": 71,
+        "id": 69,
         "distance": "498 mi"
     },
     {
-        "id": 76,
+        "id": 74,
         "distance": "500 mi"
-    },
-    {
-        "id": 70,
-        "distance": "502 mi"
     },
     {
         "id": 41,
         "distance": "511 mi"
     },
     {
-        "id": 73,
-        "distance": "519 mi"
-    },
-    {
-        "id": 69,
-        "distance": "519 mi"
-    },
-    {
-        "id": 75,
+        "id": 71,
         "distance": "519 mi"
     },
     {
         "id": 68,
+        "distance": "519 mi"
+    },
+    {
+        "id": 73,
+        "distance": "519 mi"
+    },
+    {
+        "id": 67,
         "distance": "528 mi"
     },
     {
-        "id": 77,
+        "id": 75,
         "distance": "543 mi"
     },
     {
@@ -344,7 +336,7 @@
         "distance": "556 mi"
     },
     {
-        "id": 74,
+        "id": 72,
         "distance": "579 mi"
     },
     {

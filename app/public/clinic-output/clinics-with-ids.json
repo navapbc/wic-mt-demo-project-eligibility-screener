@@ -93,7 +93,7 @@
         "agencyAddress": "",
         "agencyTelephone": "",
         "clinic": "LODGE GRASS WIC",
-        "clinicAddress": "Po Box 780 Lodge Grass, MT 59050",
+        "clinicAddress": "418 Harding Ave. Lodge Grass, MT 59050",
         "clinicTelephone": "(406) 639-2246",
         "county": "BIG HORN",
         "zip": "59050"
@@ -115,7 +115,7 @@
         "agencyAddress": "",
         "agencyTelephone": "",
         "clinic": "BAKER WIC (ONE HEALTH)",
-        "clinicAddress": "225 South 3rd St W Baker, MT 59313",
+        "clinicAddress": "225 3rd St SW Baker, MT 59313",
         "clinicTelephone": "(406) 778-2824",
         "county": "FALLON",
         "zip": "59313"
@@ -324,7 +324,7 @@
         "agencyAddress": "",
         "agencyTelephone": "",
         "clinic": "HAYS WIC",
-        "clinicAddress": "123 White Cow Canyon Rd Hays, MT 59527",
+        "clinicAddress": "453 Pine Grove Rd, Hays, MT 59527",
         "clinicTelephone": "(406) 673-3777",
         "county": "BLAINE",
         "zip": "59527"
@@ -639,17 +639,6 @@
     },
     {
         "id": 58,
-        "agency": "REMOTE CLINIC",
-        "agencyAddress": "1625 11th Ave Helena, MT 59620",
-        "agencyTelephone": "(406) 444-4747",
-        "clinic": "REMOTE CLINIC",
-        "clinicAddress": "1625 11th Ave Helena, MT 59620",
-        "clinicTelephone": "(406) 444-4747",
-        "county": "LEWIS AND CLARK",
-        "zip": "59620"
-    },
-    {
-        "id": 59,
         "agency": "RIVERSTONE",
         "agencyAddress": "123 S. 27th Street Billings, MT 59107",
         "agencyTelephone": "(406) 247-3370",
@@ -660,7 +649,7 @@
         "zip": "59019"
     },
     {
-        "id": 60,
+        "id": 59,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -671,7 +660,7 @@
         "zip": "59041"
     },
     {
-        "id": 61,
+        "id": 60,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -682,7 +671,7 @@
         "zip": "59044"
     },
     {
-        "id": 62,
+        "id": 61,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -693,7 +682,7 @@
         "zip": "59068"
     },
     {
-        "id": 63,
+        "id": 62,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -704,7 +693,7 @@
         "zip": "59101"
     },
     {
-        "id": 64,
+        "id": 63,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -715,7 +704,7 @@
         "zip": "59072"
     },
     {
-        "id": 65,
+        "id": 64,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -726,7 +715,7 @@
         "zip": "59102"
     },
     {
-        "id": 66,
+        "id": 65,
         "agency": "ROCKY BOY",
         "agencyAddress": "Rocky Boy Route Po Box 664 Box Elder, MT 59521",
         "agencyTelephone": "(406) 395-4486",
@@ -737,7 +726,7 @@
         "zip": "59521"
     },
     {
-        "id": 67,
+        "id": 66,
         "agency": "SALISH & KOOTENAI",
         "agencyAddress": "Tribal Health Dept Po Box 880 St. Ignatius, MT 59865",
         "agencyTelephone": "(406) 745-3525",
@@ -748,7 +737,7 @@
         "zip": "59821"
     },
     {
-        "id": 68,
+        "id": 67,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -759,7 +748,7 @@
         "zip": "59915"
     },
     {
-        "id": 69,
+        "id": 68,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -770,18 +759,7 @@
         "zip": "59845"
     },
     {
-        "id": 70,
-        "agency": "",
-        "agencyAddress": "",
-        "agencyTelephone": "",
-        "clinic": "PABLO WIC",
-        "clinicAddress": "35928 Joe Mcdonald Drive Pablo, MT 59855",
-        "clinicTelephone": "(406) 745-3528",
-        "county": "LAKE",
-        "zip": "59855"
-    },
-    {
-        "id": 71,
+        "id": 69,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -792,7 +770,7 @@
         "zip": "59864"
     },
     {
-        "id": 72,
+        "id": 70,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -803,7 +781,7 @@
         "zip": "59865"
     },
     {
-        "id": 73,
+        "id": 71,
         "agency": "SANDERS",
         "agencyAddress": "Po Box 519 Thompson Falls, MT 59873",
         "agencyTelephone": "(406) 827-6931",
@@ -814,7 +792,7 @@
         "zip": "59845"
     },
     {
-        "id": 74,
+        "id": 72,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -825,7 +803,7 @@
         "zip": "59853"
     },
     {
-        "id": 75,
+        "id": 73,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -836,7 +814,7 @@
         "zip": "59873"
     },
     {
-        "id": 76,
+        "id": 74,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -847,7 +825,7 @@
         "zip": "59872"
     },
     {
-        "id": 77,
+        "id": 75,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -858,7 +836,7 @@
         "zip": "59873"
     },
     {
-        "id": 78,
+        "id": 76,
         "agency": "SHERIDAN",
         "agencyAddress": "100 W. Laurel Plentywood, MT 59254",
         "agencyTelephone": "(406) 765-3473",
@@ -869,7 +847,7 @@
         "zip": "59254"
     },
     {
-        "id": 79,
+        "id": 77,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -880,7 +858,7 @@
         "zip": "59270"
     },
     {
-        "id": 80,
+        "id": 78,
         "agency": "TETON",
         "agencyAddress": "905 4th Street, Nw Choteau, MT 59422",
         "agencyTelephone": "(406) 466-2562",
@@ -891,7 +869,7 @@
         "zip": "59410"
     },
     {
-        "id": 81,
+        "id": 79,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -902,7 +880,7 @@
         "zip": "59422"
     },
     {
-        "id": 82,
+        "id": 80,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -913,7 +891,7 @@
         "zip": "59425"
     },
     {
-        "id": 83,
+        "id": 81,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -924,7 +902,7 @@
         "zip": "59427"
     },
     {
-        "id": 84,
+        "id": 82,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -935,7 +913,7 @@
         "zip": "59436"
     },
     {
-        "id": 85,
+        "id": 83,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -946,7 +924,7 @@
         "zip": "59442"
     },
     {
-        "id": 86,
+        "id": 84,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",
@@ -957,7 +935,7 @@
         "zip": "59474"
     },
     {
-        "id": 87,
+        "id": 85,
         "agency": "VALLEY",
         "agencyAddress": "Frances Mahon Deaconess Hospital 621 3rd Street, S Glasgow, MT 59230",
         "agencyTelephone": "(406) 228-3626",
@@ -968,7 +946,7 @@
         "zip": "59230"
     },
     {
-        "id": 88,
+        "id": 86,
         "agency": "",
         "agencyAddress": "",
         "agencyTelephone": "",

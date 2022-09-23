@@ -12,7 +12,7 @@
         "distance": "62.5 mi"
     },
     {
-        "id": 85,
+        "id": 83,
         "distance": "66.4 mi"
     },
     {
@@ -20,7 +20,7 @@
         "distance": "81.3 mi"
     },
     {
-        "id": 84,
+        "id": 82,
         "distance": "83.1 mi"
     },
     {
@@ -28,19 +28,19 @@
         "distance": "85.5 mi"
     },
     {
-        "id": 81,
+        "id": 79,
         "distance": "101 mi"
     },
     {
-        "id": 80,
+        "id": 78,
         "distance": "102 mi"
     },
     {
-        "id": 82,
+        "id": 80,
         "distance": "108 mi"
     },
     {
-        "id": 66,
+        "id": 65,
         "distance": "114 mi"
     },
     {
@@ -52,7 +52,7 @@
         "distance": "123 mi"
     },
     {
-        "id": 86,
+        "id": 84,
         "distance": "133 mi"
     },
     {
@@ -60,11 +60,7 @@
         "distance": "136 mi"
     },
     {
-        "id": 58,
-        "distance": "136 mi"
-    },
-    {
-        "id": 64,
+        "id": 63,
         "distance": "138 mi"
     },
     {
@@ -80,12 +76,12 @@
         "distance": "153 mi"
     },
     {
-        "id": 83,
+        "id": 81,
         "distance": "154 mi"
     },
     {
         "id": 29,
-        "distance": "159 mi"
+        "distance": "158 mi"
     },
     {
         "id": 37,
@@ -104,7 +100,7 @@
         "distance": "169 mi"
     },
     {
-        "id": 59,
+        "id": 58,
         "distance": "170 mi"
     },
     {
@@ -112,15 +108,15 @@
         "distance": "175 mi"
     },
     {
-        "id": 63,
+        "id": 62,
         "distance": "175 mi"
     },
     {
-        "id": 65,
+        "id": 64,
         "distance": "176 mi"
     },
     {
-        "id": 61,
+        "id": 60,
         "distance": "177 mi"
     },
     {
@@ -136,7 +132,7 @@
         "distance": "189 mi"
     },
     {
-        "id": 60,
+        "id": 59,
         "distance": "190 mi"
     },
     {
@@ -152,7 +148,7 @@
         "distance": "191 mi"
     },
     {
-        "id": 88,
+        "id": 86,
         "distance": "196 mi"
     },
     {
@@ -168,7 +164,7 @@
         "distance": "214 mi"
     },
     {
-        "id": 62,
+        "id": 61,
         "distance": "215 mi"
     },
     {
@@ -200,7 +196,7 @@
         "distance": "236 mi"
     },
     {
-        "id": 67,
+        "id": 66,
         "distance": "239 mi"
     },
     {
@@ -224,7 +220,7 @@
         "distance": "251 mi"
     },
     {
-        "id": 72,
+        "id": 70,
         "distance": "254 mi"
     },
     {
@@ -244,20 +240,16 @@
         "distance": "261 mi"
     },
     {
-        "id": 87,
+        "id": 85,
         "distance": "266 mi"
     },
     {
-        "id": 71,
+        "id": 69,
         "distance": "269 mi"
     },
     {
-        "id": 76,
+        "id": 74,
         "distance": "271 mi"
-    },
-    {
-        "id": 70,
-        "distance": "274 mi"
     },
     {
         "id": 14,
@@ -280,15 +272,15 @@
         "distance": "282 mi"
     },
     {
+        "id": 71,
+        "distance": "290 mi"
+    },
+    {
+        "id": 68,
+        "distance": "290 mi"
+    },
+    {
         "id": 73,
-        "distance": "290 mi"
-    },
-    {
-        "id": 69,
-        "distance": "290 mi"
-    },
-    {
-        "id": 75,
         "distance": "290 mi"
     },
     {
@@ -300,19 +292,15 @@
         "distance": "298 mi"
     },
     {
-        "id": 68,
+        "id": 67,
         "distance": "299 mi"
-    },
-    {
-        "id": 16,
-        "distance": "306 mi"
     },
     {
         "id": 31,
         "distance": "311 mi"
     },
     {
-        "id": 77,
+        "id": 75,
         "distance": "314 mi"
     },
     {
@@ -324,7 +312,7 @@
         "distance": "324 mi"
     },
     {
-        "id": 79,
+        "id": 77,
         "distance": "333 mi"
     },
     {
@@ -336,7 +324,7 @@
         "distance": "342 mi"
     },
     {
-        "id": 74,
+        "id": 72,
         "distance": "350 mi"
     },
     {
@@ -352,7 +340,7 @@
         "distance": "381 mi"
     },
     {
-        "id": 78,
+        "id": 76,
         "distance": "395 mi"
     }
 ]

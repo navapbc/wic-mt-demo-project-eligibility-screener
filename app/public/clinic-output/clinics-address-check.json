@@ -41,8 +41,8 @@
     },
     {
         "id": 8,
-        "inputAddress": "Po Box 780 Lodge Grass, MT 59050",
-        "parsedAddress": "Lodge Grass, MT 59050, USA"
+        "inputAddress": "418 Harding Ave. Lodge Grass, MT 59050",
+        "parsedAddress": "418 Harding Ave, Lodge Grass, MT 59050, USA"
     },
     {
         "id": 9,
@@ -51,8 +51,8 @@
     },
     {
         "id": 10,
-        "inputAddress": "225 South 3rd St W Baker, MT 59313",
-        "parsedAddress": "N 3rd St W, Baker, MT 59313, USA"
+        "inputAddress": "225 3rd St SW Baker, MT 59313",
+        "parsedAddress": "225 3rd St SW, Baker, MT 59313, USA"
     },
     {
         "id": 11,
@@ -146,8 +146,8 @@
     },
     {
         "id": 29,
-        "inputAddress": "123 White Cow Canyon Rd Hays, MT 59527",
-        "parsedAddress": "White Cow Canyon, Hays, MT 59527, USA"
+        "inputAddress": "453 Pine Grove Rd, Hays, MT 59527",
+        "parsedAddress": "453 Pne Grv Rd, Hays, MT 59527, USA"
     },
     {
         "id": 30,
@@ -291,156 +291,146 @@
     },
     {
         "id": 58,
-        "inputAddress": "1625 11th Ave Helena, MT 59620",
-        "parsedAddress": "1625 11th Ave, Helena, MT 59601, USA"
-    },
-    {
-        "id": 59,
         "inputAddress": "44 W. 4th Ave. N Columbus, MT 59019",
         "parsedAddress": "44 W 4th Ave N, Columbus, MT 59019, USA"
     },
     {
-        "id": 60,
+        "id": 59,
         "inputAddress": "202 State St. Joliet, MT 59041",
         "parsedAddress": "202 State St, Joliet, MT 59041, USA"
     },
     {
-        "id": 61,
+        "id": 60,
         "inputAddress": "319 1st Avenue North Laurel, MT 59044",
         "parsedAddress": "319 1st Ave, Laurel, MT 59044, USA"
     },
     {
-        "id": 62,
+        "id": 61,
         "inputAddress": "St Agnes Catholic Church, 1 N. Word Avenue Red Lodge, MT 59068",
         "parsedAddress": "1 Word Ave N, Red Lodge, MT 59068, USA"
     },
     {
-        "id": 63,
+        "id": 62,
         "inputAddress": "123 S. 27th Street Billings, MT 59101",
         "parsedAddress": "123 S 27th St, Billings, MT 59101, USA"
     },
     {
-        "id": 64,
+        "id": 63,
         "inputAddress": "704 1st Street East Roundup, MT 59072",
         "parsedAddress": "704 1st St E, Roundup, MT 59072, USA"
     },
     {
-        "id": 65,
+        "id": 64,
         "inputAddress": "1020 Cook Ave. Billings, MT 59102",
         "parsedAddress": "1020 Cook Ave, Billings, MT 59102, USA"
     },
     {
-        "id": 66,
+        "id": 65,
         "inputAddress": "Rr 1 Box 66 Box Elder, MT 59521",
         "parsedAddress": "Box Elder, MT, USA"
     },
     {
-        "id": 67,
+        "id": 66,
         "inputAddress": "Arlee Community Center Arlee, MT 59821",
         "parsedAddress": "34086 Pow Wow Rd, Arlee, MT 59821, USA"
     },
     {
-        "id": 68,
+        "id": 67,
         "inputAddress": "33116 Highway 93 Elmo, MT 59915",
         "parsedAddress": "33116 US-93, Elmo, MT 59915, USA"
     },
     {
-        "id": 69,
+        "id": 68,
         "inputAddress": "208 Arlee St. S. Hot Springs, MT 59845",
         "parsedAddress": "208 Arlee St, Hot Springs, MT 59845, USA"
     },
     {
-        "id": 70,
-        "inputAddress": "35928 Joe Mcdonald Drive Pablo, MT 59855",
-        "parsedAddress": "35928 Joe McDonald Dr, Ronan, MT 59864, USA"
-    },
-    {
-        "id": 71,
+        "id": 69,
         "inputAddress": "22 Round Butte Rd West Ronan, MT 59864",
         "parsedAddress": "22 Round Butte Rd, Ronan, MT 59864, USA"
     },
     {
-        "id": 72,
+        "id": 70,
         "inputAddress": "880 Mission Drive St. Ignatius, MT 59865",
         "parsedAddress": "Mission Dr, St Ignatius, MT 59865, USA"
     },
     {
-        "id": 73,
+        "id": 71,
         "inputAddress": "214 Spring St. Hot Springs, MT 59845",
         "parsedAddress": "214 Spring St, Hot Springs, MT 59845, USA"
     },
     {
-        "id": 74,
+        "id": 72,
         "inputAddress": "1419 Hwy 200, Noxon, MT 59853",
         "parsedAddress": "1419 MT-200, Noxon, MT 59853, USA"
     },
     {
-        "id": 75,
+        "id": 73,
         "inputAddress": "505 5th St. Plains, MT 59873 ",
         "parsedAddress": "505 5th St, Plains, MT 59859, USA"
     },
     {
-        "id": 76,
+        "id": 74,
         "inputAddress": "1203 5th Ave East Superior, MT 59872",
         "parsedAddress": "1203 5th Ave E, Superior, MT 59872, USA"
     },
     {
-        "id": 77,
+        "id": 75,
         "inputAddress": "1111  Main St. Room 120 Thompson Falls, MT 59873",
         "parsedAddress": "1111 W Main St #120, Thompson Falls, MT 59873, USA"
     },
     {
-        "id": 78,
+        "id": 76,
         "inputAddress": "100 W. Laurel Plentywood, MT 59254",
         "parsedAddress": "100 W Laurel Ave, Plentywood, MT 59254, USA"
     },
     {
-        "id": 79,
+        "id": 77,
         "inputAddress": "1201 W. Holly #1 Sidney, MT 59270",
         "parsedAddress": "1201 W Holly St # 1, Sidney, MT 59270, USA"
     },
     {
-        "id": 80,
+        "id": 78,
         "inputAddress": "132 Main Street Augusta, MT 59410",
         "parsedAddress": "132 Main St, Augusta, MT 59410, USA"
     },
     {
-        "id": 81,
+        "id": 79,
         "inputAddress": "905 4th Street Nw Choteau, MT 59422",
         "parsedAddress": "905 4th St NW, Choteau, MT 59422, USA"
     },
     {
-        "id": 82,
+        "id": 80,
         "inputAddress": "One 4th Ave Se Conrad, MT 59425",
         "parsedAddress": "4th Ave SE, Conrad, MT 59425, USA"
     },
     {
-        "id": 83,
+        "id": 81,
         "inputAddress": "1210 E. Main Cut Bank, MT 59427",
         "parsedAddress": "GLACIER COUNTY COURTHOUSE ANNEX, 1210 E Main St, Cut Bank, MT 59427, USA"
     },
     {
-        "id": 84,
+        "id": 82,
         "inputAddress": "201 1st Ave North, Fairfield Fairfield, MT 59436",
         "parsedAddress": "201 1st Ave N, Fairfield, MT 59436, USA"
     },
     {
-        "id": 85,
+        "id": 83,
         "inputAddress": "1020 13th Street Po Box 459 Fort Benton, MT 59442",
         "parsedAddress": "Fort Benton, MT 59442, USA"
     },
     {
-        "id": 86,
+        "id": 84,
         "inputAddress": "402 1st Street S. Shelby, MT 59474",
         "parsedAddress": "402 1st St S, Shelby, MT 59474, USA"
     },
     {
-        "id": 87,
+        "id": 85,
         "inputAddress": "621-3rd St. S Glasgow, MT 59230",
         "parsedAddress": "621 3rd St S, Glasgow, MT 59230, USA"
     },
     {
-        "id": 88,
+        "id": 86,
         "inputAddress": "311 S 8th Ave East Malta, MT 59538",
         "parsedAddress": "311 S 8th Ave E, Malta, MT 59538, USA"
     }
