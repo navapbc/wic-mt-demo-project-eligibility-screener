@@ -12,7 +12,7 @@ const Layout = ({ children }: Props): ReactElement => {
       <header className="header usa-header usa-header--basic" role="banner">
         <div className="usa-navbar">
           <div className="grid-row">
-            <div className="desktop:grid-col-8 desktop:grid-offset-2">
+            <div className="desktop:grid-col-8">
               <div className="usa-logo margin-left-2">
                 <em className="usa-logo__text">
                   <Trans i18nKey="Layout.header" />
@@ -24,7 +24,7 @@ const Layout = ({ children }: Props): ReactElement => {
       </header>
       <main className="main">
         <div className="grid-row">
-          <div className="desktop:grid-col-8 desktop:grid-offset-2 padding-2 padding-bottom-8">
+          <div className="desktop:grid-col-8 padding-2 padding-bottom-8">
             {children}
           </div>
         </div>
@@ -32,7 +32,7 @@ const Layout = ({ children }: Props): ReactElement => {
       <footer className="footer usa-footer usa-footer--slim">
         <div className="usa-footer__primary-section">
           <div className="grid-row">
-            <div className="desktop:grid-col-8 desktop:grid-offset-2 padding-2">
+            <div className="desktop:grid-col-8 padding-2">
               <div className="logos">
                 <Image
                   src="/img/wic-logo.svg"
