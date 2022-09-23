@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { ReactElement } from 'react'
 
 import StyledLink from '@components/StyledLink'
 
@@ -7,7 +7,9 @@ export interface BackLinkProps {
   href: string
 }
 
-export const BackLink: React.FC<BackLinkProps> = ({ href }) => {
+export const BackLink = (props: BackLinkProps): ReactElement => {
+  const { href } = props
+
   const { t } = useTranslation('common')
   return <StyledLink href={href} text={t('backlinkText')} />
 }

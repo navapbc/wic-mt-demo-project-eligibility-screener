@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import { ReactElement } from 'react'
 
 export interface StyledLinkProps {
   href: string
@@ -7,11 +7,8 @@ export interface StyledLinkProps {
   external?: boolean
 }
 
-export const StyledLink: React.FC<StyledLinkProps> = ({
-  href,
-  text,
-  external = false,
-}) => {
+export const StyledLink = (props: StyledLinkProps): ReactElement => {
+  const { href, text, external = false } = props
   if (external) {
     return (
       <a
