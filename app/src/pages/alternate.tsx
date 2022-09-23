@@ -16,11 +16,27 @@ const Alternate: NextPage = () => {
         <Trans i18nKey="Alternate.subHeader" />
       </h2>
       <Trans
-        components={[<a key="0" href="https://dphhs.mt.gov/Assistance" />]}
+        components={[
+          <a
+            key="0"
+            href="https://dphhs.mt.gov/Assistance"
+            className="usa-link usa-link--external"
+            target="_blank"
+            rel="noopener noreferrer"
+          />,
+        ]}
         i18nKey={'Alternate.assistance'}
       />
       <Trans
-        components={[<a key="0" href="https://www.signupwic.com/" />]}
+        components={[
+          <a
+            key="0"
+            href="https://www.signupwic.com/"
+            className="usa-link usa-link--external"
+            target="_blank"
+            rel="noopener noreferrer"
+          />,
+        ]}
         i18nKey={'Alternate.location'}
       />
       <ButtonLink href="/" labelKey="Alternate.button" />

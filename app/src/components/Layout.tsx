@@ -51,8 +51,20 @@ const Layout = ({ children }: Props): ReactElement => {
                 <p>
                   <Trans
                     components={[
-                      <a key="0" href="https://dphhs.mt.gov/ecfsd/wic/index" />,
-                      <a key="1" href="https://www.signupwic.com/" />,
+                      <a
+                        key="0"
+                        href="https://dphhs.mt.gov/ecfsd/wic/index"
+                        className="usa-link usa-link--external"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />,
+                      <a
+                        key="1"
+                        href="https://www.signupwic.com/"
+                        className="usa-link usa-link--external"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />,
                     ]}
                     i18nKey={'Layout.footer1'}
                   />
@@ -63,6 +75,9 @@ const Layout = ({ children }: Props): ReactElement => {
                       <a
                         key="0"
                         href="https://www.fns.usda.gov/civil-rights/usda-nondiscrimination-statement-other-fns-programs"
+                        className="usa-link usa-link--external"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       />,
                     ]}
                     i18nKey={'Layout.footer2'}
