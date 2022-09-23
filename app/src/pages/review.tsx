@@ -6,11 +6,14 @@ import ButtonLink from '@components/ButtonLink'
 import OverviewTables from '@components/OverviewTables'
 
 const Review: NextPage = () => {
-
   return (
     <>
-      <h1><Trans i18nKey="Review.title" /></h1>
-      <p><Trans i18nKey="Review.subHeader" /></p>
+      <h1>
+        <Trans i18nKey="Review.title" />
+      </h1>
+      <p>
+        <Trans i18nKey="Review.subHeader" />
+      </p>
       <OverviewTables editable />
       <ButtonLink href="/summary" labelKey="Review.button" />
     </>

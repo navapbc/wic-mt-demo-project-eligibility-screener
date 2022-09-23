@@ -1,7 +1,7 @@
 import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Trans } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
@@ -56,7 +56,9 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   return (
     <>
       <BackLink href="/information" />
-      <h1><Trans i18nKey="Eligibility.header" /></h1>
+      <h1>
+        <Trans i18nKey="Eligibility.header" />
+      </h1>
       <RequiredQuestionStatement />
       <form className="usa-form usa-form--large">
         <InputChoiceGroup

@@ -8,9 +8,9 @@ import NumberFormat from 'react-number-format'
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
+import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
-import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
   previousRoute: string
@@ -56,7 +56,9 @@ const Contact: NextPage<Props> = (props: Props) => {
     <>
       <BackLink href="/clinic" />
       <form className="usa-form usa-form--large">
-        <h1><Trans i18nKey="Contact.title" /></h1>
+        <h1>
+          <Trans i18nKey="Contact.title" />
+        </h1>
         <RequiredQuestionStatement />
         <fieldset className="usa-fieldset">
           <h2>
@@ -99,7 +101,9 @@ const Contact: NextPage<Props> = (props: Props) => {
           />
         </fieldset>
         <fieldset className="usa-fieldset">
-          <h2><Trans i18nKey="Contact.other" /></h2>
+          <h2>
+            <Trans i18nKey="Contact.other" />
+          </h2>
           <TextArea
             handleChange={handleChangeTextArea}
             id="other"

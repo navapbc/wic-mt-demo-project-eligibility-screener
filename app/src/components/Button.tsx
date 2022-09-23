@@ -5,7 +5,7 @@ type Props = {
   disabled?: boolean
   labelKey: string
   style?: string
-  onClick?: () => {}
+  onClick?: () => void
 }
 
 const Button = (props: Props): ReactElement => {

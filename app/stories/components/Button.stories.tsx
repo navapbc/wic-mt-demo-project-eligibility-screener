@@ -15,6 +15,6 @@ export const Button = Template.bind({})
 
 Button.args = {
   disabled: false,
-  labelKey: "Button label",
-  style: "unstyled",
+  labelKey: 'Button label',
+  style: 'unstyled',
 }

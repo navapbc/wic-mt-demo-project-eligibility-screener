@@ -12,7 +12,9 @@ const Information: NextPage = () => {
   return (
     <>
       <BackLink href="/" />
-      <h1><Trans i18nKey="Information.title" /></h1>
+      <h1>
+        <Trans i18nKey="Information.title" />
+      </h1>
       <ol className="usa-process-list">
         {listCopyKeys.map((key: string) => (
           <li className="usa-process-list__item" key={key}>

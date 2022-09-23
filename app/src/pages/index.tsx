@@ -9,7 +9,9 @@ const Index: NextPage = () => {
 
   return (
     <>
-      <h1><Trans i18nKey="Index.title" /></h1>
+      <h1>
+        <Trans i18nKey="Index.title" />
+      </h1>
       <Trans i18nKey="Index.header" />
       <ul className="usa-list">
         {listCopyKeys.map((key: string) => (

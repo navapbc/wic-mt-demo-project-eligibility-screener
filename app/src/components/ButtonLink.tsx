@@ -1,4 +1,3 @@
-import { Trans } from 'next-i18next'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
@@ -16,11 +15,7 @@ const ButtonLink = (props: Props): ReactElement => {
 
   return (
     <Link href={href} passHref>
-      <Button
-        disabled={disabled}
-        labelKey={labelKey}
-        style={style}
-      />
+      <Button disabled={disabled} labelKey={labelKey} style={style} />
     </Link>
   )
 }
