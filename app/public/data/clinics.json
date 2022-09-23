@@ -84,7 +84,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "LODGE GRASS WIC",
-    "clinicAddress": "Po Box 780 Lodge Grass, MT 59050",
+    "clinicAddress": "418 Harding Ave. Lodge Grass, MT 59050",
     "clinicTelephone": "(406) 639-2246",
     "county": "BIG HORN",
     "zip": "59050"
@@ -104,7 +104,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "BAKER WIC (ONE HEALTH)",
-    "clinicAddress": "225 South 3rd St W Baker, MT 59313",
+    "clinicAddress": "225 3rd St SW Baker, MT 59313",
     "clinicTelephone": "(406) 778-2824",
     "county": "FALLON",
     "zip": "59313"
@@ -294,7 +294,7 @@
     "agencyAddress": "",
     "agencyTelephone": "",
     "clinic": "HAYS WIC",
-    "clinicAddress": "123 White Cow Canyon Rd Hays, MT 59527",
+    "clinicAddress": "453 Pine Grove Rd, Hays, MT 59527",
     "clinicTelephone": "(406) 673-3777",
     "county": "BLAINE",
     "zip": "59527"
@@ -580,16 +580,6 @@
     "zip": "59875"
   },
   {
-    "agency": "REMOTE CLINIC",
-    "agencyAddress": "1625 11th Ave Helena, MT 59620",
-    "agencyTelephone": "(406) 444-4747",
-    "clinic": "REMOTE CLINIC",
-    "clinicAddress": "1625 11th Ave Helena, MT 59620",
-    "clinicTelephone": "(406) 444-4747",
-    "county": "LEWIS AND CLARK",
-    "zip": "59620"
-  },
-  {
     "agency": "RIVERSTONE",
     "agencyAddress": "123 S. 27th Street Billings, MT 59107",
     "agencyTelephone": "(406) 247-3370",
@@ -698,16 +688,6 @@
     "clinicTelephone": "(406) 741-3266",
     "county": "SANDERS",
     "zip": "59845"
-  },
-  {
-    "agency": "",
-    "agencyAddress": "",
-    "agencyTelephone": "",
-    "clinic": "PABLO WIC",
-    "clinicAddress": "35928 Joe Mcdonald Drive Pablo, MT 59855",
-    "clinicTelephone": "(406) 745-3528",
-    "county": "LAKE",
-    "zip": "59855"
   },
   {
     "agency": "",
