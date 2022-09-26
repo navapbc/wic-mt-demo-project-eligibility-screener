@@ -1,4 +1,5 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
+import incomeData from '@public/data/income.json'
 import { Dispatch, SetStateAction, createContext, useContext } from 'react'
 
 export type DefaultState = {
@@ -23,7 +24,8 @@ export type DefaultState = {
     tanf: boolean
     fdpir: boolean
     none2: boolean
-  }
+  },
+  householdSize: keyof typeof incomeData | undefined
 }
 interface AppContextType {
   session: DefaultState
@@ -54,6 +56,7 @@ export const AppContext = createContext<AppContextType>({
       fdpir: false,
       none2: false,
     },
+    householdSize: undefined
   },
   setSession: () => {
     console.log('default context')
