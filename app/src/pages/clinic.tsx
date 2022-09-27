@@ -228,7 +228,11 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
 
-  if (!['/income', '/review', '/contact', '/eligibility'].includes(previousRoute as string)) {
+  if (
+    !['/income', '/review', '/contact', '/eligibility'].includes(
+      previousRoute as string
+    )
+  ) {
     returnval = {
       ...returnval,
       redirect: {
