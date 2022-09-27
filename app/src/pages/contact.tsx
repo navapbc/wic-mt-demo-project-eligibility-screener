@@ -1,5 +1,9 @@
 import { useAppContext } from '@context/state'
-import type { GetServerSideProps, NextPage } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
+} from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
@@ -36,10 +40,7 @@ const Contact: NextPage<Props> = (props: Props) => {
   }, [form])
 
   useEffect(() => {
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
-
-    if (previousRoute === '/review') {
+    if (props.previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
       })
@@ -131,12 +132,28 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  return {
-    props: {
-      previousRoute: req.headers.referer,
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
-    },
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute =
+    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
+    {
+      props: {
+        previousRoute: previousRoute as string,
+        ...(await serverSideTranslations(locale || 'en', ['common'])),
+      },
+    }
+
+  if (!['/clinic', '/review'].includes(previousRoute as string)) {
+    returnval = {
+      ...returnval,
+      redirect: {
+        destination: previousRoute || '/',
+        permanent: false,
+      },
+    }
   }
+
+  return returnval
 }
 
 export default Contact
