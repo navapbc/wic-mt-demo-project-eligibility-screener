@@ -129,7 +129,11 @@ const Contact: NextPage<Props> = (props: Props) => {
             value={form.other}
           />
         </fieldset>
-        <ButtonLink href="/review" label={continueBtn.label} disabled={disabled} />
+        <ButtonLink
+          href="/review"
+          label={continueBtn.label}
+          disabled={disabled}
+        />
       </form>
     </>
   )

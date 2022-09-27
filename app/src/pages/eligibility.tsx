@@ -208,7 +208,11 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             },
           ]}
         />
-        <ButtonLink href={continueBtn.route} label={continueBtn.label} disabled={disabled} />
+        <ButtonLink
+          href={continueBtn.route}
+          label={continueBtn.label}
+          disabled={disabled}
+        />
       </form>
     </>
   )
