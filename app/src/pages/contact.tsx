@@ -97,12 +97,12 @@ const Contact: NextPage<Props> = (props: Props) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.phone" />
+            <Trans i18nKey="Contact.phoneHeader" />
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </h2>
           <Alert alertBody="Contact.phoneAlert" type="info" />
           <label className="usa-label" htmlFor="phone">
-            <Trans i18nKey="Contact.phoneLabel" />
+            <Trans i18nKey="Contact.phone" />
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </label>
           <NumberFormat
@@ -117,13 +117,13 @@ const Contact: NextPage<Props> = (props: Props) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.otherHeader" />
+            <Trans i18nKey="Contact.commentsHeader" />
           </h2>
           <TextArea
             handleChange={handleChangeTextArea}
-            id="other"
-            labelKey="Contact.other"
-            value={form.other}
+            id="comments"
+            labelKey="Contact.comments"
+            value={form.comments}
           />
         </fieldset>
         <ButtonLink

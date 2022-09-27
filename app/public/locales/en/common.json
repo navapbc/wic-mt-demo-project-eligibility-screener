@@ -18,14 +18,14 @@
   },
   "Contact": {
     "button": "Submit",
+    "comments": "Comments, questions, other information",
+    "commentsHeader": "Is there anything else you'd like to share with us?",
     "firstName": "First name",
     "lastName": "Last name",
     "name": "What's your name?",
-    "otherHeader": "Is there anything else you'd like to share with us?",
-    "other": "Comments, questions, other information",
-    "phone": "What's the best phone number to reach you at?",
+    "phone": "Phone number",
     "phoneAlert": "Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.",
-    "phoneLabel": "Phone number",
+    "phoneHeader": "What's the best phone number to reach you at?",
     "title": "Contact information"
   },
   "Eligibility": {
