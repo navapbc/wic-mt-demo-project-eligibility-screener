@@ -1,7 +1,7 @@
 import { Trans } from 'next-i18next'
 import { ReactElement, ReactNode } from 'react'
 
-type ReviewElementProps = {
+export type ReviewElementProps = {
   labelKey: string
   responseKeys: string[]
   isList: boolean

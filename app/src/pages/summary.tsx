@@ -4,7 +4,6 @@ import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
-import OverviewTables from '@components/OverviewTables'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 import StyledLink from '@components/StyledLink'
@@ -12,6 +11,8 @@ import StyledLink from '@components/StyledLink'
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 
 type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
+
+type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
 
 const Summary: NextPage = () => {
   const { session } = useAppContext()
@@ -87,7 +88,7 @@ const Summary: NextPage = () => {
   contactKeys.forEach((key: string) => {
     contactResponses.push({
       labelKey: `Contact.${key}`,
-      responseKeys: [session?.contact[key] || ''],
+      responseKeys: [session?.contact[key as Contact] || ''],
       isList: false,
     })
   })

@@ -16,6 +16,8 @@ type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 
 type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
 
+type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
+
 const Review: NextPage = () => {
   const { session } = useAppContext()
 
@@ -90,7 +92,7 @@ const Review: NextPage = () => {
   contactKeys.forEach((key: string) => {
     contactResponses.push({
       labelKey: `Contact.${key}`,
-      responseKeys: [session?.contact[key] || ''],
+      responseKeys: [session?.contact[key as Contact] || ''],
       isList: false,
     })
   })
