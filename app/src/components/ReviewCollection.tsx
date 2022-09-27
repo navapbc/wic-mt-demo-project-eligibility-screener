@@ -2,7 +2,7 @@ import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
-import ReviewElement, {ReviewElementProps } from '@components/ReviewElement'
+import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
 
 type ReviewCollectionProps = {
   headerKey: string
@@ -15,16 +15,18 @@ const ReviewCollection = (props: ReviewCollectionProps): ReactElement => {
   const { headerKey, reviewElements, editable = false, editHref = '' } = props
 
   return (
-    <div className="review-collection">
-      <h3>
+    <div className="review-collection margin-top-6 border-bottom-1px">
+      <h2>
         <Trans i18nKey={headerKey} />
         {editable && (
-          <ButtonLink labelKey="edit" href={editHref} style="unstyled" />
+          <div className="float-right">
+            <ButtonLink labelKey="edit" href={editHref} style="unstyled" />
+          </div>
         )}
-      </h3>
-      <dl>
+      </h2>
+      <dl className="margin-bottom-2">
         {reviewElements.map((element: ReviewElementProps, index: number) => (
-          <ReviewElement key={index} {...element}/>
+          <ReviewElement key={index} {...element} />
         ))}
       </dl>
     </div>

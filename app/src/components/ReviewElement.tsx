@@ -23,11 +23,13 @@ const ReviewElement = (props: ReviewElementProps): ReactElement => {
   }
 
   return (
-    <div className="review-element">
+    <div className="review-element margin-bottom-3">
       <dt>
-        <Trans i18nKey={labelKey} />
+        <strong>
+          <Trans i18nKey={labelKey} />
+        </strong>
       </dt>
-      <dd>{child}</dd>
+      <dd className="margin-left-0">{child}</dd>
     </div>
   )
 }
