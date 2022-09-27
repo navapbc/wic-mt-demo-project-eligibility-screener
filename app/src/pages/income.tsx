@@ -1,5 +1,9 @@
 import incomeData from '@public/data/income.json'
-import type { GetServerSideProps, NextPage } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
+} from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
@@ -102,12 +106,30 @@ const TD = styled.td`
   min-width: 20rem;
 `
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  return {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute =
+    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
     props: {
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
+
+  if (!['/eligibility', '/clinic'].includes(previousRoute as string)) {
+    returnval = {
+      ...returnval,
+      redirect: {
+        destination: previousRoute || '/',
+        permanent: false,
+      },
+    }
+  }
+
+  return returnval
 }
 
 export default Income

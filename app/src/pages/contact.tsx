@@ -1,5 +1,9 @@
 import { useAppContext } from '@context/state'
-import type { GetServerSideProps, NextPage } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
+} from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
@@ -19,17 +23,26 @@ const Contact: NextPage<Props> = (props: Props) => {
   const [form, setForm] = useState(session?.contact)
   const [continueBtn, setContinueBtn] = useState<{
     label: string
-    width: string
-  }>({ label: t('continue'), width: '105px' })
+  }>({ label: t('continue') })
+  const requiredMet = (): boolean => {
+    const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
+    return (
+      validPhoneLength &&
+      ['firstName', 'lastName', 'phone'].every(
+        (field) => form[field as keyof typeof form]
+      )
+    )
+  }
+  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
+    setDisabled(!requiredMet())
+  }, [form])
 
-    if (previousRoute === '/review') {
+  useEffect(() => {
+    if (props.previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
-        width: '239px',
       })
     }
   }, [props.previousRoute, t])
@@ -85,13 +98,13 @@ const Contact: NextPage<Props> = (props: Props) => {
         <abbr className="usa-hint usa-hint--required"> *</abbr>
       </label>
       <NumberFormat
-        format="###-###-####"
-        mask="_"
-        role="textbox"
         className="usa-input"
+        format="###-###-####"
         id="phone"
-        value={form.phone}
+        mask="_"
         onChange={handleChange}
+        role="textbox"
+        value={form.phone}
       />
       <br />
       <br />
@@ -105,7 +118,11 @@ const Contact: NextPage<Props> = (props: Props) => {
       />
       <br />
       <br />
-      <ButtonLink href="/review" label={continueBtn.label} />
+      <ButtonLink
+        disabled={disabled}
+        href="/review"
+        label={continueBtn.label}
+      />
       <br />
     </form>
   )
@@ -115,12 +132,28 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  return {
-    props: {
-      previousRoute: req.headers.referer,
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
-    },
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute =
+    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
+    {
+      props: {
+        previousRoute: previousRoute as string,
+        ...(await serverSideTranslations(locale || 'en', ['common'])),
+      },
+    }
+
+  if (!['/clinic', '/review'].includes(previousRoute as string)) {
+    returnval = {
+      ...returnval,
+      redirect: {
+        destination: previousRoute || '/',
+        permanent: false,
+      },
+    }
   }
+
+  return returnval
 }
 
 export default Contact
