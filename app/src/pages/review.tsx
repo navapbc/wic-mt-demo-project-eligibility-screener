@@ -8,9 +8,93 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
-import OverviewTables from '@components/OverviewTables'
+import ReviewCollection from '@components/ReviewCollection'
+import { ReviewElementProps } from '@components/ReviewElement'
+import { useAppContext } from '@context/state'
+
+type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
+
+type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
 
 const Review: NextPage = () => {
+  const { session } = useAppContext()
+
+  const categoryKeys: Category[] = [
+    'pregnant',
+    'baby',
+    'child',
+    'guardian',
+    'loss',
+  ]
+  const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
+
+  const formatClinic = (): string => {
+    const clinic = session?.clinic
+
+    return `
+      ${clinic?.clinic || ''}
+      <br />
+      ${clinic?.clinicAddress || ''}
+      <br />
+      ${clinic?.clinicTelephone || ''}
+    `
+  }
+
+  const formatEligibilitySelections = (
+    keys: (Category | Program)[]
+  ): string[] => {
+    const returnVal: string[] = []
+
+    keys.forEach((key: Category | Program) => {
+      if (session.eligibility[key]) {
+        returnVal.push(`Eligibility.${key}`)
+      }
+    })
+
+    return returnVal
+  }
+
+  const eligibilityResponses = [
+    {
+      labelKey: 'Eligibility.residential',
+      responseKeys: [session?.eligibility?.residential || ''],
+      isList: false,
+    },
+    {
+      labelKey: 'Eligibility.categorical',
+      responseKeys: formatEligibilitySelections(categoryKeys),
+      isList: true,
+    },
+    {
+      labelKey: 'Eligibility.before',
+      responseKeys: [session?.eligibility?.before.replace(/[2]/g, '') || ''],
+      isList: false,
+    },
+    {
+      labelKey: 'Eligibility.programs',
+      responseKeys: formatEligibilitySelections(programKeys),
+      isList: true,
+    },
+  ]
+
+  const clinicResponses = [
+    {
+      labelKey: 'Review.clinicSelected',
+      responseKeys: [(session?.clinic && formatClinic()) || ''],
+      isList: false,
+    },
+  ]
+
+  const contactResponses: ReviewElementProps[] = []
+  const contactKeys = ['firstName', 'lastName', 'phone', 'comments']
+  contactKeys.forEach((key: string) => {
+    contactResponses.push({
+      labelKey: `Contact.${key}`,
+      responseKeys: [session?.contact[key] || ''],
+      isList: false,
+    })
+  })
+
   return (
     <>
       <BackLink href="/contact" />
@@ -20,7 +104,24 @@ const Review: NextPage = () => {
       <p>
         <Trans i18nKey="Review.subHeader" />
       </p>
-      <OverviewTables editable />
+      <ReviewCollection
+        headerKey="Review.eligibilityTitle"
+        editable={true}
+        editHref="/eligibility"
+        reviewElements={eligibilityResponses}
+      />
+      <ReviewCollection
+        headerKey="Clinic.title"
+        editable={true}
+        editHref="/clinic"
+        reviewElements={clinicResponses}
+      />
+      <ReviewCollection
+        headerKey="Contact.title"
+        editable={true}
+        editHref="/contact"
+        reviewElements={contactResponses}
+      />
       <ButtonLink href="/summary" labelKey="Review.button" />
     </>
   )
