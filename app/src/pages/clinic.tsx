@@ -221,7 +221,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   return {
     props: {
-      previousRoute: req.headers.referer || '',
+      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
