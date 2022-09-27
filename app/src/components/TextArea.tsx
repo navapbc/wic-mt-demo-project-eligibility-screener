@@ -1,7 +1,7 @@
-import { ChangeEvent, ReactElement } from 'react'
+import { ChangeEventHandler, ReactElement } from 'react'
 
 type Props = {
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void
+  handleChange: ChangeEventHandler<HTMLTextAreaElement>
   id: string
   label: string
   required?: boolean
@@ -16,8 +16,8 @@ const TextInput = (props: Props): ReactElement => {
         {label}
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </label>
-      <input
-        className={'usa-input'}
+      <textarea
+        className={'usa-textarea'}
         id={id}
         onChange={handleChange}
         role="textbox"

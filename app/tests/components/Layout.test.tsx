@@ -5,14 +5,14 @@ import { axe } from 'jest-axe'
 import Layout from '@components/Layout'
 
 describe('Layout', () => {
-  it('should render placeholder header text', () => {
-    render(<Layout children={<h1>'child'</h1>} />)
+  // it('should render placeholder header text', () => {
+  //   render(<Layout children={<h1>'child'</h1>} />)
 
-    const header = screen.getByText(/Apply for WIC in Montana/i)
+  //   const header = screen.getByText(/Apply for WIC in Montana/i)
 
-    expect(header).toBeInTheDocument()
-    expect(header).toMatchSnapshot()
-  })
+  //   expect(header).toBeInTheDocument()
+  //   expect(header).toMatchSnapshot()
+  // })
 
   it('should pass accessibility scan', async () => {
     const { container } = render(<Layout children={<h1>'child'</h1>} />)

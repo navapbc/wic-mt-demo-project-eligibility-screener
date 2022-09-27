@@ -15,8 +15,8 @@ export const InputChoiceGroup = Template.bind({})
 
 InputChoiceGroup.args = {
   accordion: {
-    body: 'test body',
-    header: 'test header',
+    bodyKey: 'test body',
+    headerKey: 'test header',
   },
   choices: [
     {

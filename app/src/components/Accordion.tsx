@@ -1,13 +1,13 @@
+import { Trans } from 'next-i18next'
 import { ReactElement, useState } from 'react'
-import { Trans } from 'react-i18next'
 
 type Props = {
-  body: string
-  header: string
+  bodyKey: string
+  headerKey: string
 }
 
 const Accordion = (props: Props): ReactElement => {
-  const { body, header } = props
+  const { bodyKey, headerKey } = props
   const [isExpanded, setExpanded] = useState(false)
 
   const handleClick = () => {
@@ -24,15 +24,11 @@ const Accordion = (props: Props): ReactElement => {
           onClick={handleClick}
           type="button"
         >
-          {header}
+          <Trans i18nKey={headerKey} />
         </button>
       </h3>
-      <div
-        className="usa-accordion__content usa-prose"
-        hidden={!isExpanded}
-        id="b-a1"
-      >
-        <Trans i18nKey={body} />
+      <div className="usa-accordion__content" hidden={!isExpanded} id="b-a1">
+        <Trans i18nKey={bodyKey} />
       </div>
     </div>
   )
