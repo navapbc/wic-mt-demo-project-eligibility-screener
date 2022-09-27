@@ -117,12 +117,12 @@ const Contact: NextPage<Props> = (props: Props) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.other" />
+            <Trans i18nKey="Contact.otherHeader" />
           </h2>
           <TextArea
             handleChange={handleChangeTextArea}
             id="other"
-            labelKey="Contact.otherLabel"
+            labelKey="Contact.other"
             value={form.other}
           />
         </fieldset>
