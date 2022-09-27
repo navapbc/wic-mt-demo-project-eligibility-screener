@@ -21,6 +21,22 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     route: incomeRoute,
   })
   const [form, setForm] = useState(session?.eligibility)
+  const requiredMet = () => {
+    const categorical = [
+      'pregnant',
+      'baby',
+      'child',
+      'guardian',
+      'pregnant',
+      'none',
+    ].some((category) => form[category as keyof typeof form])
+    const programs = ['insurance', 'snap', 'tanf', 'none2'].some(
+      (program) => form[program as keyof typeof form]
+    )
+
+    return form.residential && categorical && form.before && programs
+  }
+  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
     /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
@@ -35,6 +51,10 @@ const Eligibility: NextPage<Props> = (props: Props) => {
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
   }, [form.none, props.previousRoute])
+
+  useEffect(() => {
+    setDisabled(!requiredMet())
+  }, [form])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
@@ -187,7 +207,11 @@ const Eligibility: NextPage<Props> = (props: Props) => {
             },
           ]}
         />
-        <ButtonLink href={continueBtn.route} labelKey={continueBtn.labelKey} />
+        <ButtonLink
+          href={continueBtn.route}
+          label={continueBtn.labelKey}
+          disabled={disabled}
+        />
       </form>
     </>
   )

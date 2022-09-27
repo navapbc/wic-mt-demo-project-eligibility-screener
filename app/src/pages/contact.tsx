@@ -1,5 +1,9 @@
 import { useAppContext } from '@context/state'
-import type { GetServerSideProps, NextPage } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
+} from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEventHandler, useEffect, useState } from 'react'
@@ -22,12 +26,23 @@ const Contact: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState<{
     labelKey: string
   }>({ labelKey: 'continue' })
+  const requiredMet = (): boolean => {
+    const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
+    return (
+      validPhoneLength &&
+      ['firstName', 'lastName', 'phone'].every(
+        (field) => form[field as keyof typeof form]
+      )
+    )
+  }
+  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
+    setDisabled(!requiredMet())
+  }, [form])
 
-    if (previousRoute === '/review') {
+  useEffect(() => {
+    if (props.previousRoute === '/review') {
       setContinueBtn({
         labelKey: 'updateAndReturn',
       })
@@ -111,7 +126,7 @@ const Contact: NextPage<Props> = (props: Props) => {
             value={form.other}
           />
         </fieldset>
-        <ButtonLink href="/review" labelKey={continueBtn.labelKey} />
+        <ButtonLink href="/review" labelKey={continueBtn.labelKey} disabled{disabled} />
       </form>
     </>
   )
@@ -121,12 +136,28 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  return {
-    props: {
-      previousRoute: req.headers.referer,
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
-    },
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute =
+    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
+    {
+      props: {
+        previousRoute: previousRoute as string,
+        ...(await serverSideTranslations(locale || 'en', ['common'])),
+      },
+    }
+
+  if (!['/clinic', '/review'].includes(previousRoute as string)) {
+    returnval = {
+      ...returnval,
+      redirect: {
+        destination: previousRoute || '/',
+        permanent: false,
+      },
+    }
   }
+
+  return returnval
 }
 
 export default Contact
