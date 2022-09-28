@@ -1,9 +1,11 @@
 import { getCookie } from 'cookies-next'
 import type { GetServerSideProps, NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import ButtonLink from '@components/ButtonLink'
 import OverviewTables from '@components/OverviewTables'
+import StyledLink from '@components/StyledLink'
 
 import { DefaultState } from '../context/state'
 
@@ -12,8 +14,29 @@ const Summary: NextPage = () => {
 
   return (
     <>
-      <h1>{t('Summary.title')}</h1>
-      <p>{t('Summary.body')}</p>
+      <h1>
+        <Trans i18nKey="Summary.title" />
+      </h1>
+      <p>
+        <Trans i18nKey="Summary.body" />
+      </p>
+      <p>
+        <Trans i18nKey="Summary.interestedIn" />
+        <div>
+          <StyledLink
+            href="https://dphhs.mt.gov/Assistance"
+            text={t('Summary.learnAbout')}
+            external={true}
+          />
+        </div>
+      </p>
+      <p>
+        <Trans i18nKey="Summary.submitAnother" />
+        <ButtonLink label={t('Summary.startNew')} href="/" style="outline" />
+      </p>
+      <p>
+        <Trans i18nKey="Summary.keepCopy" />
+      </p>
       <OverviewTables />
     </>
   )

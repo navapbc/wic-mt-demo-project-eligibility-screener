@@ -5,13 +5,11 @@ type Props = {
   id: string
   label: string
   required?: boolean
-  type?: 'area'
   value: string
 }
 
 const TextInput = (props: Props): ReactElement => {
-  const { handleChange, id, label, type, required, value } = props
-
+  const { handleChange, id, label, required, value } = props
   return (
     <>
       <label className="usa-label" htmlFor={id}>
@@ -19,7 +17,7 @@ const TextInput = (props: Props): ReactElement => {
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </label>
       <input
-        className={`${type === 'area' ? 'usa-textarea' : 'usa-input'}`}
+        className={'usa-input'}
         id={id}
         onChange={handleChange}
         role="textbox"

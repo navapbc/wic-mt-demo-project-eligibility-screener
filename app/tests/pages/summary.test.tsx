@@ -7,7 +7,7 @@ describe('Summary', () => {
   it('should render the heading', () => {
     render(<Summary />)
 
-    const heading = screen.getByText(/Your confirmation/i)
+    const heading = screen.getByText(/Your confirmation/)
 
     expect(heading).toBeInTheDocument()
     expect(heading).toMatchSnapshot()

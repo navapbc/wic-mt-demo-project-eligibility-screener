@@ -1,13 +1,17 @@
 import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
-import type { GetServerSideProps, NextPage } from 'next'
+import type {
+  GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
+} from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
-import Link from 'next/link'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
+import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
 interface Props {
@@ -34,13 +38,10 @@ const Clinic: NextPage<Props> = (props: Props) => {
   }>({ label: t('Clinic.button'), route: '/contact' })
 
   useEffect(() => {
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
-
-    if (previousRoute === '/review') {
+    if (props.previousRoute === '/review') {
       setContinueBtn({
         label: t('updateAndReturn'),
-        route: previousRoute,
+        route: props.previousRoute,
       })
     }
   }, [props.previousRoute, t])
@@ -102,58 +103,66 @@ const Clinic: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <Link href="/income">Back</Link>
+      <BackLink href="/income" />
       <h1>{t('Clinic.title')}</h1>
       <p>
         {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
         ).
       </p>
-      <p>{t('Clinic.body')}</p>
-      <br />
-      <h2>
-        {t('Clinic.searchLabel')}{' '}
-        <abbr className="usa-hint usa-hint--required"> *</abbr>
-      </h2>
-      <section aria-label="Search clinic by zip">
-        {zipValidationError && (
-          <span className="usa-error-message">
-            {t('Clinic.zipValidationError')}
-          </span>
-        )}
-        <form
-          className="usa-search usa-search--small"
-          role="search"
-          onSubmit={handleSearch}
-        >
-          <label className="usa-sr-only" htmlFor="search-field-en-small">
-            {t('Clinic.searchLabel')}
-          </label>
-          <input
-            className="usa-input usa-input-error"
-            id="search-field-en-small"
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="usa-button" type="submit">
-            <Image
-              src="/img/search.svg"
-              height="20px"
-              width="20px"
-              className="usa-search__submit-icon"
-              alt="Search"
+
+      <div className="content-group">
+        <p>{t('Clinic.body')}</p>
+      </div>
+
+      <div className="content-group">
+        <h2>
+          {t('Clinic.searchLabel')}{' '}
+          <abbr className="usa-hint usa-hint--required"> *</abbr>
+        </h2>
+        <section aria-label="Search clinic by zip">
+          {zipValidationError && (
+            <span className="usa-error-message">
+              {t('Clinic.zipValidationError')}
+            </span>
+          )}
+          <form
+            className="usa-search usa-search--small"
+            role="search"
+            onSubmit={handleSearch}
+          >
+            <label className="usa-sr-only" htmlFor="search-field-en-small">
+              {t('Clinic.searchLabel')}
+            </label>
+            <input
+              className="usa-input usa-input-error"
+              id="search-field-en-small"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-          </button>
-        </form>
-      </section>
-      {searchError && <Alert type="error" text={t('Clinic.zipSearchError')} />}
+            <button className="usa-button" type="submit">
+              <Image
+                src="/img/search.svg"
+                height="20px"
+                width="20px"
+                className="usa-search__submit-icon"
+                alt="Search"
+              />
+            </button>
+          </form>
+        </section>
+        {searchError && (
+          <Alert type="error" alertBody="Clinic.zipSearchError" icon={true} />
+        )}
+      </div>
+
       {filteredClinics.length > 0 ? (
         <>
           <h2>
             {t('Clinic.listTitle')}{' '}
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </h2>
-          <form className="usa-form">
+          <form className="usa-form usa-form--large">
             <fieldset className="usa-fieldset">
               {filteredClinics
                 ?.slice(0, expandList ? filteredClinics.length : 4)
@@ -192,21 +201,15 @@ const Clinic: NextPage<Props> = (props: Props) => {
                 </button>
               )}
             </fieldset>
+            <ButtonLink
+              disabled={selectedClinic === undefined}
+              href={continueBtn.route}
+              label={continueBtn.label}
+            />
           </form>
-          <br />
-          <ButtonLink
-            disabled={selectedClinic === undefined}
-            href={continueBtn.route}
-            label={continueBtn.label}
-          />
         </>
       ) : (
-        <>
-          <br />
-          <br />
-          <br />
-          <br />
-        </>
+        <></>
       )}
     </>
   )
@@ -216,12 +219,32 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  return {
-    props: {
-      previousRoute: req.headers.referer,
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
-    },
+  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  const previousRoute =
+    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
+    {
+      props: {
+        previousRoute: previousRoute as string,
+        ...(await serverSideTranslations(locale || 'en', ['common'])),
+      },
+    }
+
+  if (
+    !['/income', '/review', '/contact', '/eligibility'].includes(
+      previousRoute as string
+    )
+  ) {
+    returnval = {
+      ...returnval,
+      redirect: {
+        destination: previousRoute || '/',
+        permanent: false,
+      },
+    }
   }
+
+  return returnval
 }
 
 export default Clinic
