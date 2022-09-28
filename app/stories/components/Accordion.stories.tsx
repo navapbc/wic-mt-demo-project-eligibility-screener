@@ -14,6 +14,6 @@ const Template: ComponentStory<typeof AccordionComponent> = (args) => (
 export const Accordion = Template.bind({})
 
 Accordion.args = {
-  body: 'test accordion body',
-  header: 'test accordion header',
+  bodyKey: 'test accordion body',
+  headerKey: 'test accordion header',
 }

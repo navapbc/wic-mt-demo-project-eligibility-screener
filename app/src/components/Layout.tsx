@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'next-i18next'
+import { Trans } from 'next-i18next'
 import Image from 'next/image'
 import { ReactElement } from 'react'
 
@@ -7,8 +7,6 @@ type Props = {
 }
 
 const Layout = ({ children }: Props): ReactElement => {
-  const { t } = useTranslation('common')
-
   return (
     <div className="container">
       <header className="header usa-header usa-header--basic" role="banner">
@@ -16,7 +14,9 @@ const Layout = ({ children }: Props): ReactElement => {
           <div className="grid-row">
             <div className="desktop:grid-col-8 desktop:grid-offset-2">
               <div className="usa-logo margin-left-2">
-                <em className="usa-logo__text">{t('Layout.header')}</em>
+                <em className="usa-logo__text">
+                  <Trans i18nKey="Layout.header" />
+                </em>
               </div>
             </div>
           </div>
@@ -24,7 +24,7 @@ const Layout = ({ children }: Props): ReactElement => {
       </header>
       <main className="main">
         <div className="grid-row">
-          <div className="desktop:grid-col-8 desktop:grid-offset-2  padding-2">
+          <div className="desktop:grid-col-8 desktop:grid-offset-2 padding-2 padding-bottom-8">
             {children}
           </div>
         </div>
@@ -55,7 +55,6 @@ const Layout = ({ children }: Props): ReactElement => {
                       <a key="1" href="https://www.signupwic.com/" />,
                     ]}
                     i18nKey={'Layout.footer1'}
-                    t={t}
                   />
                 </p>
                 <p>
@@ -67,7 +66,6 @@ const Layout = ({ children }: Props): ReactElement => {
                       />,
                     ]}
                     i18nKey={'Layout.footer2'}
-                    t={t}
                   />
                 </p>
               </div>
