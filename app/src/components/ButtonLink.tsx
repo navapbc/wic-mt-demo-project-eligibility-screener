@@ -1,31 +1,21 @@
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
+import Button from '@components/Button'
+
 type Props = {
   disabled?: boolean
-  label: string
+  labelKey: string
   href: string /* TODO: create global type for routes */
   style?: string
 }
 
 const ButtonLink = (props: Props): ReactElement => {
-  const { disabled, href, label, style } = props
-
-  let buttonStyle = ''
-  if (style) {
-    buttonStyle = `usa-button--${style} margin-top-1`
-  } else {
-    buttonStyle = 'margin-top-6'
-  }
+  const { disabled, href, labelKey, style } = props
 
   return (
     <Link href={href} passHref>
-      <button
-        className={`usa-button usa-button--small display-block ${buttonStyle}`}
-        disabled={disabled}
-      >
-        {label}
-      </button>
+      <Button disabled={disabled} labelKey={labelKey} style={style} />
     </Link>
   )
 }

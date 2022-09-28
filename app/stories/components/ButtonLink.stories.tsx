@@ -15,5 +15,5 @@ export const ButtonLink = Template.bind({})
 
 ButtonLink.args = {
   href: '/test',
-  label: 'Primary',
+  labelKey: 'Primary',
 }

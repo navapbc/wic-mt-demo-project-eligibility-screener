@@ -1,5 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans, useTranslation } from 'next-i18next'
+import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
@@ -7,8 +7,6 @@ import OverviewTables from '@components/OverviewTables'
 import StyledLink from '@components/StyledLink'
 
 const Summary: NextPage = () => {
-  const { t } = useTranslation('common')
-
   return (
     <>
       <h1>
@@ -22,14 +20,14 @@ const Summary: NextPage = () => {
         <div>
           <StyledLink
             href="https://dphhs.mt.gov/Assistance"
-            text={t('Summary.learnAbout')}
+            textKey="Summary.learnAbout"
             external={true}
           />
         </div>
       </p>
       <p>
         <Trans i18nKey="Summary.submitAnother" />
-        <ButtonLink label={t('Summary.startNew')} href="/" style="outline" />
+        <ButtonLink labelKey="Summary.startNew" href="/" style="outline" />
       </p>
       <p>
         <Trans i18nKey="Summary.keepCopy" />
