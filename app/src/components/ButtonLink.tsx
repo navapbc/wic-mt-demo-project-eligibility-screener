@@ -3,21 +3,16 @@ import { ReactElement } from 'react'
 
 type Props = {
   disabled?: boolean
-  handleClick?: Function
   href: string /* TODO: create global type for routes */
   label: string
 }
 
 const ButtonLink = (props: Props): ReactElement => {
-  const { disabled, handleClick, href, label } = props
+  const { disabled, href, label } = props
 
   return (
     <Link href={href} passHref>
-      <button
-        className="usa-button usa-button--small"
-        disabled={disabled}
-        onClick={() => { handleClick && handleClick()}}
-      >
+      <button className="usa-button usa-button--small" disabled={disabled}>
         {label}
       </button>
     </Link>

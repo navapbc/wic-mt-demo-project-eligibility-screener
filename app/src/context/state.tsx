@@ -3,6 +3,10 @@ import incomeData from '@public/data/income.json'
 import { Dispatch, SetStateAction, createContext, useContext } from 'react'
 
 export type DefaultState = {
+  csv: {
+    category_copy_array: string[]
+    program_copy_array: string[]
+  }
   clinic: typeof clinics[0] | undefined
   contact: {
     firstName: string
@@ -24,7 +28,7 @@ export type DefaultState = {
     tanf: boolean
     fdpir: boolean
     none2: boolean
-  },
+  }
   householdSize: keyof typeof incomeData | undefined
 }
 interface AppContextType {
@@ -34,6 +38,10 @@ interface AppContextType {
 
 export const AppContext = createContext<AppContextType>({
   session: {
+    csv: {
+      category_copy_array: [],
+      program_copy_array: [],
+    },
     clinic: undefined,
     contact: {
       firstName: '',
@@ -56,7 +64,7 @@ export const AppContext = createContext<AppContextType>({
       fdpir: false,
       none2: false,
     },
-    householdSize: undefined
+    householdSize: undefined,
   },
   setSession: () => {
     console.log('default context')

@@ -4,9 +4,10 @@ import { ReactElement } from 'react'
 
 import Table from '@components/Table'
 
+// TODO: move this to shared types
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 
-type Program = 'insurance' | 'snap' | 'tanf'
+type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
 
 interface Props {
   editable?: boolean
@@ -16,6 +17,7 @@ const OverviewTables = (props: Props): ReactElement => {
   const { t } = useTranslation('common')
   const { session } = useAppContext()
   const { editable } = props
+  // TODO: make a shared vars files for these
   const categoryKeys: Category[] = [
     'pregnant',
     'baby',
@@ -23,7 +25,7 @@ const OverviewTables = (props: Props): ReactElement => {
     'guardian',
     'loss',
   ]
-  const programKeys: Program[] = ['insurance', 'snap', 'tanf']
+  const programKeys: Program[] = ['insurance', 'snap', 'fdpir', 'tanf']
 
   const formatClinic = (): string => {
     const clinic = session?.clinic

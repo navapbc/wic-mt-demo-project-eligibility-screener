@@ -9,6 +9,10 @@ import '@styles/styles.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [session, setSession] = useLocalStorage('session', {
+    csv: {
+      category_copy_array: [],
+      program_copy_array: [],
+    },
     clinic: undefined,
     contact: {
       firstName: '',
@@ -31,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       fdpir: false,
       none2: false,
     },
+    householdSize: undefined,
   })
 
   return (

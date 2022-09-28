@@ -1,4 +1,5 @@
 import { DefaultState } from '@context/state'
+import { setCookie } from 'cookies-next'
 import { useState } from 'react'
 
 // Custom hook to persist state across page refresh
@@ -40,6 +41,8 @@ export default function useLocalStorage(
       // Save to local storage
       if (typeof window !== 'undefined') {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))
+        // ADDING THIS TO ACCES SERVER SIDE
+        setCookie(key, JSON.stringify(valueToStore))
       }
     } catch (error) {
       console.log(error)
