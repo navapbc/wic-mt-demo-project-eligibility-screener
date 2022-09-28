@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const householdSize = session?.householdSize
 
   const request = await fetch(
-    `${process?.env?.NEXT_PUBLIC_HOST || ''}/v1/eligibility-screener`,
+    `${process?.env?.HOST || ''}/v1/eligibility-screener`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       }),
       headers: {
         'Content-type': 'application/json',
-        'X-Auth': process.env.NEXT_PUBLIC_API_AUTH_TOKEN || '',
+        'X-Auth': process.env.API_AUTH_TOKEN || '',
       },
     }
   )
