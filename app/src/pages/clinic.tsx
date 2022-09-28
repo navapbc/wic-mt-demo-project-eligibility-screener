@@ -14,6 +14,7 @@ import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import Button from '@components/Button'
 import ButtonLink from '@components/ButtonLink'
+import ClinicInfo from '@components/ClinicInfo'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
@@ -184,12 +185,12 @@ const Clinic: NextPage<Props> = (props: Props) => {
                           className="usa-radio__label"
                           htmlFor={clinic.clinic}
                         >
-                          {clinic.clinic}
-                          <span className="usa-checkbox__label-description">
-                            {clinic.clinicAddress}
-                            <br />
-                            {clinic.clinicTelephone}
-                          </span>
+                          <ClinicInfo
+                            name={clinic.clinic}
+                            streetAddress={clinic.clinicAddress}
+                            phone={clinic.clinicTelephone}
+                            isFormElement={true}
+                          />
                         </label>
                       </div>
                     )

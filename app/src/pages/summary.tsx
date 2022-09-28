@@ -4,6 +4,7 @@ import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
+import ClinicInfo from '@components/ClinicInfo'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 import StyledLink from '@components/StyledLink'
@@ -25,18 +26,6 @@ const Summary: NextPage = () => {
     'loss',
   ]
   const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
-
-  const formatClinic = (): string => {
-    const clinic = session?.clinic
-
-    return `
-      ${clinic?.clinic || ''}
-      <br />
-      ${clinic?.clinicAddress || ''}
-      <br />
-      ${clinic?.clinicTelephone || ''}
-    `
-  }
 
   const formatEligibilitySelections = (
     keys: (Category | Program)[]
@@ -78,7 +67,17 @@ const Summary: NextPage = () => {
   const clinicResponses = [
     {
       labelKey: 'Review.clinicSelected',
-      responseKeys: [(session?.clinic && formatClinic()) || ''],
+      responseKeys: [
+        (session?.clinic && (
+          <ClinicInfo
+            name={session?.clinic.clinic}
+            streetAddress={session?.clinic.clinicAddress}
+            phone={session?.clinic.clinicTelephone}
+            isFormElement={false}
+          />
+        )) ||
+          '',
+      ],
       isList: false,
     },
   ]

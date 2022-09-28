@@ -1,3 +1,4 @@
+import { useAppContext } from '@context/state'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -8,9 +9,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
+import ClinicInfo from '@components/ClinicInfo'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
-import { useAppContext } from '@context/state'
 
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 
@@ -29,18 +30,6 @@ const Review: NextPage = () => {
     'loss',
   ]
   const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
-
-  const formatClinic = (): string => {
-    const clinic = session?.clinic
-
-    return `
-      ${clinic?.clinic || ''}
-      <br />
-      ${clinic?.clinicAddress || ''}
-      <br />
-      ${clinic?.clinicTelephone || ''}
-    `
-  }
 
   const formatEligibilitySelections = (
     keys: (Category | Program)[]
@@ -82,7 +71,17 @@ const Review: NextPage = () => {
   const clinicResponses = [
     {
       labelKey: 'Review.clinicSelected',
-      responseKeys: [(session?.clinic && formatClinic()) || ''],
+      responseKeys: [
+        (session?.clinic && (
+          <ClinicInfo
+            name={session?.clinic.clinic}
+            streetAddress={session?.clinic.clinicAddress}
+            phone={session?.clinic.clinicTelephone}
+            isFormElement={false}
+          />
+        )) ||
+          '',
+      ],
       isList: false,
     },
   ]
