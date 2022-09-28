@@ -1,7 +1,7 @@
 import { Trans } from 'next-i18next'
-import React from 'react'
+import { ReactElement } from 'react'
 
-export const RequiredQuestionStatement: React.FC = () => {
+export const RequiredQuestionStatement = (): ReactElement => {
   return (
     <p>
       <Trans i18nKey="asterisk" /> (
