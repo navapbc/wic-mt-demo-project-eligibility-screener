@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
   )
-  const apiResponse: object = await request.json() as object
+  const apiResponse: object = (await request.json()) as object
   console.log('RESPONSE', apiResponse)
 
   return {
