@@ -22,17 +22,17 @@ InputChoiceGroup.args = {
     {
       checked: true,
       handleChange: () => {},
-      label: 'Yes',
+      labelKey: 'Yes',
       value: 'yes',
     },
     {
       checked: false,
       handleChange: () => {},
-      label: 'No',
+      labelKey: 'No',
       value: 'no',
     },
   ],
   required: true,
   type: 'radio',
-  title: 'Choice Group Options',
+  titleKey: 'Choice Group Options',
 }

@@ -1,19 +1,20 @@
+import { Trans } from 'next-i18next'
 import { ChangeEvent, ReactElement } from 'react'
 
 type Props = {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   id: string
-  label: string
+  labelKey: string
   required?: boolean
   value: string
 }
 
 const TextInput = (props: Props): ReactElement => {
-  const { handleChange, id, label, required, value } = props
+  const { handleChange, id, labelKey, required, value } = props
   return (
     <>
       <label className="usa-label" htmlFor={id}>
-        {label}
+        <Trans i18nKey={labelKey} />
         {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
       </label>
       <input

@@ -15,6 +15,6 @@ export const Dropdown = Template.bind({})
 
 Dropdown.args = {
   id: 'test',
-  label: 'Select',
+  labelKey: 'Select',
   options: ['1', '2', '3'],
 }

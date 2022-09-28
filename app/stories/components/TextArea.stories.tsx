@@ -14,6 +14,6 @@ const Template: ComponentStory<typeof TextAreaComponent> = (args) => (
 export const TextArea = Template.bind({})
 
 TextArea.args = {
-  label: 'Text Input',
+  labelKey: 'Text Input',
   required: true,
 }
