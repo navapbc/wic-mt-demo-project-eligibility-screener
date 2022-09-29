@@ -7,7 +7,6 @@ type Props = {
   disabled?: boolean
   labelKey: string
   href: string /* TODO: create global type for routes */
-  label: string
   style?: string
 }
 

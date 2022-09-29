@@ -4,7 +4,7 @@ import type {
   GetServerSidePropsResult,
   NextPage,
 } from 'next'
-import { Trans } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
 
@@ -28,7 +28,7 @@ const Review: NextPage = () => {
   ]
   const programKeys: Program[] = ['insurance', 'snap', 'fdpir', 'tanf']
   const createCopyArray = (keys: Category[] | Program[]) => {
-    const returnval: string[] = []
+    const returnval:[] = []
     keys.forEach((key: Category | Program) => {
       if (session?.eligibility[key]) {
         returnval.push(t(`Eligibility.${key}`))

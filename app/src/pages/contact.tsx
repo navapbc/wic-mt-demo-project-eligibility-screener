@@ -6,7 +6,7 @@ import type {
 } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEventHandler, useEffect, useState } from 'react'
+import { ChangeEventHandler, useCallback, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 
 import Alert from '@components/Alert'
@@ -26,7 +26,7 @@ const Contact: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState<{
     labelKey: string
   }>({ labelKey: 'continue' })
-  const requiredMet = (): boolean => {
+  const requiredMet = useCallback((): boolean => {
     const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
     return (
       validPhoneLength &&
@@ -34,12 +34,12 @@ const Contact: NextPage<Props> = (props: Props) => {
         (field) => form[field as keyof typeof form]
       )
     )
-  }
+  }, [form])
   const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
     setDisabled(!requiredMet())
-  }, [form])
+  }, [form, requiredMet])
 
   useEffect(() => {
     if (props.previousRoute === '/review') {

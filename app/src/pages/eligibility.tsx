@@ -2,7 +2,7 @@ import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
@@ -21,7 +21,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     route: incomeRoute,
   })
   const [form, setForm] = useState(session?.eligibility)
-  const requiredMet = () => {
+  const requiredMet = useCallback(() => {
     const categorical = [
       'pregnant',
       'baby',
@@ -35,7 +35,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     )
 
     return form.residential && categorical && form.before && programs
-  }
+  }, [form])
   const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
   useEffect(() => {
@@ -50,11 +50,11 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         route: previousRoute,
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
-  }, [form.none, props.previousRoute, continueBtn, t])
+  }, [form.none, props.previousRoute, continueBtn])
 
   useEffect(() => {
     setDisabled(!requiredMet())
-  }, [form])
+  }, [form, requiredMet])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
