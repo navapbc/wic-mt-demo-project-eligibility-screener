@@ -28,7 +28,7 @@ const Review: NextPage = () => {
   ]
   const programKeys: Program[] = ['insurance', 'snap', 'fdpir', 'tanf']
   const createCopyArray = (keys: Category[] | Program[]) => {
-    const returnval:[] = []
+    const returnval: [] = []
     keys.forEach((key: Category | Program) => {
       if (session?.eligibility[key]) {
         returnval.push(t(`Eligibility.${key}`))
