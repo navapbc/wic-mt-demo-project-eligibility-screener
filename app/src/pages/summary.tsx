@@ -25,9 +25,9 @@ const Summary: NextPage = () => {
         <Trans i18nKey="Summary.body" />
       </p>
       <div className="content-group-small">
-        <h4>
+        <h2 className="font-sans-xs">
           <Trans i18nKey="Summary.interestedIn" />
-        </h4>
+        </h2>
         <p>
           <StyledLink
             href="https://dphhs.mt.gov/Assistance"
@@ -37,15 +37,15 @@ const Summary: NextPage = () => {
         </p>
       </div>
       <div className="content-group-small">
-        <h4>
+        <h2 className="font-sans-xs">
           <Trans i18nKey="Summary.submitAnother" />
-        </h4>
+        </h2>
         <ButtonLink labelKey="Summary.startNew" href="/" style="outline" />
       </div>
       <div className="content-group-small">
-        <h4>
+        <h2 className="font-sans-xs">
           <Trans i18nKey="Summary.keepCopy" />
-        </h4>
+        </h2>
       </div>
       <ReviewCollection
         headerKey="Review.eligibilityTitle"
