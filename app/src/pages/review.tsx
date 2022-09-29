@@ -4,7 +4,7 @@ import type {
   GetServerSidePropsResult,
   NextPage,
 } from 'next'
-import { useTranslation } from 'next-i18next'
+import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
 
@@ -54,10 +54,14 @@ const Review: NextPage = () => {
 
   return (
     <>
-      <h1>{t('Review.title')}</h1>
-      <p>{t('Review.subHeader')}</p>
+      <h1>
+        <Trans i18nKey="Review.title" />
+      </h1>
+      <p>
+        <Trans i18nKey="Review.subHeader" />
+      </p>
       <OverviewTables editable />
-      <ButtonLink href="/summary" label={t('Review.button')} />
+      <ButtonLink href="/summary" labelKey="Review.button" />
     </>
   )
 }

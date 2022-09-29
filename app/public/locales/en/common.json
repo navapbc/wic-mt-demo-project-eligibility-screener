@@ -11,6 +11,7 @@
     "button": "Select this clinic and continue",
     "listTitle": "Choose a clinic from the following list:",
     "searchLabel": "Enter your residential ZIP code to search for a clinic:",
+    "showMoreOptions": "Show more clinic options",
     "title": "Choose a clinic",
     "zipSearchError": "Sorry, we could not find a match for this ZIP code in Montana. Please check what you entered and try again.",
     "zipValidationError": "Please enter 5 digits for the ZIP code."
@@ -39,12 +40,14 @@
     "header": "Check your eligibility",
     "insurance": "Medicaid/Healthy Montana Kids Plus",
     "loss": "I have had a pregnancy end in the last 6 months",
+    "no": "No",
     "none": "None of the above",
     "pregnant": "I'm pregnant",
     "programs": "Are you or someone in your household currently enrolled in any of the following programs in Montana?",
     "residential": "Do you live or work in Montana?",
     "snap": "SNAP (Supplemental Nutrition Assistance Program)",
-    "tanf": "TANF (Temporary Assistance for Needy Families)"
+    "tanf": "TANF (Temporary Assistance for Needy Families)",
+    "yes": "Yes"
   },
   "Income": {
     "accordionBody": "<p>A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.</p><p>If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.</p>",
@@ -56,6 +59,12 @@
     "header": "Check your eligibility",
     "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "householdSize": "What is your household size?",
+    "incomePeriods": {
+      "annual": "Annual",
+      "biweekly": "Bi-weekly",
+      "monthly": "Monthly",
+      "weekly": "Weekly"
+    },
     "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.",
     "title": "To be eligible for WIC, your <strong>household income before taxes</strong> must be <strong>at</strong> or <strong>below</strong> a certain income level.",
     "unsure": "<strong>If you are unsure about your income, please continue to apply.</strong> A WIC staff member can answer more specific questions about your situation."
@@ -105,5 +114,7 @@
   "asterisk": "All required questions are marked with an asterisk",
   "backlinkText": "Back",
   "continue": "Continue",
+  "edit": "Edit",
+  "select": "Select",
   "updateAndReturn": "Update and return to review"
 }

@@ -5,21 +5,22 @@ import type {
   GetServerSidePropsResult,
   NextPage,
 } from 'next'
-import { useTranslation } from 'next-i18next'
+import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
+import Button from '@components/Button'
 import ButtonLink from '@components/ButtonLink'
+import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
   previousRoute: string
 }
 
 const Clinic: NextPage<Props> = (props: Props) => {
-  const { t } = useTranslation('common')
   const { session, setSession } = useAppContext()
   const [expandList, setExpandList] = useState<boolean>(false)
   const numberOfClinicsToReturn = 8
@@ -33,18 +34,18 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const [searchError, setSearchError] = useState<boolean>(false)
   const [zipValidationError, setZipValidationError] = useState<boolean>(false)
   const [continueBtn, setContinueBtn] = useState<{
-    label: string
+    labelKey: string
     route: string
-  }>({ label: t('Clinic.button'), route: '/contact' })
+  }>({ labelKey: 'Clinic.button', route: '/contact' })
 
   useEffect(() => {
     if (props.previousRoute === '/review') {
       setContinueBtn({
-        label: t('updateAndReturn'),
+        labelKey: 'updateAndReturn',
         route: props.previousRoute,
       })
     }
-  }, [props.previousRoute, t])
+  }, [props.previousRoute])
 
   const isValidZip = (zip: string) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)
@@ -104,25 +105,26 @@ const Clinic: NextPage<Props> = (props: Props) => {
   return (
     <>
       <BackLink href="/income" />
-      <h1>{t('Clinic.title')}</h1>
-      <p>
-        {t('asterisk')} (<abbr className="usa-hint usa-hint--required">*</abbr>
-        ).
-      </p>
+      <h1>
+        <Trans i18nKey="Clinic.title" />
+      </h1>
+      <RequiredQuestionStatement />
 
       <div className="content-group">
-        <p>{t('Clinic.body')}</p>
+        <p>
+          <Trans i18nKey="Clinic.body" />
+        </p>
       </div>
 
       <div className="content-group">
         <h2>
-          {t('Clinic.searchLabel')}{' '}
+          <Trans i18nKey="Clinic.searchLabel" />
           <abbr className="usa-hint usa-hint--required"> *</abbr>
         </h2>
         <section aria-label="Search clinic by zip">
           {zipValidationError && (
             <span className="usa-error-message">
-              {t('Clinic.zipValidationError')}
+              <Trans i18nKey="Clinic.zipValidationError" />
             </span>
           )}
           <form
@@ -131,7 +133,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
             onSubmit={handleSearch}
           >
             <label className="usa-sr-only" htmlFor="search-field-en-small">
-              {t('Clinic.searchLabel')}
+              <Trans i18nKey="Clinic.searchLabel" />
             </label>
             <input
               className="usa-input usa-input-error"
@@ -159,7 +161,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
       {filteredClinics.length > 0 ? (
         <>
           <h2>
-            {t('Clinic.listTitle')}{' '}
+            <Trans i18nKey="Clinic.listTitle" />
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </h2>
           <form className="usa-form usa-form--large">
@@ -193,18 +195,17 @@ const Clinic: NextPage<Props> = (props: Props) => {
                     )
                 )}
               {!expandList && (
-                <button
+                <Button
+                  labelKey="Clinic.showMoreOptions"
+                  style="unstyled"
                   onClick={() => setExpandList(true)}
-                  className="usa-button usa-button--unstyled"
-                >
-                  Show more clinic options
-                </button>
+                />
               )}
             </fieldset>
             <ButtonLink
               disabled={selectedClinic === undefined}
               href={continueBtn.route}
-              label={continueBtn.label}
+              labelKey={continueBtn.labelKey}
             />
           </form>
         </>

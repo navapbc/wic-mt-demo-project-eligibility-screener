@@ -18,5 +18,5 @@ export const StyledLink = Template.bind({})
 
 StyledLink.args = {
   href: 'test.com',
-  text: 'link text',
+  textKey: 'link text',
 }
