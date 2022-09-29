@@ -1,4 +1,4 @@
-import { useAppContext } from '@context/state'
+import { DefaultState, useAppContext } from '@context/state'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -6,72 +6,82 @@ import type {
 } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { ReactElement } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
+import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
-
 type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
-
 type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
 
-const Review: NextPage = () => {
-  const { session } = useAppContext()
+const categoryKeys: Category[] = [
+  'pregnant',
+  'baby',
+  'child',
+  'guardian',
+  'loss',
+]
+const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
+const contactKeys: Contact[] = ['firstName', 'lastName', 'phone', 'comments']
 
-  const categoryKeys: Category[] = [
-    'pregnant',
-    'baby',
-    'child',
-    'guardian',
-    'loss',
-  ]
-  const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
+const formatCategoricalOrAdjunctive = (
+  keys: (Category | Program)[],
+  session: DefaultState
+): ReactElement => {
+  const i18nKeys: string[] = []
 
-  const formatEligibilitySelections = (
-    keys: (Category | Program)[]
-  ): string[] => {
-    const returnVal: string[] = []
+  keys.forEach((key: Category | Program) => {
+    if (session.eligibility[key]) {
+      i18nKeys.push(`Eligibility.${key}`)
+    }
+  })
 
-    keys.forEach((key: Category | Program) => {
-      if (session.eligibility[key]) {
-        returnVal.push(`Eligibility.${key}`)
-      }
-    })
+  return <List i18nKeys={i18nKeys} />
+}
 
-    return returnVal
-  }
-
-  const eligibilityResponses = [
+export const formatEligibilityResponses = (
+  session: DefaultState
+): ReviewElementProps[] => {
+  return [
     {
       labelKey: 'Eligibility.residential',
-      responseKeys: [session?.eligibility?.residential || ''],
-      isList: false,
+      children:
+        (session?.eligibility?.residential && (
+          <Trans i18nKey={session?.eligibility?.residential} />
+        )) ||
+        null,
     },
     {
       labelKey: 'Eligibility.categorical',
-      responseKeys: formatEligibilitySelections(categoryKeys),
-      isList: true,
+      children: formatCategoricalOrAdjunctive(categoryKeys, session),
     },
     {
       labelKey: 'Eligibility.before',
-      responseKeys: [session?.eligibility?.before.replace(/[2]/g, '') || ''],
-      isList: false,
+      children:
+        (session?.eligibility?.before && (
+          <Trans i18nKey={session?.eligibility?.before.replace(/[2]/g, '')} />
+        )) ||
+        null,
     },
     {
       labelKey: 'Eligibility.programs',
-      responseKeys: formatEligibilitySelections(programKeys),
-      isList: true,
+      children: formatCategoricalOrAdjunctive(programKeys, session),
     },
   ]
+}
 
-  const clinicResponses = [
+export const formatClinicResponses = (
+  session: DefaultState
+): ReviewElementProps[] => {
+  return [
     {
       labelKey: 'Review.clinicSelected',
-      responseKeys: [
+      children:
         (session?.clinic && (
           <ClinicInfo
             name={session?.clinic.clinic}
@@ -80,21 +90,30 @@ const Review: NextPage = () => {
             isFormElement={false}
           />
         )) ||
-          '',
-      ],
-      isList: false,
+        null,
     },
   ]
+}
 
+export const formatContactResponses = (
+  session: DefaultState
+): ReviewElementProps[] => {
   const contactResponses: ReviewElementProps[] = []
-  const contactKeys = ['firstName', 'lastName', 'phone', 'comments']
   contactKeys.forEach((key: string) => {
     contactResponses.push({
       labelKey: `Contact.${key}`,
-      responseKeys: [session?.contact[key as Contact] || ''],
-      isList: false,
+      children:
+        (session?.contact[key as Contact] && (
+          <Trans i18nKey={session?.contact[key as Contact]} />
+        )) ||
+        null,
     })
   })
+  return contactResponses
+}
+
+const Review: NextPage = () => {
+  const { session } = useAppContext()
 
   return (
     <>
@@ -109,19 +128,19 @@ const Review: NextPage = () => {
         headerKey="Review.eligibilityTitle"
         editable={true}
         editHref="/eligibility"
-        reviewElements={eligibilityResponses}
+        reviewElements={formatEligibilityResponses(session)}
       />
       <ReviewCollection
         headerKey="Clinic.title"
         editable={true}
         editHref="/clinic"
-        reviewElements={clinicResponses}
+        reviewElements={formatClinicResponses(session)}
       />
       <ReviewCollection
         headerKey="Contact.title"
         editable={true}
         editHref="/contact"
-        reviewElements={contactResponses}
+        reviewElements={formatContactResponses(session)}
       />
       <ButtonLink href="/summary" labelKey="Review.button" />
     </>

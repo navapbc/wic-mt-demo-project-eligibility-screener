@@ -15,6 +15,5 @@ export const ReviewElement = Template.bind({})
 
 ReviewElement.args = {
   labelKey: 'label',
-  responseKeys: ['response a', 'response b'],
-  isList: true,
+  children: <div>response a</div>,
 }

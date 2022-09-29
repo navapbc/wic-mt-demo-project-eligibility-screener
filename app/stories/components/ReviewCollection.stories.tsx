@@ -18,13 +18,11 @@ ReviewCollection.args = {
   reviewElements: [
     {
       labelKey: 'label 1',
-      responseKeys: ['response a', 'response b'],
-      isList: true,
+      children: <div>response a</div>,
     },
     {
       labelKey: 'label 2',
-      responseKeys: ['response c', 'response d'],
-      isList: false,
+      children: <div>response b</div>,
     },
   ],
   editable: true,
