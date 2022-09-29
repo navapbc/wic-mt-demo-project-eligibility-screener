@@ -9,13 +9,22 @@ type ReviewCollectionProps = {
   reviewElements: ReviewElementProps[]
   editable: boolean
   editHref: string
+  firstElement?: boolean
 }
 
 const ReviewCollection = (props: ReviewCollectionProps): ReactElement => {
-  const { headerKey, reviewElements, editable = false, editHref = '' } = props
+  const {
+    headerKey,
+    reviewElements,
+    editable = false,
+    editHref = '',
+    firstElement = false,
+  } = props
+
+  const marginTop = firstElement ? 'margin-top-3' : 'margin-top-6'
 
   return (
-    <div className="review-collection margin-top-6 border-bottom-1px">
+    <div className={`review-collection ${marginTop} border-bottom-1px`}>
       <h2>
         <Trans i18nKey={headerKey} />
         {editable && (

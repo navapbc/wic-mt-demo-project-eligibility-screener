@@ -52,6 +52,7 @@ const Summary: NextPage = () => {
         editable={false}
         editHref="/eligibility"
         reviewElements={formatEligibilityResponses(session)}
+        firstElement={true}
       />
       <ReviewCollection
         headerKey="Clinic.title"
