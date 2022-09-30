@@ -5,15 +5,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
-const Alternate: NextPage = () => {
+const OtherBenefits: NextPage = () => {
   return (
     <>
       <BackLink href="/eligibility" />
       <h1>
-        <Trans i18nKey="Alternate.title" />
+        <Trans i18nKey="OtherBenefits.title" />
       </h1>
       <h2>
-        <Trans i18nKey="Alternate.subHeader" />
+        <Trans i18nKey="OtherBenefits.subHeader" />
       </h2>
       <p>
         <Trans
@@ -26,7 +26,7 @@ const Alternate: NextPage = () => {
               rel="noopener noreferrer"
             />,
           ]}
-          i18nKey={'Alternate.assistance'}
+          i18nKey={'OtherBenefits.assistance'}
         />
       </p>
       <p>
@@ -40,10 +40,10 @@ const Alternate: NextPage = () => {
               rel="noopener noreferrer"
             />,
           ]}
-          i18nKey={'Alternate.location'}
+          i18nKey={'OtherBenefits.location'}
         />
       </p>
-      <ButtonLink href="/" labelKey="Alternate.button" />
+      <ButtonLink href="/" labelKey="OtherBenefits.button" />
     </>
   )
 }
@@ -56,4 +56,4 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   }
 }
 
-export default Alternate
+export default OtherBenefits
