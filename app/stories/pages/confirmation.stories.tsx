@@ -7,6 +7,8 @@ export default {
   component: ConfirmationPage,
 } as ComponentMeta<typeof ConfirmationPage>
 
-const Template: ComponentStory<typeof ConfirmationPage> = () => <ConfirmationPage />
+const Template: ComponentStory<typeof ConfirmationPage> = () => (
+  <ConfirmationPage />
+)
 
 export const Confirmation = Template.bind({})

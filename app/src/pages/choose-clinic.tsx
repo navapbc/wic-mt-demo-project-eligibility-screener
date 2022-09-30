@@ -155,7 +155,11 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
           </form>
         </section>
         {searchError && (
-          <Alert type="error" alertBody="ChooseClinic.zipSearchError" icon={true} />
+          <Alert
+            type="error"
+            alertBody="ChooseClinic.zipSearchError"
+            icon={true}
+          />
         )}
       </div>
 

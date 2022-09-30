@@ -7,8 +7,6 @@ export default {
   component: HowItWorksPage,
 } as ComponentMeta<typeof HowItWorksPage>
 
-const Template: ComponentStory<typeof HowItWorksPage> = () => (
-  <HowItWorksPage />
-)
+const Template: ComponentStory<typeof HowItWorksPage> = () => <HowItWorksPage />
 
 export const HowItWorks = Template.bind({})
