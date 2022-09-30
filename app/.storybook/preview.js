@@ -19,4 +19,23 @@ export const parameters = {
     en: 'English',
     es: 'Español',
   },
+  options: {
+    storySort: {
+      method: 'alphabetical',
+      order: [
+        'Components',
+        'Pages',
+        [
+          'Index',
+          'How It Works',
+          'Eligibility',
+          'Income',
+          'Choose Clinic',
+          'Contact',
+          'Review',
+          'Confirmation',
+        ],
+      ],
+    },
+  },
 }

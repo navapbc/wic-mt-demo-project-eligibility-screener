@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import ChooseClinicPage from '@pages/choose-clinic'
 
 export default {
-  title: 'Pages',
+  title: 'Pages/Choose Clinic',
   component: ChooseClinicPage,
 } as ComponentMeta<typeof ChooseClinicPage>
 

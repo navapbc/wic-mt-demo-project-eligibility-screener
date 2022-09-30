@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import IncomePage from '@pages/income'
 
 export default {
-  title: 'Pages',
+  title: 'Pages/Income',
   component: IncomePage,
 } as ComponentMeta<typeof IncomePage>
 
