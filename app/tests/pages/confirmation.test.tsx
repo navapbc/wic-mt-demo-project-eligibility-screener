@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Summary from '@pages/summary'
+import Confirmation from '@pages/confirmation'
 
-describe('Summary', () => {
+describe('Confirmation', () => {
   it('should render the heading', () => {
-    render(<Summary />)
+    render(<Confirmation />)
 
     const heading = screen.getByText(/Your confirmation/)
 
@@ -14,7 +14,7 @@ describe('Summary', () => {
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = render(<Summary />)
+    const { container } = render(<Confirmation />)
     const results = await axe(container)
 
     await waitFor(() => {

@@ -142,7 +142,7 @@ const Review: NextPage = () => {
         editHref="/contact"
         reviewElements={formatContactResponses(session)}
       />
-      <ButtonLink href="/summary" labelKey="Review.button" />
+      <ButtonLink href="/confirmation" labelKey="Review.button" />
     </>
   )
 }
