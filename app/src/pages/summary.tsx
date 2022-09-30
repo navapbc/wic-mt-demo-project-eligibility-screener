@@ -55,9 +55,9 @@ const Summary: NextPage = () => {
         firstElement={true}
       />
       <ReviewCollection
-        headerKey="Clinic.title"
+        headerKey="ChooseClinic.title"
         editable={false}
-        editHref="/clinic"
+        editHref="/choose-clinic"
         reviewElements={formatClinicResponses(session)}
       />
       <ReviewCollection

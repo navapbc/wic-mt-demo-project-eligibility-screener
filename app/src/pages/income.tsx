@@ -111,7 +111,7 @@ const Income: NextPage = () => {
             />
           </p>
         </fieldset>
-        <ButtonLink href="/clinic" labelKey="continue" />
+        <ButtonLink href="/choose-clinic" labelKey="continue" />
       </form>
     </>
   )
@@ -130,7 +130,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   }
 
-  if (!['/eligibility', '/clinic'].includes(previousRoute as string)) {
+  if (!['/eligibility', '/choose-clinic'].includes(previousRoute as string)) {
     returnval = {
       ...returnval,
       redirect: {

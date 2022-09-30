@@ -6,7 +6,7 @@
     "subHeader": "Given your responses, you are likely not eligible for WIC in Montana.",
     "title": "Your eligibility"
   },
-  "Clinic": {
+  "ChooseClinic": {
     "body": "You’ll need to visit a clinic in person to complete a certification appointment for WIC. Choose the clinic you would like to go to during business hours.",
     "button": "Select this clinic and continue",
     "listTitle": "Choose a clinic from the following list:",
