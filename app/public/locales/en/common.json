@@ -78,7 +78,7 @@
     "title": "Start an application for WIC",
     "voluntary": "WIC is a voluntary program and participation will not interfere with use of other programs like SNAP or Medicaid."
   },
-  "Information": {
+  "HowItWorks": {
     "apply": "You can start applying for WIC by checking to see if you're eligible.",
     "applyHeader": "Check your eligibility",
     "appointment": "During your appointment, you'll need to show documentation of your income, identity, and residence.",
