@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Summary should render the heading 1`] = `
+exports[`Confirmation should render the heading 1`] = `
 <h1>
   Your confirmation
 </h1>
