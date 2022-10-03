@@ -7,7 +7,7 @@ import ButtonLink from '@components/ButtonLink'
 import OverviewTables from '@components/OverviewTables'
 import StyledLink from '@components/StyledLink'
 
-import { DefaultState } from '../context/state'
+import { DefaultState } from '@context/state'
 
 const Summary: NextPage = () => {
   return (
