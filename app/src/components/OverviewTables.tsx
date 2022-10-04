@@ -43,6 +43,7 @@ const OverviewTables = (props: Props): ReactElement => {
     let returnVal = ''
 
     keys.forEach((key: Category | Program) => {
+      // @ts-ignore
       if (session.eligibility[key]) {
         returnVal = returnVal.concat(t(`Eligibility.${key}`), '<br /> ')
       }

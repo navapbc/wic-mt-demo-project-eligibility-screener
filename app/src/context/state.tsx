@@ -60,7 +60,7 @@ export const AppContext = createContext<AppContextType>({
         tanf: false,
         fdpir: false,
         none: false,
-      }
+      },
     },
   },
   setSession: () => {

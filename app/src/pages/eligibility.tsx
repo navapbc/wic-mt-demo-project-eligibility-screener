@@ -1,14 +1,15 @@
 import { useAppContext } from '@context/state'
+import set from 'lodash/set'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import set from 'lodash/set'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
+
 import getNestedValue from '../utils/getNestedValue'
 
 interface Props {
@@ -51,19 +52,24 @@ const Eligibility: NextPage<Props> = (props: Props) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
-    let newForm: typeof form = form
-    
+    const newForm: typeof form = form
+
     if (['residential', 'before'].includes(name)) {
-      set(newForm, name, value) 
+      set(newForm, name, value)
     } else {
       const castValue = value as keyof typeof form
       // toggles deeply nested boolean of either categorical or program value
       set(newForm, castValue, !getNestedValue(form, castValue))
-      const categoricalOrProgram: 'categorical' | 'programs' = castValue.split('.')[0] as 'categorical' | 'programs'
+      const categoricalOrProgram: 'categorical' | 'programs' = castValue.split(
+        '.'
+      )[0] as 'categorical' | 'programs'
       const nestedNoneKey = `${categoricalOrProgram}.none`
       // If none of the above was just set to true, deselect all other options
-      if (castValue.includes('none') && getNestedValue(newForm, nestedNoneKey)) {
-        Object.keys(form[categoricalOrProgram]).forEach(key => {
+      if (
+        castValue.includes('none') &&
+        getNestedValue(newForm, nestedNoneKey)
+      ) {
+        Object.keys(form[categoricalOrProgram]).forEach((key) => {
           if (key !== 'none') {
             const nestedKey = `${categoricalOrProgram}.${key}`
             set(newForm, nestedKey, false)

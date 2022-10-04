@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         tanf: false,
         fdpir: false,
         none: false,
-      }
+      },
     },
   })
 

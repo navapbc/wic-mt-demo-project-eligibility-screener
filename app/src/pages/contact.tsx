@@ -39,7 +39,7 @@ const Contact: NextPage<Props> = (props: Props) => {
 
   useEffect(() => {
     setDisabled(!requiredMet())
-  }, [form])
+  }, [requiredMet()])
 
   useEffect(() => {
     if (props.previousRoute === '/review') {
