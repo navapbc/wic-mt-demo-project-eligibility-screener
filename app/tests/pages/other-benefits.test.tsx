@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 
-import Alternate from '@pages/alternate'
+import OtherBenefits from '@pages/other-benefits'
 
-describe('Alternate', () => {
+describe('OtherBenefits', () => {
   it('should render the heading', () => {
-    render(<Alternate />)
+    render(<OtherBenefits />)
 
     const heading = screen.getByText(/Your eligibility/i)
 
@@ -14,7 +14,7 @@ describe('Alternate', () => {
   })
 
   it('should pass accessibility scan', async () => {
-    const { container } = render(<Alternate />)
+    const { container } = render(<OtherBenefits />)
     const results = await axe(container)
 
     await waitFor(() => {

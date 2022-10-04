@@ -69,7 +69,7 @@ const Contact: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <BackLink href="/clinic" />
+      <BackLink href="/choose-clinic" />
       <form className="usa-form usa-form--large">
         <h1>
           <Trans i18nKey="Contact.title" />
@@ -97,12 +97,12 @@ const Contact: NextPage<Props> = (props: Props) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.phone" />
+            <Trans i18nKey="Contact.phoneHeader" />
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </h2>
           <Alert alertBody="Contact.phoneAlert" type="info" />
           <label className="usa-label" htmlFor="phone">
-            <Trans i18nKey="Contact.phoneLabel" />
+            <Trans i18nKey="Contact.phone" />
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </label>
           <NumberFormat
@@ -117,13 +117,13 @@ const Contact: NextPage<Props> = (props: Props) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.other" />
+            <Trans i18nKey="Contact.commentsHeader" />
           </h2>
           <TextArea
             handleChange={handleChangeTextArea}
-            id="other"
-            labelKey="Contact.otherLabel"
-            value={form.other}
+            id="comments"
+            labelKey="Contact.comments"
+            value={form.comments}
           />
         </fieldset>
         <ButtonLink
@@ -151,7 +151,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
 
-  if (!['/clinic', '/review'].includes(previousRoute as string)) {
+  if (!['/choose-clinic', '/review'].includes(previousRoute as string)) {
     returnval = {
       ...returnval,
       redirect: {

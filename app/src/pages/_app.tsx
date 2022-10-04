@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       firstName: '',
       lastName: '',
       phone: '',
-      other: '',
+      comments: '',
     },
     eligibility: {
       residential: '',

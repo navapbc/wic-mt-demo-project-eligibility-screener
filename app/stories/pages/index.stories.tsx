@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import IndexPage from '@pages/index'
 
 export default {
-  title: 'Pages',
+  title: 'Pages/Index',
   component: IndexPage,
 } as ComponentMeta<typeof IndexPage>
 

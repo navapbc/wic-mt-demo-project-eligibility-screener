@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import EligibilityPage from '@pages/eligibility'
 
 export default {
-  title: 'Pages',
+  title: 'Pages/Eligibility',
   component: EligibilityPage,
 } as ComponentMeta<typeof EligibilityPage>
 

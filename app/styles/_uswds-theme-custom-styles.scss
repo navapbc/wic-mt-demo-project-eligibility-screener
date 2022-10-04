@@ -34,6 +34,19 @@ i.e.
   flex: 1;
 }
 
+// Header:
+// Set custom background and text colors.
+.header {
+  background-color: #162e51;
+  color: #fff;
+}
+
+// Tables:
+// Set the tables to be 100% width.
+.usa-table {
+  width: 100%;
+}
+
 // Footer logo spacing:
 // Currently the next/image component wraps the <img> tag in a bunch of <spans>
 // and applies direct css onto all those elements. To overcome it, we need
@@ -57,5 +70,19 @@ i.e.
 
   p:last-child {
     margin-bottom: 0;
+  }
+}
+
+// A logical content grouping for content.
+// Used on the confirmation page.
+.content-group-small {
+  @include u-margin-bottom(4);
+
+  h2 {
+    @include u-margin-bottom(0);
+  }
+
+  p {
+    @include u-margin-top(1);
   }
 }

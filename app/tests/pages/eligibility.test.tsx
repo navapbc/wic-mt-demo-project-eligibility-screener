@@ -82,7 +82,7 @@ describe('Eligibility', () => {
       expect(continueBtn.getAttribute('href')).toBe('/income')
     })
 
-    it.skip('should link to alternate page if none is selected for question 2', () => {
+    it.skip('should link to other benefits page if none is selected for question 2', () => {
       render(<Eligibility previousRoute="/" />)
 
       const noneBtn = screen.getAllByLabelText(/None of the above/i)[0]
@@ -93,7 +93,7 @@ describe('Eligibility', () => {
 
       const continueBtn = screen.getByText(/Continue/i)
 
-      expect(continueBtn.getAttribute('href')).toBe('/alternate')
+      expect(continueBtn.getAttribute('href')).toBe('/other-benefits')
     })
   })
 })
