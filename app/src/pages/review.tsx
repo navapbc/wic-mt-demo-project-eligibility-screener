@@ -22,8 +22,11 @@ const formatCategoricalOrAdjunctive = (
   category?: boolean /* if not category, then considered program */
 ): ReactElement => {
   const i18nKeys: string[] = []
-  const categoryOrProgram = session.eligibility[category ? 'categorical' : 'programs']
-  const categoryOrProgramKeys = Object.keys(categoryOrProgram) as (keyof typeof categoryOrProgram)[]
+  const categoryOrProgram =
+    session.eligibility[category ? 'categorical' : 'programs']
+  const categoryOrProgramKeys = Object.keys(
+    categoryOrProgram
+  ) as (keyof typeof categoryOrProgram)[]
 
   categoryOrProgramKeys.forEach((key: keyof typeof categoryOrProgram) => {
     if (categoryOrProgram[key]) {
