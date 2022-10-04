@@ -18,14 +18,14 @@
   },
   "Contact": {
     "button": "Submit",
+    "comments": "Comments, questions, other information",
+    "commentsHeader": "Is there anything else you'd like to share with us?",
     "firstName": "First name",
     "lastName": "Last name",
     "name": "What's your name?",
-    "other": "Is there anything else you'd like to share with us?",
-    "otherLabel": "Comments, questions, other information",
-    "phone": "What's the best phone number to reach you at?",
+    "phone": "Phone number",
     "phoneAlert": "Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.",
-    "phoneLabel": "Phone number",
+    "phoneHeader": "What's the best phone number to reach you at?",
     "title": "Contact information"
   },
   "Eligibility": {
@@ -73,7 +73,6 @@
     "benefits": "There are many benefits including healthy food, breastfeeding support, nutrition education, and connections to local resources.",
     "button": "Get started",
     "header": "<strong>WIC (Women, Infants, and Children)</strong> is a program designed to help families and young children during an important time in growth and development.",
-    "list": ["a", "b"],
     "supplement": "WIC is meant to supplement your food budget and complement your use of other resources.",
     "time": "You can start the application process for WIC now. <strong>This form should take about 10 minutes to complete.</strong>",
     "title": "Start an application for WIC",
@@ -92,7 +91,7 @@
   },
   "Layout": {
     "footer1": "This site is a demonstration project built with <0>Montana WIC</0> and is for example purposes only. If you need to submit an application for WIC, please use <1>SignUpWIC.com</1> to find a location near you.",
-    "footer2": "<0>USDA Non-Discrimination Statement</0>: This institution is an equal opportunity provider.",
+    "footer2": "This institution is an equal opportunity provider. <0>USDA Non-Discrimination Statement</0>",
     "header": "Apply for WIC in Montana"
   },
   "Review": {
@@ -104,11 +103,11 @@
   },
   "Summary": {
     "body": "Thank you for submitting your information. If you're eligible, you should hear from WIC staff at your chosen clinic within 20 days.",
-    "interestedIn": "<strong>Interested in other available assistance and benefits?</strong>",
-    "keepCopy": "<strong>Keep a copy of your confirmation for your records.</strong>",
+    "interestedIn": "Interested in other available assistance and benefits?",
+    "keepCopy": "Keep a copy of your confirmation for your records.",
     "learnAbout": "Learn about other assistance",
     "startNew": "Start a new application",
-    "submitAnother": "<strong>Do you need to submit another application for someone else?</strong>",
+    "submitAnother": "Do you need to submit another application for someone else?",
     "title": "Your confirmation"
   },
   "asterisk": "All required questions are marked with an asterisk",

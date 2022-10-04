@@ -7,7 +7,7 @@ export type DefaultState = {
     firstName: string
     lastName: string
     phone: string
-    other: string
+    comments: string
   }
   eligibility: {
     residential: string
@@ -37,7 +37,7 @@ export const AppContext = createContext<AppContextType>({
       firstName: '',
       lastName: '',
       phone: '',
-      other: '',
+      comments: '',
     },
     eligibility: {
       residential: '',
