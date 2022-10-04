@@ -43,7 +43,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
     const previousRoute = props.previousRoute.substring(prevRouteIndex)
     if (form.none) {
-      setContinueBtn({ ...continueBtn, route: '/alternate' })
+      setContinueBtn({ ...continueBtn, route: '/other-benefits' })
     } else if (previousRoute === '/review') {
       setContinueBtn({
         labelKey: 'updateAndReturn',
@@ -75,7 +75,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <BackLink href="/information" />
+      <BackLink href="/how-it-works" />
       <h1>
         <Trans i18nKey="Eligibility.header" />
       </h1>

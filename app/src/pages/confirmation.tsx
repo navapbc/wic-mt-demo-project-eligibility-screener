@@ -13,38 +13,38 @@ import {
   formatEligibilityResponses,
 } from '@pages/review'
 
-const Summary: NextPage = () => {
+const Confirmation: NextPage = () => {
   const { session } = useAppContext()
 
   return (
     <>
       <h1>
-        <Trans i18nKey="Summary.title" />
+        <Trans i18nKey="Confirmation.title" />
       </h1>
       <p>
-        <Trans i18nKey="Summary.body" />
+        <Trans i18nKey="Confirmation.body" />
       </p>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
-          <Trans i18nKey="Summary.interestedIn" />
+          <Trans i18nKey="Confirmation.interestedIn" />
         </h2>
         <p>
           <StyledLink
             href="https://dphhs.mt.gov/Assistance"
-            textKey="Summary.learnAbout"
+            textKey="Confirmation.learnAbout"
             external={true}
           />
         </p>
       </div>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
-          <Trans i18nKey="Summary.submitAnother" />
+          <Trans i18nKey="Confirmation.submitAnother" />
         </h2>
-        <ButtonLink labelKey="Summary.startNew" href="/" style="outline" />
+        <ButtonLink labelKey="Confirmation.startNew" href="/" style="outline" />
       </div>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
-          <Trans i18nKey="Summary.keepCopy" />
+          <Trans i18nKey="Confirmation.keepCopy" />
         </h2>
       </div>
       <ReviewCollection
@@ -55,9 +55,9 @@ const Summary: NextPage = () => {
         firstElement={true}
       />
       <ReviewCollection
-        headerKey="Clinic.title"
+        headerKey="ChooseClinic.title"
         editable={false}
-        editHref="/clinic"
+        editHref="/choose-clinic"
         reviewElements={formatClinicResponses(session)}
       />
       <ReviewCollection
@@ -78,4 +78,4 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   }
 }
 
-export default Summary
+export default Confirmation

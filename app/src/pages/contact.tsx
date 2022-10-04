@@ -69,7 +69,7 @@ const Contact: NextPage<Props> = (props: Props) => {
 
   return (
     <>
-      <BackLink href="/clinic" />
+      <BackLink href="/choose-clinic" />
       <form className="usa-form usa-form--large">
         <h1>
           <Trans i18nKey="Contact.title" />
@@ -151,7 +151,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
 
-  if (!['/clinic', '/review'].includes(previousRoute as string)) {
+  if (!['/choose-clinic', '/review'].includes(previousRoute as string)) {
     returnval = {
       ...returnval,
       redirect: {

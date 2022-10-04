@@ -21,7 +21,7 @@ const Index: NextPage = () => {
         ))}
       </ul>
       <Trans i18nKey="Index.time" />
-      <ButtonLink href="/information" labelKey="Index.button" />
+      <ButtonLink href="/how-it-works" labelKey="Index.button" />
     </>
   )
 }

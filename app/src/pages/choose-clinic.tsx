@@ -21,7 +21,7 @@ interface Props {
   previousRoute: string
 }
 
-const Clinic: NextPage<Props> = (props: Props) => {
+const ChooseClinic: NextPage<Props> = (props: Props) => {
   const { session, setSession } = useAppContext()
   const [expandList, setExpandList] = useState<boolean>(false)
   const numberOfClinicsToReturn = 8
@@ -37,7 +37,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
   const [continueBtn, setContinueBtn] = useState<{
     labelKey: string
     route: string
-  }>({ labelKey: 'Clinic.button', route: '/contact' })
+  }>({ labelKey: 'ChooseClinic.button', route: '/contact' })
 
   useEffect(() => {
     if (props.previousRoute === '/review') {
@@ -107,25 +107,25 @@ const Clinic: NextPage<Props> = (props: Props) => {
     <>
       <BackLink href="/income" />
       <h1>
-        <Trans i18nKey="Clinic.title" />
+        <Trans i18nKey="ChooseClinic.title" />
       </h1>
       <RequiredQuestionStatement />
 
       <div className="content-group">
         <p>
-          <Trans i18nKey="Clinic.body" />
+          <Trans i18nKey="ChooseClinic.body" />
         </p>
       </div>
 
       <div className="content-group">
         <h2>
-          <Trans i18nKey="Clinic.searchLabel" />
+          <Trans i18nKey="ChooseClinic.searchLabel" />
           <abbr className="usa-hint usa-hint--required"> *</abbr>
         </h2>
         <section aria-label="Search clinic by zip">
           {zipValidationError && (
             <span className="usa-error-message">
-              <Trans i18nKey="Clinic.zipValidationError" />
+              <Trans i18nKey="ChooseClinic.zipValidationError" />
             </span>
           )}
           <form
@@ -134,7 +134,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
             onSubmit={handleSearch}
           >
             <label className="usa-sr-only" htmlFor="search-field-en-small">
-              <Trans i18nKey="Clinic.searchLabel" />
+              <Trans i18nKey="ChooseClinic.searchLabel" />
             </label>
             <input
               className="usa-input usa-input-error"
@@ -155,14 +155,18 @@ const Clinic: NextPage<Props> = (props: Props) => {
           </form>
         </section>
         {searchError && (
-          <Alert type="error" alertBody="Clinic.zipSearchError" icon={true} />
+          <Alert
+            type="error"
+            alertBody="ChooseClinic.zipSearchError"
+            icon={true}
+          />
         )}
       </div>
 
       {filteredClinics.length > 0 ? (
         <>
           <h2>
-            <Trans i18nKey="Clinic.listTitle" />
+            <Trans i18nKey="ChooseClinic.listTitle" />
             <abbr className="usa-hint usa-hint--required"> *</abbr>
           </h2>
           <form className="usa-form usa-form--large">
@@ -197,7 +201,7 @@ const Clinic: NextPage<Props> = (props: Props) => {
                 )}
               {!expandList && (
                 <Button
-                  labelKey="Clinic.showMoreOptions"
+                  labelKey="ChooseClinic.showMoreOptions"
                   style="unstyled"
                   onClick={() => setExpandList(true)}
                 />
@@ -249,4 +253,4 @@ export const getServerSideProps: GetServerSideProps = async ({
   return returnval
 }
 
-export default Clinic
+export default ChooseClinic

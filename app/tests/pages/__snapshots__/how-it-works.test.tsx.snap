@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Information should render title text 1`] = `
+exports[`HowItWorks should render title text 1`] = `
 <p
   class="margin-top-1"
 >
