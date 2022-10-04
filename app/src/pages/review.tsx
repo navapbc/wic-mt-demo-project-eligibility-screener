@@ -15,28 +15,18 @@ import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 
-type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
-type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
 type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
 
-const categoryKeys: Category[] = [
-  'pregnant',
-  'baby',
-  'child',
-  'guardian',
-  'loss',
-]
-const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
-const contactKeys: Contact[] = ['firstName', 'lastName', 'phone', 'comments']
-
 const formatCategoricalOrAdjunctive = (
-  keys: (Category | Program)[],
-  session: DefaultState
+  session: DefaultState,
+  category?: boolean /* if not category, then considered program */
 ): ReactElement => {
   const i18nKeys: string[] = []
+  const categoryOrProgram = session.eligibility[category ? 'categorical' : 'programs']
+  const categoryOrProgramKeys = Object.keys(categoryOrProgram) as (keyof typeof categoryOrProgram)[]
 
-  keys.forEach((key: Category | Program) => {
-    if (session.eligibility[key]) {
+  categoryOrProgramKeys.forEach((key: keyof typeof categoryOrProgram) => {
+    if (categoryOrProgram[key]) {
       i18nKeys.push(`Eligibility.${key}`)
     }
   })
@@ -58,7 +48,7 @@ export const formatEligibilityResponses = (
     },
     {
       labelKey: 'Eligibility.categorical',
-      children: formatCategoricalOrAdjunctive(categoryKeys, session),
+      children: formatCategoricalOrAdjunctive(session, true),
     },
     {
       labelKey: 'Eligibility.before',
@@ -70,7 +60,7 @@ export const formatEligibilityResponses = (
     },
     {
       labelKey: 'Eligibility.programs',
-      children: formatCategoricalOrAdjunctive(programKeys, session),
+      children: formatCategoricalOrAdjunctive(session),
     },
   ]
 }
@@ -99,7 +89,7 @@ export const formatContactResponses = (
   session: DefaultState
 ): ReviewElementProps[] => {
   const contactResponses: ReviewElementProps[] = []
-  contactKeys.forEach((key: string) => {
+  Object.keys(session.contact).forEach((key: string) => {
     contactResponses.push({
       labelKey: `Contact.${key}`,
       children:
@@ -131,7 +121,7 @@ const Review: NextPage = () => {
         reviewElements={formatEligibilityResponses(session)}
       />
       <ReviewCollection
-        headerKey="Clinic.title"
+        headerKey="ChooseClinic.title"
         editable={true}
         editHref="/clinic"
         reviewElements={formatClinicResponses(session)}
