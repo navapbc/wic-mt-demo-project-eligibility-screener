@@ -11,18 +11,22 @@ export type DefaultState = {
   }
   eligibility: {
     residential: string
-    pregnant: boolean
-    baby: boolean
-    child: boolean
-    guardian: boolean
-    none: boolean
-    loss: boolean
+    categorical: {
+      pregnant: boolean
+      baby: boolean
+      child: boolean
+      guardian: boolean
+      loss: boolean
+      none: boolean
+    }
     before: string
-    insurance: boolean
-    snap: boolean
-    tanf: boolean
-    fdpir: boolean
-    none2: boolean
+    programs: {
+      insurance: boolean
+      snap: boolean
+      tanf: boolean
+      fdpir: boolean
+      none: boolean
+    }
   }
 }
 interface AppContextType {
@@ -41,18 +45,22 @@ export const AppContext = createContext<AppContextType>({
     },
     eligibility: {
       residential: '',
-      pregnant: false,
-      baby: false,
-      child: false,
-      guardian: false,
-      none: false,
-      loss: false,
+      categorical: {
+        pregnant: false,
+        baby: false,
+        child: false,
+        guardian: false,
+        loss: false,
+        none: false,
+      },
       before: '',
-      insurance: false,
-      snap: false,
-      tanf: false,
-      fdpir: false,
-      none2: false,
+      programs: {
+        insurance: false,
+        snap: false,
+        tanf: false,
+        fdpir: false,
+        none: false,
+      }
     },
   },
   setSession: () => {

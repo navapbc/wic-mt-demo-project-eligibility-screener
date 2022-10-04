@@ -6,7 +6,7 @@ import Table from '@components/Table'
 
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 
-type Program = 'insurance' | 'snap' | 'tanf'
+type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
 
 interface Props {
   editable?: boolean
@@ -23,7 +23,7 @@ const OverviewTables = (props: Props): ReactElement => {
     'guardian',
     'loss',
   ]
-  const programKeys: Program[] = ['insurance', 'snap', 'tanf']
+  const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
 
   const formatClinic = (): string => {
     const clinic = session?.clinic

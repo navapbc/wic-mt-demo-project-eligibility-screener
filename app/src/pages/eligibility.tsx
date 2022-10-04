@@ -2,12 +2,14 @@ import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import set from 'lodash/set'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
+import getNestedValue from '../utils/getNestedValue'
 
 interface Props {
   previousRoute: string
@@ -22,17 +24,8 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   })
   const [form, setForm] = useState(session?.eligibility)
   const requiredMet = () => {
-    const categorical = [
-      'pregnant',
-      'baby',
-      'child',
-      'guardian',
-      'pregnant',
-      'none',
-    ].some((category) => form[category as keyof typeof form])
-    const programs = ['insurance', 'snap', 'tanf', 'none2'].some(
-      (program) => form[program as keyof typeof form]
-    )
+    const categorical = Object.values(form.categorical).includes(true)
+    const programs = Object.values(form.programs).includes(true)
 
     return form.residential && categorical && form.before && programs
   }
@@ -42,7 +35,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
     const prevRouteIndex = props.previousRoute.lastIndexOf('/')
     const previousRoute = props.previousRoute.substring(prevRouteIndex)
-    if (form.none) {
+    if (form.categorical.none) {
       setContinueBtn({ ...continueBtn, route: '/alternate' })
     } else if (previousRoute === '/review') {
       setContinueBtn({
@@ -50,24 +43,37 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         route: previousRoute,
       })
     } else setContinueBtn({ ...continueBtn, route: incomeRoute })
-  }, [form.none, props.previousRoute])
+  }, [form.categorical.none, props.previousRoute])
 
   useEffect(() => {
     setDisabled(!requiredMet())
-  }, [form])
+  }, [requiredMet()])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
-    const castValue = value as keyof typeof form
-    let newValue
-
+    let newForm: typeof form = form
+    
     if (['residential', 'before'].includes(name)) {
-      newValue = { [name]: value }
+      set(newForm, name, value) 
     } else {
-      newValue = { [castValue]: !form[castValue] }
+      const castValue = value as keyof typeof form
+      // toggles deeply nested boolean of either categorical or program value
+      set(newForm, castValue, !getNestedValue(form, castValue))
+      const categoricalOrProgram: 'categorical' | 'programs' = castValue.split('.')[0] as 'categorical' | 'programs'
+      const nestedNoneKey = `${categoricalOrProgram}.none`
+      // If none of the above was just set to true, deselect all other options
+      if (castValue.includes('none') && getNestedValue(newForm, nestedNoneKey)) {
+        Object.keys(form[categoricalOrProgram]).forEach(key => {
+          if (key !== 'none') {
+            const nestedKey = `${categoricalOrProgram}.${key}`
+            set(newForm, nestedKey, false)
+          }
+        })
+      } else if (getNestedValue(form, nestedNoneKey)) {
+        // if none of the above had been previously selected for current question, deselect it
+        set(newForm, nestedNoneKey, false)
+      }
     }
-
-    const newForm = { ...form, ...newValue }
 
     setForm(newForm)
     setSession({ ...session, eligibility: newForm })
@@ -112,40 +118,40 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           type="checkbox"
           choices={[
             {
-              checked: form.pregnant,
+              checked: form.categorical?.pregnant,
               handleChange,
               labelKey: 'Eligibility.pregnant',
-              value: 'pregnant',
+              value: 'categorical.pregnant',
             },
             {
-              checked: form.baby,
+              checked: form.categorical?.baby,
               handleChange,
               labelKey: 'Eligibility.baby',
-              value: 'baby',
+              value: 'categorical.baby',
             },
             {
-              checked: form.child,
+              checked: form.categorical?.child,
               handleChange,
               labelKey: 'Eligibility.child',
-              value: 'child',
+              value: 'categorical.child',
             },
             {
-              checked: form.guardian,
+              checked: form.categorical?.guardian,
               handleChange,
               labelKey: 'Eligibility.guardian',
-              value: 'guardian',
+              value: 'categorical.guardian',
             },
             {
-              checked: form.loss,
+              checked: form.categorical?.loss,
               handleChange,
               labelKey: 'Eligibility.loss',
-              value: 'loss',
+              value: 'categorical.loss',
             },
             {
-              checked: form.none,
+              checked: form.categorical?.none,
               handleChange,
               labelKey: 'Eligibility.none',
-              value: 'none',
+              value: 'categorical.none',
             },
           ]}
         />
@@ -176,34 +182,34 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           type="checkbox"
           choices={[
             {
-              checked: form.insurance,
+              checked: form.programs?.insurance,
               handleChange,
               labelKey: 'Eligibility.insurance',
-              value: 'insurance',
+              value: 'programs.insurance',
             },
             {
-              checked: form.snap,
+              checked: form.programs?.snap,
               handleChange,
               labelKey: 'Eligibility.snap',
-              value: 'snap',
+              value: 'programs.snap',
             },
             {
-              checked: form.tanf,
+              checked: form.programs?.tanf,
               handleChange,
               labelKey: 'Eligibility.tanf',
-              value: 'tanf',
+              value: 'programs.tanf',
             },
             {
-              checked: form.fdpir,
+              checked: form.programs?.fdpir,
               handleChange,
               labelKey: 'Eligibility.fdpir',
-              value: 'fdpir',
+              value: 'programs.fdpir',
             },
             {
-              checked: form.none2,
+              checked: form.programs?.none,
               handleChange,
               labelKey: 'Eligibility.none',
-              value: 'none2',
+              value: 'programs.none',
             },
           ]}
         />
