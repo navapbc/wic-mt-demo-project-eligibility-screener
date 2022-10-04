@@ -57,7 +57,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
 
     if (['residential', 'before'].includes(name)) {
       set(newValue, name, value)
-      debugger
     } else {
       const castValue = value as keyof typeof form
       const categoricalOrProgram: 'categorical' | 'programs' = castValue.split(
@@ -85,7 +84,6 @@ const Eligibility: NextPage<Props> = (props: Props) => {
     }
 
     newForm = { ...form, ...newValue }
-    debugger
     setForm(newForm)
     setSession({ ...session, eligibility: newForm })
   }
