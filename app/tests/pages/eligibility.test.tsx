@@ -7,7 +7,7 @@ describe('Eligibility', () => {
   it('should render first question text', () => {
     render(<Eligibility previousRoute="/review" />)
 
-    const question = screen.getByText(/Do you live or work in Montana?/i)
+    const question = screen.getByText(/Do you live or work in Montana?/)
 
     expect(question).toBeInTheDocument()
     expect(question).toMatchSnapshot()
@@ -20,7 +20,7 @@ describe('Eligibility', () => {
     expect(results).toHaveNoViolations()
   })
 
-  describe.skip('residential radios', () => {
+  describe('residential radios', () => {
     it('should select yes option', () => {
       render(<Eligibility previousRoute="/review" />)
 
@@ -32,8 +32,9 @@ describe('Eligibility', () => {
     })
   })
 
-  describe.skip('none of the above', () => {
+  describe('none of the above', () => {
     it('should deselect all other categories', () => {
+      render(<Eligibility previousRoute="/review" />)
       const pregnantBtn = screen.getByLabelText(/I'm pregnant/)
       fireEvent.click(pregnantBtn)
       expect(pregnantBtn).toBeChecked()
@@ -45,10 +46,9 @@ describe('Eligibility', () => {
       expect(pregnantBtn).not.toBeChecked()
     })
 
-    it('should deselect none of the above when another category is selected', () => {
+    it('should deselect none of the above when a category is selected', () => {
+      render(<Eligibility previousRoute="/review" />)
       const noneBtn = screen.getAllByLabelText(/None of the above/)[0]
-      expect(noneBtn).not.toBeChecked()
-      fireEvent.click(noneBtn)
       expect(noneBtn).toBeChecked()
 
       const pregnantBtn = screen.getByLabelText(/I'm pregnant/)
@@ -58,8 +58,9 @@ describe('Eligibility', () => {
     })
 
     it('should deselect all other program', () => {
+      render(<Eligibility previousRoute="/review" />)
       const fdpirBtn = screen.getByLabelText(
-        /FDPIR (Food Distribution Program on Indian Reservations)/
+        'FDPIR (Food Distribution Program on Indian Reservations)'
       )
       fireEvent.click(fdpirBtn)
       expect(fdpirBtn).toBeChecked()

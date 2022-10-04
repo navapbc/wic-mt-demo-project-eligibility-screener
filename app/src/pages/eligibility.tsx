@@ -48,27 +48,30 @@ const Eligibility: NextPage<Props> = (props: Props) => {
 
   useEffect(() => {
     setDisabled(!requiredMet())
-  }, [requiredMet()])
+  }, [requiredMet(), form])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name }: { value: string; name: string } = e.target
-    const newForm: typeof form = form
+    let newForm: typeof form = form
+    let newValue = {}
 
     if (['residential', 'before'].includes(name)) {
-      set(newForm, name, value)
+      set(newValue, name, value)
+      debugger
     } else {
       const castValue = value as keyof typeof form
-      // toggles deeply nested boolean of either categorical or program value
-      set(newForm, castValue, !getNestedValue(form, castValue))
       const categoricalOrProgram: 'categorical' | 'programs' = castValue.split(
         '.'
       )[0] as 'categorical' | 'programs'
       const nestedNoneKey = `${categoricalOrProgram}.none`
-      // If none of the above was just set to true, deselect all other options
+      newValue = {[categoricalOrProgram]: form[categoricalOrProgram]}
+      // toggles deeply nested boolean of categorical or program value
+      set(newValue, castValue, !getNestedValue(form, castValue))
       if (
         castValue.includes('none') &&
         getNestedValue(newForm, nestedNoneKey)
       ) {
+        // If none was just set to true, deselect all other options
         Object.keys(form[categoricalOrProgram]).forEach((key) => {
           if (key !== 'none') {
             const nestedKey = `${categoricalOrProgram}.${key}`
@@ -76,11 +79,13 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           }
         })
       } else if (getNestedValue(form, nestedNoneKey)) {
-        // if none of the above had been previously selected for current question, deselect it
+        // if none is already true for current question, deselect it
         set(newForm, nestedNoneKey, false)
       }
     }
 
+    newForm = { ...form, ...newValue }
+    debugger
     setForm(newForm)
     setSession({ ...session, eligibility: newForm })
   }
