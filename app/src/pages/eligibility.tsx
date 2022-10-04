@@ -63,7 +63,7 @@ const Eligibility: NextPage<Props> = (props: Props) => {
         '.'
       )[0] as 'categorical' | 'programs'
       const nestedNoneKey = `${categoricalOrProgram}.none`
-      newValue = {[categoricalOrProgram]: form[categoricalOrProgram]}
+      newValue = { [categoricalOrProgram]: form[categoricalOrProgram] }
       // toggles deeply nested boolean of categorical or program value
       set(newValue, castValue, !getNestedValue(form, castValue))
       if (
