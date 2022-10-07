@@ -1,4 +1,3 @@
-import { useAppContext } from '@context/state'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -17,12 +16,14 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
 
-interface Props {
+import type { ModifySessionProps } from '../types/common'
+
+interface ContactProps extends ModifySessionProps {
   previousRoute: string
 }
 
-const Contact: NextPage<Props> = (props: Props) => {
-  const { session, setSession } = useAppContext()
+const Contact: NextPage<ContactProps> = (props: ContactProps) => {
+  const { session, setSession, previousRoute } = props
   const [form, setForm] = useState(session?.contact)
   const [continueBtn, setContinueBtn] = useState<{
     labelKey: string

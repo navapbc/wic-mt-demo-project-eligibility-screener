@@ -1,4 +1,3 @@
-import { DefaultState, useAppContext } from '@context/state'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -14,6 +13,8 @@ import ClinicInfo from '@components/ClinicInfo'
 import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
+
+import type { SessionProp, SessionData } from '../types/common'
 
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
@@ -31,7 +32,7 @@ const contactKeys: Contact[] = ['firstName', 'lastName', 'phone', 'comments']
 
 const formatCategoricalOrAdjunctive = (
   keys: (Category | Program)[],
-  session: DefaultState
+  session: SessionData
 ): ReactElement => {
   const i18nKeys: string[] = []
 
@@ -45,7 +46,7 @@ const formatCategoricalOrAdjunctive = (
 }
 
 export const formatEligibilityResponses = (
-  session: DefaultState
+  session: SessionData
 ): ReviewElementProps[] => {
   return [
     {
@@ -76,7 +77,7 @@ export const formatEligibilityResponses = (
 }
 
 export const formatClinicResponses = (
-  session: DefaultState
+  session: SessionData
 ): ReviewElementProps[] => {
   return [
     {
@@ -96,7 +97,7 @@ export const formatClinicResponses = (
 }
 
 export const formatContactResponses = (
-  session: DefaultState
+  session: SessionData
 ): ReviewElementProps[] => {
   const contactResponses: ReviewElementProps[] = []
   contactKeys.forEach((key: string) => {
@@ -112,8 +113,8 @@ export const formatContactResponses = (
   return contactResponses
 }
 
-const Review: NextPage = () => {
-  const { session } = useAppContext()
+const Review: NextPage<SessionProp> = (props: SessionProp) => {
+  const { session } = props
 
   return (
     <>

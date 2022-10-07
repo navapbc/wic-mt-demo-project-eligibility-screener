@@ -1,4 +1,3 @@
-import { AppContext } from '@context/state'
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import useLocalStorage from 'src/hooks/useLocalStorage'
@@ -33,13 +32,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
   })
 
+  const props = { ...pageProps, session, setSession }
+
   return (
-    // @ts-ignore
-    <AppContext.Provider value={{ session, setSession }}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AppContext.Provider>
+    <Layout>
+      <Component {...props} />
+    </Layout>
   )
 }
 

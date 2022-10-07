@@ -1,4 +1,3 @@
-import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -9,13 +8,15 @@ import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
-interface Props {
+import type { ModifySessionProps } from '../types/common'
+
+interface EligibilityProps extends ModifySessionProps {
   previousRoute: string
 }
 
-const Eligibility: NextPage<Props> = (props: Props) => {
+const Eligibility: NextPage<EligibilityProps> = (props: EligibilityProps) => {
+  const { session, setSession, previousRoute } = props
   const incomeRoute = '/income'
-  const { session, setSession } = useAppContext()
   const [continueBtn, setContinueBtn] = useState({
     labelKey: 'continue',
     route: incomeRoute,

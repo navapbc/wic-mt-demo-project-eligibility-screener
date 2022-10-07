@@ -1,4 +1,3 @@
-import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -13,8 +12,10 @@ import {
   formatEligibilityResponses,
 } from '@pages/review'
 
-const Confirmation: NextPage = () => {
-  const { session } = useAppContext()
+import type { SessionProp } from '../types/common'
+
+const Confirmation: NextPage<SessionProp> = (props: SessionProp) => {
+  const { session } = props
 
   return (
     <>

@@ -1,4 +1,3 @@
-import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type {
   GetServerSideProps,
@@ -18,12 +17,16 @@ import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
-interface Props {
+import type { ModifySessionProps } from '../types/common'
+
+interface ChooseClinicProps extends ModifySessionProps {
   previousRoute: string
 }
 
-const ChooseClinic: NextPage<Props> = (props: Props) => {
-  const { session, setSession } = useAppContext()
+const ChooseClinic: NextPage<ChooseClinicProps> = (
+  props: ChooseClinicProps
+) => {
+  const { session, setSession } = props
   const [expandList, setExpandList] = useState<boolean>(false)
   const numberOfClinicsToReturn = 8
   const [selectedClinic, setSelectedClinic] = useState<

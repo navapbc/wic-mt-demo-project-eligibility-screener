@@ -1,13 +1,11 @@
-import { DefaultState } from '@context/state'
 import { useState } from 'react'
 
+import { SessionData } from '../types/common'
+
 // Custom hook to persist state across page refresh
-export default function useLocalStorage(
-  key: string,
-  initialValue: DefaultState
-) {
+export default function useLocalStorage(key: string, initialValue: SessionData) {
   // Pass initial state function to useState so logic is only executed once
-  const [storedValue, setStoredValue] = useState<DefaultState>(() => {
+  const [storedValue, setStoredValue] = useState<SessionData>(() => {
     if (typeof window === 'undefined') {
       return initialValue
     }
@@ -16,8 +14,8 @@ export default function useLocalStorage(
       const item: string | null = window.localStorage.getItem(key)
 
       // TODO: refactor type casting
-      const state: DefaultState = item
-        ? (JSON.parse(item) as DefaultState)
+      const state: SessionData = item
+        ? (JSON.parse(item) as SessionData)
         : initialValue
 
       return state
@@ -28,13 +26,13 @@ export default function useLocalStorage(
     }
   })
   // Return a wrapped version of useState's setter function that persists the new value to localStorage.
-  const setValue = (value: DefaultState) => {
+  const setValue = (value: SessionData) => {
     try {
       // Allow value to be a function so we have same API as useState
 
       // TODO: refactor type casting
-      const valueToStore: DefaultState =
-        value instanceof Function ? (value(storedValue) as DefaultState) : value
+      const valueToStore: SessionData =
+        value instanceof Function ? (value(storedValue) as SessionData) : value
       // Save state
       setStoredValue(valueToStore)
       // Save to local storage
