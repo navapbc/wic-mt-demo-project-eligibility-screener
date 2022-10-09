@@ -1,5 +1,6 @@
 import { Trans } from 'next-i18next'
 import { ChangeEvent, ReactElement } from 'react'
+import Required from '@components/Required'
 
 interface Props<T> {
   handleChange: (
@@ -20,7 +21,7 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
     <>
       <label className="usa-label" htmlFor={id}>
         <Trans i18nKey={labelKey} />
-        {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
+        {required && <Required />}
       </label>
       <select className="usa-select" id={id} onChange={handleChange}>
         <option value={undefined}>

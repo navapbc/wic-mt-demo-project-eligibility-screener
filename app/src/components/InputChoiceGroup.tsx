@@ -2,6 +2,7 @@ import { Trans } from 'next-i18next'
 import React, { ReactElement } from 'react'
 
 import Accordion from '@components/Accordion'
+import Required from '@components/Required'
 
 interface Choice {
   checked: boolean
@@ -29,7 +30,7 @@ const InputChoiceGroup = (props: Props): ReactElement => {
     <fieldset className="usa-fieldset">
       <h2>
         <Trans i18nKey={titleKey} />
-        {required && <abbr className="usa-hint usa-hint--required"> *</abbr>}
+        {required && <Required />}
       </h2>
       {accordion && (
         <Accordion
