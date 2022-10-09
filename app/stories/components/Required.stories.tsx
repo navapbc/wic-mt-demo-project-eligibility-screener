@@ -7,8 +7,6 @@ export default {
   component: RequiredComponent,
 } as Meta
 
-const Template: Story = (args) => (
-  <RequiredComponent {...args} />
-)
+const Template: Story = (args) => <RequiredComponent {...args} />
 
 export const Required = Template.bind({})

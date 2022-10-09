@@ -15,8 +15,8 @@ import BackLink from '@components/BackLink'
 import Button from '@components/Button'
 import ButtonLink from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
-import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import Required from '@components/Required'
+import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
   previousRoute: string
