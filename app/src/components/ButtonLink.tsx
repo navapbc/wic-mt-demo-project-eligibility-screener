@@ -14,7 +14,7 @@ const ButtonLink = (props: Props): ReactElement => {
   const { disabled, href, labelKey, style } = props
 
   return (
-    <Link href={href} passHref>
+    <Link href={href}>
       <Button disabled={disabled} labelKey={labelKey} style={style} />
     </Link>
   )
