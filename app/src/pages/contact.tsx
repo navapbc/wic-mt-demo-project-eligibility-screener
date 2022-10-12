@@ -1,3 +1,4 @@
+import type { ModifySessionProps } from '@customTypes/common'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -15,8 +16,6 @@ import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
-
-import type { ModifySessionProps } from '../types/common'
 
 interface ContactProps extends ModifySessionProps {
   previousRoute: string

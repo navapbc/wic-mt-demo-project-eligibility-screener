@@ -1,6 +1,14 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction } from 'react'
 
+/* Types relating to persistent user data */
+export type EligibilityData = {
+  residential: string
+  categorical: string[]
+  previouslyEnrolled: string
+  adjunctive: string[]
+}
+
 export type SessionData = {
   clinic: typeof clinics[0] | undefined
   contact: {
@@ -9,21 +17,7 @@ export type SessionData = {
     phone: string
     comments: string
   }
-  eligibility: {
-    residential: string
-    pregnant: boolean
-    baby: boolean
-    child: boolean
-    guardian: boolean
-    none: boolean
-    loss: boolean
-    before: string
-    insurance: boolean
-    snap: boolean
-    tanf: boolean
-    fdpir: boolean
-    none2: boolean
-  }
+  eligibility: EligibilityData
 }
 
 export interface SessionProp {

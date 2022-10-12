@@ -1,3 +1,4 @@
+import type { ModifySessionProps } from '@customTypes/common'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type {
   GetServerSideProps,
@@ -16,8 +17,6 @@ import ButtonLink from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
-
-import type { ModifySessionProps } from '../types/common'
 
 interface ChooseClinicProps extends ModifySessionProps {
   previousRoute: string

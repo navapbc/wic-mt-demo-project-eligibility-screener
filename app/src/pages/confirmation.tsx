@@ -1,3 +1,4 @@
+import type { SessionProp } from '@customTypes/common'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -11,8 +12,6 @@ import {
   formatContactResponses,
   formatEligibilityResponses,
 } from '@pages/review'
-
-import type { SessionProp } from '../types/common'
 
 const Confirmation: NextPage<SessionProp> = (props: SessionProp) => {
   const { session } = props

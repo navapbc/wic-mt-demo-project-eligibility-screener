@@ -1,3 +1,4 @@
+import type { SessionData, SessionProp } from '@customTypes/common'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -13,8 +14,6 @@ import ClinicInfo from '@components/ClinicInfo'
 import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
-
-import type { SessionProp, SessionData } from '../types/common'
 
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'

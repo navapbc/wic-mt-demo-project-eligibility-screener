@@ -1,9 +1,11 @@
+import { SessionData } from '@customTypes/common'
 import { useState } from 'react'
 
-import { SessionData } from '../types/common'
-
 // Custom hook to persist state across page refresh
-export default function useLocalStorage(key: string, initialValue: SessionData) {
+export default function useLocalStorage(
+  key: string,
+  initialValue: SessionData
+) {
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState<SessionData>(() => {
     if (typeof window === 'undefined') {
