@@ -1,12 +1,396 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Eligibility should render first question text 1`] = `
-<h2>
-  Do you live or work in Montana?
-  <abbr
-    class="usa-hint usa-hint--required"
+exports[`Eligibility should match full page snapshot 1`] = `
+[
+  <a
+    className="usa-link"
+    href="/how-it-works"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
   >
-     *
-  </abbr>
-</h2>
+    Back
+  </a>,
+  <h1>
+    Check your eligibility
+  </h1>,
+  <p>
+    All required questions are marked with an asterisk
+     (
+    <abbr
+      className="usa-hint usa-hint--required"
+    >
+      *
+    </abbr>
+    ).
+  </p>,
+  <form
+    className="usa-form usa-form--large"
+  >
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        Do you live or work in Montana?
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </h2>
+      <div
+        className="usa-radio"
+      >
+        <input
+          checked={false}
+          className="usa-radio__input usa-radio__input--tile"
+          id="residential-yes"
+          name="residential"
+          onChange={[Function]}
+          type="radio"
+          value="yes"
+        />
+        <label
+          className="usa-radio__label"
+          htmlFor="residential-yes"
+        >
+          Yes
+        </label>
+      </div>
+      <div
+        className="usa-radio"
+      >
+        <input
+          checked={false}
+          className="usa-radio__input usa-radio__input--tile"
+          id="residential-no"
+          name="residential"
+          onChange={[Function]}
+          type="radio"
+          value="no"
+        />
+        <label
+          className="usa-radio__label"
+          htmlFor="residential-no"
+        >
+          No
+        </label>
+      </div>
+    </fieldset>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        Please select all the following that apply to your household:
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </h2>
+      <div
+        className="usa-accordion usa-accordion--bordered"
+      >
+        <h3
+          className="usa-accordion__heading"
+        >
+          <button
+            aria-controls="b-a1"
+            aria-expanded={false}
+            className="usa-accordion__button"
+            onClick={[Function]}
+            type="button"
+          >
+            Why are we asking this?
+          </button>
+        </h3>
+        <div
+          className="usa-accordion__content"
+          hidden={true}
+          id="b-a1"
+        >
+          There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your household may qualify for.
+        </div>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="categorical-pregnant"
+          name="categorical"
+          onChange={[Function]}
+          type="checkbox"
+          value="pregnant"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="categorical-pregnant"
+        >
+          I'm pregnant
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="categorical-baby"
+          name="categorical"
+          onChange={[Function]}
+          type="checkbox"
+          value="baby"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="categorical-baby"
+        >
+          I've had a baby in the past 12 months
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="categorical-child"
+          name="categorical"
+          onChange={[Function]}
+          type="checkbox"
+          value="child"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="categorical-child"
+        >
+          I'm the parent of an infant or child under the age of 5 years old
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="categorical-guardian"
+          name="categorical"
+          onChange={[Function]}
+          type="checkbox"
+          value="guardian"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="categorical-guardian"
+        >
+          I'm the guardian or foster parent of an infant or child under the age of 5 years old
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="categorical-loss"
+          name="categorical"
+          onChange={[Function]}
+          type="checkbox"
+          value="loss"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="categorical-loss"
+        >
+          I have had a pregnancy end in the last 6 months
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="categorical-none"
+          name="categorical"
+          onChange={[Function]}
+          type="checkbox"
+          value="none"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="categorical-none"
+        >
+          None of the above
+        </label>
+      </div>
+    </fieldset>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        Have you or someone in your household received WIC benefits before?
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </h2>
+      <div
+        className="usa-radio"
+      >
+        <input
+          checked={false}
+          className="usa-radio__input usa-radio__input--tile"
+          id="previouslyEnrolled-yes"
+          name="previouslyEnrolled"
+          onChange={[Function]}
+          type="radio"
+          value="yes"
+        />
+        <label
+          className="usa-radio__label"
+          htmlFor="previouslyEnrolled-yes"
+        >
+          Yes
+        </label>
+      </div>
+      <div
+        className="usa-radio"
+      >
+        <input
+          checked={false}
+          className="usa-radio__input usa-radio__input--tile"
+          id="previouslyEnrolled-no"
+          name="previouslyEnrolled"
+          onChange={[Function]}
+          type="radio"
+          value="no"
+        />
+        <label
+          className="usa-radio__label"
+          htmlFor="previouslyEnrolled-no"
+        >
+          No
+        </label>
+      </div>
+    </fieldset>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        Are you or someone in your household currently enrolled in any of the following programs in Montana?
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </h2>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="adjunctive-insurance"
+          name="adjunctive"
+          onChange={[Function]}
+          type="checkbox"
+          value="insurance"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="adjunctive-insurance"
+        >
+          Medicaid/Healthy Montana Kids Plus
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="adjunctive-snap"
+          name="adjunctive"
+          onChange={[Function]}
+          type="checkbox"
+          value="snap"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="adjunctive-snap"
+        >
+          SNAP (Supplemental Nutrition Assistance Program)
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="adjunctive-tanf"
+          name="adjunctive"
+          onChange={[Function]}
+          type="checkbox"
+          value="tanf"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="adjunctive-tanf"
+        >
+          TANF (Temporary Assistance for Needy Families)
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="adjunctive-fdpir"
+          name="adjunctive"
+          onChange={[Function]}
+          type="checkbox"
+          value="fdpir"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="adjunctive-fdpir"
+        >
+          FDPIR (Food Distribution Program on Indian Reservations)
+        </label>
+      </div>
+      <div
+        className="usa-checkbox"
+      >
+        <input
+          checked={false}
+          className="usa-checkbox__input usa-checkbox__input--tile"
+          id="adjunctive-none"
+          name="adjunctive"
+          onChange={[Function]}
+          type="checkbox"
+          value="none"
+        />
+        <label
+          className="usa-checkbox__label"
+          htmlFor="adjunctive-none"
+        >
+          None of the above
+        </label>
+      </div>
+    </fieldset>
+    <button
+      className="usa-button usa-button--small display-block margin-top-6"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Continue
+    </button>
+  </form>,
+]
 `;
