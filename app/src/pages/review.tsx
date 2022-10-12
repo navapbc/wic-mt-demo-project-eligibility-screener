@@ -115,6 +115,8 @@ export const formatContactResponses = (
 const Review: NextPage<SessionProp> = (props: SessionProp) => {
   const { session } = props
 
+  const reviewMode = { mode: 'review' }
+
   return (
     <>
       <BackLink href="/contact" />
@@ -127,19 +129,19 @@ const Review: NextPage<SessionProp> = (props: SessionProp) => {
       <ReviewCollection
         headerKey="Review.eligibilityTitle"
         editable={true}
-        editHref="/eligibility"
+        editHref={{ pathname: '/eligibility', query: reviewMode }}
         reviewElements={formatEligibilityResponses(session)}
       />
       <ReviewCollection
         headerKey="Clinic.title"
         editable={true}
-        editHref="/clinic"
+        editHref={{ pathname: '/choose-clinic', query: reviewMode }}
         reviewElements={formatClinicResponses(session)}
       />
       <ReviewCollection
         headerKey="Contact.title"
         editable={true}
-        editHref="/contact"
+        editHref={{ pathname: '/contact', query: reviewMode }}
         reviewElements={formatContactResponses(session)}
       />
       <ButtonLink href="/confirmation" labelKey="Review.button" />
