@@ -1,13 +1,13 @@
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
-import useLocalStorage from 'src/hooks/useLocalStorage'
+import useSessionStorage from 'src/hooks/useSessionStorage'
 
 import Layout from '@components/Layout'
 
 import '@styles/styles.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [session, setSession] = useLocalStorage('session', {
+  const [session, setSession] = useSessionStorage('session', {
     chooseClinic: {
       clinic: undefined,
       zipCode: '',

@@ -2,7 +2,7 @@ import { SessionData } from '@customTypes/common'
 import { useState } from 'react'
 
 // Custom hook to persist state across page refresh
-export default function useLocalStorage(
+export default function useSessionStorage(
   key: string,
   initialValue: SessionData
 ) {
