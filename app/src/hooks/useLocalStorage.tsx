@@ -13,7 +13,7 @@ export default function useLocalStorage(
     }
     try {
       // Get from local storage by key
-      const item: string | null = window.localStorage.getItem(key)
+      const item: string | null = window.sessionStorage.getItem(key)
 
       // TODO: refactor type casting
       const state: SessionData = item
@@ -27,7 +27,7 @@ export default function useLocalStorage(
       return initialValue
     }
   })
-  // Return a wrapped version of useState's setter function that persists the new value to localStorage.
+  // Return a wrapped version of useState's setter function that persists the new value to sessionStorage.
   const setValue = (value: SessionData) => {
     try {
       // Allow value to be a function so we have same API as useState
@@ -39,7 +39,7 @@ export default function useLocalStorage(
       setStoredValue(valueToStore)
       // Save to local storage
       if (typeof window !== 'undefined') {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore))
+        window.sessionStorage.setItem(key, JSON.stringify(valueToStore))
       }
     } catch (error) {
       console.log(error)
