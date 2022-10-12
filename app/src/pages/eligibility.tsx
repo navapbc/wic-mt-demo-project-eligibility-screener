@@ -108,12 +108,12 @@ const Eligibility: NextPage<ModifySessionProps> = (
 
     // Update state if there are changes to update.
     if (newForm) {
+      // Update the eligibility state.
       setForm(newForm)
+      // Update the session storage state.
       setSession({ ...session, eligibility: newForm })
-
       // Handle button routing.
       setContinueBtn({ ...continueBtn, route: getRouting(newForm) })
-
       // Update whether the submit button is enabled or disabled.
       setDisabled(!isRequiredMet(newForm))
     }

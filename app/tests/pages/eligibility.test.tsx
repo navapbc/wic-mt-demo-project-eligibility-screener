@@ -10,48 +10,18 @@ import renderer from 'react-test-renderer'
 
 import Eligibility from '@pages/eligibility'
 
+import {
+  emptyMockEligibility,
+  emptyMockSession,
+  setMockSession,
+} from '../testHelpers'
+
 /**
  * Test setup
  */
 
-// Mock the nextjs router
-jest.mock('next/router', () => require('next-router-mock'))
-// This is needed for mocking 'next/link':
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-// Temporary workaround for all next.js 12.2.0+
-// See active issue: https://github.com/scottrippey/next-router-mock/issues/58
-jest.mock('next/dist/shared/lib/router-context', () => {
-  const { createContext } = require('react')
-  const router = require('next-router-mock').default
-  const RouterContext = createContext(router)
-  return { RouterContext }
-})
-
 // Mock the session
 let mockSession: SessionData
-const emptyMockEligibility: EligibilityData = {
-  residential: '',
-  categorical: [],
-  previouslyEnrolled: '',
-  adjunctive: [],
-}
-const emptyMockSession: SessionData = {
-  chooseClinic: {
-    clinic: undefined,
-    zipCode: '',
-  },
-  contact: {
-    firstName: '',
-    lastName: '',
-    phone: '',
-    comments: '',
-  },
-  eligibility: cloneDeep(emptyMockEligibility),
-  income: {
-    householdSize: ''
-  }
-}
-const setMockSession = jest.fn()
 
 /**
  * Begin tests
