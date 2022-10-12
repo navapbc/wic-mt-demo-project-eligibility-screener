@@ -10,9 +10,9 @@ type Props = {
 
 // Next.js requires forwarding refs if this functional component might
 // be a child component of next/link. For more info, see
-// https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-function-component
+// https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component
 const Button = React.forwardRef(
-  (props: Props, ref: React.Ref<HTMLDivElement>): ReactElement => {
+  (props: Props, ref: React.LegacyRef<HTMLButtonElement>): ReactElement => {
     const { disabled, labelKey, style, onClick } = props
 
     let buttonStyle = ''
@@ -34,5 +34,8 @@ const Button = React.forwardRef(
     )
   }
 )
+
+// Explicitly set the display name since we're using a forwardRef.
+Button.displayName = 'Button'
 
 export default Button
