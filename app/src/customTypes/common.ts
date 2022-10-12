@@ -10,7 +10,10 @@ export type EligibilityData = {
 }
 
 export type SessionData = {
-  clinic: typeof clinics[0] | undefined
+  chooseClinic: {
+    clinic: typeof clinics[0] | undefined
+    zipCode: string
+  }
   contact: {
     firstName: string
     lastName: string
@@ -18,6 +21,9 @@ export type SessionData = {
     comments: string
   }
   eligibility: EligibilityData
+  income: {
+    householdSize: string
+  }
 }
 
 export interface SessionProp {

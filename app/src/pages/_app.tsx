@@ -8,7 +8,10 @@ import '@styles/styles.scss'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [session, setSession] = useLocalStorage('session', {
-    clinic: undefined,
+    chooseClinic: {
+      clinic: undefined,
+      zipCode: '',
+    },
     contact: {
       firstName: '',
       lastName: '',
@@ -20,6 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       categorical: [],
       previouslyEnrolled: '',
       adjunctive: [],
+    },
+    income: {
+      householdSize: '',
     },
   })
 

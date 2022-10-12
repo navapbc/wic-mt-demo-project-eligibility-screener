@@ -36,7 +36,10 @@ const emptyMockEligibility: EligibilityData = {
   adjunctive: [],
 }
 const emptyMockSession: SessionData = {
-  clinic: undefined,
+  chooseClinic: {
+    clinic: undefined,
+    zipCode: '',
+  },
   contact: {
     firstName: '',
     lastName: '',
@@ -44,6 +47,9 @@ const emptyMockSession: SessionData = {
     comments: '',
   },
   eligibility: cloneDeep(emptyMockEligibility),
+  income: {
+    householdSize: ''
+  }
 }
 const setMockSession = jest.fn()
 
