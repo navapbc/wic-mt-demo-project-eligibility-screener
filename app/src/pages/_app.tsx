@@ -17,18 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
     eligibility: {
       residential: '',
-      pregnant: false,
-      baby: false,
-      child: false,
-      guardian: false,
-      none: false,
-      loss: false,
-      before: '',
-      insurance: false,
-      snap: false,
-      tanf: false,
-      fdpir: false,
-      none2: false,
+      categorical: [],
+      previouslyEnrolled: '',
+      adjunctive: [],
     },
   })
 
