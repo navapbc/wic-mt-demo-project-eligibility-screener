@@ -1,11 +1,9 @@
+import type { IncomeData, ModifySessionProps } from '@customTypes/common'
 import incomeData from '@public/data/income.json'
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
 
 import Accordion from '@components/Accordion'
@@ -15,18 +13,68 @@ import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
-const Income: NextPage = () => {
-  const { t } = useTranslation('common')
-  const [householdSize, setHouseholdSize] = useState<keyof typeof incomeData>()
+const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
+  // Get the session from props.
+  const { session, setSession } = props
+  // Initialize form as a state with the value in session.
+  const [form, setForm] = useState<IncomeData>(session.income)
+
+  // Set some constant keys.
   const householdSizes: string[] = Object.keys(incomeData)
   const incomePeriods: string[] = ['annual', 'monthly', 'biweekly', 'weekly']
 
-  const handleChange = (
-    e: ChangeEvent<HTMLSelectElement> & {
-      target: { value: keyof typeof incomeData }
-    }
-  ) => {
-    setHouseholdSize(e.target.value)
+  // Initialize translations.
+  const { t } = useTranslation('common')
+
+  // Function to check whether all the required fields in this form
+  // page have been filled out.
+  // @TODO: This could be further refactored to be more generic.
+  const isRequiredMet = (formToCheck: IncomeData) => {
+    return formToCheck.householdSize !== ''
+  }
+
+  // Function to update button route.
+  const getRouting = (formToCheck: IncomeData) => {
+    console.log(formToCheck)
+    return '/choose-clinic'
+  }
+
+  // Set up action button and routing.
+  const defaultActionButton = {
+    labelKey: 'continue',
+    route: getRouting(form),
+  }
+  const reviewActionButton = {
+    labelKey: 'updateAndReturn',
+    route: '/review',
+  }
+  // Set up routing to determine if the user is reviewing previously entered data.
+  const router = useRouter()
+  // If the user is reviewing previously entered data, use the review button.
+  // Otherwise, use the default button.
+  const [continueBtn, setContinueBtn] = useState(
+    router.query.mode === 'review' ? reviewActionButton : defaultActionButton
+  )
+
+  // Set a state for whether the form requirements have been met and the
+  // form can be submitted. Otherwise, disable the submit button.
+  const [disabled, setDisabled] = useState(!isRequiredMet(form))
+
+  // Handle form element changes.
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value, name }: { value: string; name: string } = e.target
+
+    console.log(`name: ${name}, value: ${value}`)
+
+    const newForm = { ...form, [name]: value }
+    // Update the income state.
+    setForm(newForm)
+    // Update the session storage state.
+    setSession({ ...session, income: newForm })
+    // Handle button routing.
+    setContinueBtn({ ...continueBtn, route: getRouting(newForm) })
+    // Update whether the submit button is enabled or disabled.
+    setDisabled(!isRequiredMet(newForm))
   }
 
   return (
@@ -62,7 +110,7 @@ const Income: NextPage = () => {
             headerKey={'Income.accordionHeader'}
           />
           <Dropdown
-            id="income"
+            id="householdSize"
             labelKey="Income.dropdownLabel"
             handleChange={handleChange}
             options={householdSizes}
@@ -93,8 +141,8 @@ const Income: NextPage = () => {
                     data-label={t(`Income.incomePeriods.${period}`)}
                     key={period}
                   >
-                    {(householdSize &&
-                      incomeData[householdSize][
+                    {(form.householdSize &&
+                      incomeData[form.householdSize as keyof typeof incomeData][
                         period as keyof typeof incomeData[1]
                       ]) ||
                       '$XX,XXX'}
@@ -111,36 +159,22 @@ const Income: NextPage = () => {
             />
           </p>
         </fieldset>
-        <ButtonLink href="/choose-clinic" labelKey="continue" />
+        <ButtonLink
+          href={continueBtn.route}
+          labelKey={continueBtn.labelKey}
+          disabled={disabled}
+        />
       </form>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
     props: {
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
-
-  if (!['/eligibility', '/choose-clinic'].includes(previousRoute as string)) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
-  }
-
-  return returnval
 }
 
 export default Income

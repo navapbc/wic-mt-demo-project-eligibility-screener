@@ -1,4 +1,3 @@
-// test/pages/index.test.js
 import { render, screen, waitFor } from '@testing-library/react'
 import { axe } from 'jest-axe'
 

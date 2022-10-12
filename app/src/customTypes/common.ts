@@ -9,6 +9,10 @@ export type EligibilityData = {
   adjunctive: string[]
 }
 
+export type IncomeData = {
+  householdSize: string
+}
+
 export type SessionData = {
   chooseClinic: {
     clinic: typeof clinics[0] | undefined
@@ -21,9 +25,7 @@ export type SessionData = {
     comments: string
   }
   eligibility: EligibilityData
-  income: {
-    householdSize: string
-  }
+  income: IncomeData
 }
 
 export interface SessionProp {
