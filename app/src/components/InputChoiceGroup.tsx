@@ -8,7 +8,7 @@ interface Choice {
   checked: boolean
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   labelKey: string
-  name?: string
+  name: string
   value: string
 }
 
@@ -43,13 +43,16 @@ const InputChoiceGroup = (props: Props): ReactElement => {
           <input
             checked={choice.checked}
             className={`usa-${type}__input usa-${type}__input--tile`}
-            id={choice.value}
+            id={`${choice.name}-${choice.value}`}
             name={choice.name}
             onChange={choice.handleChange}
             type={type}
             value={choice.value}
           />
-          <label className={`usa-${type}__label`} htmlFor={choice.value}>
+          <label
+            className={`usa-${type}__label`}
+            htmlFor={`${choice.name}-${choice.value}`}
+          >
             <Trans i18nKey={choice.labelKey} />
           </label>
         </div>
