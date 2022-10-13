@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
@@ -65,7 +65,11 @@ const Eligibility: NextPage<ModifySessionProps> = (
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
-  const [disabled, setDisabled] = useState(!isRequiredMet(form))
+  const [disabled, setDisabled] = useState()
+  // Hydrate this state properly based on local storage.
+  useEffect(() => {
+    setDisabled(!isRequiredMet(form))
+  }, [form])
 
   // Handle all form element changes.
   // - Determine new form values
