@@ -15,6 +15,7 @@ import BackLink from '@components/BackLink'
 import Button from '@components/Button'
 import ButtonLink from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
+import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 interface Props {
@@ -120,7 +121,7 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
       <div className="content-group">
         <h2>
           <Trans i18nKey="ChooseClinic.searchLabel" />
-          <abbr className="usa-hint usa-hint--required"> *</abbr>
+          <Required />
         </h2>
         <section aria-label="Search clinic by zip">
           {zipValidationError && (
@@ -167,7 +168,7 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
         <>
           <h2>
             <Trans i18nKey="ChooseClinic.listTitle" />
-            <abbr className="usa-hint usa-hint--required"> *</abbr>
+            <Required />
           </h2>
           <form className="usa-form usa-form--large">
             <fieldset className="usa-fieldset">

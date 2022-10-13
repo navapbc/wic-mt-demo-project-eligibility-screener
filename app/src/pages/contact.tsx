@@ -12,6 +12,7 @@ import NumberFormat from 'react-number-format'
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
+import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
@@ -78,7 +79,7 @@ const Contact: NextPage<Props> = (props: Props) => {
         <fieldset className="usa-fieldset">
           <h2>
             <Trans i18nKey="Contact.name" />
-            <abbr className="usa-hint usa-hint--required"> *</abbr>
+            <Required />
           </h2>
           <TextInput
             handleChange={handleChange}
@@ -98,12 +99,12 @@ const Contact: NextPage<Props> = (props: Props) => {
         <fieldset className="usa-fieldset">
           <h2>
             <Trans i18nKey="Contact.phoneHeader" />
-            <abbr className="usa-hint usa-hint--required"> *</abbr>
+            <Required />
           </h2>
           <Alert alertBody="Contact.phoneAlert" type="info" />
           <label className="usa-label" htmlFor="phone">
             <Trans i18nKey="Contact.phone" />
-            <abbr className="usa-hint usa-hint--required"> *</abbr>
+            <Required />
           </label>
           <NumberFormat
             format="###-###-####"
