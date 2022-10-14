@@ -22,7 +22,7 @@ const TextInput = (props: Props): ReactElement => {
       <input
         className={'usa-input'}
         id={id}
-        onChange={handleChange}
+        onInput={handleChange}
         role="textbox"
         value={value}
       />
