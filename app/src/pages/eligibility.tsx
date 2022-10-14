@@ -15,8 +15,13 @@ const Eligibility: NextPage<ModifySessionProps> = (
 ) => {
   // Get the session from props.
   const { session, setSession } = props
-  // Initialize form as a state with the value in session.
+  // Initialize form as a state using the default initial value, which will match
+  // what the server renders.
   const [form, setForm] = useState<EligibilityData>(session.eligibility)
+  // Use useEffect() to properly load the data from session storage during react hydration.
+  useEffect(() => {
+    setForm(session.eligibility)
+  }, [session.eligibility])
 
   // Function to check whether all the required fields in this form
   // page have been filled out.
@@ -65,8 +70,8 @@ const Eligibility: NextPage<ModifySessionProps> = (
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
-  const [disabled, setDisabled] = useState()
-  // Hydrate this state properly based on local storage.
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
     setDisabled(!isRequiredMet(form))
   }, [form])
