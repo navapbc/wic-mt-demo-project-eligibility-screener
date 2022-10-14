@@ -52,6 +52,7 @@ const Contact: NextPage<Props> = (props: Props) => {
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value, id }: { value: string; id: string } = e.target
+    console.log(`handleChange: ${value}`)
     const castId = id as keyof typeof form
     const newForm = { ...form, [castId]: value }
 
@@ -141,28 +142,34 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
-    {
-      props: {
-        previousRoute: previousRoute as string,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
-      },
-    }
+  // const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  // const previousRoute =
+  //   prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  // let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
+  //   {
+  //     props: {
+  //       previousRoute: previousRoute as string,
+  //       ...(await serverSideTranslations(locale || 'en', ['common'])),
+  //     },
+  //   }
 
-  if (!['/choose-clinic', '/review'].includes(previousRoute as string)) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
+  // if (!['/choose-clinic', '/review'].includes(previousRoute as string)) {
+  //   returnval = {
+  //     ...returnval,
+  //     redirect: {
+  //       destination: previousRoute || '/',
+  //       permanent: false,
+  //     },
+  //   }
+  // }
+
+  // return returnval
+  return {
+    props: {
+      previousRoute: '/choose-clinic',
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
   }
-
-  return returnval
 }
 
 export default Contact

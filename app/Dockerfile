@@ -13,6 +13,7 @@ RUN yarn install --frozen-lockfile
 # Copy all the remaining application files (ignoring files in .dockerignore) to the working directory.
 COPY . /srv
 # Build the application.
-RUN yarn build
+# RUN yarn build
 # Run the application.
-CMD yarn start
+# CMD yarn start
+CMD yarn dev

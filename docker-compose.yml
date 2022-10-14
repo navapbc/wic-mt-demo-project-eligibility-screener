@@ -9,9 +9,9 @@ services:
     command: ["yarn", "dev"]
     ports:
       # Expose a port to access the application.
-      - 3000:3000
+      - 3333:3000
       # Expose a port for storybook.
-      - 6006:6006
+      - 6666:6006
     volumes:
       # Mount the app directory for faster local development.
       - ./app:/srv
