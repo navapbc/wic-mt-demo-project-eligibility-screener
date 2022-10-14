@@ -15,8 +15,7 @@ const Eligibility: NextPage<ModifySessionProps> = (
 ) => {
   // Get the session from props.
   const { session, setSession } = props
-  // Initialize form as a state using the default initial value, which will match
-  // what the server renders.
+  // Initialize form as a state using the value in session.
   const [form, setForm] = useState<EligibilityData>(session.eligibility)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {

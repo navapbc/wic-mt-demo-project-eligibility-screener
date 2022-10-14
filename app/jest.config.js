@@ -12,6 +12,7 @@ module.exports = {
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
     '^@public(.*)$': '<rootDir>/public$1',
     '^@styles(.*)$': '<rootDir>/styles$1',
+    '^@utils(.*)$': '<rootDir>/src/utils$1',
   },
   setupFilesAfterEnv: [
     '<rootDir>/tests/jest.setup.js',

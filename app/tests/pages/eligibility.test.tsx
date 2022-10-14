@@ -9,14 +9,15 @@ import renderer from 'react-test-renderer'
 
 import Eligibility from '@pages/eligibility'
 
-import { emptyMockSession, setMockSession } from '../testHelpers'
+import { initialSessionData } from '@utils/sessionData'
 
 /**
  * Test setup
  */
 
 // Mock the session
-let mockSession: SessionData
+let mockSession: SessionData = initialSessionData
+export const setMockSession = jest.fn()
 
 // Set the router to the default page path.
 function setupDefaultRoute(): void {
@@ -33,7 +34,7 @@ function setup(): ReturnType<typeof userEvent['setup']> {
   setupDefaultRoute()
 
   // Reset the mock session before each test.
-  mockSession = cloneDeep(emptyMockSession)
+  mockSession = cloneDeep(initialSessionData)
 
   // Set up userEvent
   // See https://testing-library.com/docs/user-event/intro#writing-tests-with-userevent
@@ -175,7 +176,7 @@ it('action button should render differently in review mode', () => {
   act(() => {
     mockRouter.setCurrentUrl('/eligibility?mode=review')
   })
-  mockSession = cloneDeep(emptyMockSession)
+  mockSession = cloneDeep(initialSessionData)
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Update/i })
   expect(button).toBeInTheDocument()

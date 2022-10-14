@@ -2,6 +2,18 @@ import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction } from 'react'
 
 /* Types relating to persistent user data */
+export type ChooseClinicData = {
+  clinic: typeof clinics[0] | undefined
+  zipCode: string
+}
+
+export type ContactData = {
+  firstName: string
+  lastName: string
+  phone: string
+  comments: string
+}
+
 export type EligibilityData = {
   residential: string
   categorical: string[]
@@ -14,16 +26,8 @@ export type IncomeData = {
 }
 
 export type SessionData = {
-  chooseClinic: {
-    clinic: typeof clinics[0] | undefined
-    zipCode: string
-  }
-  contact: {
-    firstName: string
-    lastName: string
-    phone: string
-    comments: string
-  }
+  chooseClinic: ChooseClinicData
+  contact: ContactData
   eligibility: EligibilityData
   income: IncomeData
 }

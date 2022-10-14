@@ -15,11 +15,11 @@
     "paths": {
       "@clinics/*": ["./public/clinic-output/clinics-zip-code-lookup/*"],
       "@components/*": ["./src/components/*"],
-      "@context/*": ["./src/context/*"],
       "@customTypes/*": ["./src/customTypes/*"],
       "@pages/*": ["./src/pages/*"],
       "@public/*": ["./public/*"],
-      "@styles/*": ["./styles/*"]
+      "@styles/*": ["./styles/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

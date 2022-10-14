@@ -6,28 +6,10 @@ import Layout from '@components/Layout'
 
 import '@styles/styles.scss'
 
+import { initialSessionData } from '@utils/sessionData'
+
 function MyApp({ Component, pageProps }: AppProps) {
-  const [session, setSession] = useSessionStorage('session', {
-    chooseClinic: {
-      clinic: undefined,
-      zipCode: '',
-    },
-    contact: {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      comments: '',
-    },
-    eligibility: {
-      residential: '',
-      categorical: [],
-      previouslyEnrolled: '',
-      adjunctive: [],
-    },
-    income: {
-      householdSize: '',
-    },
-  })
+  const [session, setSession] = useSessionStorage('session', initialSessionData)
 
   const props = { ...pageProps, session, setSession }
 

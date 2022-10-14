@@ -3,6 +3,7 @@
     "^@components/(.*)$",
     "^@pages/(.*)$",
     "^@styles/(.*)$",
+    "^@utils/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,
