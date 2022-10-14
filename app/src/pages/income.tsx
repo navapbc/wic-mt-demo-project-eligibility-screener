@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import Accordion from '@components/Accordion'
 import BackLink from '@components/BackLink'
@@ -13,15 +13,61 @@ import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
+type IncomeTableData = {
+  [key: string]: string
+}
+
 const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   // Get the session from props.
   const { session, setSession } = props
   // Initialize form as a state with the value in session.
   const [form, setForm] = useState<IncomeData>(session.income)
+  // Use useEffect() to properly load the data from session storage during react hydration.
+  useEffect(() => {
+    setForm(session.income)
+  }, [session.income])
 
-  // Set some constant keys.
+  /* Set some constant keys. */
+  // Get the allowed household sizes from the json file.
   const householdSizes: string[] = Object.keys(incomeData)
-  const incomePeriods: string[] = ['annual', 'monthly', 'biweekly', 'weekly']
+  // Get the list of allowed income periods.
+  const incomePeriods: string[] = Object.keys(incomeData['1'])
+  // This is the placeholder income string.
+  const placeholderIncomeString = '$XX,XXX'
+  // Set up the placeholder array for all periods.
+  const placeholderIncomeTable: IncomeTableData = {
+    annual: placeholderIncomeString,
+    biweekly: placeholderIncomeString,
+    monthly: placeholderIncomeString,
+    weekly: placeholderIncomeString,
+  }
+  // Set up state for the income table.
+  const [incomeTable, setIncomeTable] = useState<typeof placeholderIncomeTable>(
+    placeholderIncomeTable
+  )
+  // Function to update the income table state.
+  // Use useEffect() to properly load the data from session storage during react hydration
+  // Since we need to use useEffect to update this state, this also handles anytime the
+  // form state is updated, so we don't need to call the same function in handleChange().
+  useEffect(() => {
+    const getUpdatedIncomeTable = (householdSize: string) => {
+      const tempIncomeTable = { ...incomeTable }
+      incomePeriods.forEach((period: string) => {
+        const castHouseholdSize = householdSize as keyof typeof incomeData
+        const castIncomePeriod = period as keyof typeof incomeData['1']
+        if (householdSizes.includes(householdSize)) {
+          tempIncomeTable[period] =
+            incomeData[castHouseholdSize][castIncomePeriod]
+        } else {
+          tempIncomeTable[period] = placeholderIncomeString
+        }
+      })
+      return tempIncomeTable
+    }
+
+    const newIncomeTable = getUpdatedIncomeTable(form.householdSize)
+    setIncomeTable(newIncomeTable)
+  })
 
   // Initialize translations.
   const { t } = useTranslation('common')
@@ -34,15 +80,14 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   }
 
   // Function to update button route.
-  const getRouting = (formToCheck: IncomeData) => {
-    console.log(formToCheck)
+  const getRouting = () => {
     return '/choose-clinic'
   }
 
   // Set up action button and routing.
   const defaultActionButton = {
     labelKey: 'continue',
-    route: getRouting(form),
+    route: getRouting(),
   }
   const reviewActionButton = {
     labelKey: 'updateAndReturn',
@@ -52,29 +97,34 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   const router = useRouter()
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const [continueBtn, setContinueBtn] = useState(
+  // const [continueBtn, setContinueBtn] = useState(
+  //   router.query.mode === 'review' ? reviewActionButton : defaultActionButton
+  // )
+  const continueBtn =
     router.query.mode === 'review' ? reviewActionButton : defaultActionButton
-  )
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
-  const [disabled, setDisabled] = useState(!isRequiredMet(form))
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration
+  // Since we need to use useEffect to update this state, this also handles anytime the
+  // form state is updated, so we don't need to call the same function in handleChange().
+  useEffect(() => {
+    setDisabled(!isRequiredMet(form))
+  }, [form])
 
   // Handle form element changes.
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value, name }: { value: string; name: string } = e.target
-
-    console.log(`name: ${name}, value: ${value}`)
 
     const newForm = { ...form, [name]: value }
     // Update the income state.
     setForm(newForm)
     // Update the session storage state.
     setSession({ ...session, income: newForm })
+
     // Handle button routing.
-    setContinueBtn({ ...continueBtn, route: getRouting(newForm) })
-    // Update whether the submit button is enabled or disabled.
-    setDisabled(!isRequiredMet(newForm))
+    // setContinueBtn({ ...continueBtn, route: getRouting() })
   }
 
   return (
@@ -115,6 +165,7 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
             handleChange={handleChange}
             options={householdSizes}
             required={true}
+            selectedOption={form.householdSize}
           />
         </fieldset>
 
@@ -141,11 +192,7 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
                     data-label={t(`Income.incomePeriods.${period}`)}
                     key={period}
                   >
-                    {(form.householdSize &&
-                      incomeData[form.householdSize as keyof typeof incomeData][
-                        period as keyof typeof incomeData[1]
-                      ]) ||
-                      '$XX,XXX'}
+                    {incomeTable[period]}
                   </td>
                 ))}
               </tr>

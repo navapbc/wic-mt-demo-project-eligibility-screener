@@ -153,30 +153,35 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
 }) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
+  // const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
+  // const previousRoute =
+  //   prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
+  // let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
+  //   props: {
+  //     ...(await serverSideTranslations(locale || 'en', ['common'])),
+  //   },
+  // }
+
+  // if (
+  //   !['/choose-clinic', '/eligibility', '/contact'].includes(
+  //     previousRoute as string
+  //   )
+  // ) {
+  //   returnval = {
+  //     ...returnval,
+  //     redirect: {
+  //       destination: previousRoute || '/',
+  //       permanent: false,
+  //     },
+  //   }
+  // }
+
+  // return returnval
+  return {
     props: {
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
-
-  if (
-    !['/choose-clinic', '/eligibility', '/contact'].includes(
-      previousRoute as string
-    )
-  ) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
-  }
-
-  return returnval
 }
 
 export default Review

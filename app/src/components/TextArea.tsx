@@ -11,7 +11,7 @@ type Props = {
   value: string
 }
 
-const TextInput = (props: Props): ReactElement => {
+const TextArea = (props: Props): ReactElement => {
   const { handleChange, id, labelKey, required, value } = props
   return (
     <>
@@ -20,8 +20,9 @@ const TextInput = (props: Props): ReactElement => {
         {required && <Required />}
       </label>
       <textarea
-        className={'usa-textarea'}
+        className="usa-textarea"
         id={id}
+        name={id}
         onChange={handleChange}
         role="textbox"
         value={value}
@@ -30,4 +31,4 @@ const TextInput = (props: Props): ReactElement => {
   )
 }
 
-export default TextInput
+export default TextArea

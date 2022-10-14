@@ -11,12 +11,14 @@ interface Props<T> {
   labelKey: string
   options: string[]
   required?: boolean
+  selectedOption?: string
 }
 
 // This component expects pre-translated option strings.
 // @TODO: This should be refactored if its ever used with non-integer options.
 const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
-  const { handleChange, id, labelKey, options, required } = props
+  const { handleChange, id, labelKey, options, required, selectedOption } =
+    props
 
   return (
     <>
@@ -24,7 +26,13 @@ const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
         <Trans i18nKey={labelKey} />
         {required && <Required />}
       </label>
-      <select className="usa-select" id={id} name={id} onChange={handleChange}>
+      <select
+        className="usa-select"
+        id={id}
+        name={id}
+        onChange={handleChange}
+        value={selectedOption}
+      >
         <option value="">
           -&nbsp;
           <Trans i18nKey="select" />

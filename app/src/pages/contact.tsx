@@ -137,32 +137,14 @@ const Contact: NextPage<ContactProps> = (props: ContactProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
-    {
-      props: {
-        previousRoute: previousRoute as string,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
-      },
-    }
-
-  if (!['/choose-clinic', '/review'].includes(previousRoute as string)) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      previousRoute: '/choose-clinic',
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
   }
-
-  return returnval
 }
+
 
 export default Contact
