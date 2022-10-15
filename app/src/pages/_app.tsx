@@ -5,7 +5,6 @@ import useSessionStorage from 'src/hooks/useSessionStorage'
 import Layout from '@components/Layout'
 
 import '@styles/styles.scss'
-
 import { initialSessionData } from '@utils/sessionData'
 
 function MyApp({ Component, pageProps }: AppProps) {

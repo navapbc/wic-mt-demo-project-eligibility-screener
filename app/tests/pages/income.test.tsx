@@ -9,7 +9,6 @@ import renderer from 'react-test-renderer'
 import Income from '@pages/income'
 
 import type { SessionData } from '@src/types'
-
 import { initialSessionData } from '@utils/sessionData'
 
 /**

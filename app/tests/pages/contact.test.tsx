@@ -9,7 +9,6 @@ import renderer from 'react-test-renderer'
 import Contact from '@pages/contact'
 
 import type { SessionData } from '@src/types'
-
 import { initialSessionData } from '@utils/sessionData'
 
 /**
