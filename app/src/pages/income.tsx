@@ -13,9 +13,31 @@ import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
-type IncomeTableData = {
-  [key: string]: string
+const IncomeRow = (props) => {
+  const { householdSize, periods, incomeForHouseholdSize } = props
+  const uniqueId = `household-size-row-${householdSize}`
+  return (
+    <tr id={uniqueId} key={uniqueId}>
+      <td className="household-size">{householdSize}</td>
+      {periods.map((period: string) => (
+        <td key={period}>{incomeForHouseholdSize[period]}</td>
+      ))}
+    </tr>
+  )
 }
+
+const IncomeRowPlaceholder = (props) => {
+  const { periods } = props
+  return (
+    <tr id='household-size-row-placeholder'>
+      <td className="household-size" key='household-size'></td>
+      {periods.map((period: string) => (
+        <td key={period}>$XX,XXX</td>
+      ))}
+    </tr>
+  )
+}
+
 
 const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   // Get the session from props.
@@ -32,42 +54,6 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   const householdSizes: string[] = Object.keys(incomeData)
   // Get the list of allowed income periods.
   const incomePeriods: string[] = Object.keys(incomeData['1'])
-  // This is the placeholder income string.
-  const placeholderIncomeString = '$XX,XXX'
-  // Set up the placeholder array for all periods.
-  const placeholderIncomeTable: IncomeTableData = {
-    annual: placeholderIncomeString,
-    biweekly: placeholderIncomeString,
-    monthly: placeholderIncomeString,
-    weekly: placeholderIncomeString,
-  }
-  // Set up state for the income table.
-  const [incomeTable, setIncomeTable] = useState<typeof placeholderIncomeTable>(
-    placeholderIncomeTable
-  )
-  // Function to update the income table state.
-  // Use useEffect() to properly load the data from session storage during react hydration
-  // Since we need to use useEffect to update this state, this also handles anytime the
-  // form state is updated, so we don't need to call the same function in handleChange().
-  useEffect(() => {
-    const getUpdatedIncomeTable = (householdSize: string) => {
-      const tempIncomeTable = { ...incomeTable }
-      incomePeriods.forEach((period: string) => {
-        const castHouseholdSize = householdSize as keyof typeof incomeData
-        const castIncomePeriod = period as keyof typeof incomeData['1']
-        if (householdSizes.includes(householdSize)) {
-          tempIncomeTable[period] =
-            incomeData[castHouseholdSize][castIncomePeriod]
-        } else {
-          tempIncomeTable[period] = placeholderIncomeString
-        }
-      })
-      return tempIncomeTable
-    }
-
-    const newIncomeTable = getUpdatedIncomeTable(form.householdSize)
-    setIncomeTable(newIncomeTable)
-  })
 
   // Initialize translations.
   const { t } = useTranslation('common')
@@ -153,7 +139,7 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
       <form className="usa-form usa-form--large">
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Income.householdSize" />
+            <Trans i18nKey="Income.householdSizeHeader" />
           </h2>
           <Accordion
             bodyKey={'Income.accordionBody'}
@@ -161,7 +147,7 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
           />
           <Dropdown
             id="householdSize"
-            labelKey="Income.dropdownLabel"
+            labelKey="Income.householdSize"
             handleChange={handleChange}
             options={householdSizes}
             required={true}
@@ -178,6 +164,13 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
             </caption>
             <thead>
               <tr>
+                <th
+                  scope="col"
+                  key="householdSize"
+                  id="householdSizeTableHeader"
+                >
+                  <Trans i18nKey="Income.householdSize" />
+                </th>
                 {incomePeriods.map((period: string) => (
                   <th scope="col" key={period}>
                     {t(`Income.incomePeriods.${period}`)}
@@ -186,16 +179,10 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                {incomePeriods.map((period: string) => (
-                  <td
-                    data-label={t(`Income.incomePeriods.${period}`)}
-                    key={period}
-                  >
-                    {incomeTable[period]}
-                  </td>
-                ))}
-              </tr>
+              <IncomeRowPlaceholder periods={incomePeriods} />
+              {householdSizes.map((householdSize: string) => (
+                <IncomeRow householdSize={householdSize} periods={incomePeriods} incomeForHouseholdSize={incomeData[householdSize as keyof typeof incomeData]} key={householdSize}/>
+              ))}
             </tbody>
           </table>
           <p>
