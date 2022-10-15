@@ -20,10 +20,10 @@ const TextInput = (props: Props): ReactElement => {
         {required && <Required />}
       </label>
       <input
-        className={'usa-input'}
+        className="usa-input"
         id={id}
         name={id}
-        onChange={handleChange}
+        onInput={handleChange}
         role="textbox"
         value={value}
       />

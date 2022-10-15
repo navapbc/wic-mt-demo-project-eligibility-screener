@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import type { EligibilityData, ModifySessionProps } from '@customTypes/common'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
@@ -7,15 +6,9 @@ import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
+import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
-
-// Dynamically load the ButtonLink component so that it isn't rendered
-// server-side and avoids hydration issues.
-const ButtonLink = dynamic(() => import('../components/ButtonLink'), {
-  ssr: false,
-});
-// import ButtonLink from '@components/ButtonLink'
 
 const Eligibility: NextPage<ModifySessionProps> = (
   props: ModifySessionProps

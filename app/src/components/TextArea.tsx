@@ -23,7 +23,7 @@ const TextArea = (props: Props): ReactElement => {
         className="usa-textarea"
         id={id}
         name={id}
-        onChange={handleChange}
+        onInput={handleChange}
         role="textbox"
         value={value}
       />

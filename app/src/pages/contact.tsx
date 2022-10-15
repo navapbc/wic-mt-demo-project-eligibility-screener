@@ -1,12 +1,9 @@
-import type { ModifySessionProps } from '@customTypes/common'
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
+import type { ContactData, ModifySessionProps } from '@customTypes/common'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEventHandler, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 
 import Alert from '@components/Alert'
@@ -17,52 +14,60 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
 
-interface ContactProps extends ModifySessionProps {
-  previousRoute: string
-}
+const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
+  // Get the session from props.
+  const { session, setSession } = props
+  // Initialize form as a state using the value in session.
+  const [form, setForm] = useState<ContactData>(session.contact)
+  // Use useEffect() to properly load the data from session storage during react hydration.
+  useEffect(() => {
+    setForm(session.contact)
+  }, [session.contact])
 
-const Contact: NextPage<ContactProps> = (props: ContactProps) => {
-  const { session, setSession, previousRoute } = props
-  const [form, setForm] = useState(session?.contact)
-  const [continueBtn, setContinueBtn] = useState<{
-    labelKey: string
-  }>({ labelKey: 'continue' })
-  const requiredMet = (): boolean => {
-    const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
+  // Function to check whether all the required fields in this form
+  // page have been filled out.
+  // @TODO: This could be further refactored to be more generic.
+  const isRequiredMet = (formToCheck: ContactData) => {
     return (
-      validPhoneLength &&
-      ['firstName', 'lastName', 'phone'].every(
-        (field) => form[field as keyof typeof form]
-      )
+      formToCheck.firstName !== '' &&
+      formToCheck.lastName !== '' &&
+      formToCheck.phone !== '' &&
+      formToCheck.phone.replace(/[^0-9]/g, '').length === 10
     )
   }
-  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
 
+  // Set up action button and routing.
+  const defaultActionButtonLabelKey = 'continue'
+  const reviewActionButtonLabelKey = 'updateAndReturn'
+  // Set up routing to determine if the user is reviewing previously entered data.
+  const router = useRouter()
+  // If the user is reviewing previously entered data, use the review button.
+  // Otherwise, use the default button.
+  const continueBtnLabel =
+    router.query.mode === 'review'
+      ? reviewActionButtonLabelKey
+      : defaultActionButtonLabelKey
+
+  // Set a state for whether the form requirements have been met and the
+  // form can be submitted. Otherwise, disable the submit button.
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
-    setDisabled(!requiredMet())
+    setDisabled(!isRequiredMet(form))
   }, [form])
 
-  useEffect(() => {
-    if (props.previousRoute === '/review') {
-      setContinueBtn({
-        labelKey: 'updateAndReturn',
-      })
-    }
-  }, [props.previousRoute])
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { value, id }: { value: string; id: string } = e.target
-    const castId = id as keyof typeof form
-    const newForm = { ...form, [castId]: value }
+  // @TODO: Refactor these two into a single event handler.
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name }: { value: string; name: string } = e.target
+    const newForm = { ...form, [name]: value }
 
     setForm(newForm)
     setSession({ ...session, contact: newForm })
   }
 
   const handleChangeTextArea: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    const { value, id }: { value: string; id: string } = e.target
-    const castId = id as keyof typeof form
-    const newForm = { ...form, [castId]: value }
+    const { value, name }: { value: string; name: string } = e.target
+    const newForm = { ...form, [name]: value }
 
     setForm(newForm)
     setSession({ ...session, contact: newForm })
@@ -112,8 +117,9 @@ const Contact: NextPage<ContactProps> = (props: ContactProps) => {
             role="textbox"
             className="usa-input"
             id="phone"
+            name="phone"
             value={form.phone}
-            onChange={handleChange}
+            onInput={handleChange}
           />
         </fieldset>
         <fieldset className="usa-fieldset">
@@ -129,7 +135,7 @@ const Contact: NextPage<ContactProps> = (props: ContactProps) => {
         </fieldset>
         <ButtonLink
           href="/review"
-          labelKey={continueBtn.labelKey}
+          labelKey={continueBtnLabel}
           disabled={disabled}
         />
       </form>
@@ -140,11 +146,9 @@ const Contact: NextPage<ContactProps> = (props: ContactProps) => {
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      previousRoute: '/choose-clinic',
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
 }
-
 
 export default Contact
