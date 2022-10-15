@@ -15,9 +15,9 @@
     "paths": {
       "@clinics/*": ["./public/clinic-output/clinics-zip-code-lookup/*"],
       "@components/*": ["./src/components/*"],
-      "@customTypes/*": ["./src/customTypes/*"],
       "@pages/*": ["./src/pages/*"],
       "@public/*": ["./public/*"],
+      "@src/*": ["./src/*"],
       "@styles/*": ["./styles/*"],
       "@utils/*": ["./src/utils/*"]
     },

@@ -1,4 +1,3 @@
-import type { SessionData, SessionProp } from '@customTypes/common'
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
@@ -14,6 +13,8 @@ import ClinicInfo from '@components/ClinicInfo'
 import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
+
+import type { SessionData, SessionProp } from '@src/types'
 
 // @TODO: pull most of this out of this file and into a shared location
 // @TODO: refactor

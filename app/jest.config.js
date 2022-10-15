@@ -8,9 +8,9 @@ module.exports = {
     '^@clinics/*': '<rootDir>/public/clinic-output/clinics-zip-code-lookup$1',
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@context(.*)$': '<rootDir>/src/context$1',
-    '^@customTypes(.*)$': '<rootDir>/src/customTypes$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
     '^@public(.*)$': '<rootDir>/public$1',
+    '^@src(.*)$': '<rootDir>/src$1',
     '^@styles(.*)$': '<rootDir>/styles$1',
     '^@utils(.*)$': '<rootDir>/src/utils$1',
   },

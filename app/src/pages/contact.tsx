@@ -1,4 +1,3 @@
-import type { ContactData, ModifySessionProps } from '@customTypes/common'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -14,6 +13,9 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
 
+import type { ContactData, ModifySessionProps } from '@src/types'
+
+// @TODO: seems buggy
 const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   // Get the session from props.
   const { session, setSession } = props

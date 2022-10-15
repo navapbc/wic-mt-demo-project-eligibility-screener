@@ -1,4 +1,3 @@
-import type { SessionData } from '@customTypes/common'
 import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'jest-axe'
@@ -8,6 +7,8 @@ import singletonRouter from 'next/router'
 import renderer from 'react-test-renderer'
 
 import Eligibility from '@pages/eligibility'
+
+import type { SessionData } from '@src/types'
 
 import { initialSessionData } from '@utils/sessionData'
 

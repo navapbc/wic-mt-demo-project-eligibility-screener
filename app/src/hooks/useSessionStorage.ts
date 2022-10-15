@@ -1,5 +1,6 @@
-import { SessionData } from '@customTypes/common'
 import { useState } from 'react'
+
+import { SessionData } from '@src/types'
 
 // Custom hook to persist state across page refresh
 export default function useSessionStorage(

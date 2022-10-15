@@ -4,7 +4,7 @@ import type {
   EligibilityData,
   IncomeData,
   SessionData,
-} from '@customTypes/common'
+} from '@src/types'
 
 export const initialChooseClinicData: ChooseClinicData = {
   clinic: undefined,

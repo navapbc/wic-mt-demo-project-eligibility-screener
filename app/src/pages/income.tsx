@@ -1,4 +1,3 @@
-import type { IncomeData, ModifySessionProps } from '@customTypes/common'
 import incomeData from '@public/data/income.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
@@ -13,6 +12,8 @@ import ButtonLink from '@components/ButtonLink'
 import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
+
+import type { IncomeData, ModifySessionProps } from '@src/types'
 
 // Dynamically load the <IncomeRow> component to prevent SSR hydration conflicts.
 const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
@@ -79,7 +80,6 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   )
   // Initialize translations.
   const { t } = useTranslation('common')
-
 
   // Handle form element changes.
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
