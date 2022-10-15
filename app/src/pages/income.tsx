@@ -3,6 +3,7 @@ import incomeData from '@public/data/income.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
 
@@ -13,31 +14,10 @@ import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
-const IncomeRow = (props) => {
-  const { householdSize, periods, incomeForHouseholdSize } = props
-  const uniqueId = `household-size-row-${householdSize}`
-  return (
-    <tr id={uniqueId} key={uniqueId}>
-      <td className="household-size">{householdSize}</td>
-      {periods.map((period: string) => (
-        <td key={period}>{incomeForHouseholdSize[period]}</td>
-      ))}
-    </tr>
-  )
-}
-
-const IncomeRowPlaceholder = (props) => {
-  const { periods } = props
-  return (
-    <tr id='household-size-row-placeholder'>
-      <td className="household-size" key='household-size'></td>
-      {periods.map((period: string) => (
-        <td key={period}>$XX,XXX</td>
-      ))}
-    </tr>
-  )
-}
-
+// Dynamically load the <IncomeRow> component to prevent SSR hydration conflicts.
+const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
+  ssr: false,
+})
 
 const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   // Get the session from props.
@@ -53,7 +33,9 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   // Get the allowed household sizes from the json file.
   const householdSizes: string[] = Object.keys(incomeData)
   // Get the list of allowed income periods.
-  const incomePeriods: string[] = Object.keys(incomeData['1'])
+  const incomePeriods: string[] = Object.keys(
+    incomeData[householdSizes[0] as keyof typeof incomeData]
+  )
 
   // Initialize translations.
   const { t } = useTranslation('common')
@@ -108,9 +90,6 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
     setForm(newForm)
     // Update the session storage state.
     setSession({ ...session, income: newForm })
-
-    // Handle button routing.
-    // setContinueBtn({ ...continueBtn, route: getRouting() })
   }
 
   return (
@@ -164,13 +143,6 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
             </caption>
             <thead>
               <tr>
-                <th
-                  scope="col"
-                  key="householdSize"
-                  id="householdSizeTableHeader"
-                >
-                  <Trans i18nKey="Income.householdSize" />
-                </th>
                 {incomePeriods.map((period: string) => (
                   <th scope="col" key={period}>
                     {t(`Income.incomePeriods.${period}`)}
@@ -179,10 +151,13 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
               </tr>
             </thead>
             <tbody>
-              <IncomeRowPlaceholder periods={incomePeriods} />
-              {householdSizes.map((householdSize: string) => (
-                <IncomeRow householdSize={householdSize} periods={incomePeriods} incomeForHouseholdSize={incomeData[householdSize as keyof typeof incomeData]} key={householdSize}/>
-              ))}
+              <IncomeRow
+                periods={incomePeriods}
+                householdSize={form.householdSize}
+                incomeForHouseholdSize={
+                  incomeData[form.householdSize as keyof typeof incomeData]
+                }
+              />
             </tbody>
           </table>
           <p>

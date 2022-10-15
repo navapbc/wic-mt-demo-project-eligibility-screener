@@ -211,30 +211,7 @@ exports[`should match full page snapshot 1`] = `
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td
-              data-label="Annual"
-            >
-              $XX,XXX
-            </td>
-            <td
-              data-label="Monthly"
-            >
-              $XX,XXX
-            </td>
-            <td
-              data-label="Bi-weekly"
-            >
-              $XX,XXX
-            </td>
-            <td
-              data-label="Weekly"
-            >
-              $XX,XXX
-            </td>
-          </tr>
-        </tbody>
+        <tbody />
       </table>
       <p>
         <a

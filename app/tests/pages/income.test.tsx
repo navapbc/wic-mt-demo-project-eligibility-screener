@@ -70,6 +70,15 @@ it('should pass accessibility scan', async () => {
   expect(results).toHaveNoViolations()
 })
 
+it('action button should be disabled by default', () => {
+  setup()
+  render(<Income session={mockSession} setSession={setMockSession} />)
+
+  // Check the button is enabled.
+  const button = screen.getByRole('button', { name: /Continue/i })
+  expect(button).toBeDisabled()
+})
+
 it('action button should be enabled if all requirements are met', () => {
   setup()
   // Set the initial mock session values
@@ -122,4 +131,17 @@ it('action button should render differently in review mode', () => {
   render(<Income session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Update/i })
   expect(button).toBeInTheDocument()
+})
+
+it('should route to /choose-clinic', async () => {
+  const user = setup()
+  const filledSession = cloneDeep(mockSession)
+  filledSession.income = {
+    householdSize: '1',
+  }
+  render(<Income session={filledSession} setSession={setMockSession} />)
+  const button = screen.getByRole('button', { name: /Continue/i })
+  await user.click(button)
+
+  expect(singletonRouter).toMatchObject({ asPath: '/choose-clinic' })
 })
