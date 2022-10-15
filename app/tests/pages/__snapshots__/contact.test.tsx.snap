@@ -53,7 +53,7 @@ exports[`should match full page snapshot 1`] = `
         className="usa-input"
         id="firstName"
         name="firstName"
-        onInput={[Function]}
+        onChange={[Function]}
         role="textbox"
         value=""
       />
@@ -72,7 +72,7 @@ exports[`should match full page snapshot 1`] = `
         className="usa-input"
         id="lastName"
         name="lastName"
-        onInput={[Function]}
+        onChange={[Function]}
         role="textbox"
         value=""
       />
@@ -121,7 +121,6 @@ exports[`should match full page snapshot 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
-        onInput={[Function]}
         onKeyDown={[Function]}
         onMouseUp={[Function]}
         role="textbox"
@@ -145,7 +144,7 @@ exports[`should match full page snapshot 1`] = `
         className="usa-textarea"
         id="comments"
         name="comments"
-        onInput={[Function]}
+        onChange={[Function]}
         role="textbox"
         value=""
       />

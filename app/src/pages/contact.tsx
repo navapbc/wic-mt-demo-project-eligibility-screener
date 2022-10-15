@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 
 import Alert from '@components/Alert'
@@ -10,8 +10,7 @@ import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
-import TextArea from '@components/TextArea'
-import TextInput from '@components/TextInput'
+import TextField from '@components/TextField'
 
 import type { ContactData, ModifySessionProps } from '@src/types'
 import { initialContactData } from '@utils/sessionData'
@@ -67,19 +66,12 @@ const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
     setDisabled(!isRequiredMet(form))
   }, [form])
 
-  // @TODO: Refactor these two into a single event handler.
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name }: { value: string; name: string } = e.target
+  // Handle changes to text and textarea fields.
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
     const newForm = { ...form, [name]: value }
-
-    setForm(newForm)
-    setSession({ ...session, contact: newForm })
-  }
-
-  const handleChangeTextArea: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    const { value, name }: { value: string; name: string } = e.target
-    const newForm = { ...form, [name]: value }
-
     setForm(newForm)
     setSession({ ...session, contact: newForm })
   }
@@ -97,14 +89,14 @@ const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
             <Trans i18nKey="Contact.name" />
             <Required />
           </h2>
-          <TextInput
+          <TextField
             handleChange={handleChange}
             id="firstName"
             labelKey="Contact.firstName"
             required
             value={form.firstName}
           />
-          <TextInput
+          <TextField
             handleChange={handleChange}
             id="lastName"
             labelKey="Contact.lastName"
@@ -137,11 +129,12 @@ const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
           <h2>
             <Trans i18nKey="Contact.commentsHeader" />
           </h2>
-          <TextArea
-            handleChange={handleChangeTextArea}
+          <TextField
+            handleChange={handleChange}
             id="comments"
             labelKey="Contact.comments"
             value={form.comments}
+            type="textarea"
           />
         </fieldset>
         <ButtonLink
