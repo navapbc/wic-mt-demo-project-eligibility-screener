@@ -55,9 +55,6 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   const router = useRouter()
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  // const [continueBtn, setContinueBtn] = useState(
-  //   router.query.mode === 'review' ? reviewActionButton : defaultActionButton
-  // )
   const continueBtn =
     router.query.mode === 'review' ? reviewActionButton : defaultActionButton
 
