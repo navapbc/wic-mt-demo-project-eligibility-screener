@@ -69,14 +69,14 @@ const Eligibility: NextPage<ModifySessionProps> = (
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
-  const [disabled, setDisabled] = useState(!isRequiredMet(form))
+  const [disabled, setDisabled] = useState(true)
   // Use useEffect() to properly load the data from session storage during react hydration
   // Since we need to use useEffect to update the enabled/disabled state for the button,
   // this also handles anytime the form state is updated, so we don't need to call
   // setDisabled during handleChange()
-  // useEffect(() => {
-  //   setDisabled(!isRequiredMet(form))
-  // }, [form])
+  useEffect(() => {
+    setDisabled(!isRequiredMet(form))
+  }, [form])
 
   // Handle all form element changes.
   // - Determine new form values
@@ -86,46 +86,44 @@ const Eligibility: NextPage<ModifySessionProps> = (
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name, type }: { value: string; name: string; type: string } =
       e.target
-    console.log(`handleChange: ${value}`)
-    // let newForm
+    let newForm
 
-    // // Handle radio buttons and checkboxes need to be handled differently.
-    // // Radio buttons are a boolean setting, so override the existing value.
-    // if (type === 'radio') {
-    //   newForm = { ...form, [name]: value }
-    // }
-    // // Checkboxes are an array because multiple options are accepted,
-    // // so manage the array elements.
-    // else if (type === 'checkbox') {
-    //   // Cast the name as a key in form.
-    //   const castName = name as 'categorical' | 'adjunctive'
-    //   // If the checkbox is checked and that checkbox value isn't in the array,
-    //   // add it to the array.
-    //   if (e.target.checked && !form[castName].includes(value)) {
-    //     const checkboxArray = [...form[castName]]
-    //     checkboxArray.push(value)
-    //     newForm = { ...form, [castName]: checkboxArray }
-    //   }
-    //   // If the checkbox is unchecked and the checkbox value IS in the array,
-    //   // remove it from the array.
-    //   else if (!e.target.checked && form[castName].includes(value)) {
-    //     const checkboxArray = form[castName].filter((element) => {
-    //       return element !== value
-    //     })
-    //     newForm = { ...form, [castName]: checkboxArray }
-    //   }
-    // }
+    // Handle radio buttons and checkboxes need to be handled differently.
+    // Radio buttons are a boolean setting, so override the existing value.
+    if (type === 'radio') {
+      newForm = { ...form, [name]: value }
+    }
+    // Checkboxes are an array because multiple options are accepted,
+    // so manage the array elements.
+    else if (type === 'checkbox') {
+      // Cast the name as a key in form.
+      const castName = name as 'categorical' | 'adjunctive'
+      // If the checkbox is checked and that checkbox value isn't in the array,
+      // add it to the array.
+      if (e.target.checked && !form[castName].includes(value)) {
+        const checkboxArray = [...form[castName]]
+        checkboxArray.push(value)
+        newForm = { ...form, [castName]: checkboxArray }
+      }
+      // If the checkbox is unchecked and the checkbox value IS in the array,
+      // remove it from the array.
+      else if (!e.target.checked && form[castName].includes(value)) {
+        const checkboxArray = form[castName].filter((element) => {
+          return element !== value
+        })
+        newForm = { ...form, [castName]: checkboxArray }
+      }
+    }
 
-    // // Update state if there are changes to update.
-    // if (newForm) {
-    //   // Update the eligibility state.
-    //   setForm(newForm)
-    //   // Update the session storage state.
-    //   setSession({ ...session, eligibility: newForm })
-    //   // Handle button routing.
-    //   setContinueBtn({ ...continueBtn, route: getRouting(newForm) })
-    //   setDisabled(!isRequiredMet(newForm))
-    // }
+    // Update state if there are changes to update.
+    if (newForm) {
+      // Update the eligibility state.
+      setForm(newForm)
+      // Update the session storage state.
+      setSession({ ...session, eligibility: newForm })
+      // Handle button routing.
+      setContinueBtn({ ...continueBtn, route: getRouting(newForm) })
+    }
   }
 
   return (
