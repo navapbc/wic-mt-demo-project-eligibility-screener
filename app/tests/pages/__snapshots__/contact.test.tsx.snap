@@ -1,15 +1,162 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Contact should render first name prompt 1`] = `
-<label
-  class="usa-label"
-  for="firstName"
->
-  First name
-  <abbr
-    class="usa-hint usa-hint--required"
+exports[`should match full page snapshot 1`] = `
+[
+  <a
+    className="usa-link"
+    href="/choose-clinic"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
   >
-     *
-  </abbr>
-</label>
+    Back
+  </a>,
+  <form
+    className="usa-form usa-form--large"
+  >
+    <h1>
+      Contact information
+    </h1>
+    <p>
+      All required questions are marked with an asterisk
+       (
+      <abbr
+        className="usa-hint usa-hint--required"
+      >
+        *
+      </abbr>
+      ).
+    </p>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        What's your name?
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </h2>
+      <label
+        className="usa-label"
+        htmlFor="firstName"
+      >
+        First name
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </label>
+      <input
+        className="usa-input"
+        id="firstName"
+        name="firstName"
+        onInput={[Function]}
+        role="textbox"
+        value=""
+      />
+      <label
+        className="usa-label"
+        htmlFor="lastName"
+      >
+        Last name
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </label>
+      <input
+        className="usa-input"
+        id="lastName"
+        name="lastName"
+        onInput={[Function]}
+        role="textbox"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        What's the best phone number to reach you at?
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </h2>
+      <div
+        className="usa-alert usa-alert--info usa-alert--no-icon"
+        role="alert"
+      >
+        <div
+          className="usa-alert__body"
+        >
+          <p
+            className="usa-alert__text"
+          >
+            Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.
+          </p>
+        </div>
+      </div>
+      <label
+        className="usa-label"
+        htmlFor="phone"
+      >
+        Phone number
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </label>
+      <input
+        className="usa-input"
+        id="phone"
+        inputMode="numeric"
+        name="phone"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onInput={[Function]}
+        onKeyDown={[Function]}
+        onMouseUp={[Function]}
+        role="textbox"
+        type="text"
+        value=""
+      />
+    </fieldset>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        Is there anything else you'd like to share with us?
+      </h2>
+      <label
+        className="usa-label"
+        htmlFor="comments"
+      >
+        Comments, questions, other information
+      </label>
+      <textarea
+        className="usa-textarea"
+        id="comments"
+        name="comments"
+        onInput={[Function]}
+        role="textbox"
+        value=""
+      />
+    </fieldset>
+    <button
+      className="usa-button usa-button--small display-block margin-top-6"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Continue
+    </button>
+  </form>,
+]
 `;
