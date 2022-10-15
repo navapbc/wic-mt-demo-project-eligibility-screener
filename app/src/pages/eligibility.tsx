@@ -10,6 +10,7 @@ import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
+// @TODO: none of the above checkboxes
 const Eligibility: NextPage<ModifySessionProps> = (
   props: ModifySessionProps
 ) => {
@@ -97,9 +98,11 @@ const Eligibility: NextPage<ModifySessionProps> = (
     // so manage the array elements.
     else if (type === 'checkbox') {
       // Cast the name as a key in form.
+      // @TODO: refactor to not hard code
       const castName = name as 'categorical' | 'adjunctive'
       // If the checkbox is checked and that checkbox value isn't in the array,
       // add it to the array.
+      // @TODO: consider using Immer
       if (e.target.checked && !form[castName].includes(value)) {
         const checkboxArray = [...form[castName]]
         checkboxArray.push(value)

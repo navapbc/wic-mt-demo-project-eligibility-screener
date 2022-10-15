@@ -16,6 +16,7 @@ import {
 const Confirmation: NextPage<SessionProp> = (props: SessionProp) => {
   const { session } = props
 
+  // @TODO: start over button should delete session storage
   return (
     <>
       <h1>

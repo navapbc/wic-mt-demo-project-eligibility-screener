@@ -5,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
+// @TODO: restart should clear session storage
 const OtherBenefits: NextPage = () => {
   return (
     <>

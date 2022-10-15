@@ -5,6 +5,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import ButtonLink from '@components/ButtonLink'
 
 const Index: NextPage = () => {
+  // @TODO: think about way to consolidate keys. perhaps don't auto-sort the translation file
+  //        and using https://www.i18next.com/translation-function/objects-and-arrays
   const listCopyKeys: string[] = ['benefits', 'supplement', 'voluntary']
 
   return (

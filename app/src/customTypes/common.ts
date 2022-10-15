@@ -1,6 +1,7 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction } from 'react'
 
+// @TODO: rename sharedTypes or just put it in /src as types.ts
 /* Types relating to persistent user data */
 export type ChooseClinicData = {
   clinic: typeof clinics[0] | undefined

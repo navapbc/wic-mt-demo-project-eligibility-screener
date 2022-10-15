@@ -15,6 +15,9 @@ import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 
+// @TODO: pull most of this out of this file and into a shared location
+// @TODO: refactor
+// @TODO: button onSubmit() should call an api function to submit the data to the mock api
 type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
 type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
 type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
