@@ -30,7 +30,7 @@ export function testActionButtonReviewMode(
     mockRouter.setCurrentUrl(`${route}?mode=review`)
   })
   render(element)
-  const button = screen.getByRole('button', { name: /Update/i })
 
+  const button = screen.getByRole('button', { name: /Update/i })
   expect(button).toBeInTheDocument()
 }

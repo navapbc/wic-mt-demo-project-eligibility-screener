@@ -1,15 +1,7 @@
-import { act, render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { axe } from 'jest-axe'
-import cloneDeep from 'lodash/cloneDeep'
-import mockRouter from 'next-router-mock'
+import { render, screen } from '@testing-library/react'
 import singletonRouter from 'next/router'
-import renderer from 'react-test-renderer'
 
 import Eligibility from '@pages/eligibility'
-
-import type { SessionData } from '@src/types'
-import { initialSessionData } from '@utils/sessionData'
 
 import { setMockSession, setup } from '../helpers/setup'
 import {
@@ -60,9 +52,9 @@ it.each(combinations)(
     mockSession.eligibility.previouslyEnrolled = previouslyEnrolled as string
     mockSession.eligibility.adjunctive = adjunctive as string[]
     render(<Eligibility session={mockSession} setSession={setMockSession} />)
-    const button = screen.getByRole('button', { name: /Continue/i })
 
     // Check the button is disabled.
+    const button = screen.getByRole('button', { name: /Continue/i })
     expect(button).toBeDisabled()
   }
 )
@@ -76,9 +68,9 @@ it('action button should be enabled if all requirements are met', () => {
   mockSession.eligibility.previouslyEnrolled = 'anything'
   mockSession.eligibility.adjunctive = ['anything']
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
-  const button = screen.getByRole('button', { name: /Continue/i })
 
   // Check the button is enabled.
+  const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).not.toBeDisabled()
 })
 
@@ -162,9 +154,9 @@ it('should route to /other-benefits by default', async () => {
     adjunctive: ['anything'],
   }
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
-
   expect(singletonRouter).toMatchObject({ asPath: '/other-benefits' })
 })
 
@@ -177,9 +169,9 @@ it('should route to /other-benefits if categorical includes none', async () => {
     adjunctive: ['anything'],
   }
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
-
   expect(singletonRouter).toMatchObject({ asPath: '/other-benefits' })
 })
 
@@ -192,9 +184,9 @@ it('should route to /income if adjunctive includes none', async () => {
     adjunctive: ['anything', 'none'],
   }
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
-
   expect(singletonRouter).toMatchObject({ asPath: '/income' })
 })
 
@@ -207,8 +199,8 @@ it('should route to /choose-clinic if adjunctive qualifies', async () => {
     adjunctive: ['anything'],
   }
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
-
   expect(singletonRouter).toMatchObject({ asPath: '/choose-clinic' })
 })
