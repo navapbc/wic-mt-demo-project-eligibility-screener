@@ -1,25 +1,24 @@
-// test/pages/index.test.js
-import { render, screen, waitFor } from '@testing-library/react'
-import { axe } from 'jest-axe'
-
 import Index from '@pages/index'
 
-describe('Index', () => {
-  it('should render the heading', () => {
-    render(<Index />)
+import { setup } from '../helpers/setup'
+import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
 
-    const heading = screen.getByText(/Start an application for WIC/i)
+/**
+ * Test setup
+ */
 
-    expect(heading).toBeInTheDocument()
-    expect(heading).toMatchSnapshot()
-  })
+const route = '/'
 
-  it('should pass accessibility scan', async () => {
-    const { container } = render(<Index />)
-    const results = await axe(container)
+/**
+ * Begin tests
+ */
 
-    await waitFor(() => {
-      expect(results).toHaveNoViolations()
-    })
-  })
+it('should match full page snapshot', () => {
+  setup(route)
+  testSnapshot(<Index />)
+})
+
+it('should pass accessibility scan', async () => {
+  setup(route)
+  await testAccessibility(<Index />)
 })
