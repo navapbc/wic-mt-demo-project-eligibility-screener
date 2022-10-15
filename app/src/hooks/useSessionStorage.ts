@@ -16,7 +16,6 @@ export default function useSessionStorage(
       // Get from local storage by key
       const item: string | null = window.sessionStorage.getItem(key)
 
-      // TODO: refactor type casting
       const state: SessionData = item
         ? (JSON.parse(item) as SessionData)
         : initialValue
@@ -32,8 +31,6 @@ export default function useSessionStorage(
   const setValue = (value: SessionData) => {
     try {
       // Allow value to be a function so we have same API as useState
-
-      // TODO: refactor type casting
       const valueToStore: SessionData =
         value instanceof Function ? (value(storedValue) as SessionData) : value
       // Save state
