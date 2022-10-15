@@ -12,6 +12,11 @@ import type { SessionData } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
 import { setMockSession, setup } from '../helpers/setup'
+import {
+  testAccessibility,
+  testActionButtonReviewMode,
+  testSnapshot,
+} from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -25,26 +30,16 @@ const route = '/eligibility'
 
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
-  const tree = renderer
-    .create(<Eligibility session={mockSession} setSession={setMockSession} />)
-    .toJSON()
-
-  expect(tree).toMatchSnapshot()
+  testSnapshot(
+    <Eligibility session={mockSession} setSession={setMockSession} />
+  )
 })
 
 it('should pass accessibility scan', async () => {
   const { mockSession } = setup(route)
-  const { container } = render(
+  await testAccessibility(
     <Eligibility session={mockSession} setSession={setMockSession} />
   )
-
-  // Must call axe() like this to satisfy react testing.
-  let results
-  await act(async () => {
-    results = await axe(container)
-  })
-
-  expect(results).toHaveNoViolations()
 })
 
 const combinations = [
@@ -152,14 +147,10 @@ it('action button should stay disabled until all requirements are met and re-dis
 
 it('action button should render differently in review mode', () => {
   const { mockSession } = setup(route)
-  // Set the path to review mode.
-  act(() => {
-    mockRouter.setCurrentUrl(`${route}?mode=review`)
-  })
-  render(<Eligibility session={mockSession} setSession={setMockSession} />)
-  const button = screen.getByRole('button', { name: /Update/i })
-
-  expect(button).toBeInTheDocument()
+  testActionButtonReviewMode(
+    <Eligibility session={mockSession} setSession={setMockSession} />,
+    route
+  )
 })
 
 it('should route to /other-benefits by default', async () => {
