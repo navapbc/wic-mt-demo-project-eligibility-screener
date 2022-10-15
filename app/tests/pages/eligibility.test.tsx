@@ -9,55 +9,31 @@ import renderer from 'react-test-renderer'
 import Eligibility from '@pages/eligibility'
 
 import type { SessionData } from '@src/types'
-
 import { initialSessionData } from '@utils/sessionData'
+
+import { setMockSession, setup } from '../helpers/setup'
 
 /**
  * Test setup
  */
 
-// Mock the session
-let mockSession: SessionData = initialSessionData
-export const setMockSession = jest.fn()
-
-// Set the router to the default page path.
-function setupDefaultRoute(): void {
-  act(() => {
-    mockRouter.setCurrentUrl('/eligibility')
-  })
-}
-
-// Setup function using AHA principle.
-// See https://kentcdodds.com/blog/avoid-nesting-when-youre-testing#apply-aha-avoid-hasty-abstractions
-// Return type taken from
-// https://github.com/testing-library/user-event/pull/983#issuecomment-1185537044
-function setup(): ReturnType<typeof userEvent['setup']> {
-  setupDefaultRoute()
-
-  // Reset the mock session before each test.
-  mockSession = cloneDeep(initialSessionData)
-
-  // Set up userEvent
-  // See https://testing-library.com/docs/user-event/intro#writing-tests-with-userevent
-  const user = userEvent.setup()
-
-  return user
-}
+const route = '/eligibility'
 
 /**
  * Begin tests
  */
 
 it('should match full page snapshot', () => {
-  setup()
+  const { mockSession } = setup(route)
   const tree = renderer
     .create(<Eligibility session={mockSession} setSession={setMockSession} />)
     .toJSON()
+
   expect(tree).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {
-  setup()
+  const { mockSession } = setup(route)
   const { container } = render(
     <Eligibility session={mockSession} setSession={setMockSession} />
   )
@@ -81,36 +57,38 @@ const combinations = [
 it.each(combinations)(
   'action button should be disabled if %s',
   (description, residential, categorical, previouslyEnrolled, adjunctive) => {
-    setup()
+    const { mockSession } = setup(route)
+
     // Set the initial mock session values
     mockSession.eligibility.residential = residential as string
     mockSession.eligibility.categorical = categorical as string[]
     mockSession.eligibility.previouslyEnrolled = previouslyEnrolled as string
     mockSession.eligibility.adjunctive = adjunctive as string[]
     render(<Eligibility session={mockSession} setSession={setMockSession} />)
+    const button = screen.getByRole('button', { name: /Continue/i })
 
     // Check the button is disabled.
-    const button = screen.getByRole('button', { name: /Continue/i })
     expect(button).toBeDisabled()
   }
 )
 
 it('action button should be enabled if all requirements are met', () => {
-  setup()
+  const { mockSession } = setup(route)
+
   // Set the initial mock session values
   mockSession.eligibility.residential = 'anything'
   mockSession.eligibility.categorical = ['anything']
   mockSession.eligibility.previouslyEnrolled = 'anything'
   mockSession.eligibility.adjunctive = ['anything']
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
+  const button = screen.getByRole('button', { name: /Continue/i })
 
   // Check the button is enabled.
-  const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).not.toBeDisabled()
 })
 
 it('action button should stay disabled until all requirements are met and re-disable if reqirements are unmet', async () => {
-  const user = setup()
+  const { mockSession, user } = setup(route)
 
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Continue/i })
@@ -173,26 +151,26 @@ it('action button should stay disabled until all requirements are met and re-dis
 })
 
 it('action button should render differently in review mode', () => {
+  const { mockSession } = setup(route)
   // Set the path to review mode.
   act(() => {
-    mockRouter.setCurrentUrl('/eligibility?mode=review')
+    mockRouter.setCurrentUrl(`${route}?mode=review`)
   })
-  mockSession = cloneDeep(initialSessionData)
   render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Update/i })
+
   expect(button).toBeInTheDocument()
 })
 
 it('should route to /other-benefits by default', async () => {
-  const user = setup()
-  const filledSession = cloneDeep(mockSession)
-  filledSession.eligibility = {
+  const { mockSession, user } = setup(route)
+  mockSession.eligibility = {
     residential: 'anything',
     categorical: ['anything'],
     previouslyEnrolled: 'anything',
     adjunctive: ['anything'],
   }
-  render(<Eligibility session={filledSession} setSession={setMockSession} />)
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
 
@@ -200,15 +178,14 @@ it('should route to /other-benefits by default', async () => {
 })
 
 it('should route to /other-benefits if categorical includes none', async () => {
-  const user = setup()
-  const filledSession = cloneDeep(mockSession)
-  filledSession.eligibility = {
+  const { mockSession, user } = setup(route)
+  mockSession.eligibility = {
     residential: 'yes',
     categorical: ['anything', 'none'],
     previouslyEnrolled: 'anything',
     adjunctive: ['anything'],
   }
-  render(<Eligibility session={filledSession} setSession={setMockSession} />)
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
 
@@ -216,15 +193,14 @@ it('should route to /other-benefits if categorical includes none', async () => {
 })
 
 it('should route to /income if adjunctive includes none', async () => {
-  const user = setup()
-  const filledSession = cloneDeep(mockSession)
-  filledSession.eligibility = {
+  const { mockSession, user } = setup(route)
+  mockSession.eligibility = {
     residential: 'yes',
     categorical: ['anything'],
     previouslyEnrolled: 'anything',
     adjunctive: ['anything', 'none'],
   }
-  render(<Eligibility session={filledSession} setSession={setMockSession} />)
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
 
@@ -232,15 +208,14 @@ it('should route to /income if adjunctive includes none', async () => {
 })
 
 it('should route to /choose-clinic if adjunctive qualifies', async () => {
-  const user = setup()
-  const filledSession = cloneDeep(mockSession)
-  filledSession.eligibility = {
+  const { mockSession, user } = setup(route)
+  mockSession.eligibility = {
     residential: 'yes',
     categorical: ['anything'],
     previouslyEnrolled: 'anything',
     adjunctive: ['anything'],
   }
-  render(<Eligibility session={filledSession} setSession={setMockSession} />)
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
   const button = screen.getByRole('button', { name: /Continue/i })
   await user.click(button)
 
