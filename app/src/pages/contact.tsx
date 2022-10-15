@@ -14,14 +14,23 @@ import TextArea from '@components/TextArea'
 import TextInput from '@components/TextInput'
 
 import type { ContactData, ModifySessionProps } from '@src/types'
+import { initialContactData } from '@utils/sessionData'
 
-// @TODO: seems buggy
 const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   // Get the session from props.
   const { session, setSession } = props
-  // Initialize form as a state using the value in session.
-  const [form, setForm] = useState<ContactData>(session.contact)
-  // Use useEffect() to properly load the data from session storage during react hydration.
+  // Initialize form as a state using the value with default blank values.
+  // This prevents bugginess around hydration. DO NOT try to initialize from the session!
+  // That can cause fields like <textarea> to not load values correctly.
+  const [form, setForm] = useState<ContactData>(initialContactData)
+  // Need to use useEffect() to properly load the data from session storage on component mount.
+  // This also updates form whenever session is updated, which isn't ideal since
+  // we update form AND session in handleChange(), but:
+  // 1. React requires session.contact as a dependency
+  // 2. We could remove setForm() from handleChange(), but that would put the update first
+  //    into sessionStorage before updating state and that is less ideal.
+  // Instead, we accept that this runs on component mount and on handleChange(), we run setForm(),
+  // then, setSession(), which then calls setForm() a second time.
   useEffect(() => {
     setForm(session.contact)
   }, [session.contact])
@@ -121,7 +130,7 @@ const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
             id="phone"
             name="phone"
             value={form.phone}
-            onInput={handleChange}
+            onChange={handleChange}
           />
         </fieldset>
         <fieldset className="usa-fieldset">
