@@ -1,24 +1,24 @@
-import { render, screen } from '@testing-library/react'
-import { axe } from 'jest-axe'
-
 import HowItWorks from '@pages/how-it-works'
 
-describe('HowItWorks', () => {
-  it('should render title text', () => {
-    render(<HowItWorks />)
+import { setup } from '../helpers/setup'
+import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
 
-    const title = screen.getByText(
-      /You can start applying for WIC by checking to see if you're eligible/i
-    )
+/**
+ * Test setup
+ */
 
-    expect(title).toBeInTheDocument()
-    expect(title).toMatchSnapshot()
-  })
+const route = '/how-it-works'
 
-  it('should pass accessibility scan', async () => {
-    const { container } = render(<HowItWorks />)
-    const results = await axe(container)
+/**
+ * Begin tests
+ */
 
-    expect(results).toHaveNoViolations()
-  })
+it('should match full page snapshot', () => {
+  setup(route)
+  testSnapshot(<HowItWorks />)
+})
+
+it('should pass accessibility scan', async () => {
+  setup(route)
+  await testAccessibility(<HowItWorks />)
 })
