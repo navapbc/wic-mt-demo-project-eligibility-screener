@@ -29,17 +29,6 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
     setForm(session.income)
   }, [session.income])
 
-  /* Set some constant keys. */
-  // Get the allowed household sizes from the json file.
-  const householdSizes: string[] = Object.keys(incomeData)
-  // Get the list of allowed income periods.
-  const incomePeriods: string[] = Object.keys(
-    incomeData[householdSizes[0] as keyof typeof incomeData]
-  )
-
-  // Initialize translations.
-  const { t } = useTranslation('common')
-
   // Function to check whether all the required fields in this form
   // page have been filled out.
   // @TODO: This could be further refactored to be more generic.
@@ -80,6 +69,17 @@ const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
   useEffect(() => {
     setDisabled(!isRequiredMet(form))
   }, [form])
+
+  // Page-specific consts.
+  // Get the allowed household sizes from the json file.
+  const householdSizes: string[] = Object.keys(incomeData)
+  // Get the list of allowed income periods.
+  const incomePeriods: string[] = Object.keys(
+    incomeData[householdSizes[0] as keyof typeof incomeData]
+  )
+  // Initialize translations.
+  const { t } = useTranslation('common')
+
 
   // Handle form element changes.
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
