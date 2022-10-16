@@ -40,7 +40,7 @@ export interface WriteSession extends ReadSession {
   setSession: Dispatch<SetStateAction<SessionData>> | (() => unknown)
 }
 
-export interface ClearSessionPage {
+export interface ClearablePage extends WriteSession {
   sessionKey: string
 }
 

@@ -1,11 +1,11 @@
 import { Trans } from 'next-i18next'
-import React, { ReactElement } from 'react'
+import React, { MouseEvent, ReactElement } from 'react'
 
 type Props = {
   disabled?: boolean
   labelKey: string
   style?: string
-  onClick?: () => void
+  onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
 // Next.js requires forwarding refs if this functional component might

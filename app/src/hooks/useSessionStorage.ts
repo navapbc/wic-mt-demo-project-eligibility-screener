@@ -45,3 +45,12 @@ export default function useSessionStorage(
   }
   return [storedValue, setValue]
 }
+
+export function clearSessionStorage(key: string) {
+  if (typeof window === 'undefined') {
+    // @TODO: More robust logging and error handling
+    console.log('Not in client context')
+  } else {
+    window.sessionStorage.removeItem(key)
+  }
+}
