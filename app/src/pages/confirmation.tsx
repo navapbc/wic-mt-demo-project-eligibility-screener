@@ -12,9 +12,9 @@ import {
   formatEligibilityResponses,
 } from '@pages/review'
 
-import type { SessionProp } from '@src/types'
+import type { ReadOnlyPage } from '@src/types'
 
-const Confirmation: NextPage<SessionProp> = (props: SessionProp) => {
+const Confirmation: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
   const { session } = props
 
   // @TODO: start over button should delete session storage

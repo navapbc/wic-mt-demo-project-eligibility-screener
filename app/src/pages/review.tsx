@@ -14,7 +14,7 @@ import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 
-import type { SessionData, SessionProp } from '@src/types'
+import type { ReadOnlyPage, SessionData } from '@src/types'
 
 // @TODO: pull most of this out of this file and into a shared location
 // @TODO: refactor
@@ -116,7 +116,7 @@ export const formatContactResponses = (
   return contactResponses
 }
 
-const Review: NextPage<SessionProp> = (props: SessionProp) => {
+const Review: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
   const { session } = props
 
   const reviewMode = { mode: 'review' }

@@ -32,10 +32,19 @@ export type SessionData = {
   income: IncomeData
 }
 
-export interface SessionProp {
+export interface ReadSession {
   session: SessionData
 }
 
-export interface ModifySessionProps extends SessionProp {
+export interface WriteSession extends ReadSession {
   setSession: Dispatch<SetStateAction<SessionData>> | (() => unknown)
 }
+
+export interface ClearSessionPage {
+  sessionKey: string
+}
+
+// Type aliases for page props
+export type EditablePage = WriteSession
+
+export type ReadOnlyPage = ReadSession

@@ -1,6 +1,6 @@
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
-import useSessionStorage from 'src/hooks/useSessionStorage'
+import useSessionStorage from '@src/hooks/useSessionStorage'
 
 import Layout from '@components/Layout'
 

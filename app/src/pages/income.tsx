@@ -13,14 +13,14 @@ import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
-import type { IncomeData, ModifySessionProps } from '@src/types'
+import type { EditablePage, IncomeData } from '@src/types'
 
 // Dynamically load the <IncomeRow> component to prevent SSR hydration conflicts.
 const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
   ssr: false,
 })
 
-const Income: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
+const Income: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
   // Initialize form as a state with the value in session.

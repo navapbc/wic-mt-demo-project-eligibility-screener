@@ -12,10 +12,10 @@ import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextField from '@components/TextField'
 
-import type { ContactData, ModifySessionProps } from '@src/types'
+import type { ContactData, EditablePage } from '@src/types'
 import { initialContactData } from '@utils/sessionData'
 
-const Contact: NextPage<ModifySessionProps> = (props: ModifySessionProps) => {
+const Contact: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
   // Initialize form as a state using the value with default blank values.

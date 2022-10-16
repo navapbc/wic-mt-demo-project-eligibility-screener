@@ -9,12 +9,10 @@ import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
-import type { EligibilityData, ModifySessionProps } from '@src/types'
+import type { EditablePage, EligibilityData } from '@src/types'
 
 // @TODO: none of the above checkboxes
-const Eligibility: NextPage<ModifySessionProps> = (
-  props: ModifySessionProps
-) => {
+const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
   // Initialize form as a state using the value in session.
