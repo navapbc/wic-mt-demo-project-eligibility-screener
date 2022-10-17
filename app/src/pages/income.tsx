@@ -32,7 +32,6 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
 
   // Function to check whether all the required fields in this form
   // page have been filled out.
-  // @TODO: This could be further refactored to be more generic.
   const isRequiredMet = (formToCheck: IncomeData) => {
     return formToCheck.householdSize !== ''
   }

@@ -1,5 +1,6 @@
 import { Trans } from 'next-i18next'
 import { ChangeEvent, ReactElement } from 'react'
+
 import Required from '@components/Required'
 
 type TextFieldProps = {
