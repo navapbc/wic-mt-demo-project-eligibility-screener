@@ -3,7 +3,7 @@ import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
-import NumberFormat from 'react-number-format'
+import { PatternFormat } from 'react-number-format'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
@@ -67,10 +67,14 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
   }, [form])
 
   // Handle changes to text and textarea fields.
-  const handleChange = (
+  const handleChangeEvent = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
+    handleChange(name, value)
+  }
+
+  const handleChange = (name: string, value: string) => {
     const newForm = { ...form, [name]: value }
     setForm(newForm)
     setSession({ ...session, contact: newForm })
@@ -90,14 +94,14 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
             <Required />
           </h2>
           <TextField
-            handleChange={handleChange}
+            handleChange={handleChangeEvent}
             id="firstName"
             labelKey="Contact.firstName"
             required
             value={form.firstName}
           />
           <TextField
-            handleChange={handleChange}
+            handleChange={handleChangeEvent}
             id="lastName"
             labelKey="Contact.lastName"
             required
@@ -114,7 +118,7 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
             <Trans i18nKey="Contact.phone" />
             <Required />
           </label>
-          <NumberFormat
+          <PatternFormat
             format="###-###-####"
             mask="_"
             role="textbox"
@@ -122,7 +126,10 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
             id="phone"
             name="phone"
             value={form.phone}
-            onChange={handleChange}
+            onValueChange={(values) => {
+              handleChange('phone', values.value)
+            }}
+            valueIsNumericString={true}
           />
         </fieldset>
         <fieldset className="usa-fieldset">
@@ -130,7 +137,7 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
             <Trans i18nKey="Contact.commentsHeader" />
           </h2>
           <TextField
-            handleChange={handleChange}
+            handleChange={handleChangeEvent}
             id="comments"
             labelKey="Contact.comments"
             value={form.comments}
