@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
-import { PatternFormat } from 'react-number-format'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
@@ -26,6 +25,9 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
   // Initialize form as a state using the value in session.
+  // Note: Unlike the other pages, we load the session data as the initial state,
+  //       even though this causes the zip code text field to act a little buggy.
+  //       @TODO: document why
   const [form, setForm] = useState<ChooseClinicData>(session.chooseClinic)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
@@ -91,6 +93,8 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   >(form.clinic ? [form.clinic] : [])
   // A state for tracking whether the zip code the user entered is out of state.
   const [zipNotInStateError, setZipNotInStateError] = useState<boolean>(false)
+  // A state for tracking if there is a validation error in the zip.
+  const [zipValidationError, setZipValidationError] = useState<boolean>(false)
 
   // Change handler for any updates to the zip code search field.
   const handleZipCodeChange = (zipCode: string) => {
@@ -110,6 +114,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
 
     // Do the lookup only if the zip code is valid.
     if (isValidZip(form.zipCode)) {
+      setZipValidationError(false)
       // Lookup the clinics that match that zip code.
       import(
         `@public/clinic-output/clinics-zip-code-lookup/${form.zipCode}.json`
@@ -144,6 +149,8 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
           setZipNotInStateError(true)
           setFilteredClinics([])
         })
+    } else {
+      setZipValidationError(true)
     }
   }
 
@@ -164,6 +171,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   }
 
   // @TODO: zip code search box and alert are not set to the correct form max-width on non-mobile
+  // @TODO: Switch zip code field to use react-number-format. Requires react-number-format to support type=search
   return (
     <>
       <BackLink href="/income" />
@@ -184,6 +192,11 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
           <Required />
         </h2>
         <section aria-label="Search clinic by zip">
+          {zipValidationError && (
+            <span className="usa-error-message">
+              <Trans i18nKey="ChooseClinic.zipValidationError" />
+            </span>
+          )}
           <form
             className="usa-search usa-search--small"
             role="search"
@@ -192,16 +205,12 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
             <label className="usa-sr-only" htmlFor="search-field-en-small">
               <Trans i18nKey="ChooseClinic.searchLabel" />
             </label>
-            <PatternFormat
-              format="#####"
-              mask="_"
-              className="usa-input"
+            <input
+              className="usa-input usa-input-error"
               id="search-field-en-small"
-              name="search-field-en-small"
-              value={form.zipCode}
               type="search"
-              onValueChange={(values) => handleZipCodeChange(values.value)}
-              valueIsNumericString={true}
+              value={form.zipCode}
+              onChange={(e) => handleZipCodeChange(e.target.value)}
             />
             <button className="usa-button" type="submit">
               <Image
