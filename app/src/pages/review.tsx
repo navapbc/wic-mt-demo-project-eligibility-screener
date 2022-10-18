@@ -10,6 +10,7 @@ import ReviewSection from '@components/ReviewSection'
 import type { ReadOnlyPage } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
+// @TODO: button onSubmit() should call an api function to submit the data to the mock api
 const Review: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
   const { session } = props
 
