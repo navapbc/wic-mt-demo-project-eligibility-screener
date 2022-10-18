@@ -1,11 +1,7 @@
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ReactElement } from 'react'
+import { useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
@@ -14,112 +10,112 @@ import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
 
-import type { ReadOnlyPage, SessionData } from '@src/types'
+import type {
+  ChooseClinicData,
+  ContactData,
+  EligibilityData,
+  IncomeData,
+  ReadOnlyPage,
+} from '@src/types'
+import { initialSessionData } from '@utils/sessionData'
 
-// @TODO: pull most of this out of this file and into a shared location
-// @TODO: refactor
 // @TODO: button onSubmit() should call an api function to submit the data to the mock api
-type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
-type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
-type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
-
-const categoryKeys: Category[] = [
-  'pregnant',
-  'baby',
-  'child',
-  'guardian',
-  'loss',
-]
-const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
-const contactKeys: Contact[] = ['firstName', 'lastName', 'phone', 'comments']
-
-const formatCategoricalOrAdjunctive = (
-  keys: (Category | Program)[],
-  session: SessionData
-): ReactElement => {
-  const i18nKeys: string[] = []
-
-  keys.forEach((key: Category | Program) => {
-    if (session.eligibility[key]) {
-      i18nKeys.push(`Eligibility.${key}`)
-    }
+export const formatEligibilityResponses = (
+  eligibility: EligibilityData
+): ReviewElementProps[] => {
+  const categoricalKeys = eligibility.categorical.map((key: string) => {
+    return `Eligibility.${key}`
+  })
+  const adjunctiveKeys = eligibility.adjunctive.map((key: string) => {
+    return `Eligibility.${key}`
   })
 
-  return <List i18nKeys={i18nKeys} />
-}
-
-export const formatEligibilityResponses = (
-  session: SessionData
-): ReviewElementProps[] => {
   return [
     {
       labelKey: 'Eligibility.residential',
-      children:
-        (session?.eligibility?.residential && (
-          <Trans i18nKey={session?.eligibility?.residential} />
-        )) ||
-        null,
+      children: <Trans i18nKey={`Eligibility.${eligibility.residential}`} />,
     },
     {
       labelKey: 'Eligibility.categorical',
-      children: formatCategoricalOrAdjunctive(categoryKeys, session),
+      children: <List i18nKeys={categoricalKeys} />,
     },
     {
-      labelKey: 'Eligibility.before',
-      children:
-        (session?.eligibility?.before && (
-          <Trans i18nKey={session?.eligibility?.before.replace(/[2]/g, '')} />
-        )) ||
-        null,
+      labelKey: 'Eligibility.previouslyEnrolled',
+      children: (
+        <Trans i18nKey={`Eligibility.${eligibility.previouslyEnrolled}`} />
+      ),
     },
     {
-      labelKey: 'Eligibility.programs',
-      children: formatCategoricalOrAdjunctive(programKeys, session),
+      labelKey: 'Eligibility.adjunctive',
+      children: <List i18nKeys={adjunctiveKeys} />,
+    },
+  ]
+}
+
+export const formatIncomeResponses = (income: IncomeData) => {
+  return [
+    {
+      labelKey: 'Income.householdSize',
+      children: <div>{income.householdSize}</div>,
     },
   ]
 }
 
 export const formatClinicResponses = (
-  session: SessionData
+  chooseClinic: ChooseClinicData
 ): ReviewElementProps[] => {
-  return [
-    {
-      labelKey: 'Review.clinicSelected',
-      children:
-        (session?.clinic && (
-          <ClinicInfo
-            name={session?.clinic.clinic}
-            streetAddress={session?.clinic.clinicAddress}
-            phone={session?.clinic.clinicTelephone}
-            isFormElement={false}
-          />
-        )) ||
-        null,
-    },
-  ]
+  const zipCodeElement = {
+    labelKey: 'Review.zipCode',
+    children: <div>{chooseClinic.zipCode}</div>,
+  }
+
+  let clinic = <></>
+  if (chooseClinic.clinic !== undefined) {
+    clinic = (
+      <ClinicInfo
+        name={chooseClinic.clinic.clinic}
+        streetAddress={chooseClinic.clinic.clinicAddress}
+        phone={chooseClinic.clinic.clinicTelephone}
+        isFormElement={false}
+      />
+    )
+  }
+  const clinicElement = {
+    labelKey: 'Review.clinicSelected',
+    children: clinic,
+  }
+
+  return [zipCodeElement, clinicElement]
 }
 
 export const formatContactResponses = (
-  session: SessionData
+  contact: ContactData
 ): ReviewElementProps[] => {
   const contactResponses: ReviewElementProps[] = []
-  contactKeys.forEach((key: string) => {
+  for (const key in contact) {
     contactResponses.push({
       labelKey: `Contact.${key}`,
-      children:
-        (session?.contact[key as Contact] && (
-          <Trans i18nKey={session?.contact[key as Contact]} />
-        )) ||
-        null,
+      children: <Trans i18nKey={contact[key as keyof typeof contact]} />,
     })
-  })
+  }
   return contactResponses
 }
 
 const Review: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
   const { session } = props
 
+  // Using form to store all of the data in a component state
+  // resolves all hydration issues.
+  const [form, setForm] = useState(initialSessionData)
+  useEffect(() => {
+    setForm(session)
+  }, [session])
+
   const reviewMode = { mode: 'review' }
+
+  const showHouseholdSize =
+    form.income.householdSize !== '' &&
+    form.eligibility.adjunctive.includes('none')
 
   return (
     <>
@@ -134,53 +130,34 @@ const Review: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
         headerKey="Review.eligibilityTitle"
         editable={true}
         editHref={{ pathname: '/eligibility', query: reviewMode }}
-        reviewElements={formatEligibilityResponses(session)}
+        reviewElements={formatEligibilityResponses(form.eligibility)}
       />
+      {showHouseholdSize && (
+        <ReviewCollection
+          headerKey="Income.householdSize"
+          editable={true}
+          editHref={{ pathname: '/income', query: reviewMode }}
+          reviewElements={formatIncomeResponses(form.income)}
+        />
+      )}
       <ReviewCollection
-        headerKey="Clinic.title"
+        headerKey="ChooseClinic.title"
         editable={true}
         editHref={{ pathname: '/choose-clinic', query: reviewMode }}
-        reviewElements={formatClinicResponses(session)}
+        reviewElements={formatClinicResponses(form.chooseClinic)}
       />
       <ReviewCollection
         headerKey="Contact.title"
         editable={true}
         editHref={{ pathname: '/contact', query: reviewMode }}
-        reviewElements={formatContactResponses(session)}
+        reviewElements={formatContactResponses(form.contact)}
       />
       <ButtonLink href="/confirmation" labelKey="Review.button" />
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  // const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  // const previousRoute =
-  //   prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  // let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
-  //   props: {
-  //     ...(await serverSideTranslations(locale || 'en', ['common'])),
-  //   },
-  // }
-
-  // if (
-  //   !['/choose-clinic', '/eligibility', '/contact'].includes(
-  //     previousRoute as string
-  //   )
-  // ) {
-  //   returnval = {
-  //     ...returnval,
-  //     redirect: {
-  //       destination: previousRoute || '/',
-  //       permanent: false,
-  //     },
-  //   }
-  // }
-
-  // return returnval
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale || 'en', ['common'])),

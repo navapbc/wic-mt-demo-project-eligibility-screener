@@ -205,7 +205,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
         />
         <InputChoiceGroup
           required
-          titleKey="Eligibility.programs"
+          titleKey="Eligibility.adjunctive"
           type="checkbox"
           choices={['insurance', 'snap', 'tanf', 'fdpir', 'none'].map(
             (option) => {

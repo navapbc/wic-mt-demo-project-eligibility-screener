@@ -33,6 +33,7 @@
   "Eligibility": {
     "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your household may qualify for.",
     "accordionHeader": "Why are we asking this?",
+    "adjunctive": "Are you or someone in your household currently enrolled in any of the following programs in Montana?",
     "baby": "I've had a baby in the past 12 months",
     "categorical": "Please select all the following that apply to your household:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
@@ -45,7 +46,6 @@
     "none": "None of the above",
     "pregnant": "I'm pregnant",
     "previouslyEnrolled": "Have you or someone in your household received WIC benefits before?",
-    "programs": "Are you or someone in your household currently enrolled in any of the following programs in Montana?",
     "residential": "Do you live or work in Montana?",
     "snap": "SNAP (Supplemental Nutrition Assistance Program)",
     "tanf": "TANF (Temporary Assistance for Needy Families)",
@@ -108,7 +108,8 @@
     "clinicSelected": "You selected this WIC Clinic to visit",
     "eligibilityTitle": "Eligibility questions",
     "subHeader": "Review the information on this page before submitting. If you want to make changes, select \"Edit\" to go to the section you want to change.",
-    "title": "Review and submit your information"
+    "title": "Review and submit your information",
+    "zipCode": "Residential ZIP code"
   },
   "asterisk": "All required questions are marked with an asterisk",
   "backlinkText": "Back",

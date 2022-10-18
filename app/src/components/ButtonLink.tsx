@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import { UrlObject } from 'url'
 
 import Button from '@components/Button'
 
 type Props = {
   disabled?: boolean
   labelKey: string
-  href: string /* TODO: create global type for routes */
+  href: UrlObject | string
   style?: string
 }
 

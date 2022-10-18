@@ -1,5 +1,6 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
+import { UrlObject } from 'url'
 
 import ButtonLink from '@components/ButtonLink'
 import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
@@ -8,7 +9,7 @@ type ReviewCollectionProps = {
   headerKey: string
   reviewElements: ReviewElementProps[]
   editable: boolean
-  editHref: string
+  editHref: UrlObject | string
   firstElement?: boolean
 }
 
