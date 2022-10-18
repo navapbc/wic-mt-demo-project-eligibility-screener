@@ -12,7 +12,6 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import type { EditablePage, EligibilityData } from '@src/types'
 import { initialEligibilityData } from '@utils/sessionData'
 
-// @TODO: none of the above checkboxes
 const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
@@ -112,6 +111,17 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
         const checkboxArray = [...form[castName]]
         checkboxArray.push(value)
         newForm = { ...form, [castName]: checkboxArray }
+
+        // If the checkbox is "None of the above", uncheck all other values.
+        if (value === 'none') {
+          newForm = { ...form, [castName]: [value] }
+        }
+        // Otherwise, make sure "None of the above" is unchecked.
+        else {
+          newForm[castName] = newForm[castName].filter((element) => {
+            return element !== 'none'
+          })
+        }
       }
       // If the checkbox is unchecked and the checkbox value IS in the array,
       // remove it from the array.

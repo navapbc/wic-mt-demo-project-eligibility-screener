@@ -170,6 +170,32 @@ it('action button should stay disabled until all requirements are met and re-dis
   expect(button).not.toBeDisabled()
 })
 
+it('should uncheck all other checkboxes when None of the Above is checked', async () => {
+  const { mockSession, user } = setup(route)
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
+  const fdpir = screen.getByRole('checkbox', { name: /FDPIR/i })
+  await user.click(fdpir)
+  const none = screen.getAllByRole('checkbox', { name: /None/i })[1]
+  await user.click(none)
+
+  expect(fdpir).not.toBeChecked()
+  expect(none).toBeChecked()
+})
+
+it('should uncheck None of the Above if another option is checked', async () => {
+  const { mockSession, user } = setup(route)
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
+  const none = screen.getAllByRole('checkbox', { name: /None/i })[1]
+  await user.click(none)
+  const fdpir = screen.getByRole('checkbox', { name: /FDPIR/i })
+  await user.click(fdpir)
+
+  expect(fdpir).toBeChecked()
+  expect(none).not.toBeChecked()
+})
+
 it('should route to /other-benefits by default', async () => {
   const { mockSession, user } = setup(route)
   mockSession.eligibility = {
