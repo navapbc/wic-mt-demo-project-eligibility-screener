@@ -7,8 +7,8 @@ export default {
   component: OtherBenefitsPage,
 } as ComponentMeta<typeof OtherBenefitsPage>
 
-const Template: ComponentStory<typeof OtherBenefitsPage> = () => (
-  <OtherBenefitsPage />
+const Template: ComponentStory<typeof OtherBenefitsPage> = (args) => (
+  <OtherBenefitsPage {...args} />
 )
 
 export const OtherBenefits = Template.bind({})
