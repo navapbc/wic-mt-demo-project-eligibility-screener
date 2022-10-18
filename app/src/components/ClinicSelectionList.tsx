@@ -1,6 +1,12 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Trans } from 'next-i18next'
-import { ChangeEvent, Dispatch, ReactElement, SetStateAction } from 'react'
+import {
+  ChangeEvent,
+  Dispatch,
+  MouseEvent,
+  ReactElement,
+  SetStateAction,
+} from 'react'
 
 import Button from '@components/Button'
 import ButtonLink from '@components/ButtonLink'
@@ -32,6 +38,13 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
     continueBtn,
   } = props
 
+  const unexpandedNumberClinics = 4
+
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    setExpandList(true)
+  }
+
   let list: ReactElement = <></>
   if (filteredClinics.length > 0) {
     list = (
@@ -43,7 +56,10 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
         <form className="usa-form usa-form--large">
           <fieldset className="usa-fieldset">
             {filteredClinics
-              ?.slice(0, expandList ? filteredClinics.length : 4)
+              ?.slice(
+                0,
+                expandList ? filteredClinics.length : unexpandedNumberClinics
+              )
               .map(
                 (clinic, index) =>
                   clinic && (
@@ -74,7 +90,7 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
               <Button
                 labelKey="ChooseClinic.showMoreOptions"
                 style="unstyled"
-                onClick={() => setExpandList(true)}
+                onClick={handleClick}
               />
             )}
           </fieldset>

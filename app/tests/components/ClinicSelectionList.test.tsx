@@ -1,21 +1,18 @@
+/**
+ * Test setup
+ */
+// Import the mocked list of filtered clinics.
+// This path is mocked in jest.config.js to point at __mocks__.
+import mockFilteredClinics from '@public/clinic-output/clinics-with-ids.json'
 import { render, screen } from '@testing-library/react'
 import cloneDeep from 'lodash/cloneDeep'
 
 import ClinicSelectionList from '@components/ClinicSelectionList'
 
-import {
-  getMockClinic,
-  getMockClinicList,
-  setupClinicMocks,
-} from '../helpers/setupClinics'
+import { getMockClinic, setupClinicMocks } from '../helpers/setupClinics'
 import { testSnapshot } from '../helpers/sharedTests'
 
-/**
- * Test setup
- */
-
 setupClinicMocks()
-const mockFilteredClinics = getMockClinicList()
 const mockSelectedClinic = getMockClinic()
 const props = {
   filteredClinics: mockFilteredClinics,
