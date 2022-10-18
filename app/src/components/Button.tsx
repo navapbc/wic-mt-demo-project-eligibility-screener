@@ -16,7 +16,9 @@ const Button = React.forwardRef(
     const { disabled, labelKey, style, onClick } = props
 
     let buttonStyle = ''
-    if (style) {
+    // Set an additional check that style "default" is the same as '' empty string.
+    // Used in storybook story.
+    if (style && style !== 'default') {
       buttonStyle = `usa-button--${style} margin-top-1`
     } else {
       buttonStyle = 'margin-top-6'

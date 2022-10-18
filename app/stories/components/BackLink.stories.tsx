@@ -15,5 +15,5 @@ const Template: Story<BackLinkProps> = (args) => <BackLinkComponent {...args} />
 export const BackLink = Template.bind({})
 
 BackLink.args = {
-  href: 'test.com',
+  href: '/internal-route',
 }
