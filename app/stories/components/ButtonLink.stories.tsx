@@ -11,7 +11,7 @@ export default {
     href: {
       control: 'text',
     },
-    style: ButtonStory.argTypes.style,
+    style: ButtonStory.argTypes?.style,
   },
 } as ComponentMeta<typeof ButtonLinkComponent>
 

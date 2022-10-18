@@ -9,6 +9,7 @@ import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
+import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { ChooseClinicData, EditablePage } from '@src/types'

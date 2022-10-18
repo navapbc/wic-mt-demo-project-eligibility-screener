@@ -7,9 +7,9 @@ export default {
   component: ReviewCollectionComponent,
   argTypes: {
     editHref: {
-      control: "text"
-    }
-  }
+      control: 'text',
+    },
+  },
 } as ComponentMeta<typeof ReviewCollectionComponent>
 
 const Template: ComponentStory<typeof ReviewCollectionComponent> = (args) => (

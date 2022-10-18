@@ -12,9 +12,7 @@ const Template: ComponentStory<typeof IncomeRowComponent> = (args) => (
     <thead>
       <tr>
         {args.periods.map((period: string) => (
-          <th key={period}>
-            {period}
-          </th>
+          <th key={period}>{period}</th>
         ))}
       </tr>
     </thead>
