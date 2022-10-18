@@ -10,13 +10,15 @@ import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { EditablePage, EligibilityData } from '@src/types'
+import { initialEligibilityData } from '@utils/sessionData'
+
 
 // @TODO: none of the above checkboxes
 const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
-  // Initialize form as a state using the value in session.
-  const [form, setForm] = useState<EligibilityData>(session.eligibility)
+  // Initialize form as a state using blank values.
+  const [form, setForm] = useState<EligibilityData>(initialEligibilityData)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
     setForm(session.eligibility)

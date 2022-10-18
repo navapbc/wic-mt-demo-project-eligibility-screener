@@ -14,6 +14,7 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
 import type { EditablePage, IncomeData } from '@src/types'
+import { initialIncomeData } from '@utils/sessionData'
 
 // Dynamically load the <IncomeRow> component to prevent SSR hydration conflicts.
 const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
@@ -23,8 +24,8 @@ const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
 const Income: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
-  // Initialize form as a state with the value in session.
-  const [form, setForm] = useState<IncomeData>(session.income)
+  // Initialize form as a state with blank values.
+  const [form, setForm] = useState<IncomeData>(initialIncomeData)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
     setForm(session.income)

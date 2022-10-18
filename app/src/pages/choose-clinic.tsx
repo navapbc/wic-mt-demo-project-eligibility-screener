@@ -25,9 +25,7 @@ const ClinicSelectionList = dynamic(
 const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
   const { session, setSession } = props
-  // Initialize form as a state using the value in session.
-  // Note: Unlike the other pages, we load the session data as the initial state,
-  //       even though this causes the zip code text field to act a little buggy.
+  // Initialize form as a state using blank values.
   const [form, setForm] = useState<ChooseClinicData>(initialChooseClinicData)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
