@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
@@ -11,7 +11,6 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { EditablePage, EligibilityData } from '@src/types'
 import { initialEligibilityData } from '@utils/sessionData'
-
 
 // @TODO: none of the above checkboxes
 const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
@@ -40,34 +39,39 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Route the user to /other-benefits if they do not meet basic eligibility requirements.
   // Route the user to /income if they do not meet adjunctive eligibility requirements.
   // Otherwise, route the user to /choose-clinic.
-  const getRouting = (formToCheck: EligibilityData) => {
-    const isResident = formToCheck.residential === 'yes'
-    const hasCategory = !formToCheck.categorical.includes('none')
-    if (!isResident || !hasCategory) {
-      return '/other-benefits'
-    } else if (formToCheck.adjunctive.includes('none')) {
-      return '/income'
-    } else {
-      return '/choose-clinic'
+  const getRouting = useCallback((formToCheck: EligibilityData) => {
+    let nextPage = '/other-benefits'
+
+    // Short circuit early if the requirements are not met.
+    if (!isRequiredMet(formToCheck)) {
+      return nextPage
     }
-  }
+
+    const isResident = formToCheck.residential === 'yes'
+    const hasCategory =
+      !formToCheck.categorical.includes('none') &&
+      formToCheck.categorical.length > 0
+    if (isResident && hasCategory) {
+      if (formToCheck.adjunctive.includes('none')) {
+        nextPage = '/income'
+      } else {
+        nextPage = '/choose-clinic'
+      }
+    }
+    return nextPage
+  }, [])
 
   // Set up action button and routing.
-  const defaultActionButton = {
-    labelKey: 'continue',
-    route: getRouting(form),
-  }
-  const reviewActionButton = {
-    labelKey: 'updateAndReturn',
-    route: '/review',
-  }
-  // Set up routing to determine if the user is reviewing previously entered data.
   const router = useRouter()
-  // If the user is reviewing previously entered data, use the review button.
-  // Otherwise, use the default button.
-  const [continueBtn, setContinueBtn] = useState(
-    router.query.mode === 'review' ? reviewActionButton : defaultActionButton
+  const actionButtonLabel =
+    router.query.mode === 'review' ? 'updateAndReturn' : 'continue'
+  const [actionButtonRoute, setActionButtonRoute] = useState(
+    router.query.mode === 'review' ? '/review' : getRouting(form)
   )
+  // Use useEffect() to set the proper route on page mount.
+  useEffect(() => {
+    setActionButtonRoute(getRouting(form))
+  }, [form, getRouting])
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
@@ -125,8 +129,6 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
       setForm(newForm)
       // Update the session storage state.
       setSession({ ...session, eligibility: newForm })
-      // Handle button routing.
-      setContinueBtn({ ...continueBtn, route: getRouting(newForm) })
     }
   }
 
@@ -208,8 +210,8 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
           )}
         />
         <ButtonLink
-          href={continueBtn.route}
-          labelKey={continueBtn.labelKey}
+          href={actionButtonRoute}
+          labelKey={actionButtonLabel}
           disabled={disabled}
         />
       </form>
