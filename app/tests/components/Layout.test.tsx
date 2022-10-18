@@ -1,23 +1,11 @@
-// test/pages/index.test.js
-import { render, screen } from '@testing-library/react'
-import { axe } from 'jest-axe'
-
 import Layout from '@components/Layout'
 
-describe('Layout', () => {
-  // it('should render placeholder header text', () => {
-  //   render(<Layout children={<h1>'child'</h1>} />)
+import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
 
-  //   const header = screen.getByText(/Apply for WIC in Montana/i)
+it('should match snapshot', () => {
+  testSnapshot(<Layout children={<h1>'child'</h1>} />)
+})
 
-  //   expect(header).toBeInTheDocument()
-  //   expect(header).toMatchSnapshot()
-  // })
-
-  it('should pass accessibility scan', async () => {
-    const { container } = render(<Layout children={<h1>'child'</h1>} />)
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
-  })
+it('should pass accessibility scan', async () => {
+  await testAccessibility(<Layout children={<h1>'child'</h1>} />)
 })
