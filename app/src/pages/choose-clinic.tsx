@@ -12,6 +12,7 @@ import BackLink from '@components/BackLink'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { ChooseClinicData, EditablePage } from '@src/types'
+import { initialChooseClinicData } from '@utils/sessionData'
 
 // Dynamically load the <ClinicSelectionList> component to prevent SSR hydration conflicts.
 const ClinicSelectionList = dynamic(
@@ -27,8 +28,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // Initialize form as a state using the value in session.
   // Note: Unlike the other pages, we load the session data as the initial state,
   //       even though this causes the zip code text field to act a little buggy.
-  //       @TODO: document why
-  const [form, setForm] = useState<ChooseClinicData>(session.chooseClinic)
+  const [form, setForm] = useState<ChooseClinicData>(initialChooseClinicData)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
     setForm(session.chooseClinic)
@@ -91,6 +91,14 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   const [filteredClinics, setFilteredClinics] = useState<
     (typeof clinics[0] | undefined)[]
   >(form.clinic ? [form.clinic] : [])
+  // Use useEffect() to load the selected clinic into filteredClinics state at component
+  // mount if filteredClinics is empty. In other words, if the user has selected a clinic,
+  // put it into the filtered list to show just that one clinic.
+  useEffect(() => {
+    if (filteredClinics.length === 0 && form.clinic !== undefined) {
+      setFilteredClinics([form.clinic])
+    }
+  }, [form.clinic, filteredClinics.length])
   // A state for tracking whether the zip code the user entered is out of state.
   const [zipNotInStateError, setZipNotInStateError] = useState<boolean>(false)
   // A state for tracking if there is a validation error in the zip.
@@ -110,7 +118,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Reset any saved clinic to undefined.
-    setForm({ ...form, clinic: undefined })
+    updateFormAndSession({ ...form, clinic: undefined })
 
     // Do the lookup only if the zip code is valid.
     if (isValidZip(form.zipCode)) {
