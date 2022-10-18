@@ -15,6 +15,7 @@ import {
  */
 
 const route = '/income'
+const mockHouseholdSize = '1'
 
 /**
  * Begin tests
@@ -32,6 +33,14 @@ it('should pass accessibility scan', async () => {
   )
 })
 
+it('action button should render differently in review mode', () => {
+  const { mockSession } = setup(route)
+  testActionButtonReviewMode(
+    <Income session={mockSession} setSession={setMockSession} />,
+    route
+  )
+})
+
 it('action button should be disabled by default', () => {
   const { mockSession } = setup(route)
   render(<Income session={mockSession} setSession={setMockSession} />)
@@ -43,12 +52,23 @@ it('action button should be disabled by default', () => {
 
 it('action button should be enabled if all requirements are met', () => {
   const { mockSession } = setup(route)
-  mockSession.income.householdSize = '1'
+  mockSession.income.householdSize = mockHouseholdSize
   render(<Income session={mockSession} setSession={setMockSession} />)
 
   // Check the button is enabled.
   const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).not.toBeDisabled()
+})
+
+it('should display user values on refresh/page load', () => {
+  const { mockSession } = setup(route)
+  mockSession.income.householdSize = mockHouseholdSize
+  render(<Income session={mockSession} setSession={setMockSession} />)
+
+  const optionOne = screen.getByRole('option', {
+    name: mockHouseholdSize,
+  }) as HTMLOptionElement
+  expect(optionOne.selected).toBe(true)
 })
 
 it('action button should stay disabled until all requirements are met and re-disable if reqirements are unmet', async () => {
@@ -60,9 +80,9 @@ it('action button should stay disabled until all requirements are met and re-dis
 
   // Select a valid householdSize option.
   const optionOne = screen.getByRole('option', {
-    name: '1',
+    name: mockHouseholdSize,
   }) as HTMLOptionElement
-  await user.selectOptions(screen.getByRole('combobox'), '1')
+  await user.selectOptions(screen.getByRole('combobox'), mockHouseholdSize)
   expect(optionOne.selected).toBe(true)
   // The button should be enabled.
   expect(button).not.toBeDisabled()
@@ -77,24 +97,16 @@ it('action button should stay disabled until all requirements are met and re-dis
   expect(button).toBeDisabled()
 
   // Re-select a valid option.
-  await user.selectOptions(screen.getByRole('combobox'), '1')
+  await user.selectOptions(screen.getByRole('combobox'), mockHouseholdSize)
   expect(optionOne.selected).toBe(true)
   // The button should be enabled.
   expect(button).not.toBeDisabled()
 })
 
-it('action button should render differently in review mode', () => {
-  const { mockSession } = setup(route)
-  testActionButtonReviewMode(
-    <Income session={mockSession} setSession={setMockSession} />,
-    route
-  )
-})
-
 it('should route to /choose-clinic', async () => {
   const { mockSession, user } = setup(route)
   mockSession.income = {
-    householdSize: '1',
+    householdSize: mockHouseholdSize,
   }
   render(<Income session={mockSession} setSession={setMockSession} />)
 

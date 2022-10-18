@@ -118,7 +118,7 @@ it('action button should render and be enabled if all requirements are met', () 
   expect(button).not.toBeDisabled()
 })
 
-it('should display user values if all requirements are met', () => {
+it('should display user values on refresh/page load', () => {
   let { mockSession } = setup(route)
   mockSession = setZipCode(mockSession, 'inState')
   mockSession.chooseClinic.clinic = getMockClinic()

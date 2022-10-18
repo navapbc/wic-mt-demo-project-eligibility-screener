@@ -34,6 +34,14 @@ it('should pass accessibility scan', async () => {
   )
 })
 
+it('action button should render differently in review mode', () => {
+  const { mockSession } = setup(route)
+  testActionButtonReviewMode(
+    <Eligibility session={mockSession} setSession={setMockSession} />,
+    route
+  )
+})
+
 const combinations = [
   ['no values are set', '', [], '', []],
   ['residential is not set', '', ['anything'], 'anything', ['anything']],
@@ -72,6 +80,31 @@ it('action button should be enabled if all requirements are met', () => {
   // Check the button is enabled.
   const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).not.toBeDisabled()
+})
+
+it('should display user values on refresh/page load', () => {
+  const { mockSession } = setup(route)
+  mockSession.eligibility.residential = 'yes'
+  mockSession.eligibility.categorical = ['pregnant']
+  mockSession.eligibility.previouslyEnrolled = 'yes'
+  mockSession.eligibility.adjunctive = ['tanf']
+  render(<Eligibility session={mockSession} setSession={setMockSession} />)
+
+  const residential = screen.getAllByRole('radio', { name: /Yes/i })[0]
+  expect(residential).toBeChecked()
+
+  const categorical = screen.getByRole('checkbox', {
+    name: /I'm pregnant/i,
+  })
+  expect(categorical).toBeChecked()
+
+  const previouslyEnrolled = screen.getAllByRole('radio', {
+    name: /Yes/i,
+  })[1]
+  expect(previouslyEnrolled).toBeChecked()
+
+  const adjunctive = screen.getByRole('checkbox', { name: /tanf/i })
+  expect(adjunctive).toBeChecked()
 })
 
 it('action button should stay disabled until all requirements are met and re-disable if reqirements are unmet', async () => {
@@ -135,14 +168,6 @@ it('action button should stay disabled until all requirements are met and re-dis
   await user.click(adjunctive)
   expect(adjunctive).toBeChecked()
   expect(button).not.toBeDisabled()
-})
-
-it('action button should render differently in review mode', () => {
-  const { mockSession } = setup(route)
-  testActionButtonReviewMode(
-    <Eligibility session={mockSession} setSession={setMockSession} />,
-    route
-  )
 })
 
 it('should route to /other-benefits by default', async () => {

@@ -32,6 +32,14 @@ it('should pass accessibility scan', async () => {
   )
 })
 
+it('action button should render differently in review mode', () => {
+  const { mockSession } = setup(route)
+  testActionButtonReviewMode(
+    <Contact session={mockSession} setSession={setMockSession} />,
+    route
+  )
+})
+
 const combinations = [
   ['no values are set', '', '', ''],
   ['firstName is not set', '', 'anything', 'anything'],
@@ -65,7 +73,7 @@ it('number input should not allow non-numbers', async () => {
   expect(phone).toHaveValue('')
 })
 
-it('number input should format number', async () => {
+it('number input should visually format number', async () => {
   const { mockSession, user } = setup(route)
   render(<Contact session={mockSession} setSession={setMockSession} />)
 
@@ -86,6 +94,27 @@ it('action button should be enabled if all requirements are met', () => {
   // Check the button is enabled.
   const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).not.toBeDisabled()
+})
+
+it('should display user values on refresh/page load', () => {
+  const { mockSession } = setup(route)
+  mockSession.contact.firstName = 'Jack'
+  mockSession.contact.lastName = 'O Lantern'
+  mockSession.contact.phone = '1231231234'
+  mockSession.contact.comments = 'I wish to submit a comment'
+  render(<Contact session={mockSession} setSession={setMockSession} />)
+
+  const firstName = screen.getByRole('textbox', { name: /First/ })
+  expect(firstName).toHaveValue(mockSession.contact.firstName)
+
+  const lastName = screen.getByRole('textbox', { name: /Last/ })
+  expect(lastName).toHaveValue(mockSession.contact.lastName)
+
+  const phone = screen.getByRole('textbox', { name: /Phone/ })
+  expect(phone).toHaveValue('123-123-1234')
+
+  const comments = screen.getByRole('textbox', { name: /Comments/ })
+  expect(comments).toHaveValue(mockSession.contact.comments)
 })
 
 it('action button should stay disabled until all requirements are met and re-disable if reqirements are unmet', async () => {
@@ -135,14 +164,6 @@ it('action button should stay disabled until all requirements are met and re-dis
   await user.type(firstName, 'Jacques')
   expect(firstName).toHaveValue('Jacques')
   expect(button).not.toBeDisabled()
-})
-
-it('action button should render differently in review mode', () => {
-  const { mockSession } = setup(route)
-  testActionButtonReviewMode(
-    <Contact session={mockSession} setSession={setMockSession} />,
-    route
-  )
 })
 
 it('should route to /review', async () => {
