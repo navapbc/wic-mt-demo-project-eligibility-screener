@@ -1,4 +1,4 @@
-import { useArgs } from '@storybook/client-api'
+import { useState } from '@storybook/client-api'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -11,10 +11,19 @@ import { fillMockSessionData } from '../../tests/helpers/mockData'
 export default {
   title: 'Pages/Income',
   component: IncomePage,
+  argTypes: {
+    session: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as ComponentMeta<typeof IncomePage>
 
 const Template: ComponentStory<typeof IncomePage> = (args) => {
-  const [session, setSession] = useArgs()
+  const [session, setSession] = useState(args.session)
+  args.session = session
+  args.setSession = setSession
   return <IncomePage {...args} />
 }
 
