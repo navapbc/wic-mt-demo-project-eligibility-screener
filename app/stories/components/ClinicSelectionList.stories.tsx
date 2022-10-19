@@ -1,5 +1,6 @@
+import { useState } from '@storybook/client-api'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 
 import ClinicSelectionListComponent from '@components/ClinicSelectionList'
 

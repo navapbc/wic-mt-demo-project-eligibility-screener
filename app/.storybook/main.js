@@ -3,7 +3,11 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   stories: ['../stories/**/*.stories.@(mdx|js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-essentials', 'storybook-react-i18next'],
+  addons: [
+    '@storybook/addon-essentials',
+    'storybook-addon-next-router',
+    'storybook-react-i18next',
+  ],
   framework: '@storybook/react',
   core: {
     // Use webpack5 instead of webpack4.
