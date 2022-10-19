@@ -1,5 +1,6 @@
 import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 
 import Layout from '@components/Layout'
 
@@ -14,15 +15,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     initialSessionData
   )
 
-  // We need to get the router here in order to tell react to remount
-  // const router = useRouter()
+  // Pass in a prop for whether the form wizard is in review mode.
+  const router = useRouter()
+  const reviewMode = router.query.mode === 'review'
 
-  // @TODO: move route into here
   // @TODO: all pages need form validation before loading, re-routing, and error handling
   // @TODO: back links need to be centrally controlled
   // @TODO: fix conditional routing for /review page
   // @TODO: add tests for components
-  const props = { ...pageProps, session, setSession, sessionKey }
+  const props = { ...pageProps, session, setSession, sessionKey, reviewMode }
 
   return (
     <Layout>

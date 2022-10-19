@@ -44,7 +44,11 @@ export interface ClearablePage extends WriteSession {
   sessionKey: string
 }
 
-// Type aliases for page props
-export type EditablePage = WriteSession
+export interface EditablePage extends WriteSession {
+  // This is an optional attribute to make testing easier.
+  // It should be set by default to 'false' in all Editable pages.
+  reviewMode?: boolean
+}
 
+// Type aliases for page props
 export type ReadOnlyPage = ReadSession

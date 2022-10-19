@@ -63,7 +63,11 @@ it('action button should render differently in review mode', () => {
   mockSession.chooseClinic.clinic = getMockClinic()
 
   testActionButtonReviewMode(
-    <ChooseClinic session={mockSession} setSession={setMockSession} />,
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      reviewMode={true}
+    />,
     route
   )
 })

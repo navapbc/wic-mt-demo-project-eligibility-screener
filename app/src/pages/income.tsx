@@ -3,7 +3,6 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import Accordion from '@components/Accordion'
@@ -23,7 +22,7 @@ const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
 
 const Income: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession } = props
+  const { session, setSession, reviewMode = false } = props
   // Initialize form as a state with blank values.
   const [form, setForm] = useState<IncomeData>(initialIncomeData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -51,12 +50,9 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
     labelKey: 'updateAndReturn',
     route: '/review',
   }
-  // Set up routing to determine if the user is reviewing previously entered data.
-  const router = useRouter()
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const continueBtn =
-    router.query.mode === 'review' ? reviewActionButton : defaultActionButton
+  const continueBtn = reviewMode ? reviewActionButton : defaultActionButton
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.

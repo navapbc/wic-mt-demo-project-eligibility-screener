@@ -1,7 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { PatternFormat } from 'react-number-format'
 
@@ -17,7 +16,7 @@ import { initialContactData } from '@utils/sessionData'
 
 const Contact: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession } = props
+  const { session, setSession, reviewMode = false } = props
   // Initialize form as a state using the value with default blank values.
   // This prevents bugginess around hydration. DO NOT try to initialize from the session!
   // That can cause fields like <textarea> to not load values correctly.
@@ -48,14 +47,11 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
   // Set up action button and routing.
   const defaultActionButtonLabelKey = 'continue'
   const reviewActionButtonLabelKey = 'updateAndReturn'
-  // Set up routing to determine if the user is reviewing previously entered data.
-  const router = useRouter()
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const continueBtnLabel =
-    router.query.mode === 'review'
-      ? reviewActionButtonLabelKey
-      : defaultActionButtonLabelKey
+  const continueBtnLabel = reviewMode
+    ? reviewActionButtonLabelKey
+    : defaultActionButtonLabelKey
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.

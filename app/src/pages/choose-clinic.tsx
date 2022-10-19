@@ -4,7 +4,6 @@ import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
@@ -25,7 +24,7 @@ const ClinicSelectionList = dynamic(
 
 const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession } = props
+  const { session, setSession, reviewMode = false } = props
   // Initialize form as a state using blank values.
   const [form, setForm] = useState<ChooseClinicData>(initialChooseClinicData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -64,12 +63,9 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
     labelKey: 'updateAndReturn',
     route: '/review',
   }
-  // Set up routing to determine if the user is reviewing previously entered data.
-  const router = useRouter()
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const continueBtn =
-    router.query.mode === 'review' ? reviewActionButton : defaultActionButton
+  const continueBtn = reviewMode ? reviewActionButton : defaultActionButton
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.

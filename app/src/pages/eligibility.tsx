@@ -1,7 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
 import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
@@ -14,7 +13,7 @@ import { initialEligibilityData } from '@utils/sessionData'
 
 const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession } = props
+  const { session, setSession, reviewMode = false } = props
   // Initialize form as a state using blank values.
   const [form, setForm] = useState<EligibilityData>(initialEligibilityData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -61,11 +60,9 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   }, [])
 
   // Set up action button and routing.
-  const router = useRouter()
-  const actionButtonLabel =
-    router.query.mode === 'review' ? 'updateAndReturn' : 'continue'
+  const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
   const [actionButtonRoute, setActionButtonRoute] = useState(
-    router.query.mode === 'review' ? '/review' : getRouting(form)
+    reviewMode ? '/review' : getRouting(form)
   )
   // Use useEffect() to set the proper route on page mount.
   useEffect(() => {

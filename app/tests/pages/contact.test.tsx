@@ -35,7 +35,11 @@ it('should pass accessibility scan', async () => {
 it('action button should render differently in review mode', () => {
   const { mockSession } = setup(route)
   testActionButtonReviewMode(
-    <Contact session={mockSession} setSession={setMockSession} />,
+    <Contact
+      session={mockSession}
+      setSession={setMockSession}
+      reviewMode={true}
+    />,
     route
   )
 })
