@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // @TODO: move route into here
   // @TODO: all pages need form validation before loading, re-routing, and error handling
   // @TODO: back links need to be centrally controlled
-  // @TODO: fix all stories
+  // @TODO: fix conditional routing for /review page
   // @TODO: add tests for components
   const props = { ...pageProps, session, setSession, sessionKey }
 

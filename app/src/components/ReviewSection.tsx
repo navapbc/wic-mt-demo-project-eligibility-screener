@@ -19,7 +19,6 @@ type ReviewSectionProps = {
   session: SessionData
 }
 
-// @TODO: add storybook story
 const ReviewSection = (props: ReviewSectionProps): ReactElement => {
   const { editable, session } = props
 

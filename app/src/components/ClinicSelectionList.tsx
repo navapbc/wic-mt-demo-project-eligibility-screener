@@ -26,7 +26,6 @@ type ClinicSelectionListProps = {
   }
 }
 
-// @TODO: add storybook story
 const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
   const {
     filteredClinics,
