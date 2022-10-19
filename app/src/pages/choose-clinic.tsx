@@ -12,6 +12,7 @@ import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { ChooseClinicData, EditablePage } from '@src/types'
+import { isValidChooseClinic, isValidZipCode } from '@utils/dataValidation'
 import { initialChooseClinicData } from '@utils/sessionData'
 
 // Dynamically load the <ClinicSelectionList> component to prevent SSR hydration conflicts.
@@ -32,22 +33,9 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.chooseClinic)
   }, [session.chooseClinic])
 
-  // Validation function for zip codes.
-  const isValidZip = (zip: string) => {
-    return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)
-  }
-
-  // Function to check whether all the required fields in this form
-  // page have been filled out.
-  // React wants this to be wrapped in a useCallback(), but it can
-  // handle an empty dependency array.
-  const isRequiredMet = useCallback((formToCheck: ChooseClinicData) => {
-    return (
-      formToCheck.zipCode !== '' &&
-      isValidZip(formToCheck.zipCode) &&
-      formToCheck.clinic !== undefined
-    )
-  }, [])
+  // Function to check whether all the required fields in this page have been filled out.
+  // React wants this to be wrapped in a useCallback(), but it can be an empty dependency array.
+  const isRequiredMet = useCallback(isValidChooseClinic, [])
 
   // Function to update button route.
   const getRouting = () => {
@@ -116,7 +104,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
     updateFormAndSession({ ...form, clinic: undefined })
 
     // Do the lookup only if the zip code is valid.
-    if (isValidZip(form.zipCode)) {
+    if (isValidZipCode(form.zipCode)) {
       setZipValidationError(false)
       // Lookup the clinics that match that zip code.
       import(

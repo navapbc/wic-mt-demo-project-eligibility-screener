@@ -10,6 +10,7 @@ import {
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
+import { invalidContactCombinations } from '../utils/dataValidation/isValidContact.test'
 
 /**
  * Test setup
@@ -65,13 +66,7 @@ it('should have a back link to /choose-clinic in review mode', () => {
   )
 })
 
-const combinations = [
-  ['no values are set', '', '', ''],
-  ['firstName is not set', '', 'anything', 'anything'],
-  ['lastName is not set', 'anything', '', 'anything'],
-  ['phone is not set', 'anything', 'anything', ''],
-]
-it.each(combinations)(
+it.each(invalidContactCombinations)(
   'action button should be disabled if %s',
   (description, firstName, lastName, phone) => {
     const { mockSession } = setup(route)

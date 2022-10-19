@@ -10,6 +10,7 @@ import {
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
+import { invalidEligibilityCombinations } from '../utils/dataValidation/isValidEligibility.test'
 
 /**
  * Test setup
@@ -67,14 +68,7 @@ it('should have a back link to /how-it-works in review mode', () => {
   )
 })
 
-const combinations = [
-  ['no values are set', '', [], '', []],
-  ['residential is not set', '', ['anything'], 'anything', ['anything']],
-  ['categorical is not set', 'anything', [], 'anything', ['anything']],
-  ['previouslyEnrolled is not set', 'anything', ['anything'], '', ['anything']],
-  ['adjunctive is not set', 'anything', ['anything'], 'anything', []],
-]
-it.each(combinations)(
+it.each(invalidEligibilityCombinations)(
   'action button should be disabled if %s',
   (description, residential, categorical, previouslyEnrolled, adjunctive) => {
     const { mockSession } = setup(route)

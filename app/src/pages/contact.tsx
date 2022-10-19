@@ -12,6 +12,7 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextField from '@components/TextField'
 
 import type { ContactData, EditablePage } from '@src/types'
+import { isValidContact } from '@utils/dataValidation'
 import { initialContactData } from '@utils/sessionData'
 
 const Contact: NextPage<EditablePage> = (props: EditablePage) => {
@@ -33,16 +34,8 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.contact)
   }, [session.contact])
 
-  // Function to check whether all the required fields in this form
-  // page have been filled out.
-  const isRequiredMet = (formToCheck: ContactData) => {
-    return (
-      formToCheck.firstName !== '' &&
-      formToCheck.lastName !== '' &&
-      formToCheck.phone !== '' &&
-      formToCheck.phone.replace(/[^0-9]/g, '').length === 10
-    )
-  }
+  // Function to check whether all the required fields in this page have been filled out.
+  const isRequiredMet = isValidContact
 
   // Set up action button and routing.
   const defaultActionButtonLabelKey = 'continue'
@@ -59,7 +52,7 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
     setDisabled(!isRequiredMet(form))
-  }, [form])
+  }, [form, isRequiredMet])
 
   // Handle changes to text and textarea fields.
   const handleChangeEvent = (

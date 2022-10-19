@@ -13,6 +13,7 @@ import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
 import type { EditablePage, IncomeData } from '@src/types'
+import { isValidIncome } from '@utils/dataValidation'
 import { initialIncomeData } from '@utils/sessionData'
 
 // Dynamically load the <IncomeRow> component to prevent SSR hydration conflicts.
@@ -30,11 +31,8 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.income)
   }, [session.income])
 
-  // Function to check whether all the required fields in this form
-  // page have been filled out.
-  const isRequiredMet = (formToCheck: IncomeData) => {
-    return formToCheck.householdSize !== ''
-  }
+  // Function to check whether all the required fields in this page have been filled out.
+  const isRequiredMet = isValidIncome
 
   // Function to update button route.
   const getRouting = () => {
@@ -62,7 +60,7 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
   // form state is updated, so we don't need to call the same function in handleChange().
   useEffect(() => {
     setDisabled(!isRequiredMet(form))
-  }, [form])
+  }, [form, isRequiredMet])
 
   // Page-specific consts.
   // Get the allowed household sizes from the json file.

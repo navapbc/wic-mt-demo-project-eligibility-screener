@@ -9,6 +9,7 @@ import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { EditablePage, EligibilityData } from '@src/types'
+import { isValidEligibility } from '@utils/dataValidation'
 import { initialEligibilityData } from '@utils/sessionData'
 
 const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
@@ -21,43 +22,37 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.eligibility)
   }, [session.eligibility])
 
-  // Function to check whether all the required fields in this form
-  // page have been filled out.
-  // @TODO: This could be further refactored to be more generic.
-  const isRequiredMet = (formToCheck: EligibilityData) => {
-    return (
-      formToCheck.residential !== '' &&
-      formToCheck.categorical.length > 0 &&
-      formToCheck.previouslyEnrolled !== '' &&
-      formToCheck.adjunctive.length > 0
-    )
-  }
+  // Function to check whether all the required fields in this page have been filled out.
+  const isRequiredMet = isValidEligibility
 
   // Function to update button route.
   // Route the user to /other-benefits if they do not meet basic eligibility requirements.
   // Route the user to /income if they do not meet adjunctive eligibility requirements.
   // Otherwise, route the user to /choose-clinic.
-  const getRouting = useCallback((formToCheck: EligibilityData) => {
-    let nextPage = '/other-benefits'
+  const getRouting = useCallback(
+    (formToCheck: EligibilityData) => {
+      let nextPage = '/other-benefits'
 
-    // Short circuit early if the requirements are not met.
-    if (!isRequiredMet(formToCheck)) {
-      return nextPage
-    }
-
-    const isResident = formToCheck.residential === 'yes'
-    const hasCategory =
-      !formToCheck.categorical.includes('none') &&
-      formToCheck.categorical.length > 0
-    if (isResident && hasCategory) {
-      if (formToCheck.adjunctive.includes('none')) {
-        nextPage = '/income'
-      } else {
-        nextPage = '/choose-clinic'
+      // Short circuit early if the requirements are not met.
+      if (!isRequiredMet(formToCheck)) {
+        return nextPage
       }
-    }
-    return nextPage
-  }, [])
+
+      const isResident = formToCheck.residential === 'yes'
+      const hasCategory =
+        !formToCheck.categorical.includes('none') &&
+        formToCheck.categorical.length > 0
+      if (isResident && hasCategory) {
+        if (formToCheck.adjunctive.includes('none')) {
+          nextPage = '/income'
+        } else {
+          nextPage = '/choose-clinic'
+        }
+      }
+      return nextPage
+    },
+    [isRequiredMet]
+  )
 
   // Set up action button and routing.
   const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
@@ -78,7 +73,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // setDisabled during handleChange()
   useEffect(() => {
     setDisabled(!isRequiredMet(form))
-  }, [form])
+  }, [form, isRequiredMet])
 
   // Handle all form element changes.
   // - Determine new form values
