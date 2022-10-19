@@ -2,11 +2,9 @@ import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
-import { MouseEvent } from 'react'
 
 import BackLink from '@components/BackLink'
-import Button from '@components/Button'
+import ButtonLink from '@components/ButtonLink'
 
 import { clearSessionStorage } from '@src/hooks/useSessionStorage'
 import type { ClearablePage } from '@src/types'
@@ -14,22 +12,13 @@ import { initialSessionData } from '@utils/sessionData'
 
 const OtherBenefits: NextPage<ClearablePage> = (props: ClearablePage) => {
   const { setSession, sessionKey } = props
-  const router = useRouter()
 
   // Handle the action button click for going back to the start of the form wizard.
-  const handleClick = (e: MouseEvent<HTMLElement>) => {
-    e.preventDefault()
-
+  const handleClick = () => {
     // Clear the session storage.
     clearSessionStorage(sessionKey)
     // Then set the session state variable to blank.
     setSession(cloneDeep(initialSessionData))
-
-    // Send the user back to the index page.
-    // Disable the linting on the next line.
-    // See https://nextjs.org/docs/api-reference/next/router#potential-eslint-errors
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push('/')
   }
 
   return (
@@ -69,7 +58,11 @@ const OtherBenefits: NextPage<ClearablePage> = (props: ClearablePage) => {
           i18nKey={'OtherBenefits.location'}
         />
       </p>
-      <Button labelKey="OtherBenefits.button" onClick={handleClick} />
+      <ButtonLink
+        labelKey="OtherBenefits.button"
+        onClick={handleClick}
+        href="/"
+      />
     </>
   )
 }

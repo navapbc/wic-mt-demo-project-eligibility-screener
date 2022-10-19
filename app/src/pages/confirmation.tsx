@@ -2,10 +2,9 @@ import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
-import { MouseEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import Button from '@components/Button'
+import ButtonLink from '@components/ButtonLink'
 import ReviewSection from '@components/ReviewSection'
 import StyledLink from '@components/StyledLink'
 
@@ -15,7 +14,6 @@ import { initialSessionData } from '@utils/sessionData'
 
 const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
   const { session, setSession, sessionKey } = props
-  const router = useRouter()
 
   // Using form to store all of the data in a component state
   // resolves all hydration issues.
@@ -25,19 +23,11 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
   }, [session])
 
   // Handle the action button click for going back to the start of the form wizard.
-  const handleClick = (e: MouseEvent<HTMLElement>) => {
-    e.preventDefault()
-
+  const handleClick = () => {
     // Clear the session storage.
     clearSessionStorage(sessionKey)
     // Then set the session state variable to blank.
     setSession(cloneDeep(initialSessionData))
-
-    // Send the user back to the index page.
-    // Disable the linting on the next line.
-    // See https://nextjs.org/docs/api-reference/next/router#potential-eslint-errors
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push('/')
   }
 
   return (
@@ -64,10 +54,11 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
         <h2 className="font-sans-xs">
           <Trans i18nKey="Confirmation.submitAnother" />
         </h2>
-        <Button
+        <ButtonLink
           labelKey="Confirmation.startNew"
           style="outline"
           onClick={handleClick}
+          href="/"
         />
       </div>
       <div className="content-group-small">
