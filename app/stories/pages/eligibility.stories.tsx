@@ -1,5 +1,6 @@
-import { useState } from '@storybook/client-api'
+import { useArgs } from '@storybook/client-api'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import cloneDeep from 'lodash/cloneDeep'
 
 import EligibilityPage from '@pages/eligibility'
 
@@ -13,15 +14,13 @@ export default {
 } as ComponentMeta<typeof EligibilityPage>
 
 const Template: ComponentStory<typeof EligibilityPage> = (args) => {
-  const [session, setSession] = useState(args.session)
-  args.session = session
-  args.setSession = setSession
+  const [session, setSession] = useArgs()
   return <EligibilityPage {...args} />
 }
 
 export const Default = Template.bind({})
 Default.args = {
-  session: fillMockSessionData(initialSessionData),
+  session: cloneDeep(initialSessionData),
 }
 Default.parameters = {
   nextRouter: {
@@ -29,11 +28,11 @@ Default.parameters = {
   },
 }
 
-export const Review = Template.bind({})
-Review.args = {
-  session: fillMockSessionData(initialSessionData),
+export const Update = Template.bind({})
+Update.args = {
+  session: fillMockSessionData(cloneDeep(initialSessionData)),
 }
-Review.parameters = {
+Update.parameters = {
   nextRouter: {
     path: '/eligibility',
     asPath: '/eligibility?mode=review',

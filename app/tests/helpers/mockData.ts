@@ -28,7 +28,7 @@ export function fillMockSessionData(mockSession: SessionData) {
   mockSession.contact = {
     firstName: 'Jack',
     lastName: 'O Lantern',
-    phone: '123-123-1234',
+    phone: '1231231234',
     comments: 'comments',
   }
 

@@ -30,5 +30,5 @@ DisplayingIncome.args = {
 export const NotDisplayingIncome = Template.bind({})
 NotDisplayingIncome.args = {
   editable: true,
-  session: fillMockSessionData(initialSessionData),
+  session: fillMockSessionData(cloneDeep(initialSessionData)),
 }
