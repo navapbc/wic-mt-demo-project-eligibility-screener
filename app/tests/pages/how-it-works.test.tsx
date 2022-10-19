@@ -1,7 +1,11 @@
 import HowItWorks from '@pages/how-it-works'
 
 import { setup } from '../helpers/setup'
-import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
+import {
+  testAccessibility,
+  testBackLink,
+  testSnapshot,
+} from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -21,4 +25,8 @@ it('should match full page snapshot', () => {
 it('should pass accessibility scan', async () => {
   setup(route)
   await testAccessibility(<HowItWorks />)
+})
+
+it('should have a back link to /', () => {
+  testBackLink(<HowItWorks />, '/')
 })

@@ -15,6 +15,7 @@ import {
 import {
   testAccessibility,
   testActionButtonReviewMode,
+  testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
 
@@ -69,6 +70,46 @@ it('action button should render differently in review mode', () => {
       reviewMode={true}
     />,
     route
+  )
+})
+
+it.skip('should have a back link to /eligibility in default mode if has qualifying adjunctive criteria', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <ChooseClinic session={mockSession} setSession={setMockSession} />,
+    '/eligibility'
+  )
+})
+
+it.skip('should have a back link to /eligibility in review mode if has qualifying adjunctive criteria', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      reviewMode={true}
+    />,
+    '/eligibility'
+  )
+})
+
+it('should have a back link to /income in default mode if no qualifying adjunctive criteria', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <ChooseClinic session={mockSession} setSession={setMockSession} />,
+    '/income'
+  )
+})
+
+it('should have a back link to /income in review mode if no qualifying adjunctive criteria', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      reviewMode={true}
+    />,
+    '/income'
   )
 })
 

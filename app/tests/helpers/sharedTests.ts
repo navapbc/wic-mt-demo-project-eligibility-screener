@@ -21,6 +21,12 @@ export async function testAccessibility(element: ReactElement) {
   expect(results).toHaveNoViolations()
 }
 
+export function testBackLink(element: ReactElement, route: string) {
+  render(element)
+  const link = screen.getByRole('link', { name: /Back/i })
+  expect(link).toHaveAttribute('href', route)
+}
+
 export function testActionButtonReviewMode(
   element: ReactElement,
   route: string

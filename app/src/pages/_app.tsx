@@ -20,7 +20,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const reviewMode = router.query.mode === 'review'
 
   // @TODO: all pages need form validation before loading, re-routing, and error handling
-  // @TODO: back links need to be centrally controlled
   // @TODO: fix conditional routing for /review page
   // @TODO: add tests for components
   const props = { ...pageProps, session, setSession, sessionKey, reviewMode }

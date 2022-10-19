@@ -7,6 +7,7 @@ import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
   testActionButtonReviewMode,
+  testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
 
@@ -42,6 +43,26 @@ it('action button should render differently in review mode', () => {
       reviewMode={true}
     />,
     route
+  )
+})
+
+it('should have a back link to /eligibility in default mode', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <Income session={mockSession} setSession={setMockSession} />,
+    '/eligibility'
+  )
+})
+
+it('should have a back link to /eligibility in review mode', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <Income
+      session={mockSession}
+      setSession={setMockSession}
+      reviewMode={true}
+    />,
+    '/eligibility'
   )
 })
 

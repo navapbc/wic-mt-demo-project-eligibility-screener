@@ -7,7 +7,11 @@ import * as sessionModule from '@src/hooks/useSessionStorage'
 import { initialSessionData } from '@utils/sessionData'
 
 import { setMockSession, setup } from '../helpers/setup'
-import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
+import {
+  testAccessibility,
+  testBackLink,
+  testSnapshot,
+} from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -38,6 +42,18 @@ it('should pass accessibility scan', async () => {
       setSession={setMockSession}
       session={mockSession}
     />
+  )
+})
+
+it('should have a back link to /eligibility', () => {
+  const { mockSession } = setup(route)
+  testBackLink(
+    <OtherBenefits
+      sessionKey="mockSessionKey"
+      setSession={setMockSession}
+      session={mockSession}
+    />,
+    '/eligibility'
   )
 })
 

@@ -5,7 +5,11 @@ import Review from '@pages/review'
 
 import { fillMockSessionData } from '../helpers/mockData'
 import { setup } from '../helpers/setup'
-import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
+import {
+  testAccessibility,
+  testBackLink,
+  testSnapshot,
+} from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -26,6 +30,11 @@ it('should match full page snapshot', () => {
 it('should pass accessibility scan', async () => {
   const { mockSession } = setup(route)
   await testAccessibility(<Review session={mockSession} />)
+})
+
+it('should have a back link to /contact', () => {
+  const { mockSession } = setup(route)
+  testBackLink(<Review session={mockSession} />, '/contact')
 })
 
 it('should route to /confirmation', async () => {
