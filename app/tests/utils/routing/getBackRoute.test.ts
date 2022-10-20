@@ -39,16 +39,15 @@ it('from /choose-clinic it should route to /income if adjunctive is empty', () =
   expect(backRoute).toBe('/income')
 })
 
-it('should throw an error on an unknown page', () => {
+it('should return empty string on an unknown page', () => {
   const mockSession = getMockSession()
-  expect(() => {
-    getBackRoute('/unknown', mockSession)
-  }).toThrow('Unexpected routing error')
+  const backRoute = getBackRoute('/unknown', mockSession)
+  expect(backRoute).toBe('')
 })
 
 it('should throw an error if a function is passed instead of a session on /choose-clinic', () => {
   expect(() => {
     function emptyFunction(value: SessionData): void {}
     getBackRoute('/choose-clinic', emptyFunction)
-  }).toThrow('Unexpected routing error')
+  }).toThrow('Back link error: expected a session, but none was found')
 })

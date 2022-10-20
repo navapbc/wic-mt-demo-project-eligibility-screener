@@ -15,7 +15,6 @@ export function getBackRoute(
   currentPath: string,
   session: SessionData | ((value: SessionData) => void)
 ): string {
-  const routingError = new Error('Unexpected routing error')
   const position = pageFlow.indexOf(currentPath)
 
   // Check for edge cases first.
@@ -33,7 +32,7 @@ export function getBackRoute(
     // `(value: SessionData) => void`. If this actually happens at runtime, we
     // throw an error.
     if (typeof session === 'function') {
-      throw routingError
+      throw new Error('Back link error: expected a session, but none was found')
     }
     // Otherwise, we can do actual checks against user data to get the correct route.
     else {
@@ -54,9 +53,9 @@ export function getBackRoute(
     if (position > 0) {
       return pageFlow[position - 1]
     }
-    // Unknown page!
+    // Unknown page! It probably doesn't have a back link.
     else {
-      throw routingError
+      return ''
     }
   }
 }
