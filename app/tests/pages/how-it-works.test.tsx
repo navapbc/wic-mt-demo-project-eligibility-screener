@@ -12,6 +12,7 @@ import {
  */
 
 const route = '/how-it-works'
+const backRoute = '/'
 
 /**
  * Begin tests
@@ -19,14 +20,14 @@ const route = '/how-it-works'
 
 it('should match full page snapshot', () => {
   setup(route)
-  testSnapshot(<HowItWorks />)
+  testSnapshot(<HowItWorks backRoute={backRoute} />)
 })
 
 it('should pass accessibility scan', async () => {
   setup(route)
-  await testAccessibility(<HowItWorks />)
+  await testAccessibility(<HowItWorks backRoute={backRoute} />)
 })
 
-it('should have a back link to /', () => {
-  testBackLink(<HowItWorks />, '/')
+it('should have a back link that matches the backRoute', () => {
+  testBackLink(<HowItWorks backRoute={backRoute} />, backRoute)
 })

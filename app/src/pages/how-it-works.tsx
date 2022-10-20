@@ -6,12 +6,17 @@ import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
-const HowItWorks: NextPage = () => {
+interface HowItWorksProps {
+  backRoute: string
+}
+
+const HowItWorks: NextPage<HowItWorksProps> = (props: HowItWorksProps) => {
+  const { backRoute } = props
   const listCopyKeys: string[] = ['apply', 'eligible', 'appointment']
 
   return (
     <>
-      <BackLink href="/" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="HowItWorks.title" />
       </h1>

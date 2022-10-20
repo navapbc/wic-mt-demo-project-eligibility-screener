@@ -1,3 +1,5 @@
+// Note: This file is loaded by Storybook.
+// Don't directly call jest in it.
 import type { SessionData } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
