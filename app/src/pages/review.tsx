@@ -10,9 +10,13 @@ import ReviewSection from '@components/ReviewSection'
 import type { ReadOnlyPage } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
+interface ReviewProps extends ReadOnlyPage {
+  backRoute: string
+}
+
 // @TODO: button onSubmit() should call an api function to submit the data to the mock api
-const Review: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
-  const { session } = props
+const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
+  const { session, backRoute } = props
 
   // Using form to store all of the data in a component state
   // resolves all hydration issues.
@@ -23,7 +27,7 @@ const Review: NextPage<ReadOnlyPage> = (props: ReadOnlyPage) => {
 
   return (
     <>
-      <BackLink href="/contact" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Review.title" />
       </h1>

@@ -3,6 +3,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 import ReviewPage from '@pages/review'
 
+import { getBackRoute } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
 import { fillMockSessionData } from '../../tests/helpers/mockData'
@@ -13,6 +14,7 @@ export default {
 } as ComponentMeta<typeof ReviewPage>
 
 const Template: ComponentStory<typeof ReviewPage> = (args) => {
+  args.backRoute = getBackRoute('/review', args.session)
   return <ReviewPage {...args} />
 }
 

@@ -16,6 +16,7 @@ import {
  */
 
 const route = '/review'
+const backRoute = '/contact'
 
 /**
  * Begin tests
@@ -24,22 +25,27 @@ const route = '/review'
 it('should match full page snapshot', () => {
   let { mockSession } = setup(route)
   mockSession = fillMockSessionData(mockSession)
-  testSnapshot(<Review session={mockSession} />)
+  testSnapshot(<Review session={mockSession} backRoute={backRoute} />)
 })
 
 it('should pass accessibility scan', async () => {
   const { mockSession } = setup(route)
-  await testAccessibility(<Review session={mockSession} />)
+  await testAccessibility(
+    <Review session={mockSession} backRoute={backRoute} />
+  )
 })
 
-it('should have a back link to /contact', () => {
+it('should have a back link that matches the backRoute', () => {
   const { mockSession } = setup(route)
-  testBackLink(<Review session={mockSession} />, '/contact')
+  testBackLink(
+    <Review session={mockSession} backRoute={backRoute} />,
+    backRoute
+  )
 })
 
 it('should route to /confirmation', async () => {
   const { mockSession, user } = setup(route)
-  render(<Review session={mockSession} />)
+  render(<Review session={mockSession} backRoute={backRoute} />)
 
   const button = screen.getByRole('button', { name: /Submit/i })
   await user.click(button)
