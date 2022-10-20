@@ -4,6 +4,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 import ContactPage from '@pages/contact'
 
+import { getBackRoute } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
 import { fillMockSessionData } from '../../tests/helpers/mockData'
@@ -24,6 +25,7 @@ const Template: ComponentStory<typeof ContactPage> = (args) => {
   const [session, setSession] = useState(args.session)
   args.session = session
   args.setSession = setSession
+  args.backRoute = getBackRoute('/contact', session)
   return <ContactPage {...args} />
 }
 

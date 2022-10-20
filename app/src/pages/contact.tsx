@@ -15,9 +15,13 @@ import type { ContactData, EditablePage } from '@src/types'
 import { isValidContact } from '@utils/dataValidation'
 import { initialContactData } from '@utils/sessionData'
 
-const Contact: NextPage<EditablePage> = (props: EditablePage) => {
+interface ContactProps extends EditablePage {
+  backRoute: string
+}
+
+const Contact: NextPage<ContactProps> = (props: ContactProps) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false } = props
+  const { session, setSession, reviewMode = false, backRoute } = props
   // Initialize form as a state using the value with default blank values.
   // This prevents bugginess around hydration. DO NOT try to initialize from the session!
   // That can cause fields like <textarea> to not load values correctly.
@@ -70,7 +74,7 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
 
   return (
     <>
-      <BackLink href="/choose-clinic" />
+      <BackLink href={backRoute} />
       <form className="usa-form usa-form--large">
         <h1>
           <Trans i18nKey="Contact.title" />
