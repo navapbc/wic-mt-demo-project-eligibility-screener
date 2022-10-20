@@ -3,6 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import OtherBenefitsPage from '@pages/other-benefits'
 
+import { getBackRoute } from '@utils/routing'
+
 export default {
   title: 'Pages/Other Benefits',
   component: OtherBenefitsPage,
@@ -19,6 +21,7 @@ const Template: ComponentStory<typeof OtherBenefitsPage> = (args) => {
   const [session, setSession] = useState(args.session)
   args.session = session
   args.setSession = setSession
+  args.backRoute = getBackRoute('/other-benefits', session)
   return <OtherBenefitsPage {...args} />
 }
 

@@ -18,6 +18,7 @@ import {
  */
 
 const route = '/other-benefits'
+const backRoute = '/eligibility'
 
 /**
  * Begin tests
@@ -30,6 +31,7 @@ it('should match full page snapshot', () => {
       sessionKey="mockSessionKey"
       setSession={setMockSession}
       session={mockSession}
+      backRoute={backRoute}
     />
   )
 })
@@ -41,19 +43,21 @@ it('should pass accessibility scan', async () => {
       sessionKey="mockSessionKey"
       setSession={setMockSession}
       session={mockSession}
+      backRoute={backRoute}
     />
   )
 })
 
-it('should have a back link to /eligibility', () => {
+it('should have a back link that matches the backRoute', () => {
   const { mockSession } = setup(route)
   testBackLink(
     <OtherBenefits
       sessionKey="mockSessionKey"
       setSession={setMockSession}
       session={mockSession}
+      backRoute={backRoute}
     />,
-    '/eligibility'
+    backRoute
   )
 })
 
@@ -66,6 +70,7 @@ it('should clear the session and redirect when the button is clicked', async () 
       sessionKey="mockSessionKey"
       setSession={setMockSession}
       session={mockSession}
+      backRoute={backRoute}
     />
   )
   const button = screen.getByRole('button', { name: /Return/i })

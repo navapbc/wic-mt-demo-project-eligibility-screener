@@ -10,8 +10,14 @@ import { clearSessionStorage } from '@src/hooks/useSessionStorage'
 import type { ClearablePage } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
-const OtherBenefits: NextPage<ClearablePage> = (props: ClearablePage) => {
-  const { setSession, sessionKey } = props
+interface OtherBenefitsProps extends ClearablePage {
+  backRoute: string
+}
+
+const OtherBenefits: NextPage<OtherBenefitsProps> = (
+  props: OtherBenefitsProps
+) => {
+  const { setSession, sessionKey, backRoute } = props
 
   // Handle the action button click for going back to the start of the form wizard.
   const handleClick = () => {
@@ -23,7 +29,7 @@ const OtherBenefits: NextPage<ClearablePage> = (props: ClearablePage) => {
 
   return (
     <>
-      <BackLink href="/eligibility" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="OtherBenefits.title" />
       </h1>
