@@ -21,9 +21,13 @@ const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
   ssr: false,
 })
 
-const Income: NextPage<EditablePage> = (props: EditablePage) => {
+interface IncomeProps extends EditablePage {
+  backRoute: string
+}
+
+const Income: NextPage<IncomeProps> = (props: IncomeProps) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false } = props
+  const { session, setSession, reviewMode = false, backRoute } = props
   // Initialize form as a state with blank values.
   const [form, setForm] = useState<IncomeData>(initialIncomeData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -85,7 +89,7 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
 
   return (
     <>
-      <BackLink href="/eligibility" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Income.header" />
       </h1>

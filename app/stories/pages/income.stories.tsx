@@ -4,6 +4,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 import IncomePage from '@pages/income'
 
+import { getBackRoute } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
 import { fillMockSessionData } from '../../tests/helpers/mockData'
@@ -24,6 +25,7 @@ const Template: ComponentStory<typeof IncomePage> = (args) => {
   const [session, setSession] = useState(args.session)
   args.session = session
   args.setSession = setSession
+  args.backRoute = getBackRoute('/income', session)
   return <IncomePage {...args} />
 }
 
