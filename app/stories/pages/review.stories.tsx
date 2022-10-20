@@ -1,12 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import cloneDeep from 'lodash/cloneDeep'
 
 import ReviewPage from '@pages/review'
 
 import { getBackRoute } from '@utils/routing'
-import { initialSessionData } from '@utils/sessionData'
 
-import { fillMockSessionData } from '../../tests/helpers/mockData'
+import { getMockSessionData } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Review',
@@ -20,7 +18,7 @@ const Template: ComponentStory<typeof ReviewPage> = (args) => {
 
 export const Review = Template.bind({})
 Review.args = {
-  session: fillMockSessionData(cloneDeep(initialSessionData)),
+  session: getMockSessionData(),
 }
 Review.parameters = {
   nextRouter: {

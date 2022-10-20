@@ -3,7 +3,7 @@ import singletonRouter from 'next/router'
 
 import Review from '@pages/review'
 
-import { fillMockSessionData } from '../helpers/mockData'
+import { getMockSessionData } from '../helpers/mockData'
 import { setup } from '../helpers/setup'
 import {
   testAccessibility,
@@ -23,8 +23,8 @@ const backRoute = '/contact'
  */
 
 it('should match full page snapshot', () => {
-  let { mockSession } = setup(route)
-  mockSession = fillMockSessionData(mockSession)
+  setup(route)
+  const mockSession = getMockSessionData()
   testSnapshot(<Review session={mockSession} backRoute={backRoute} />)
 })
 

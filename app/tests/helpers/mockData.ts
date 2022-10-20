@@ -1,18 +1,22 @@
 // Note: This file is loaded by Storybook.
 // Don't directly call jest in it.
+import cloneDeep from 'lodash/cloneDeep'
+
 import type { SessionData } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
-// Helper function to setup a fully filled out session.
-export function fillMockSessionData(mockSession: SessionData) {
-  mockSession.eligibility = {
+// Helper functions to create valid data for each section of the session.
+export function getMockEligibilityData() {
+  return {
     residential: 'yes',
     categorical: ['pregnant', 'guardian'],
     previouslyEnrolled: 'no',
     adjunctive: ['fdpir', 'snap'],
   }
+}
 
-  mockSession.chooseClinic = {
+export function getMockChooseClinicData() {
+  return {
     zipCode: '12345',
     clinic: {
       agency: 'AGENCY ZERO',
@@ -26,13 +30,22 @@ export function fillMockSessionData(mockSession: SessionData) {
       zip: '00000',
     },
   }
+}
 
-  mockSession.contact = {
+export function getMockContactData() {
+  return {
     firstName: 'Jack',
     lastName: 'O Lantern',
     phone: '1231231234',
     comments: 'comments',
   }
+}
 
+// Helper function to setup a fully filled out session.
+export function getMockSessionData() {
+  const mockSession = cloneDeep(initialSessionData)
+  mockSession.eligibility = getMockEligibilityData()
+  mockSession.chooseClinic = getMockChooseClinicData()
+  mockSession.contact = getMockContactData()
   return mockSession
 }

@@ -7,7 +7,7 @@ import ContactPage from '@pages/contact'
 import { getBackRoute } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
-import { fillMockSessionData } from '../../tests/helpers/mockData'
+import { getMockSessionData } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Contact',
@@ -41,7 +41,7 @@ Default.parameters = {
 
 export const Update = Template.bind({})
 Update.args = {
-  session: fillMockSessionData(cloneDeep(initialSessionData)),
+  session: getMockSessionData(),
 }
 Update.parameters = {
   nextRouter: {

@@ -7,7 +7,7 @@ import IncomePage from '@pages/income'
 import { getBackRoute } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
-import { fillMockSessionData } from '../../tests/helpers/mockData'
+import { getMockSessionData } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Income',
@@ -39,7 +39,7 @@ Default.parameters = {
   },
 }
 
-let mockSession = fillMockSessionData(cloneDeep(initialSessionData))
+let mockSession = getMockSessionData()
 mockSession.income.householdSize = '4'
 
 export const Update = Template.bind({})

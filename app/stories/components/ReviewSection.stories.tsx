@@ -1,11 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import cloneDeep from 'lodash/cloneDeep'
 
 import ReviewSectionComponent from '@components/ReviewSection'
 
-import { initialSessionData } from '@utils/sessionData'
-
-import { fillMockSessionData } from '../../tests/helpers/mockData'
+import { getMockSessionData } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Components/ReviewSection',
@@ -17,9 +14,7 @@ const Template: ComponentStory<typeof ReviewSectionComponent> = (args) => (
 )
 
 export const DisplayingIncome = Template.bind({})
-const displayingIncomeSession = fillMockSessionData(
-  cloneDeep(initialSessionData)
-)
+const displayingIncomeSession = getMockSessionData()
 displayingIncomeSession.eligibility.adjunctive = ['none']
 displayingIncomeSession.income.householdSize = '3'
 DisplayingIncome.args = {
@@ -30,5 +25,5 @@ DisplayingIncome.args = {
 export const NotDisplayingIncome = Template.bind({})
 NotDisplayingIncome.args = {
   editable: true,
-  session: fillMockSessionData(cloneDeep(initialSessionData)),
+  session: getMockSessionData(),
 }

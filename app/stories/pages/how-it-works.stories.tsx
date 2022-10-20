@@ -6,8 +6,6 @@ import HowItWorksPage from '@pages/how-it-works'
 import { getBackRoute } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
-import { fillMockSessionData } from '../../tests/helpers/mockData'
-
 export default {
   title: 'Pages/How It Works',
   component: HowItWorksPage,

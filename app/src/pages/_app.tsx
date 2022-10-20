@@ -26,11 +26,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   } catch (e: unknown) {
     const error = e as Error
     console.log(`error caught: ${error.message}`)
+    // @TODO: Something bad happened on the /choose-clinic page with regard to session. Route to '/' with an error message
   }
 
   // @TODO: all pages need form validation before loading, re-routing, and error handling
-  // @TODO: fix conditional routing for /eligibility page
-  // @TODO: fix conditional back button for /choose-clinic
+  // @TODO: fix conditional routing for /eligibility page with regard to review
   // @TODO: add tests for components
   const props = {
     ...pageProps,
