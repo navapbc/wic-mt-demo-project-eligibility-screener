@@ -25,6 +25,7 @@ import {
 
 setupClinicMocks()
 const route = '/choose-clinic'
+const backRoute = '/income'
 const invalidZipCode = 'abcde'
 
 function setZipCode(mockSession: SessionData, type: string): SessionData {
@@ -47,14 +48,22 @@ function setZipCode(mockSession: SessionData, type: string): SessionData {
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
   testSnapshot(
-    <ChooseClinic session={mockSession} setSession={setMockSession} />
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
   )
 })
 
 it('should pass accessibility scan', async () => {
   const { mockSession } = setup(route)
   await testAccessibility(
-    <ChooseClinic session={mockSession} setSession={setMockSession} />
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
   )
 })
 
@@ -68,54 +77,46 @@ it('action button should render differently in review mode', () => {
       session={mockSession}
       setSession={setMockSession}
       reviewMode={true}
+      backRoute={backRoute}
     />,
     route
   )
 })
 
-it.skip('should have a back link to /eligibility in default mode if has qualifying adjunctive criteria', () => {
+it('should have a back link that matches the backRoute in default mode', () => {
   const { mockSession } = setup(route)
   testBackLink(
-    <ChooseClinic session={mockSession} setSession={setMockSession} />,
-    '/eligibility'
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />,
+    backRoute
   )
 })
 
-it.skip('should have a back link to /eligibility in review mode if has qualifying adjunctive criteria', () => {
+it('should have a back link that matches the backRoute in review mode', () => {
   const { mockSession } = setup(route)
   testBackLink(
     <ChooseClinic
       session={mockSession}
       setSession={setMockSession}
       reviewMode={true}
+      backRoute={backRoute}
     />,
-    '/eligibility'
-  )
-})
-
-it('should have a back link to /income in default mode if no qualifying adjunctive criteria', () => {
-  const { mockSession } = setup(route)
-  testBackLink(
-    <ChooseClinic session={mockSession} setSession={setMockSession} />,
-    '/income'
-  )
-})
-
-it('should have a back link to /income in review mode if no qualifying adjunctive criteria', () => {
-  const { mockSession } = setup(route)
-  testBackLink(
-    <ChooseClinic
-      session={mockSession}
-      setSession={setMockSession}
-      reviewMode={true}
-    />,
-    '/income'
+    backRoute
   )
 })
 
 it('action button should not render if no values are set', () => {
   const { mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   // Check the button doesn't exist.
   const button = screen.queryByRole('button', { name: /Continue/i })
@@ -125,7 +126,13 @@ it('action button should not render if no values are set', () => {
 it('action button should not render if only the zip code is set', () => {
   let { mockSession } = setup(route)
   mockSession = setZipCode(mockSession, 'inState')
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   // Check the button doesn't exist.
   const button = screen.queryByRole('button', { name: /Continue/i })
@@ -135,7 +142,13 @@ it('action button should not render if only the zip code is set', () => {
 it('action button should render if only the clinic is set', () => {
   let { mockSession } = setup(route)
   mockSession.chooseClinic.clinic = getMockClinic()
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   // Check the button should exist, but is disabled.
   const button = screen.queryByRole('button', { name: /Continue/i })
@@ -147,7 +160,13 @@ it('action button should be disabled if the zip code is invalid', () => {
   let { mockSession } = setup(route)
   mockSession = setZipCode(mockSession, 'invalid')
   mockSession.chooseClinic.clinic = getMockClinic()
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).toBeDisabled()
@@ -157,7 +176,13 @@ it('action button should render and be enabled if all requirements are met', () 
   let { mockSession } = setup(route)
   mockSession = setZipCode(mockSession, 'inState')
   mockSession.chooseClinic.clinic = getMockClinic()
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const button = screen.getByRole('button', { name: /Continue/i })
   expect(button).not.toBeDisabled()
@@ -167,7 +192,13 @@ it('should display user values on refresh/page load', () => {
   let { mockSession } = setup(route)
   mockSession = setZipCode(mockSession, 'inState')
   mockSession.chooseClinic.clinic = getMockClinic()
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   expect(zipCodeInput).toHaveValue(mockInStateZipCode)
@@ -181,7 +212,13 @@ it('should route to /contact', async () => {
   let { mockSession, user } = setup(route)
   mockSession = setZipCode(mockSession, 'inState')
   mockSession.chooseClinic.clinic = getMockClinic()
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   // Check the button should exist and is enabled.
   const button = screen.getByRole('button', { name: /Continue/i })
@@ -191,7 +228,13 @@ it('should route to /contact', async () => {
 
 it('should display invalid zip code error if an invalid zip code is entered', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   let errorMessage = screen.queryByText(
     /Please enter 5 digits for the ZIP code/
@@ -210,7 +253,13 @@ it('should display invalid zip code error if an invalid zip code is entered', as
 
 it('should display out of state zip code error if an out of state zip is entered', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   let errorMessage = screen.queryByText(
     /Sorry, we could not find a match for this ZIP code/
@@ -231,7 +280,13 @@ it('should display out of state zip code error if an out of state zip is entered
 
 it('should display a list of clinics if an in state zip is entered', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   await user.type(zipCodeInput, mockInStateZipCode)
@@ -249,7 +304,13 @@ it('should display a list of clinics if an in state zip is entered', async () =>
 
 it('should display expand the list if the button show more button is clicked', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   await user.type(zipCodeInput, mockInStateZipCode)
@@ -274,7 +335,13 @@ it('should display expand the list if the button show more button is clicked', a
 
 it('should enable the action button when a clinic is selected from the unexpanded list', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   await user.type(zipCodeInput, mockInStateZipCode)
@@ -295,7 +362,13 @@ it('should enable the action button when a clinic is selected from the unexpande
 
 it('should enable the action button when a clinic is selected from the expanded list', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   await user.type(zipCodeInput, mockInStateZipCode)
@@ -321,7 +394,13 @@ it('should enable the action button when a clinic is selected from the expanded 
 
 it('should remove the clinic list if the zip code field is modified', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   await user.type(zipCodeInput, mockInStateZipCode)
@@ -339,7 +418,13 @@ it('should remove the clinic list if the zip code field is modified', async () =
 
 it('should unselect the option if a new zip is searched', async () => {
   const { user, mockSession } = setup(route)
-  render(<ChooseClinic session={mockSession} setSession={setMockSession} />)
+  render(
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+    />
+  )
 
   const zipCodeInput = screen.getByRole('searchbox')
   await user.type(zipCodeInput, mockInStateZipCode)

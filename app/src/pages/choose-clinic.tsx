@@ -23,9 +23,15 @@ const ClinicSelectionList = dynamic(
   }
 )
 
-const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
+interface ChooseClinicProps extends EditablePage {
+  backRoute: string
+}
+
+const ChooseClinic: NextPage<ChooseClinicProps> = (
+  props: ChooseClinicProps
+) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false } = props
+  const { session, setSession, reviewMode = false, backRoute } = props
   // Initialize form as a state using blank values.
   const [form, setForm] = useState<ChooseClinicData>(initialChooseClinicData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -165,7 +171,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // @TODO: Switch zip code field to use react-number-format. Requires react-number-format to support type=search
   return (
     <>
-      <BackLink href="/income" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="ChooseClinic.title" />
       </h1>
