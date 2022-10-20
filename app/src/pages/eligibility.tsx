@@ -12,9 +12,13 @@ import type { EditablePage, EligibilityData } from '@src/types'
 import { isValidEligibility } from '@utils/dataValidation'
 import { initialEligibilityData } from '@utils/sessionData'
 
-const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
+interface EligibilityProps extends EditablePage {
+  backRoute: string
+}
+
+const Eligibility: NextPage<EligibilityProps> = (props: EligibilityProps) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false } = props
+  const { session, setSession, reviewMode = false, backRoute } = props
   // Initialize form as a state using blank values.
   const [form, setForm] = useState<EligibilityData>(initialEligibilityData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -136,7 +140,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
 
   return (
     <>
-      <BackLink href="/how-it-works" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Eligibility.header" />
       </h1>
