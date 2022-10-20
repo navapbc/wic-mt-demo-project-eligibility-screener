@@ -40,13 +40,17 @@ export function setupUserEvent(): UserEventReturn {
   return user
 }
 
+export function getMockSession(): SessionData {
+  return cloneDeep(initialSessionData)
+}
+
 // Setup function using AHA principle.
 // See https://kentcdodds.com/blog/avoid-nesting-when-youre-testing#apply-aha-avoid-hasty-abstractions
 export function setup(route: string): SetupReturn {
   setupDefaultRoute(route)
 
   // Reset the mock session before each test.
-  const mockSession = cloneDeep(initialSessionData)
+  const mockSession = getMockSession()
 
   return {
     user: setupUserEvent(),
