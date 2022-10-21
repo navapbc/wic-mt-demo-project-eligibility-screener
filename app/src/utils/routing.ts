@@ -1,4 +1,4 @@
-import { SingletonRouter } from 'next/router'
+import { NextRouter } from 'next/router'
 
 import { SessionData } from '@src/types'
 import {
@@ -69,7 +69,7 @@ export function getBackRoute(
 }
 
 export function hasRoutingIssues(
-  router: SingletonRouter,
+  router: NextRouter,
   session: SessionData | ((value: SessionData) => void)
 ) {
   const pass = {
