@@ -32,6 +32,12 @@ export function getMockChooseClinicData() {
   }
 }
 
+export function getMockIncomeData() {
+  return {
+    householdSize: '3',
+  }
+}
+
 export function getMockContactData() {
   return {
     firstName: 'Jack',

@@ -1,4 +1,12 @@
+import { SingletonRouter } from 'next/router'
+
 import { SessionData } from '@src/types'
+import {
+  isValidChooseClinic,
+  isValidContact,
+  isValidEligibility,
+  isValidIncome,
+} from '@utils/dataValidation'
 
 const pageFlow = [
   '/',
@@ -56,6 +64,57 @@ export function getBackRoute(
     // Unknown page! It probably doesn't have a back link.
     else {
       return ''
+    }
+  }
+}
+
+export function hasRoutingIssues(
+  router: SingletonRouter,
+  session: SessionData | ((value: SessionData) => void)
+): boolean {
+  // These pages have restricted access based on user data.
+  // All other pages have no routing issues.
+  const restrictedPages = ['/income', '/choose-clinic', '/contact', '/review']
+  if (!restrictedPages.includes(router.pathname)) {
+    return false
+  } else {
+    // Same as getBackLink(), typescript warns that session might be a function.
+    if (typeof session === 'function') {
+      throw new Error('Back link error: expected a session, but none was found')
+    }
+    // If it's not, handle each restricted page.
+    else {
+      switch (router.pathname) {
+        case '/review':
+          if (!isValidContact(session.contact)) {
+            console.log('invalid contact')
+            return true
+          }
+        // falls through
+        case '/contact':
+          if (!isValidChooseClinic(session.chooseClinic)) {
+            console.log('invalid choose clinic')
+            return true
+          }
+        // falls through
+        case '/choose-clinic':
+          if (
+            session.eligibility.adjunctive.includes('none') &&
+            !isValidIncome(session.income)
+          ) {
+            console.log('invalid income')
+            return true
+          }
+        // falls through
+        case '/income':
+          if (!isValidEligibility(session.eligibility)) {
+            console.log('invalid eligibility')
+            return true
+          }
+        // falls through
+        default:
+          return false
+      }
     }
   }
 }
