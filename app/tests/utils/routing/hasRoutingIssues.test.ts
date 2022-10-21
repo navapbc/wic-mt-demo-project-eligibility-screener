@@ -88,43 +88,49 @@ function buildRoutingIssuesMockSession(
 
 it('should have no issues on /', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  const pathname = '/'
+  singletonRouter.push(pathname)
+  const outcome = hasRoutingIssues(pathname, mockSession)
   expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /how-it-works', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/how-it-works')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  const pathname = '/how-it-works'
+  singletonRouter.push(pathname)
+  const outcome = hasRoutingIssues(pathname, mockSession)
   expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /eligibility', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/eligibility')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  const pathname = '/eligibility'
+  singletonRouter.push(pathname)
+  const outcome = hasRoutingIssues(pathname, mockSession)
   expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /confirmation', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/confirmation')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  const pathname = '/confirmation'
+  singletonRouter.push(pathname)
+  const outcome = hasRoutingIssues(pathname, mockSession)
   expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /other-benefits', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/other-benefits')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  const pathname = '/other-benefits'
+  singletonRouter.push(pathname)
+  const outcome = hasRoutingIssues(pathname, mockSession)
   expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on unknown pages', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/unknown')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  const pathname = '/unknown'
+  singletonRouter.push(pathname)
+  const outcome = hasRoutingIssues(pathname, mockSession)
   expect(outcome.error).toBe(false)
 })
 
@@ -147,8 +153,9 @@ it.each(incomeRoutingCombos)(
   '/income should have issues ($error caused by $cause) with $validEligibility eligibility',
   ({ validEligibility, error, cause }) => {
     const mockSession = buildRoutingIssuesMockSession(validEligibility)
-    singletonRouter.push('/income')
-    const outcome = hasRoutingIssues(singletonRouter, mockSession)
+    const pathname = '/income'
+    singletonRouter.push(pathname)
+    const outcome = hasRoutingIssues(pathname, mockSession)
     expect(outcome.error).toBe(error)
     expect(outcome.cause).toBe(cause)
   }
@@ -220,8 +227,9 @@ it.each(chooseClinicRoutingCombos)(
       adjunctiveMatch,
       validIncome
     )
-    singletonRouter.push('/choose-clinic')
-    const outcome = hasRoutingIssues(singletonRouter, mockSession)
+    const pathname = '/choose-clinic'
+    singletonRouter.push(pathname)
+    const outcome = hasRoutingIssues(pathname, mockSession)
     expect(outcome.error).toBe(error)
     expect(outcome.cause).toBe(cause)
   }
@@ -261,8 +269,9 @@ it.each(contactCombos)(
       validIncome,
       validChooseClinic
     )
-    singletonRouter.push('/contact')
-    const outcome = hasRoutingIssues(singletonRouter, mockSession)
+    const pathname = '/contact'
+    singletonRouter.push(pathname)
+    const outcome = hasRoutingIssues(pathname, mockSession)
     expect(outcome.error).toBe(error)
     expect(outcome.cause).toBe(cause)
   }
@@ -303,8 +312,9 @@ it.each(reviewCombos)(
       validChooseClinic,
       validContact
     )
-    singletonRouter.push('/review')
-    const outcome = hasRoutingIssues(singletonRouter, mockSession)
+    const pathname = '/review'
+    singletonRouter.push(pathname)
+    const outcome = hasRoutingIssues(pathname, mockSession)
     expect(outcome.error).toBe(error)
     expect(outcome.cause).toBe(cause)
   }

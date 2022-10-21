@@ -1,5 +1,3 @@
-import { NextRouter } from 'next/router'
-
 import { SessionData } from '@src/types'
 import {
   isValidChooseClinic,
@@ -69,7 +67,7 @@ export function getBackRoute(
 }
 
 export function hasRoutingIssues(
-  router: NextRouter,
+  pathname: string,
   session: SessionData | ((value: SessionData) => void)
 ) {
   const pass = {
@@ -79,7 +77,7 @@ export function hasRoutingIssues(
   // These pages have restricted access based on user data.
   // All other pages have no routing issues.
   const restrictedPages = ['/income', '/choose-clinic', '/contact', '/review']
-  if (!restrictedPages.includes(router.pathname)) {
+  if (!restrictedPages.includes(pathname)) {
     return pass
   } else {
     // Same as getBackLink(), typescript warns that session might be a function.
@@ -88,7 +86,7 @@ export function hasRoutingIssues(
     }
     // If it's not, handle each restricted page.
     else {
-      switch (router.pathname) {
+      switch (pathname) {
         case '/review':
           if (!isValidContact(session.contact)) {
             return {

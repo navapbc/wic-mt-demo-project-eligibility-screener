@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Handle form wizard page access.
   try {
-    const outcome = hasRoutingIssues(router, session)
+    const outcome = hasRoutingIssues(router.pathname, session)
     if (outcome.error) {
       // See https://nextjs.org/docs/api-reference/next/router#potential-solutions
       // disable the linting on the next line
