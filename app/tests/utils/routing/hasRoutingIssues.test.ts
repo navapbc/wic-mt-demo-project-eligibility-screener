@@ -22,37 +22,43 @@ beforeEach(() => {
 it('should have no issues on /', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /how-it-works', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/how-it-works')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /eligibility', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/eligibility')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /confirmation', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/confirmation')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on /other-benefits', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/other-benefits')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
 })
 
 it('should have no issues on unknown pages', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/unknown')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
 })
 
 // /income requires:
@@ -60,14 +66,18 @@ it('should have no issues on unknown pages', () => {
 it('should have issues on /income with invalid eligibility', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/income')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('eligibility')
 })
 
 it('should have no issues on /income with valid eligibility', () => {
   const mockSession = getMockSession()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/income')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 // /choose-clinic requires:
@@ -78,7 +88,9 @@ it('should have issues on /choose-clinic with adjunctive none, invalid income', 
   mockSession.eligibility = getMockEligibilityData()
   mockSession.eligibility.adjunctive = ['none']
   singletonRouter.push('/choose-clinic')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('income')
 })
 
 it('should have issues on /choose-clinic with adjunctive, valid income, invalid eligibility', () => {
@@ -86,7 +98,9 @@ it('should have issues on /choose-clinic with adjunctive, valid income, invalid 
   mockSession.eligibility.adjunctive = ['tanf']
   mockSession.income = getMockIncomeData()
   singletonRouter.push('/choose-clinic')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('eligibility')
 })
 
 it('should have no issues on /choose-clinic with adjunctive none, valid income, valid eligibility', () => {
@@ -95,21 +109,27 @@ it('should have no issues on /choose-clinic with adjunctive none, valid income, 
   mockSession.eligibility.adjunctive = ['none']
   mockSession.income = getMockIncomeData()
   singletonRouter.push('/choose-clinic')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 it('should have no issues on /choose-clinic with adjunctive, valid eligibility', () => {
   const mockSession = getMockSession()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/choose-clinic')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 it('should have no issues on /choose-clinic with adjunctive, invalid income, valid eligibility', () => {
   const mockSession = getMockSession()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/choose-clinic')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 // /contact requires:
@@ -119,7 +139,9 @@ it('should have no issues on /choose-clinic with adjunctive, invalid income, val
 it('should have issues on /contact with invalid choose clinic', () => {
   const mockSession = getMockSession()
   singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('chooseClinic')
 })
 
 it('should have issues on /contact with valid choose clinic, adjunctive none, invalid income', () => {
@@ -128,7 +150,9 @@ it('should have issues on /contact with valid choose clinic, adjunctive none, in
   mockSession.eligibility = getMockEligibilityData()
   mockSession.eligibility.adjunctive = ['none']
   singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('income')
 })
 
 it('should have issues on /contact with valid choose clinic, adjunctive, valid income, invalid eligibility', () => {
@@ -136,7 +160,9 @@ it('should have issues on /contact with valid choose clinic, adjunctive, valid i
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.income = getMockIncomeData()
   singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('eligibility')
 })
 
 it('should have no issues on /contact with valid choose clinic, adjunctive none, valid income, valid eligibility', () => {
@@ -146,7 +172,9 @@ it('should have no issues on /contact with valid choose clinic, adjunctive none,
   mockSession.eligibility.adjunctive = ['none']
   mockSession.income = getMockIncomeData()
   singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 it('should have no issues on /contact with valid choose clinic, valid choose clinic, adjunctive, valid eligibility', () => {
@@ -154,7 +182,9 @@ it('should have no issues on /contact with valid choose clinic, valid choose cli
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 it('should have no issues on /contact with valid choose clinic, adjunctive, invalid income, valid eligibility', () => {
@@ -162,7 +192,9 @@ it('should have no issues on /contact with valid choose clinic, adjunctive, inva
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 // /review requires:
@@ -172,15 +204,19 @@ it('should have no issues on /contact with valid choose clinic, adjunctive, inva
 // - valid eligibility data
 it('should have issues on /review with invalid contact', () => {
   const mockSession = getMockSession()
-  singletonRouter.push('/contact')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  singletonRouter.push('/review')
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('contact')
 })
 
 it('should have issues on /review with valid contact, invalid choose clinic', () => {
   const mockSession = getMockSession()
   mockSession.contact = getMockContactData()
   singletonRouter.push('/review')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('chooseClinic')
 })
 
 it('should have issues on /review with valid contact, valid choose clinic, adjunctive none, invalid income', () => {
@@ -190,7 +226,9 @@ it('should have issues on /review with valid contact, valid choose clinic, adjun
   mockSession.eligibility = getMockEligibilityData()
   mockSession.eligibility.adjunctive = ['none']
   singletonRouter.push('/review')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('income')
 })
 
 it('should have issues on /review with valid contact, valid choose clinic, adjunctive, valid income, invalid eligibility', () => {
@@ -199,7 +237,9 @@ it('should have issues on /review with valid contact, valid choose clinic, adjun
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.income = getMockIncomeData()
   singletonRouter.push('/review')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(true)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(true)
+  expect(outcome.cause).toBe('eligibility')
 })
 
 it('should have no issues on /review with valid, contact, valid choose clinic, adjunctive none, valid income, valid eligibility', () => {
@@ -210,7 +250,9 @@ it('should have no issues on /review with valid, contact, valid choose clinic, a
   mockSession.eligibility.adjunctive = ['none']
   mockSession.income = getMockIncomeData()
   singletonRouter.push('/review')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 it('should have no issues on /review with valid, contact, valid choose clinic, valid choose clinic, adjunctive, valid eligibility', () => {
@@ -219,7 +261,9 @@ it('should have no issues on /review with valid, contact, valid choose clinic, v
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/review')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
 
 it('should have no issues on /review with valid, contact, valid choose clinic, adjunctive, invalid income, valid eligibility', () => {
@@ -228,5 +272,7 @@ it('should have no issues on /review with valid, contact, valid choose clinic, a
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.eligibility = getMockEligibilityData()
   singletonRouter.push('/review')
-  expect(hasRoutingIssues(singletonRouter, mockSession)).toBe(false)
+  const outcome = hasRoutingIssues(singletonRouter, mockSession)
+  expect(outcome.error).toBe(false)
+  expect(outcome.cause).toBe('')
 })
