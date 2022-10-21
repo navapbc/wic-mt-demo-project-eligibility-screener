@@ -12,6 +12,16 @@ import {
 } from '../../helpers/mockData'
 import { getMockSession } from '../../helpers/setup'
 
+interface RoutingTestCombo {
+  validEligibility?: string
+  adjunctiveMatch?: string
+  validIncome?: string
+  validChooseClinic?: string
+  validContact?: string
+  error: boolean
+  cause: string
+}
+
 /**
  * Test setup
  */
@@ -19,6 +29,58 @@ import { getMockSession } from '../../helpers/setup'
 beforeEach(() => {
   mockRouter.setCurrentUrl('/')
 })
+
+/**
+ * /income requires:
+ * - valid eligibility data
+ *
+ * /choose-clinic requires:
+ * - valid income data if adjunctive includes 'none' AND
+ * - valid eligibility data
+ *
+ * /contact requires:
+ * - valid choose clinic data AND
+ * - valid income data if adjunctive includes 'none' AND
+ * - valid eligibility data
+ *
+ * /review requires:
+ * - valid contact data AND
+ * - valid choose clinic data AND
+ * - valid income data if adjunctive includes 'none' AND
+ * - valid eligibility data
+ */
+function buildRoutingIssuesMockSession(
+  validEligibility: string = '',
+  adjunctiveMatch: string = '',
+  validIncome: string = '',
+  validChooseClinic: string = '',
+  validContact: string = ''
+): SessionData {
+  const mockSession = getMockSession()
+  if (validEligibility === 'valid') {
+    mockSession.eligibility = getMockEligibilityData()
+  }
+
+  if (adjunctiveMatch === 'none') {
+    mockSession.eligibility.adjunctive = ['none']
+  } else if (adjunctiveMatch === 'tanf') {
+    mockSession.eligibility.adjunctive = ['tanf']
+  }
+
+  if (validIncome === 'valid') {
+    mockSession.income = getMockIncomeData()
+  }
+
+  if (validChooseClinic === 'valid') {
+    mockSession.chooseClinic = getMockChooseClinicData()
+  }
+
+  if (validContact === 'valid') {
+    mockSession.contact = getMockContactData()
+  }
+
+  return mockSession
+}
 
 /**
  * Begin tests
@@ -67,50 +129,9 @@ it('should have no issues on unknown pages', () => {
 })
 
 /**
- * /income requires:
- * - valid eligibility data
- *
- * /choose-clinic requires:
- * - valid income data if adjunctive includes 'none' AND
- * - valid eligibility data
- */
-function buildRoutingIssuesMockSession(
-  validEligibility: string = '',
-  adjunctiveMatch: string = '',
-  validIncome: string = '',
-  validChooseClinic: string = '',
-  validContact: string = '',
-): SessionData {
-  const mockSession = getMockSession()
-  if (validEligibility === 'valid') {
-    mockSession.eligibility = getMockEligibilityData()
-  }
-
-  if (adjunctiveMatch === 'none') {
-    mockSession.eligibility.adjunctive = ['none']
-  } else if (adjunctiveMatch === 'tanf') {
-    mockSession.eligibility.adjunctive = ['tanf']
-  }
-
-  if (validIncome === 'valid') {
-    mockSession.income = getMockIncomeData()
-  }
-
-  if (validChooseClinic === 'valid') {
-    mockSession.chooseClinic = getMockChooseClinicData()
-  }
-
-  if (validContact === 'valid') {
-    mockSession.contact = getMockContactData()
-  }
-
-  return mockSession
-}
-
-/**
  * Test routing for /income
  */
-const incomeRoutingCombos = [
+const incomeRoutingCombos: RoutingTestCombo[] = [
   {
     validEligibility: 'invalid',
     error: true,
@@ -133,7 +154,7 @@ it.each(incomeRoutingCombos)(
   }
 )
 
-const chooseClinicRoutingCombos = [
+const chooseClinicRoutingCombos: RoutingTestCombo[] = [
   {
     validEligibility: 'valid',
     adjunctiveMatch: 'none',
@@ -209,139 +230,31 @@ it.each(chooseClinicRoutingCombos)(
 /**
  * Test routing for /contact
  */
-const contactRoutingCombos = [
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'none',
-    validIncome: 'invalid',
+// No matter what the other data combinations, if session.chooseClinic is invalid, then /contact should error.
+const invalidContactCombos: RoutingTestCombo[] = chooseClinicRoutingCombos.map(
+  (combo) => ({
+    ...combo,
     validChooseClinic: 'invalid',
     error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'none',
-    validIncome: 'invalid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'valid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'invalid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'none',
-    validIncome: 'valid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'none',
-    validIncome: 'valid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'valid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'invalid',
-    validChooseClinic: 'invalid',
-    error: true,
-    cause: 'chooseClinic',
-  },
-    {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'none',
-    validIncome: 'invalid',
-    validChooseClinic: 'valid',
-    error: true,
-    cause: 'income',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'none',
-    validIncome: 'invalid',
-    validChooseClinic: 'valid',
-    error: true,
-    cause: 'income',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'valid',
-    validChooseClinic: 'valid',
-    error: true,
-    cause: 'eligibility',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'invalid',
-    validChooseClinic: 'valid',
-    error: true,
-    cause: 'eligibility',
-  },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'none',
-    validIncome: 'valid',
-    validChooseClinic: 'valid',
-    error: true,
-    cause: 'eligibility',
-  },
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'none',
-    validIncome: 'valid',
-    validChooseClinic: 'valid',
-    error: false,
-    cause: '',
-  },
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'valid',
-    validChooseClinic: 'valid',
-    error: false,
-    cause: '',
-  },
-  {
-    validEligibility: 'valid',
-    adjunctiveMatch: 'tanf',
-    validIncome: 'invalid',
-    validChooseClinic: 'valid',
-    error: false,
-    cause: '',
-  },
-]
-it.each(contactRoutingCombos)(
+    cause: 'choose-clinic',
+  })
+)
+// If session.chooseClinic is valid, then the outcome should match the outcomes for testing /choose-clinic.
+const validContactCombos: RoutingTestCombo[] = chooseClinicRoutingCombos.map(
+  (combo) => ({ ...combo, validChooseClinic: 'valid' })
+)
+// Combine into one testing array.
+const contactCombos = invalidContactCombos.concat(validContactCombos)
+it.each(contactCombos)(
   '/contact should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic',
-  ({ validEligibility, adjunctiveMatch, validIncome, validChooseClinic, error, cause }) => {
+  ({
+    validEligibility,
+    adjunctiveMatch,
+    validIncome,
+    validChooseClinic,
+    error,
+    cause,
+  }) => {
     const mockSession = buildRoutingIssuesMockSession(
       validEligibility,
       adjunctiveMatch,
@@ -358,20 +271,31 @@ it.each(contactRoutingCombos)(
 /**
  * Test routing for /review
  */
-const reviewRoutingCombos = [
-{
-  validEligibility: 'valid',
-  adjunctiveMatch: 'tanf',
-  validIncome: 'invalid',
-  validChooseClinic: 'valid',
+// No matter what the other data combinations, if session.contact is invalid, then /review should error.
+const invalidReviewCombos: RoutingTestCombo[] = contactCombos.map((combo) => ({
+  ...combo,
+  validContact: 'invalid',
+  error: true,
+  cause: 'contact',
+}))
+// If session.contact is valid, then the outcome should match the outcomes for testing /contact.
+const validReviewCombos: RoutingTestCombo[] = contactCombos.map((combo) => ({
+  ...combo,
   validContact: 'valid',
-  error: false,
-  cause: '',
-},
-]
-it.each(reviewRoutingCombos)(
-  '/review should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic, $validContact contact',
-  ({ validEligibility, adjunctiveMatch, validIncome, validChooseClinic, validContact, error, cause }) => {
+}))
+// Combine into one testing array.
+const reviewCombos = invalidReviewCombos.concat(validReviewCombos)
+it.each(reviewCombos)(
+  '/review should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic $validContact contact',
+  ({
+    validEligibility,
+    adjunctiveMatch,
+    validIncome,
+    validChooseClinic,
+    validContact,
+    error,
+    cause,
+  }) => {
     const mockSession = buildRoutingIssuesMockSession(
       validEligibility,
       adjunctiveMatch,
@@ -385,85 +309,3 @@ it.each(reviewRoutingCombos)(
     expect(outcome.cause).toBe(cause)
   }
 )
-
-/*
-// /review requires:
-// - valid contact data AND
-// - valid choose clinic data AND
-// - valid income data if adjunctive includes 'none' AND
-// - valid eligibility data
-it('should have issues on /review with invalid contact', () => {
-  const mockSession = getMockSession()
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(true)
-  expect(outcome.cause).toBe('contact')
-})
-
-it('should have issues on /review with valid contact, invalid choose clinic', () => {
-  const mockSession = getMockSession()
-  mockSession.contact = getMockContactData()
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(true)
-  expect(outcome.cause).toBe('chooseClinic')
-})
-
-it('should have issues on /review with valid contact, valid choose clinic, adjunctive none, invalid income', () => {
-  const mockSession = getMockSession()
-  mockSession.contact = getMockContactData()
-  mockSession.chooseClinic = getMockChooseClinicData()
-  mockSession.eligibility = getMockEligibilityData()
-  mockSession.eligibility.adjunctive = ['none']
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(true)
-  expect(outcome.cause).toBe('income')
-})
-
-it('should have issues on /review with valid contact, valid choose clinic, adjunctive, valid income, invalid eligibility', () => {
-  const mockSession = getMockSession()
-  mockSession.contact = getMockContactData()
-  mockSession.chooseClinic = getMockChooseClinicData()
-  mockSession.income = getMockIncomeData()
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(true)
-  expect(outcome.cause).toBe('eligibility')
-})
-
-it('should have no issues on /review with valid, contact, valid choose clinic, adjunctive none, valid income, valid eligibility', () => {
-  const mockSession = getMockSession()
-  mockSession.contact = getMockContactData()
-  mockSession.chooseClinic = getMockChooseClinicData()
-  mockSession.eligibility = getMockEligibilityData()
-  mockSession.eligibility.adjunctive = ['none']
-  mockSession.income = getMockIncomeData()
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(false)
-  expect(outcome.cause).toBe('')
-})
-
-it('should have no issues on /review with valid, contact, valid choose clinic, valid choose clinic, adjunctive, valid eligibility', () => {
-  const mockSession = getMockSession()
-  mockSession.contact = getMockContactData()
-  mockSession.chooseClinic = getMockChooseClinicData()
-  mockSession.eligibility = getMockEligibilityData()
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(false)
-  expect(outcome.cause).toBe('')
-})
-
-it('should have no issues on /review with valid, contact, valid choose clinic, adjunctive, invalid income, valid eligibility', () => {
-  const mockSession = getMockSession()
-  mockSession.contact = getMockContactData()
-  mockSession.chooseClinic = getMockChooseClinicData()
-  mockSession.eligibility = getMockEligibilityData()
-  singletonRouter.push('/review')
-  const outcome = hasRoutingIssues(singletonRouter, mockSession)
-  expect(outcome.error).toBe(false)
-  expect(outcome.cause).toBe('')
-})
-*/

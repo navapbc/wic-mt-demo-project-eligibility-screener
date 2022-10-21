@@ -101,7 +101,7 @@ export function hasRoutingIssues(
           if (!isValidChooseClinic(session.chooseClinic)) {
             return {
               error: true,
-              cause: 'chooseClinic',
+              cause: 'choose-clinic',
             }
           }
         // falls through
