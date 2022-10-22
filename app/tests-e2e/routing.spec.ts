@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import {EligibilityPage} from './eligibility'
 
 // Going directly to /income without filling out previous pages should redirect with an error
 test('navigating directly to /income should redirect with error', async ({
@@ -42,4 +43,9 @@ test('navigating directly to /review should redirect with error', async ({
   await expect(page.locator('.usa-alert__text')).toContainText(
     'Some required responses are missing'
   )
+test('navigating to /income after filling out /eligibility shows no error', async ({page}) => {
+  const eligibilityPage = new EligibilityPage(page)
+  await eligibilityPage.goto()
+  await eligibilityPage.fillResidential(true)
+  await expect(page.locator('[for=residential-yes]')).toBeChecked()
 })
