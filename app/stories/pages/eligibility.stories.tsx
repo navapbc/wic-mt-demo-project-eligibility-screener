@@ -34,22 +34,9 @@ export const Default = Template.bind({})
 Default.args = {
   session: getEmptyMockSession(),
 }
-Default.parameters = {
-  nextRouter: {
-    path: '/eligibility',
-  },
-}
 
 export const Update = Template.bind({})
 Update.args = {
   session: getMockSessionData(),
-}
-Update.parameters = {
-  nextRouter: {
-    path: '/eligibility',
-    asPath: '/eligibility?mode=review',
-    query: {
-      mode: 'review',
-    },
-  },
+  reviewMode: true,
 }

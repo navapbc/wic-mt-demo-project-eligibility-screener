@@ -34,11 +34,6 @@ export const Default = Template.bind({})
 Default.args = {
   session: getEmptyMockSession(),
 }
-Default.parameters = {
-  nextRouter: {
-    path: '/income',
-  },
-}
 
 let mockSession = getMockSessionData()
 mockSession.income.householdSize = '4'
@@ -46,13 +41,5 @@ mockSession.income.householdSize = '4'
 export const Update = Template.bind({})
 Update.args = {
   session: mockSession,
-}
-Update.parameters = {
-  nextRouter: {
-    path: '/income',
-    asPath: '/income?mode=review',
-    query: {
-      mode: 'review',
-    },
-  },
+  reviewMode: true,
 }
