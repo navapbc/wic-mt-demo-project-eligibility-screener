@@ -1,7 +1,10 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction } from 'react'
+import { UrlObject } from 'url'
 
-/* Types relating to persistent user data */
+/*
+ * Types relating to persistent user data
+ */
 export type ChooseClinicData = {
   clinic: typeof clinics[0] | undefined
   zipCode: string
@@ -40,15 +43,22 @@ export interface WriteSession extends ReadSession {
   setSession: Dispatch<SetStateAction<SessionData>> | (() => unknown)
 }
 
-export interface ClearablePage extends WriteSession {
+export interface ClearSession extends WriteSession {
   sessionKey: string
 }
 
-export interface EditablePage extends WriteSession {
-  // This is an optional attribute to make testing easier.
-  // It should be set by default to 'false' in all Editable pages.
+/**
+ * Types relating to page routing.
+ */
+export interface Page {
+  backRoute?: UrlObject | string
+  forwardRoute?: UrlObject | string
   reviewMode?: boolean
 }
 
-// Type aliases for page props
-export type ReadOnlyPage = ReadSession
+/**
+ * Types of pages.
+ */
+export type ReadOnlyPage = ReadSession & Page
+export type EditablePage = WriteSession & Page
+export type ClearablePage = ClearSession & Page

@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   // Handle action button.
-  const forwardRoute = getForwardRoute(router.pathname, session)
+  const forwardRoute = getForwardRoute(router.pathname, reviewMode, session)
 
   // @TODO: fix conditional routing for /eligibility page with regard to review
   // @TODO: add tests for components
