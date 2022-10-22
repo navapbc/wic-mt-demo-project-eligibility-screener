@@ -13,7 +13,11 @@ export default {
 
 const Template: ComponentStory<typeof HowItWorksPage> = (args) => {
   args.backRoute = getBackRoute('/how-it-works', getEmptyMockSession())
-  args.forwardRoute = getForwardRoute('/how-it-works', false, getEmptyMockSession())
+  args.forwardRoute = getForwardRoute(
+    '/how-it-works',
+    false,
+    getEmptyMockSession()
+  )
   return <HowItWorksPage {...args} />
 }
 
