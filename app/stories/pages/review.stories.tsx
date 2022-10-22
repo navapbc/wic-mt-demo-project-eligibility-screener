@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ReviewPage from '@pages/review'
 
-import { getBackRoute } from '@utils/routing'
+import { getBackRoute, getForwardRoute } from '@utils/routing'
 
 import { getMockSessionData } from '../../tests/helpers/mockData'
 
@@ -13,6 +13,7 @@ export default {
 
 const Template: ComponentStory<typeof ReviewPage> = (args) => {
   args.backRoute = getBackRoute('/review', args.session)
+  args.forwardRoute = getForwardRoute('/review', false, args.session)
   return <ReviewPage {...args} />
 }
 
