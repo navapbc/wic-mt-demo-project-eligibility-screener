@@ -15,6 +15,7 @@
     "storybook": "start-storybook -p 6006",
     "storybook-build": "build-storybook",
     "test": "jest --ci --coverage",
+    "test-e2e": "playwright test",
     "ts-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.0",
     "@babel/preset-typescript": "^7.17.12",
+    "@playwright/test": "^1.27.1",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/builder-webpack5": "^6.5.9",
     "@storybook/manager-webpack5": "^6.5.12",
