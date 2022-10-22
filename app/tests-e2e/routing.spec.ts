@@ -43,3 +43,47 @@ test('navigating directly to /review should redirect with error', async ({
     'Some required responses are missing'
   )
 })
+
+// Going directly to /income without filling out previous pages should redirect with an error
+test('navigating directly to /income?mode=review should redirect with error', async ({
+  page,
+}) => {
+  await page.goto('/income?mode=review')
+  await expect(page).toHaveURL(/eligibility\?error=missing-data/)
+  await expect(page.locator('.usa-alert__text')).toContainText(
+    'Some required responses are missing'
+  )
+})
+
+// Going directly to /choose-clinic without filling out previous pages should redirect with an error
+test('navigating directly to /choose-clinic?mode=review should redirect with error', async ({
+  page,
+}) => {
+  await page.goto('/choose-clinic?mode=review')
+  await expect(page).toHaveURL(/eligibility\?error=missing-data/)
+  await expect(page.locator('.usa-alert__text')).toContainText(
+    'Some required responses are missing'
+  )
+})
+
+// Going directly to /contact without filling out previous pages should redirect with an error
+test('navigating directly to /contact?mode=review should redirect with error', async ({
+  page,
+}) => {
+  await page.goto('/contact?mode=review')
+  await expect(page).toHaveURL(/eligibility\?error=missing-data/)
+  await expect(page.locator('.usa-alert__text')).toContainText(
+    'Some required responses are missing'
+  )
+})
+
+// Going directly to /review without filling out previous pages should redirect with an error
+test('navigating directly to /review?mode=review should redirect with error', async ({
+  page,
+}) => {
+  await page.goto('/review?mode=review')
+  await expect(page).toHaveURL(/eligibility\?error=missing-data/)
+  await expect(page.locator('.usa-alert__text')).toContainText(
+    'Some required responses are missing'
+  )
+})
