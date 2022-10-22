@@ -49,9 +49,14 @@ export function getMockContactData() {
 
 // Helper function to setup a fully filled out session.
 export function getMockSessionData() {
-  const mockSession = cloneDeep(initialSessionData)
+  const mockSession = getEmptyMockSession()
   mockSession.eligibility = getMockEligibilityData()
   mockSession.chooseClinic = getMockChooseClinicData()
   mockSession.contact = getMockContactData()
   return mockSession
+}
+
+// Helper function te setup an empty session that passes typechecking.
+export function getEmptyMockSession(): SessionData {
+  return cloneDeep(initialSessionData)
 }

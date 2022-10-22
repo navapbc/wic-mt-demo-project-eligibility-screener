@@ -1,7 +1,7 @@
 import { SessionData } from '@src/types'
 import { getBackRoute } from '@utils/routing'
 
-import { getEmptyMockSession } from '../../helpers/setup'
+import { getEmptyMockSession } from '../../helpers/mockData'
 
 const simplePaths = [
   ['/', ''],

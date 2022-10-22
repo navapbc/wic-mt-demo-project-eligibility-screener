@@ -6,6 +6,8 @@ import mockRouter from 'next-router-mock'
 import type { SessionData } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
+import { getEmptyMockSession } from './mockData'
+
 /*
  * Types
  */
@@ -38,10 +40,6 @@ export function setupUserEvent(): UserEventReturn {
   // Set up userEvent
   const user = userEvent.setup()
   return user
-}
-
-export function getEmptyMockSession(): SessionData {
-  return cloneDeep(initialSessionData)
 }
 
 // Setup function using AHA principle.

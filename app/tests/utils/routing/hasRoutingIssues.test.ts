@@ -10,7 +10,7 @@ import {
   getMockEligibilityData,
   getMockIncomeData,
 } from '../../helpers/mockData'
-import { getEmptyMockSession } from '../../helpers/setup'
+import { getEmptyMockSession } from '../../helpers/mockData'
 
 interface RoutingTestCombo {
   validEligibility?: string

@@ -1,13 +1,14 @@
 import { useState } from '@storybook/client-api'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import cloneDeep from 'lodash/cloneDeep'
 
 import EligibilityPage from '@pages/eligibility'
 
 import { getBackRoute } from '@utils/routing'
-import { initialSessionData } from '@utils/sessionData'
 
-import { getMockSessionData } from '../../tests/helpers/mockData'
+import {
+  getEmptyMockSession,
+  getMockSessionData,
+} from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Eligibility',
@@ -31,7 +32,7 @@ const Template: ComponentStory<typeof EligibilityPage> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  session: cloneDeep(initialSessionData),
+  session: getEmptyMockSession(),
 }
 Default.parameters = {
   nextRouter: {
