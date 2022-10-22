@@ -10,7 +10,7 @@ import {
   getMockEligibilityData,
   getMockIncomeData,
 } from '../../helpers/mockData'
-import { getMockSession } from '../../helpers/setup'
+import { getEmptyMockSession } from '../../helpers/setup'
 
 interface RoutingTestCombo {
   validEligibility?: string
@@ -56,7 +56,7 @@ function buildRoutingIssuesMockSession(
   validChooseClinic: string = '',
   validContact: string = ''
 ): SessionData {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   if (validEligibility === 'valid') {
     mockSession.eligibility = getMockEligibilityData()
   }
@@ -87,7 +87,7 @@ function buildRoutingIssuesMockSession(
  */
 
 it('should have no issues on /', () => {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   const pathname = '/'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
@@ -95,7 +95,7 @@ it('should have no issues on /', () => {
 })
 
 it('should have no issues on /how-it-works', () => {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   const pathname = '/how-it-works'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
@@ -103,7 +103,7 @@ it('should have no issues on /how-it-works', () => {
 })
 
 it('should have no issues on /eligibility', () => {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   const pathname = '/eligibility'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
@@ -111,7 +111,7 @@ it('should have no issues on /eligibility', () => {
 })
 
 it('should have no issues on /confirmation', () => {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   const pathname = '/confirmation'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
@@ -119,7 +119,7 @@ it('should have no issues on /confirmation', () => {
 })
 
 it('should have no issues on /other-benefits', () => {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   const pathname = '/other-benefits'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
@@ -127,7 +127,7 @@ it('should have no issues on /other-benefits', () => {
 })
 
 it('should have no issues on unknown pages', () => {
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
   const pathname = '/unknown'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)

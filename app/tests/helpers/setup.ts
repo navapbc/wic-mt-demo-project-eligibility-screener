@@ -40,7 +40,7 @@ export function setupUserEvent(): UserEventReturn {
   return user
 }
 
-export function getMockSession(): SessionData {
+export function getEmptyMockSession(): SessionData {
   return cloneDeep(initialSessionData)
 }
 
@@ -50,7 +50,7 @@ export function setup(route: string): SetupReturn {
   setupDefaultRoute(route)
 
   // Reset the mock session before each test.
-  const mockSession = getMockSession()
+  const mockSession = getEmptyMockSession()
 
   return {
     user: setupUserEvent(),
