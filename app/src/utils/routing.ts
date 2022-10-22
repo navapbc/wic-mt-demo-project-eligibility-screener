@@ -21,6 +21,59 @@ const pageFlow = [
   '/confirmation',
 ]
 
+// @TODO : handle review mode
+export function getForwardRoute(
+  pathname: string,
+  session: SessionData | ((value: SessionData) => void)
+): string {
+  const position = pageFlow.indexOf(pathname)
+
+  // Check for edge cases first.
+  // /other-benefits always routes forward to /
+  if (pathname === '/other-benefits') {
+    return '/'
+  }
+  // There is no action button on /confirmation, so return empty string.
+  else if (pathname === '/confirmation') {
+    return ''
+  }
+  // /eligibility has different behaviour depending on user data.
+  else if (pathname === '/eligibility') {
+    // Typescript believes it's possible for session to be the function:
+    // `(value: SessionData) => void`. If this actually happens at runtime, we
+    // throw an error.
+    if (typeof session === 'function') {
+      throw new Error(
+        'Forward route error: expected a session, but none was found'
+      )
+    }
+    // Otherwise, we can do actual checks against user data to get the correct route.
+    else {
+      if (
+        !isValidEligibility(session.eligibility) ||
+        session.eligibility.residential === 'no' ||
+        session.eligibility.categorical.includes('none')
+      ) {
+        return '/other-benefits'
+      } else if (session.eligibility.adjunctive.includes('none')) {
+        return '/income'
+      } else {
+        return '/choose-clinic'
+      }
+    }
+  }
+  // Otherwise handle simple cases.
+  else {
+    if (position !== -1) {
+      return pageFlow[position + 1]
+    }
+    // Unknown page! It probably doesn't have an action button.
+    else {
+      return ''
+    }
+  }
+}
+
 export function getBackRoute(
   pathname: string,
   session: SessionData | ((value: SessionData) => void)

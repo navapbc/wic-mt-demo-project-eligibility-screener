@@ -8,7 +8,7 @@ import RoutingError from '@components/RoutingError'
 
 import useSessionStorage from '@src/hooks/useSessionStorage'
 import '@styles/styles.scss'
-import { getBackRoute, hasRoutingIssues } from '@utils/routing'
+import { getBackRoute, getForwardRoute, hasRoutingIssues } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -25,19 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const reviewMode = router.query.mode === 'review'
 
-  // Handle back links.
-  let backRoute = '/'
-  try {
-    backRoute = getBackRoute(router.pathname, session)
-  } catch (e: unknown) {
-    const error = e as Error
-    console.log(`error caught: ${error.message}`)
-    // Something bad happened on the /choose-clinic page with regard to session. Route to '/' with an error message.
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push({ pathname: '/', query: { error: 'missing-data' } })
-  }
-
   // Handle form wizard page access.
+  // @TODO: perhaps find a way for this to only run on initial page load, not every time session is updated
   useEffect(() => {
     try {
       const outcome = hasRoutingIssues(router.pathname, session)
@@ -57,6 +46,21 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [router, session])
 
+  // Handle back link.
+  let backRoute = '/'
+  try {
+    backRoute = getBackRoute(router.pathname, session)
+  } catch (e: unknown) {
+    const error = e as Error
+    console.log(`error caught: ${error.message}`)
+    // Something bad happened on the /choose-clinic page with regard to session. Route to '/' with an error message.
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    router.push({ pathname: '/', query: { error: 'missing-data' } })
+  }
+
+  // Handle action button.
+  const forwardRoute = getForwardRoute(router.pathname, session)
+
   // @TODO: fix conditional routing for /eligibility page with regard to review
   // @TODO: add tests for components
   const props = {
@@ -66,6 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     sessionKey,
     reviewMode,
     backRoute,
+    forwardRoute,
   }
 
   return (
