@@ -1,3 +1,5 @@
+import { UrlObject } from 'url'
+
 import { SessionData } from '@src/types'
 import {
   isValidChooseClinic,
@@ -21,14 +23,20 @@ const pageFlow = [
   '/confirmation',
 ]
 
-// @TODO : handle review mode
 export function getForwardRoute(
   pathname: string,
+  reviewMode: boolean,
   session: SessionData | ((value: SessionData) => void)
-): string {
+): UrlObject | string {
   const position = pageFlow.indexOf(pathname)
 
-  // Check for edge cases first.
+  // Check for simple review mode cases.
+  const reviewModePages = ['/income', '/choose-clinic', '/contact']
+  if (reviewMode && reviewModePages.includes(pathname)) {
+    return '/review'
+  }
+
+  // Check for edge cases.
   // /other-benefits always routes forward to /
   if (pathname === '/other-benefits') {
     return '/'
@@ -56,21 +64,32 @@ export function getForwardRoute(
       ) {
         return '/other-benefits'
       } else if (session.eligibility.adjunctive.includes('none')) {
-        return '/income'
+        if (reviewMode) {
+          if (!isValidIncome(session.income)) {
+            return { pathname: '/income', query: { mode: 'review' } }
+          } else {
+            return '/review'
+          }
+        } else {
+          return '/income'
+        }
       } else {
-        return '/choose-clinic'
+        if (reviewMode) {
+          return '/review'
+        } else {
+          return '/choose-clinic'
+        }
       }
     }
   }
+
   // Otherwise handle simple cases.
+  if (position !== -1) {
+    return pageFlow[position + 1]
+  }
+  // Unknown page! It probably doesn't have an action button.
   else {
-    if (position !== -1) {
-      return pageFlow[position + 1]
-    }
-    // Unknown page! It probably doesn't have an action button.
-    else {
-      return ''
-    }
+    return ''
   }
 }
 
