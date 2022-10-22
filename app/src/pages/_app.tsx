@@ -47,16 +47,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router, session])
 
   // Handle back link.
-  let backRoute = '/'
-  try {
-    backRoute = getBackRoute(router.pathname, session)
-  } catch (e: unknown) {
-    const error = e as Error
-    console.log(`error caught: ${error.message}`)
-    // Something bad happened on the /choose-clinic page with regard to session. Route to '/' with an error message.
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push({ pathname: '/', query: { error: 'missing-data' } })
-  }
+  // @TODO: fix back route for when in review mode
+  const backRoute = getBackRoute(router.pathname, session)
 
   // Handle action button.
   const forwardRoute = getForwardRoute(router.pathname, reviewMode, session)
