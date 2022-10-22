@@ -135,6 +135,18 @@ it('should have no issues on unknown pages', () => {
 })
 
 /**
+ * Test for session error
+ */
+it('should throw an error if a function is passed instead of a session on a restricted page', () => {
+  expect(() => {
+    function emptyFunction(value: SessionData): void {}
+    const pathname = '/income'
+    singletonRouter.push(pathname)
+    hasRoutingIssues(pathname, emptyFunction)
+  }).toThrow('Routing error: expected a session, but none was found')
+})
+
+/**
  * Test routing for /income
  */
 const incomePageCombos: RoutingTestCombo[] = [

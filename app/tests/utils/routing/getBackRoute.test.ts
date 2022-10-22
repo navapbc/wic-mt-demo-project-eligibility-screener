@@ -49,5 +49,5 @@ it('should throw an error if a function is passed instead of a session on /choos
   expect(() => {
     function emptyFunction(value: SessionData): void {}
     getBackRoute('/choose-clinic', emptyFunction)
-  }).toThrow('Back link error: expected a session, but none was found')
+  }).toThrow('Back route error: expected a session, but none was found')
 })

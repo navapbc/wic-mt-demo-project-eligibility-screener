@@ -22,27 +22,29 @@ const pageFlow = [
 ]
 
 export function getBackRoute(
-  currentPath: string,
+  pathname: string,
   session: SessionData | ((value: SessionData) => void)
 ): string {
-  const position = pageFlow.indexOf(currentPath)
+  const position = pageFlow.indexOf(pathname)
 
   // Check for edge cases first.
   // /other-benefits always routes back to /eligibility
-  if (currentPath === '/other-benefits') {
+  if (pathname === '/other-benefits') {
     return '/eligibility'
   }
   // There are no back buttons on / or /confirmation, so return empty string.
-  else if (currentPath === '/' || currentPath === '/confirmation') {
+  else if (pathname === '/' || pathname === '/confirmation') {
     return ''
   }
   // /choose-clinic has different behavior depending on user data.
-  else if (currentPath === '/choose-clinic') {
+  else if (pathname === '/choose-clinic') {
     // Typescript believes it's possible for session to be the function:
     // `(value: SessionData) => void`. If this actually happens at runtime, we
     // throw an error.
     if (typeof session === 'function') {
-      throw new Error('Back link error: expected a session, but none was found')
+      throw new Error(
+        'Back route error: expected a session, but none was found'
+      )
     }
     // Otherwise, we can do actual checks against user data to get the correct route.
     else {
@@ -91,7 +93,7 @@ export function hasRoutingIssues(
   } else {
     // Same as getBackLink(), typescript warns that session might be a function.
     if (typeof session === 'function') {
-      throw new Error('Back link error: expected a session, but none was found')
+      throw new Error('Routing error: expected a session, but none was found')
     }
     // If it's not, handle each restricted page.
     else {
