@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push({ pathname: '/', query: { error: 'missing-data' } })
     }
-  }, [])
+  }, [router, session])
 
   // @TODO: fix conditional routing for /eligibility page with regard to review
   // @TODO: add tests for components

@@ -6,6 +6,10 @@ import {
   isValidIncome,
 } from '@utils/dataValidation'
 
+interface RestrictedPages {
+  [key: string]: string[]
+}
+
 const pageFlow = [
   '/',
   '/how-it-works',
@@ -76,8 +80,13 @@ export function hasRoutingIssues(
   }
   // These pages have restricted access based on user data.
   // All other pages have no routing issues.
-  const restrictedPages = ['/income', '/choose-clinic', '/contact', '/review']
-  if (!restrictedPages.includes(pathname)) {
+  const restrictedPages: RestrictedPages = {
+    '/income': ['/eligibility'],
+    '/choose-clinic': ['/eligibility', '/income'],
+    '/contact': ['/eligibility', '/income', '/choose-clinic'],
+    '/review': ['/eligibility', '/income', '/choose-clinic', '/contact'],
+  }
+  if (!Object.keys(restrictedPages).includes(pathname)) {
     return pass
   } else {
     // Same as getBackLink(), typescript warns that session might be a function.
@@ -86,45 +95,53 @@ export function hasRoutingIssues(
     }
     // If it's not, handle each restricted page.
     else {
-      switch (pathname) {
-        case '/review':
-          if (!isValidContact(session.contact)) {
-            return {
-              error: true,
-              cause: 'contact',
-            }
+      for (let i = 0, len = restrictedPages[pathname].length; i < len; i++) {
+        const check = restrictedPages[pathname][i]
+        // Check first for /eligibility requirements.
+        if (
+          check === '/eligibility' &&
+          !isValidEligibility(session.eligibility)
+        ) {
+          return {
+            error: true,
+            cause: 'eligibility',
           }
-        // falls through
-        case '/contact':
-          if (!isValidChooseClinic(session.chooseClinic)) {
-            return {
-              error: true,
-              cause: 'choose-clinic',
-            }
+        }
+
+        // Then, check for /income requirements.
+        if (
+          check === '/income' &&
+          session.eligibility.adjunctive.includes('none') &&
+          !isValidIncome(session.income)
+        ) {
+          return {
+            error: true,
+            cause: 'income',
           }
-        // falls through
-        case '/choose-clinic':
-          if (
-            session.eligibility.adjunctive.includes('none') &&
-            !isValidIncome(session.income)
-          ) {
-            return {
-              error: true,
-              cause: 'income',
-            }
+        }
+
+        // Then, check for /choose-clinic requirements.
+        if (
+          check === '/choose-clinic' &&
+          !isValidChooseClinic(session.chooseClinic)
+        ) {
+          return {
+            error: true,
+            cause: 'choose-clinic',
           }
-        // falls through
-        case '/income':
-          if (!isValidEligibility(session.eligibility)) {
-            return {
-              error: true,
-              cause: 'eligibility',
-            }
+        }
+
+        // Then, check for /contact requirements.
+        if (check === '/contact' && !isValidContact(session.contact)) {
+          return {
+            error: true,
+            cause: 'contact',
           }
-        // falls through
-        default:
-          return pass
+        }
       }
+
+      // If none of the other checks failed, pass.
+      return pass
     }
   }
 }

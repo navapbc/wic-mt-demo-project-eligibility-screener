@@ -137,7 +137,7 @@ it('should have no issues on unknown pages', () => {
 /**
  * Test routing for /income
  */
-const incomeRoutingCombos: RoutingTestCombo[] = [
+const incomePageCombos: RoutingTestCombo[] = [
   {
     validEligibility: 'invalid',
     error: true,
@@ -149,7 +149,7 @@ const incomeRoutingCombos: RoutingTestCombo[] = [
     cause: '',
   },
 ]
-it.each(incomeRoutingCombos)(
+it.each(incomePageCombos)(
   '/income should have issues ($error caused by $cause) with $validEligibility eligibility',
   ({ validEligibility, error, cause }) => {
     const mockSession = buildRoutingIssuesMockSession(validEligibility)
@@ -161,7 +161,7 @@ it.each(incomeRoutingCombos)(
   }
 )
 
-const chooseClinicRoutingCombos: RoutingTestCombo[] = [
+const invalidChooseClinicPageCombos: RoutingTestCombo[] = [
   {
     validEligibility: 'valid',
     adjunctiveMatch: 'none',
@@ -174,7 +174,14 @@ const chooseClinicRoutingCombos: RoutingTestCombo[] = [
     adjunctiveMatch: 'none',
     validIncome: 'invalid',
     error: true,
-    cause: 'income',
+    cause: 'eligibility',
+  },
+  {
+    validEligibility: 'invalid',
+    adjunctiveMatch: 'none',
+    validIncome: 'valid',
+    error: true,
+    cause: 'eligibility',
   },
   {
     validEligibility: 'invalid',
@@ -190,13 +197,8 @@ const chooseClinicRoutingCombos: RoutingTestCombo[] = [
     error: true,
     cause: 'eligibility',
   },
-  {
-    validEligibility: 'invalid',
-    adjunctiveMatch: 'none',
-    validIncome: 'valid',
-    error: true,
-    cause: 'eligibility',
-  },
+]
+const validChooseClinicPageCombos: RoutingTestCombo[] = [
   {
     validEligibility: 'valid',
     adjunctiveMatch: 'none',
@@ -219,7 +221,10 @@ const chooseClinicRoutingCombos: RoutingTestCombo[] = [
     cause: '',
   },
 ]
-it.each(chooseClinicRoutingCombos)(
+const chooseClinicPageCombos = invalidChooseClinicPageCombos.concat(
+  validChooseClinicPageCombos
+)
+it.each(chooseClinicPageCombos)(
   '/choose-clinic should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income',
   ({ validEligibility, adjunctiveMatch, validIncome, error, cause }) => {
     const mockSession = buildRoutingIssuesMockSession(
@@ -238,22 +243,41 @@ it.each(chooseClinicRoutingCombos)(
 /**
  * Test routing for /contact
  */
-// No matter what the other data combinations, if session.chooseClinic is invalid, then /contact should error.
-const invalidContactCombos: RoutingTestCombo[] = chooseClinicRoutingCombos.map(
-  (combo) => ({
+// If the previous pages are invalid, /contact will be invalid.
+const contactValidPreviousInvalid: RoutingTestCombo[] =
+  invalidChooseClinicPageCombos.map((combo) => ({
+    ...combo,
+    validChooseClinic: 'valid',
+  }))
+const contactInvalidPreviousInvalid: RoutingTestCombo[] =
+  invalidChooseClinicPageCombos.map((combo) => ({
+    ...combo,
+    validChooseClinic: 'invalid',
+  }))
+// If the previous pages are invalid, but session.choose-clinic is invalid, then /contact will be invalid.
+const contactInvalidPreviousValid: RoutingTestCombo[] =
+  validChooseClinicPageCombos.map((combo) => ({
     ...combo,
     validChooseClinic: 'invalid',
     error: true,
     cause: 'choose-clinic',
-  })
-)
-// If session.chooseClinic is valid, then the outcome should match the outcomes for testing /choose-clinic.
-const validContactCombos: RoutingTestCombo[] = chooseClinicRoutingCombos.map(
-  (combo) => ({ ...combo, validChooseClinic: 'valid' })
-)
+  }))
+// /contact will only be valid if the previous pages are valid AND session.choose-clinic is valid.
+const validContactPageCombos: RoutingTestCombo[] =
+  validChooseClinicPageCombos.map((combo) => ({
+    ...combo,
+    validChooseClinic: 'valid',
+    error: false,
+    cause: '',
+  }))
 // Combine into one testing array.
-const contactCombos = invalidContactCombos.concat(validContactCombos)
-it.each(contactCombos)(
+const invalidContactPageCombos = contactValidPreviousInvalid
+  .concat(contactInvalidPreviousInvalid)
+  .concat(contactInvalidPreviousValid)
+const contactPageCombos = invalidContactPageCombos.concat(
+  validContactPageCombos
+)
+it.each(contactPageCombos)(
   '/contact should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic',
   ({
     validEligibility,
@@ -280,21 +304,40 @@ it.each(contactCombos)(
 /**
  * Test routing for /review
  */
-// No matter what the other data combinations, if session.contact is invalid, then /review should error.
-const invalidReviewCombos: RoutingTestCombo[] = contactCombos.map((combo) => ({
-  ...combo,
-  validContact: 'invalid',
-  error: true,
-  cause: 'contact',
-}))
-// If session.contact is valid, then the outcome should match the outcomes for testing /contact.
-const validReviewCombos: RoutingTestCombo[] = contactCombos.map((combo) => ({
-  ...combo,
-  validContact: 'valid',
-}))
+// If the previous pages are invalid, /contact will be invalid.
+const reviewValidPreviousInvalid: RoutingTestCombo[] =
+  invalidContactPageCombos.map((combo) => ({
+    ...combo,
+    validContact: 'valid',
+  }))
+const reviewInvalidPreviousInvalid: RoutingTestCombo[] =
+  invalidContactPageCombos.map((combo) => ({
+    ...combo,
+    validContact: 'invalid',
+  }))
+// If the previous pages are invalid, but session.contact is invalid, then /review will be invalid.
+const reviewInvalidPreviousValid: RoutingTestCombo[] =
+  validContactPageCombos.map((combo) => ({
+    ...combo,
+    validContact: 'invalid',
+    error: true,
+    cause: 'contact',
+  }))
+// /review will only be valid if the previous pages are valid AND session.contact is valid.
+const validReviewPageCombos: RoutingTestCombo[] = validContactPageCombos.map(
+  (combo) => ({
+    ...combo,
+    validContact: 'valid',
+    error: false,
+    cause: '',
+  })
+)
 // Combine into one testing array.
-const reviewCombos = invalidReviewCombos.concat(validReviewCombos)
-it.each(reviewCombos)(
+const invalidReviewPageCombos = reviewValidPreviousInvalid
+  .concat(reviewInvalidPreviousInvalid)
+  .concat(reviewInvalidPreviousValid)
+const reviewPageCombos = invalidReviewPageCombos.concat(validReviewPageCombos)
+it.each(reviewPageCombos)(
   '/review should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic $validContact contact',
   ({
     validEligibility,
