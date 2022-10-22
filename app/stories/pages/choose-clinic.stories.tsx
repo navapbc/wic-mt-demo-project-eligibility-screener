@@ -11,7 +11,7 @@ import {
 } from '../../tests/helpers/mockData'
 
 export default {
-  title: 'Pages/ChooseClinic',
+  title: 'Pages/Choose Clinic',
   component: ChooseClinicPage,
   argTypes: {
     session: {
