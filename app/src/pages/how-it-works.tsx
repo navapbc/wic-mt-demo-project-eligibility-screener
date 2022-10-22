@@ -6,12 +6,10 @@ import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
-interface HowItWorksProps {
-  backRoute: string
-}
+import { Page } from '@src/types'
 
-const HowItWorks: NextPage<HowItWorksProps> = (props: HowItWorksProps) => {
-  const { backRoute } = props
+const HowItWorks: NextPage<Page> = (props: Page) => {
+  const { backRoute = '', forwardRoute = '' } = props
   const listCopyKeys: string[] = ['apply', 'eligible', 'appointment']
 
   return (
@@ -33,7 +31,7 @@ const HowItWorks: NextPage<HowItWorksProps> = (props: HowItWorksProps) => {
         ))}
       </ol>
       <Alert alertBody="HowItWorks.note" type="warning" />
-      <ButtonLink href="/eligibility" labelKey="HowItWorks.button" />
+      <ButtonLink href={forwardRoute} labelKey="HowItWorks.button" />
     </>
   )
 }

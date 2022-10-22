@@ -13,6 +13,7 @@ import {
 
 const route = '/how-it-works'
 const backRoute = '/'
+const forwardRoute = '/eligibility'
 
 /**
  * Begin tests
@@ -20,14 +21,12 @@ const backRoute = '/'
 
 it('should match full page snapshot', () => {
   setup(route)
-  testSnapshot(<HowItWorks backRoute={backRoute} />)
+  testSnapshot(<HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />)
 })
 
 it('should pass accessibility scan', async () => {
   setup(route)
-  await testAccessibility(<HowItWorks backRoute={backRoute} />)
-})
-
-it('should have a back link that matches the backRoute', () => {
-  testBackLink(<HowItWorks backRoute={backRoute} />, backRoute)
+  await testAccessibility(
+    <HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />
+  )
 })

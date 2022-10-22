@@ -51,7 +51,7 @@ export interface ClearSession extends WriteSession {
  * Types relating to page routing.
  */
 export interface Page {
-  backRoute?: UrlObject | string
+  backRoute?: string
   forwardRoute?: UrlObject | string
   reviewMode?: boolean
 }
