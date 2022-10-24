@@ -28,9 +28,6 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.eligibility)
   }, [session.eligibility])
 
-  // Function to check whether all the required fields in this page have been filled out.
-  const isRequiredMet = isValidEligibility
-
   // Set up action button and routing.
   const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
 
@@ -42,8 +39,8 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // this also handles anytime the form state is updated, so we don't need to call
   // setDisabled during handleChange()
   useEffect(() => {
-    setDisabled(!isRequiredMet(form))
-  }, [form, isRequiredMet])
+    setDisabled(!isValidEligibility(form))
+  }, [form])
 
   // Handle all form element changes.
   // - Determine new form values

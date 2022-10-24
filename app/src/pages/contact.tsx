@@ -40,9 +40,6 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.contact)
   }, [session.contact])
 
-  // Function to check whether all the required fields in this page have been filled out.
-  const isRequiredMet = isValidContact
-
   // Set up action button and routing.
   const defaultActionButtonLabelKey = 'continue'
   const reviewActionButtonLabelKey = 'updateAndReturn'
@@ -57,8 +54,8 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
   const [disabled, setDisabled] = useState(true)
   // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
-    setDisabled(!isRequiredMet(form))
-  }, [form, isRequiredMet])
+    setDisabled(!isValidContact(form))
+  }, [form])
 
   // Handle changes to text and textarea fields.
   const handleChangeEvent = (

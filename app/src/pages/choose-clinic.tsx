@@ -4,7 +4,7 @@ import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
@@ -40,10 +40,6 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.chooseClinic)
   }, [session.chooseClinic])
 
-  // Function to check whether all the required fields in this page have been filled out.
-  // React wants this to be wrapped in a useCallback(), but it can be an empty dependency array.
-  const isRequiredMet = useCallback(isValidChooseClinic, [])
-
   // Set up action button and routing.
   const defaultActionButton: ButtonLinkProps = {
     labelKey: 'ChooseClinic.button',
@@ -64,8 +60,8 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // Since we need to use useEffect to update this state, this also handles anytime the
   // form state is updated, so we don't need to call the same function in handleChange().
   useEffect(() => {
-    setDisabled(!isRequiredMet(form))
-  }, [form, isRequiredMet])
+    setDisabled(!isValidChooseClinic(form))
+  }, [form])
 
   // Page specific states & consts.
   // The max number of clinic results to show the user.

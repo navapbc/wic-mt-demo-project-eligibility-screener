@@ -37,9 +37,6 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.income)
   }, [session.income])
 
-  // Function to check whether all the required fields in this page have been filled out.
-  const isRequiredMet = isValidIncome
-
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
   const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
@@ -51,8 +48,8 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
   // Since we need to use useEffect to update this state, this also handles anytime the
   // form state is updated, so we don't need to call the same function in handleChange().
   useEffect(() => {
-    setDisabled(!isRequiredMet(form))
-  }, [form, isRequiredMet])
+    setDisabled(!isValidIncome(form))
+  }, [form])
 
   // Page-specific consts.
   // Get the allowed household sizes from the json file.
