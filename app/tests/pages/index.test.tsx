@@ -28,8 +28,8 @@ it('should pass accessibility scan', async () => {
   await testAccessibility(<Index forwardRoute={forwardRoute} />)
 })
 
-it('should have an action button that routes to /how-it-works', async () => {
+it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
   const element = <Index forwardRoute={forwardRoute} />
-  testActionButtonRoute(element, '/how-it-works', 'Started', user)
+  testActionButtonRoute(element, forwardRoute, 'Started', user)
 })

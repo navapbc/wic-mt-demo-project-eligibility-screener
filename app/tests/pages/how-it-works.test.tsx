@@ -31,10 +31,10 @@ it('should pass accessibility scan', async () => {
   )
 })
 
-it('should have an action button that routes to /eligibility', async () => {
+it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
   const element = (
     <HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />
   )
-  testActionButtonRoute(element, '/eligibility', 'Check', user)
+  testActionButtonRoute(element, forwardRoute, 'Check', user)
 })

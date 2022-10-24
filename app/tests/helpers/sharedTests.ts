@@ -52,7 +52,7 @@ export async function testActionButtonRoute(
 ) {
   render(element)
   const button = screen.getByRole('button', {
-    name: new RegExp(buttonText),
+    name: new RegExp(buttonText, 'i'),
   })
   await user.click(button)
   expect(singletonRouter).toMatchObject({ asPath: route })

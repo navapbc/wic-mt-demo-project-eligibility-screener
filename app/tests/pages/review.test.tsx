@@ -58,7 +58,7 @@ it('should have a back link that matches the backRoute', () => {
   )
 })
 
-it('should have an action button that routes to /confirmation', async () => {
+it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
   const element = (
     <Review
@@ -67,5 +67,5 @@ it('should have an action button that routes to /confirmation', async () => {
       forwardRoute={forwardRoute}
     />
   )
-  testActionButtonRoute(element, '/confirmation', 'Submit', user)
+  testActionButtonRoute(element, forwardRoute, 'Submit', user)
 })
