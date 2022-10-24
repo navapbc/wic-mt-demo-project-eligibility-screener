@@ -4,7 +4,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
 
-const Index: NextPage = () => {
+import type { Page } from '@src/types'
+
+const Index: NextPage<Page> = (props: Page) => {
+  const { forwardRoute = '' } = props
   // @TODO: think about way to consolidate keys. perhaps don't auto-sort the translation file
   //        and using https://www.i18next.com/translation-function/objects-and-arrays
   const listCopyKeys: string[] = ['benefits', 'supplement', 'voluntary']
@@ -23,7 +26,7 @@ const Index: NextPage = () => {
         ))}
       </ul>
       <Trans i18nKey="Index.time" />
-      <ButtonLink href="/how-it-works" labelKey="Index.button" />
+      <ButtonLink href={forwardRoute} labelKey="Index.button" />
     </>
   )
 }
