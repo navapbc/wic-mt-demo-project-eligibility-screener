@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
@@ -12,13 +12,15 @@ import type { EditablePage, EligibilityData } from '@src/types'
 import { isValidEligibility } from '@utils/dataValidation'
 import { initialEligibilityData } from '@utils/sessionData'
 
-interface EligibilityProps extends EditablePage {
-  backRoute: string
-}
-
-const Eligibility: NextPage<EligibilityProps> = (props: EligibilityProps) => {
+const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false, backRoute } = props
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
   // Initialize form as a state using blank values.
   const [form, setForm] = useState<EligibilityData>(initialEligibilityData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -29,44 +31,8 @@ const Eligibility: NextPage<EligibilityProps> = (props: EligibilityProps) => {
   // Function to check whether all the required fields in this page have been filled out.
   const isRequiredMet = isValidEligibility
 
-  // Function to update button route.
-  // Route the user to /other-benefits if they do not meet basic eligibility requirements.
-  // Route the user to /income if they do not meet adjunctive eligibility requirements.
-  // Otherwise, route the user to /choose-clinic.
-  const getRouting = useCallback(
-    (formToCheck: EligibilityData) => {
-      let nextPage = '/other-benefits'
-
-      // Short circuit early if the requirements are not met.
-      if (!isRequiredMet(formToCheck)) {
-        return nextPage
-      }
-
-      const isResident = formToCheck.residential === 'yes'
-      const hasCategory =
-        !formToCheck.categorical.includes('none') &&
-        formToCheck.categorical.length > 0
-      if (isResident && hasCategory) {
-        if (formToCheck.adjunctive.includes('none')) {
-          nextPage = '/income'
-        } else {
-          nextPage = '/choose-clinic'
-        }
-      }
-      return nextPage
-    },
-    [isRequiredMet]
-  )
-
   // Set up action button and routing.
   const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
-  const [actionButtonRoute, setActionButtonRoute] = useState(
-    reviewMode ? '/review' : getRouting(form)
-  )
-  // Use useEffect() to set the proper route on page mount.
-  useEffect(() => {
-    setActionButtonRoute(getRouting(form))
-  }, [form, getRouting])
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
@@ -216,7 +182,7 @@ const Eligibility: NextPage<EligibilityProps> = (props: EligibilityProps) => {
           )}
         />
         <ButtonLink
-          href={actionButtonRoute}
+          href={forwardRoute}
           labelKey={actionButtonLabel}
           disabled={disabled}
         />

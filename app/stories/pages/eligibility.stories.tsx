@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import EligibilityPage from '@pages/eligibility'
 
-import { getBackRoute } from '@utils/routing'
+import { getBackRoute, getForwardRoute } from '@utils/routing'
 
 import {
   getEmptyMockSession,
@@ -27,6 +27,8 @@ const Template: ComponentStory<typeof EligibilityPage> = (args) => {
   args.session = session
   args.setSession = setSession
   args.backRoute = getBackRoute('/eligibility', session)
+  const reviewMode = args.reviewMode === undefined ? false : args.reviewMode
+  args.forwardRoute = getForwardRoute('/eligibility', reviewMode, session)
   return <EligibilityPage {...args} />
 }
 

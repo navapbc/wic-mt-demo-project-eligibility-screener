@@ -7,6 +7,7 @@ import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
   testActionButtonReviewMode,
+  testActionButtonRoute,
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
@@ -18,6 +19,7 @@ import { invalidEligibilityCombinations } from '../utils/dataValidation/isValidE
 
 const route = '/eligibility'
 const backRoute = '/how-it-works'
+const forwardRoute = '/income'
 
 /**
  * Begin tests
@@ -30,6 +32,7 @@ it('should match full page snapshot', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -41,6 +44,7 @@ it('should pass accessibility scan', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -53,6 +57,7 @@ it('action button should render differently in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     route
   )
@@ -65,6 +70,7 @@ it('should have a back link that matches the backRoute in default mode', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -78,6 +84,7 @@ it('should have a back link that matches the backRoute in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -98,6 +105,7 @@ it.each(invalidEligibilityCombinations)(
         session={mockSession}
         setSession={setMockSession}
         backRoute={backRoute}
+        forwardRoute={forwardRoute}
       />
     )
 
@@ -120,6 +128,7 @@ it('action button should be enabled if all requirements are met', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -139,6 +148,7 @@ it('should display user values on refresh/page load', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -167,6 +177,7 @@ it('action button should stay disabled until all requirements are met and re-dis
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
   const button = screen.getByRole('button', { name: /Continue/i })
@@ -235,6 +246,7 @@ it('should uncheck all other checkboxes when None of the Above is checked', asyn
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -254,6 +266,7 @@ it('should uncheck None of the Above if another option is checked', async () => 
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -266,86 +279,15 @@ it('should uncheck None of the Above if another option is checked', async () => 
   expect(none).not.toBeChecked()
 })
 
-it('should route to /other-benefits by default', async () => {
+it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
-  mockSession.eligibility = {
-    residential: 'anything',
-    categorical: ['anything'],
-    previouslyEnrolled: 'anything',
-    adjunctive: ['anything'],
-  }
-  render(
+  const element = (
     <Eligibility
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
-
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/other-benefits' })
-})
-
-it('should route to /other-benefits if categorical includes none', async () => {
-  const { mockSession, user } = setup(route)
-  mockSession.eligibility = {
-    residential: 'yes',
-    categorical: ['anything', 'none'],
-    previouslyEnrolled: 'anything',
-    adjunctive: ['anything'],
-  }
-  render(
-    <Eligibility
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-    />
-  )
-
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/other-benefits' })
-})
-
-it('should route to /income if adjunctive includes none', async () => {
-  const { mockSession, user } = setup(route)
-  mockSession.eligibility = {
-    residential: 'yes',
-    categorical: ['anything'],
-    previouslyEnrolled: 'anything',
-    adjunctive: ['anything', 'none'],
-  }
-  render(
-    <Eligibility
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-    />
-  )
-
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/income' })
-})
-
-it('should route to /choose-clinic if adjunctive qualifies', async () => {
-  const { mockSession, user } = setup(route)
-  mockSession.eligibility = {
-    residential: 'yes',
-    categorical: ['anything'],
-    previouslyEnrolled: 'anything',
-    adjunctive: ['anything'],
-  }
-  render(
-    <Eligibility
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-    />
-  )
-
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/choose-clinic' })
+  testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })
