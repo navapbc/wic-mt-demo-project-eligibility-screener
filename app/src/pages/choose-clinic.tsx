@@ -8,6 +8,7 @@ import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
+import { ButtonLinkProps } from '@components/ButtonLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
@@ -23,15 +24,15 @@ const ClinicSelectionList = dynamic(
   }
 )
 
-interface ChooseClinicProps extends EditablePage {
-  backRoute: string
-}
-
-const ChooseClinic: NextPage<ChooseClinicProps> = (
-  props: ChooseClinicProps
-) => {
+const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false, backRoute } = props
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
   // Initialize form as a state using blank values.
   const [form, setForm] = useState<ChooseClinicData>(initialChooseClinicData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -43,19 +44,14 @@ const ChooseClinic: NextPage<ChooseClinicProps> = (
   // React wants this to be wrapped in a useCallback(), but it can be an empty dependency array.
   const isRequiredMet = useCallback(isValidChooseClinic, [])
 
-  // Function to update button route.
-  const getRouting = () => {
-    return '/contact'
-  }
-
   // Set up action button and routing.
-  const defaultActionButton = {
+  const defaultActionButton: ButtonLinkProps = {
     labelKey: 'ChooseClinic.button',
-    route: getRouting(),
+    href: forwardRoute,
   }
-  const reviewActionButton = {
+  const reviewActionButton: ButtonLinkProps = {
     labelKey: 'updateAndReturn',
-    route: '/review',
+    href: forwardRoute,
   }
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.

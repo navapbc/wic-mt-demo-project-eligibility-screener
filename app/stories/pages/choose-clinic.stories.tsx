@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ChooseClinicPage from '@pages/choose-clinic'
 
-import { getBackRoute } from '@utils/routing'
+import { getBackRoute, getForwardRoute } from '@utils/routing'
 
 import {
   getEmptyMockSession,
@@ -27,6 +27,8 @@ const Template: ComponentStory<typeof ChooseClinicPage> = (args) => {
   args.session = session
   args.setSession = setSession
   args.backRoute = getBackRoute('/choose-clinic', session)
+  const reviewMode = args.reviewMode === undefined ? false : args.reviewMode
+  args.forwardRoute = getForwardRoute('/choose-clinic', reviewMode, session)
   return <ChooseClinicPage {...args} />
 }
 

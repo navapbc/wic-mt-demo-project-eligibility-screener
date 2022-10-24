@@ -15,6 +15,7 @@ import {
 import {
   testAccessibility,
   testActionButtonReviewMode,
+  testActionButtonRoute,
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
@@ -26,6 +27,7 @@ import {
 setupClinicMocks()
 const route = '/choose-clinic'
 const backRoute = '/income'
+const forwardRoute = '/contact'
 const invalidZipCode = 'abcde'
 
 function setZipCode(mockSession: SessionData, type: string): SessionData {
@@ -52,6 +54,7 @@ it('should match full page snapshot', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -63,6 +66,7 @@ it('should pass accessibility scan', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -78,6 +82,7 @@ it('action button should render differently in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     route
   )
@@ -90,6 +95,7 @@ it('should have a back link that matches the backRoute in default mode', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -103,6 +109,7 @@ it('should have a back link that matches the backRoute in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -115,6 +122,7 @@ it('action button should not render if no values are set', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -131,6 +139,7 @@ it('action button should not render if only the zip code is set', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -147,6 +156,7 @@ it('action button should render if only the clinic is set', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -165,6 +175,7 @@ it('action button should be disabled if the zip code is invalid', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -181,6 +192,7 @@ it('action button should render and be enabled if all requirements are met', () 
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -197,6 +209,7 @@ it('should display user values on refresh/page load', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -208,22 +221,19 @@ it('should display user values on refresh/page load', () => {
   expect(radioButtons[0]).toBeChecked()
 })
 
-it('should route to /contact', async () => {
+it('should have an action button that routes to forwardRoute', async () => {
   let { mockSession, user } = setup(route)
   mockSession = setZipCode(mockSession, 'inState')
   mockSession.chooseClinic.clinic = getMockClinic()
-  render(
+  const element = (
     <ChooseClinic
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
-
-  // Check the button should exist and is enabled.
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/contact' })
+  await testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })
 
 it('should display invalid zip code error if an invalid zip code is entered', async () => {
@@ -233,6 +243,7 @@ it('should display invalid zip code error if an invalid zip code is entered', as
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -258,6 +269,7 @@ it('should display out of state zip code error if an out of state zip is entered
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -285,6 +297,7 @@ it('should display a list of clinics if an in state zip is entered', async () =>
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -309,6 +322,7 @@ it('should display expand the list if the button show more button is clicked', a
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -340,6 +354,7 @@ it('should enable the action button when a clinic is selected from the unexpande
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -367,6 +382,7 @@ it('should enable the action button when a clinic is selected from the expanded 
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -399,6 +415,7 @@ it('should remove the clinic list if the zip code field is modified', async () =
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -423,6 +440,7 @@ it('should unselect the option if a new zip is searched', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
