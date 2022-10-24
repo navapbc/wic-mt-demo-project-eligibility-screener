@@ -4,7 +4,7 @@ import { UrlObject } from 'url'
 
 import Button from '@components/Button'
 
-type Props = {
+export type ButtonLinkProps = {
   disabled?: boolean
   labelKey: string
   href: UrlObject | string
@@ -12,7 +12,7 @@ type Props = {
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
-const ButtonLink = (props: Props): ReactElement => {
+const ButtonLink = (props: ButtonLinkProps): ReactElement => {
   const { disabled, href, labelKey, style, onClick } = props
 
   return (

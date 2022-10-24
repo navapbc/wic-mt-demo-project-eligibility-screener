@@ -18,7 +18,9 @@ const Template: ComponentStory<typeof ClinicSelectionListComponent> = (
   args.expandList = expandList
   args.setExpandList = setExpandList
 
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(
+    args.disabled === undefined ? true : args.disabled
+  )
   args.disabled = disabled
 
   const filteredClinics = args.filteredClinics
@@ -44,7 +46,7 @@ SavedState.args = {
   disabled: false,
   continueBtn: {
     labelKey: 'Continue',
-    route: '/',
+    href: '/',
   },
 }
 
@@ -53,6 +55,6 @@ BlankState.args = {
   filteredClinics: mockFilteredClinics,
   continueBtn: {
     labelKey: 'Continue',
-    route: '/',
+    href: '/',
   },
 }

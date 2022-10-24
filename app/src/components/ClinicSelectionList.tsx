@@ -9,7 +9,7 @@ import {
 } from 'react'
 
 import Button from '@components/Button'
-import ButtonLink from '@components/ButtonLink'
+import ButtonLink, { ButtonLinkProps } from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
 
@@ -20,10 +20,7 @@ type ClinicSelectionListProps = {
   selectedClinic: typeof clinics[0] | undefined
   handleSelection: (e: ChangeEvent<HTMLInputElement>) => void
   disabled: boolean
-  continueBtn: {
-    labelKey: string
-    route: string
-  }
+  continueBtn: ButtonLinkProps
 }
 
 const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
@@ -95,7 +92,7 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
           </fieldset>
           <ButtonLink
             disabled={disabled}
-            href={continueBtn.route}
+            href={continueBtn.href}
             labelKey={continueBtn.labelKey}
           />
         </form>

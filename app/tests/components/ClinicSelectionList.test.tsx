@@ -23,7 +23,7 @@ const props = {
   disabled: false,
   continueBtn: {
     labelKey: 'continue',
-    route: '/somewhere',
+    href: '/somewhere',
   },
 }
 
