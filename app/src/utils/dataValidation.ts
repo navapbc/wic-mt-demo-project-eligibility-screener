@@ -1,3 +1,5 @@
+import incomeData from '@public/data/income.json'
+
 import type {
   ChooseClinicData,
   ContactData,
@@ -35,7 +37,7 @@ export function isValidEligibility(eligibility: EligibilityData): boolean {
 }
 
 export function isValidIncome(income: IncomeData): boolean {
-  return income.householdSize !== ''
+  return Object.keys(incomeData).includes(income.householdSize)
 }
 
 export function isValidChooseClinic(chooseClinic: ChooseClinicData): boolean {
