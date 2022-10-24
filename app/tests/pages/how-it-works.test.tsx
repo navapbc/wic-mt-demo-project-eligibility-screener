@@ -3,7 +3,7 @@ import HowItWorks from '@pages/how-it-works'
 import { setup } from '../helpers/setup'
 import {
   testAccessibility,
-  testBackLink,
+  testActionButtonRoute,
   testSnapshot,
 } from '../helpers/sharedTests'
 
@@ -29,4 +29,12 @@ it('should pass accessibility scan', async () => {
   await testAccessibility(
     <HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />
   )
+})
+
+it('should have an action button that routes to /eligibility', async () => {
+  const { mockSession, user } = setup(route)
+  const element = (
+    <HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />
+  )
+  testActionButtonRoute(element, '/eligibility', 'Check', user)
 })
