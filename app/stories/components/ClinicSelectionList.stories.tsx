@@ -44,7 +44,7 @@ SavedState.args = {
   filteredClinics: [mockFilteredClinics[1]],
   selectedClinic: mockFilteredClinics[1],
   disabled: false,
-  continueBtn: {
+  actionButton: {
     labelKey: 'Continue',
     href: '/',
   },
@@ -53,7 +53,7 @@ SavedState.args = {
 export const BlankState = Template.bind({})
 BlankState.args = {
   filteredClinics: mockFilteredClinics,
-  continueBtn: {
+  actionButton: {
     labelKey: 'Continue',
     href: '/',
   },

@@ -21,7 +21,7 @@ const props = {
   selectedClinic: mockSelectedClinic,
   handleSelection: jest.fn(),
   disabled: false,
-  continueBtn: {
+  actionButton: {
     labelKey: 'continue',
     href: '/somewhere',
   },

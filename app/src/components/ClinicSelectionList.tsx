@@ -20,7 +20,7 @@ type ClinicSelectionListProps = {
   selectedClinic: typeof clinics[0] | undefined
   handleSelection: (e: ChangeEvent<HTMLInputElement>) => void
   disabled: boolean
-  continueBtn: ButtonLinkProps
+  actionButton: ButtonLinkProps
 }
 
 const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
@@ -31,7 +31,7 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
     selectedClinic,
     handleSelection,
     disabled,
-    continueBtn,
+    actionButton,
   } = props
 
   const unexpandedNumberClinics = 4
@@ -92,8 +92,8 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
           </fieldset>
           <ButtonLink
             disabled={disabled}
-            href={continueBtn.href}
-            labelKey={continueBtn.labelKey}
+            href={actionButton.href}
+            labelKey={actionButton.labelKey}
           />
         </form>
       </>

@@ -40,14 +40,9 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.contact)
   }, [session.contact])
 
-  // Set up action button and routing.
-  const defaultActionButtonLabelKey = 'continue'
-  const reviewActionButtonLabelKey = 'updateAndReturn'
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const continueBtnLabel = reviewMode
-    ? reviewActionButtonLabelKey
-    : defaultActionButtonLabelKey
+  const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
@@ -137,7 +132,7 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
         </fieldset>
         <ButtonLink
           href={forwardRoute}
-          labelKey={continueBtnLabel}
+          labelKey={actionButtonLabel}
           disabled={disabled}
         />
       </form>

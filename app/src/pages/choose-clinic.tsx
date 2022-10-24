@@ -8,7 +8,6 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
-import { ButtonLinkProps } from '@components/ButtonLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
@@ -40,18 +39,11 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
     setForm(session.chooseClinic)
   }, [session.chooseClinic])
 
-  // Set up action button and routing.
-  const defaultActionButton: ButtonLinkProps = {
-    labelKey: 'ChooseClinic.button',
-    href: forwardRoute,
-  }
-  const reviewActionButton: ButtonLinkProps = {
-    labelKey: 'updateAndReturn',
-    href: forwardRoute,
-  }
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const continueBtn = reviewMode ? reviewActionButton : defaultActionButton
+  const actionButtonLabel = reviewMode
+    ? 'updateAndReturn'
+    : 'ChooseClinic.button'
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
@@ -227,7 +219,10 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
         selectedClinic={form.clinic}
         handleSelection={handleSelection}
         disabled={disabled}
-        continueBtn={continueBtn}
+        actionButton={{
+          labelKey: actionButtonLabel,
+          href: forwardRoute,
+        }}
       />
     </>
   )
