@@ -11,6 +11,7 @@ import '@styles/styles.scss'
 import { getBackRoute, getForwardRoute, hasRoutingIssues } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
+// @TODO: add tests for components
 function MyApp({ Component, pageProps }: AppProps) {
   const sessionKey = 'session'
   const [session, setSession] = useSessionStorage(
@@ -26,7 +27,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const reviewMode = router.query.mode === 'review'
 
   // Handle form wizard page access.
-  // @TODO: perhaps find a way for this to only run on initial page load, not every time session is updated
   useEffect(() => {
     try {
       const outcome = hasRoutingIssues(router.pathname, session)
@@ -47,14 +47,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router, session])
 
   // Handle back link.
-  // @TODO: fix back route for when in review mode
   const backRoute = getBackRoute(router.pathname, session)
 
   // Handle action button.
   const forwardRoute = getForwardRoute(router.pathname, reviewMode, session)
 
-  // @TODO: fix conditional routing for /eligibility page with regard to review
-  // @TODO: add tests for components
   const props = {
     ...pageProps,
     session,

@@ -14,8 +14,8 @@ interface Props<T> {
   selectedOption?: string
 }
 
-// This component expects pre-translated option strings.
-// @TODO: This should be refactored if its ever used with non-integer options.
+// @TODO: This component expects pre-translated option strings.
+//        It should be refactored if itos ever used with non-integer options.
 const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
   const { handleChange, id, labelKey, options, required, selectedOption } =
     props

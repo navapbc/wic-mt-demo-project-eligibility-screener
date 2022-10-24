@@ -61,7 +61,6 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
     // so manage the array elements.
     else if (type === 'checkbox') {
       // Cast the name as a key in form.
-      // @TODO: refactor to not hard code
       const castName = name as 'categorical' | 'adjunctive'
       // If the checkbox is checked and that checkbox value isn't in the array,
       // add it to the array.

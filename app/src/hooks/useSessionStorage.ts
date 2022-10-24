@@ -22,7 +22,7 @@ export default function useSessionStorage(
 
       return state
     } catch (error) {
-      // TODO: error handling
+      // @TODO: Production-readiness: handle more robust logging and error handling.
       console.log(error)
       return initialValue
     }
@@ -48,7 +48,7 @@ export default function useSessionStorage(
 
 export function clearSessionStorage(key: string) {
   if (typeof window === 'undefined') {
-    // @TODO: More robust logging and error handling
+    // @TODO: Production-readiness: handle more robust logging and error handling.
     console.log('Not in client context')
   } else {
     window.sessionStorage.removeItem(key)

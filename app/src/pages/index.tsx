@@ -8,8 +8,10 @@ import type { Page } from '@src/types'
 
 const Index: NextPage<Page> = (props: Page) => {
   const { forwardRoute = '' } = props
-  // @TODO: think about way to consolidate keys. perhaps don't auto-sort the translation file
-  //        and using https://www.i18next.com/translation-function/objects-and-arrays
+  // @TODO: https://wicmtdp.atlassian.net/browse/WMDP-252
+  //        Move as much translation content out of code as possible.
+  //        Consider removing auto-sort on translation files and
+  //        using https://www.i18next.com/translation-function/objects-and-arrays.
   const listCopyKeys: string[] = ['benefits', 'supplement', 'voluntary']
 
   return (
