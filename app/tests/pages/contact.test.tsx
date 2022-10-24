@@ -7,6 +7,7 @@ import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
   testActionButtonReviewMode,
+  testActionButtonRoute,
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
@@ -18,6 +19,7 @@ import { invalidContactCombinations } from '../utils/dataValidation/isValidConta
 
 const route = '/contact'
 const backRoute = '/choose-clinic'
+const forwardRoute = '/review'
 
 /**
  * Begin tests
@@ -30,6 +32,7 @@ it('should match full page snapshot', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -41,6 +44,7 @@ it('should pass accessibility scan', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -53,6 +57,7 @@ it('action button should render differently in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     route
   )
@@ -65,6 +70,7 @@ it('should have a back link that matches the backRoute in default mode', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -78,9 +84,30 @@ it('should have a back link that matches the backRoute in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
+})
+
+it('should have an action button that routes to forwardRoute', async () => {
+  const { mockSession, user } = setup(route)
+  mockSession.contact = {
+    firstName: 'Jack',
+    lastName: 'O Lantern',
+    phone: '123-123-1234',
+    comments: '',
+  }
+  const element = (
+    <Contact
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+    />
+  )
+
+  await testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })
 
 it.each(invalidContactCombinations)(
@@ -96,6 +123,7 @@ it.each(invalidContactCombinations)(
         session={mockSession}
         setSession={setMockSession}
         backRoute={backRoute}
+        forwardRoute={forwardRoute}
       />
     )
 
@@ -112,6 +140,7 @@ it('number input should not allow non-numbers', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -129,6 +158,7 @@ it('number input should visually format number', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -149,6 +179,7 @@ it('action button should be enabled if all requirements are met', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -168,6 +199,7 @@ it('should display user values on refresh/page load', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -192,6 +224,7 @@ it('action button should stay disabled until all requirements are met and re-dis
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
   const button = screen.getByRole('button', { name: /Continue/i })
@@ -237,25 +270,4 @@ it('action button should stay disabled until all requirements are met and re-dis
   await user.type(firstName, 'Jacques')
   expect(firstName).toHaveValue('Jacques')
   expect(button).not.toBeDisabled()
-})
-
-it('should route to /review', async () => {
-  const { mockSession, user } = setup(route)
-  mockSession.contact = {
-    firstName: 'Jack',
-    lastName: 'O Lantern',
-    phone: '123-123-1234',
-    comments: '',
-  }
-  render(
-    <Contact
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-    />
-  )
-
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/review' })
 })

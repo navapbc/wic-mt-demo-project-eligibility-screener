@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ContactPage from '@pages/contact'
 
-import { getBackRoute } from '@utils/routing'
+import { getBackRoute, getForwardRoute } from '@utils/routing'
 
 import {
   getEmptyMockSession,
@@ -27,6 +27,8 @@ const Template: ComponentStory<typeof ContactPage> = (args) => {
   args.session = session
   args.setSession = setSession
   args.backRoute = getBackRoute('/contact', session)
+  const reviewMode = args.reviewMode === undefined ? false : args.reviewMode
+  args.forwardRoute = getForwardRoute('/contact', reviewMode, session)
   return <ContactPage {...args} />
 }
 
