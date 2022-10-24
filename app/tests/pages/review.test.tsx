@@ -67,5 +67,5 @@ it('should have an action button that routes to forwardRoute', async () => {
       forwardRoute={forwardRoute}
     />
   )
-  testActionButtonRoute(element, forwardRoute, 'Submit', user)
+  await testActionButtonRoute(element, forwardRoute, 'Submit', user)
 })

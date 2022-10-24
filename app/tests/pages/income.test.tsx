@@ -90,6 +90,19 @@ it('should have a back link that matches the backRoute in review mode', () => {
   )
 })
 
+it('should have an action button that routes to forwardRoute', async () => {
+  const { mockSession, user } = setup(route)
+  const element = (
+    <Income
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+    />
+  )
+  await testActionButtonRoute(element, forwardRoute, 'Continue', user)
+})
+
 it('action button should be disabled by default', () => {
   const { mockSession } = setup(route)
   render(
@@ -178,17 +191,4 @@ it('action button should stay disabled until all requirements are met and re-dis
   expect(optionOne.selected).toBe(true)
   // The button should be enabled.
   expect(button).not.toBeDisabled()
-})
-
-it('should have an action button that routes to forwardRoute', async () => {
-  const { mockSession, user } = setup(route)
-  const element = (
-    <Income
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-      forwardRoute={forwardRoute}
-    />
-  )
-  testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })

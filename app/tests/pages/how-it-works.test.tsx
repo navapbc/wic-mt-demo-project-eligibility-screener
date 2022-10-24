@@ -36,5 +36,5 @@ it('should have an action button that routes to forwardRoute', async () => {
   const element = (
     <HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />
   )
-  testActionButtonRoute(element, forwardRoute, 'Check', user)
+  await testActionButtonRoute(element, forwardRoute, 'Check', user)
 })

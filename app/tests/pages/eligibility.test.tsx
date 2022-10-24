@@ -90,6 +90,19 @@ it('should have a back link that matches the backRoute in review mode', () => {
   )
 })
 
+it('should have an action button that routes to forwardRoute', async () => {
+  const { mockSession, user } = setup(route)
+  const element = (
+    <Eligibility
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+    />
+  )
+  await testActionButtonRoute(element, forwardRoute, 'Continue', user)
+})
+
 it.each(invalidEligibilityCombinations)(
   'action button should be disabled if %s',
   (description, residential, categorical, previouslyEnrolled, adjunctive) => {
@@ -277,17 +290,4 @@ it('should uncheck None of the Above if another option is checked', async () => 
 
   expect(fdpir).toBeChecked()
   expect(none).not.toBeChecked()
-})
-
-it('should have an action button that routes to forwardRoute', async () => {
-  const { mockSession, user } = setup(route)
-  const element = (
-    <Eligibility
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-      forwardRoute={forwardRoute}
-    />
-  )
-  testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })

@@ -115,6 +115,21 @@ it('should have a back link that matches the backRoute in review mode', () => {
   )
 })
 
+it('should have an action button that routes to forwardRoute', async () => {
+  let { mockSession, user } = setup(route)
+  mockSession = setZipCode(mockSession, 'inState')
+  mockSession.chooseClinic.clinic = getMockClinic()
+  const element = (
+    <ChooseClinic
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+    />
+  )
+  await testActionButtonRoute(element, forwardRoute, 'Continue', user)
+})
+
 it('action button should not render if no values are set', () => {
   const { mockSession } = setup(route)
   render(
@@ -219,21 +234,6 @@ it('should display user values on refresh/page load', () => {
   const radioButtons = screen.getAllByRole('radio')
   expect(radioButtons.length).toBe(1)
   expect(radioButtons[0]).toBeChecked()
-})
-
-it('should have an action button that routes to forwardRoute', async () => {
-  let { mockSession, user } = setup(route)
-  mockSession = setZipCode(mockSession, 'inState')
-  mockSession.chooseClinic.clinic = getMockClinic()
-  const element = (
-    <ChooseClinic
-      session={mockSession}
-      setSession={setMockSession}
-      backRoute={backRoute}
-      forwardRoute={forwardRoute}
-    />
-  )
-  await testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })
 
 it('should display invalid zip code error if an invalid zip code is entered', async () => {
