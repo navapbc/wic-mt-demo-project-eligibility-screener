@@ -1,8 +1,11 @@
 import { act, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 import mockRouter from 'next-router-mock'
+import singletonRouter from 'next/router'
 import { ReactElement } from 'react'
 import renderer from 'react-test-renderer'
+
+import { UserEventReturn } from './setup'
 
 export function testSnapshot(element: ReactElement) {
   const tree = renderer.create(element).toJSON()
@@ -39,4 +42,18 @@ export function testActionButtonReviewMode(
 
   const button = screen.getByRole('button', { name: /Update/i })
   expect(button).toBeInTheDocument()
+}
+
+export async function testActionButtonRoute(
+  element: ReactElement,
+  route: string,
+  buttonText: string,
+  user: UserEventReturn
+) {
+  render(element)
+  const button = screen.getByRole('button', {
+    name: new RegExp(buttonText),
+  })
+  await user.click(button)
+  expect(singletonRouter).toMatchObject({ asPath: route })
 }

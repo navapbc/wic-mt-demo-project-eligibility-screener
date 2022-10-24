@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import singletonRouter from 'next/router'
 
 import Review from '@pages/review'
 
@@ -7,6 +6,7 @@ import { getMockSessionData } from '../helpers/mockData'
 import { setup } from '../helpers/setup'
 import {
   testAccessibility,
+  testActionButtonRoute,
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
@@ -58,17 +58,14 @@ it('should have a back link that matches the backRoute', () => {
   )
 })
 
-it('should route to /confirmation', async () => {
+it('should have an action button that routes to /confirmation', async () => {
   const { mockSession, user } = setup(route)
-  render(
+  const element = (
     <Review
       session={mockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
     />
   )
-
-  const button = screen.getByRole('button', { name: /Submit/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/confirmation' })
+  testActionButtonRoute(element, '/confirmation', 'Submit', user)
 })

@@ -13,7 +13,7 @@ import { getEmptyMockSession } from './mockData'
  */
 // Return type taken from
 // https://github.com/testing-library/user-event/pull/983#issuecomment-1185537044
-type UserEventReturn = ReturnType<typeof userEvent['setup']>
+export type UserEventReturn = ReturnType<typeof userEvent['setup']>
 
 interface SetupReturn {
   user: UserEventReturn
