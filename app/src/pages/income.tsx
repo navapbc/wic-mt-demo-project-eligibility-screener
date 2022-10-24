@@ -21,13 +21,15 @@ const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
   ssr: false,
 })
 
-interface IncomeProps extends EditablePage {
-  backRoute: string
-}
-
-const Income: NextPage<IncomeProps> = (props: IncomeProps) => {
+const Income: NextPage<EditablePage> = (props: EditablePage) => {
   // Get the session from props.
-  const { session, setSession, reviewMode = false, backRoute } = props
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
   // Initialize form as a state with blank values.
   const [form, setForm] = useState<IncomeData>(initialIncomeData)
   // Use useEffect() to properly load the data from session storage during react hydration.
@@ -38,23 +40,9 @@ const Income: NextPage<IncomeProps> = (props: IncomeProps) => {
   // Function to check whether all the required fields in this page have been filled out.
   const isRequiredMet = isValidIncome
 
-  // Function to update button route.
-  const getRouting = () => {
-    return '/choose-clinic'
-  }
-
-  // Set up action button and routing.
-  const defaultActionButton = {
-    labelKey: 'continue',
-    route: getRouting(),
-  }
-  const reviewActionButton = {
-    labelKey: 'updateAndReturn',
-    route: '/review',
-  }
   // If the user is reviewing previously entered data, use the review button.
   // Otherwise, use the default button.
-  const continueBtn = reviewMode ? reviewActionButton : defaultActionButton
+  const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
 
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
@@ -164,8 +152,8 @@ const Income: NextPage<IncomeProps> = (props: IncomeProps) => {
           </p>
         </fieldset>
         <ButtonLink
-          href={continueBtn.route}
-          labelKey={continueBtn.labelKey}
+          href={forwardRoute}
+          labelKey={actionButtonLabel}
           disabled={disabled}
         />
       </form>

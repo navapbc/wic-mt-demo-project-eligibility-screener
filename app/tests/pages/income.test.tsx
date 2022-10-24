@@ -7,6 +7,7 @@ import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
   testActionButtonReviewMode,
+  testActionButtonRoute,
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
@@ -17,6 +18,7 @@ import {
 
 const route = '/income'
 const backRoute = '/eligibility'
+const forwardRoute = '/choose-clinic'
 const mockHouseholdSize = '1'
 
 /**
@@ -30,6 +32,7 @@ it('should match full page snapshot', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -41,6 +44,7 @@ it('should pass accessibility scan', async () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -53,6 +57,7 @@ it('action button should render differently in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     route
   )
@@ -65,6 +70,7 @@ it('should have a back link that matches the backRoute in default mode', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -78,6 +84,7 @@ it('should have a back link that matches the backRoute in review mode', () => {
       setSession={setMockSession}
       reviewMode={true}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -90,6 +97,7 @@ it('action button should be disabled by default', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -106,6 +114,7 @@ it('action button should be enabled if all requirements are met', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -122,6 +131,7 @@ it('should display user values on refresh/page load', () => {
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 
@@ -139,6 +149,7 @@ it('action button should stay disabled until all requirements are met and re-dis
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
   const button = screen.getByRole('button', { name: /Continue/i })
@@ -169,20 +180,15 @@ it('action button should stay disabled until all requirements are met and re-dis
   expect(button).not.toBeDisabled()
 })
 
-it('should route to /choose-clinic', async () => {
+it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
-  mockSession.income = {
-    householdSize: mockHouseholdSize,
-  }
-  render(
+  const element = (
     <Income
       session={mockSession}
       setSession={setMockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
-
-  const button = screen.getByRole('button', { name: /Continue/i })
-  await user.click(button)
-  expect(singletonRouter).toMatchObject({ asPath: '/choose-clinic' })
+  testActionButtonRoute(element, forwardRoute, 'Continue', user)
 })

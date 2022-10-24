@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import IncomePage from '@pages/income'
 
-import { getBackRoute } from '@utils/routing'
+import { getBackRoute, getForwardRoute } from '@utils/routing'
 
 import {
   getEmptyMockSession,
@@ -27,6 +27,8 @@ const Template: ComponentStory<typeof IncomePage> = (args) => {
   args.session = session
   args.setSession = setSession
   args.backRoute = getBackRoute('/income', session)
+  const reviewMode = args.reviewMode === undefined ? false : args.reviewMode
+  args.forwardRoute = getForwardRoute('/income', reviewMode, session)
   return <IncomePage {...args} />
 }
 
