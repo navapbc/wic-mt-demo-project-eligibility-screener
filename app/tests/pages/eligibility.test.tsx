@@ -3,6 +3,7 @@ import singletonRouter from 'next/router'
 
 import Eligibility from '@pages/eligibility'
 
+import { getMockEligibilityData } from '../helpers/mockData'
 import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
@@ -92,6 +93,7 @@ it('should have a back link that matches the backRoute in review mode', () => {
 
 it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
+  mockSession.eligibility = getMockEligibilityData()
   const element = (
     <Eligibility
       session={mockSession}

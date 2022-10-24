@@ -92,6 +92,9 @@ it('should have a back link that matches the backRoute in review mode', () => {
 
 it('should have an action button that routes to forwardRoute', async () => {
   const { mockSession, user } = setup(route)
+  mockSession.income = {
+    householdSize: mockHouseholdSize,
+  }
   const element = (
     <Income
       session={mockSession}
