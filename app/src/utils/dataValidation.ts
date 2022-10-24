@@ -10,13 +10,27 @@ export function isValidZipCode(zipCode: string): boolean {
   return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode)
 }
 
-// @TODO: tighten up validation to be only for acceptable keys
+export const validEligibilityOptions = {
+  residential: ['yes', 'no'],
+  categorical: ['pregnant', 'baby', 'child', 'guardian', 'loss', 'none'],
+  previouslyEnrolled: ['yes', 'no'],
+  adjunctive: ['insurance', 'snap', 'tanf', 'fdpir', 'none'],
+}
+
 export function isValidEligibility(eligibility: EligibilityData): boolean {
   return (
-    eligibility.residential !== '' &&
+    validEligibilityOptions.residential.includes(eligibility.residential) &&
     eligibility.categorical.length > 0 &&
-    eligibility.previouslyEnrolled !== '' &&
-    eligibility.adjunctive.length > 0
+    eligibility.categorical.every((item) =>
+      validEligibilityOptions.categorical.includes(item)
+    ) &&
+    validEligibilityOptions.previouslyEnrolled.includes(
+      eligibility.previouslyEnrolled
+    ) &&
+    eligibility.adjunctive.length > 0 &&
+    eligibility.adjunctive.every((item) =>
+      validEligibilityOptions.adjunctive.includes(item)
+    )
   )
 }
 

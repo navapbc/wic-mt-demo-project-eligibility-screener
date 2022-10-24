@@ -134,10 +134,10 @@ it('action button should be enabled if all requirements are met', () => {
   const { mockSession } = setup(route)
 
   // Set the initial mock session values
-  mockSession.eligibility.residential = 'anything'
-  mockSession.eligibility.categorical = ['anything']
-  mockSession.eligibility.previouslyEnrolled = 'anything'
-  mockSession.eligibility.adjunctive = ['anything']
+  mockSession.eligibility.residential = 'yes'
+  mockSession.eligibility.categorical = ['pregnant']
+  mockSession.eligibility.previouslyEnrolled = 'no'
+  mockSession.eligibility.adjunctive = ['tanf']
   render(
     <Eligibility
       session={mockSession}

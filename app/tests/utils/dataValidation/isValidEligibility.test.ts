@@ -1,12 +1,73 @@
 import { EligibilityData } from '@src/types'
-import { isValidEligibility } from '@utils/dataValidation'
+import {
+  isValidEligibility,
+  validEligibilityOptions,
+} from '@utils/dataValidation'
+
+const validResidential = validEligibilityOptions.residential[0]
+const validCategorical = validEligibilityOptions.categorical[0]
+const validPreviouslyEnrolled = validEligibilityOptions.previouslyEnrolled[0]
+const validAdjunctive = validEligibilityOptions.adjunctive[0]
 
 export const invalidEligibilityCombinations = [
   ['no values are set', '', [], '', []],
-  ['residential is not set', '', ['anything'], 'anything', ['anything']],
-  ['categorical is not set', 'anything', [], 'anything', ['anything']],
-  ['previouslyEnrolled is not set', 'anything', ['anything'], '', ['anything']],
-  ['adjunctive is not set', 'anything', ['anything'], 'anything', []],
+  [
+    'residential is not set',
+    '',
+    [validCategorical],
+    validPreviouslyEnrolled,
+    [validAdjunctive],
+  ],
+  [
+    'categorical is not set',
+    validResidential,
+    [],
+    validPreviouslyEnrolled,
+    [validAdjunctive],
+  ],
+  [
+    'previouslyEnrolled is not set',
+    validResidential,
+    [validCategorical],
+    '',
+    [validAdjunctive],
+  ],
+  [
+    'adjunctive is not set',
+    validResidential,
+    [validCategorical],
+    validPreviouslyEnrolled,
+    [],
+  ],
+
+  [
+    'residential is not a valid option',
+    'something else',
+    [validCategorical],
+    validPreviouslyEnrolled,
+    [validAdjunctive],
+  ],
+  [
+    'categorical is not a valid option',
+    validResidential,
+    ['something else'],
+    validPreviouslyEnrolled,
+    [validAdjunctive],
+  ],
+  [
+    'previouslyEnrolled is not a valid option',
+    validResidential,
+    [validCategorical],
+    'something else',
+    [validAdjunctive],
+  ],
+  [
+    'adjunctive is not a valid option',
+    validResidential,
+    [validCategorical],
+    validPreviouslyEnrolled,
+    ['something else'],
+  ],
 ]
 
 it.each(invalidEligibilityCombinations)(
@@ -24,10 +85,10 @@ it.each(invalidEligibilityCombinations)(
 
 it('should be valid if all the requirements are met', () => {
   const eligibility = {
-    residential: 'anything',
-    categorical: ['anything'],
-    previouslyEnrolled: 'anything',
-    adjunctive: ['anything'],
+    residential: validResidential,
+    categorical: [validCategorical],
+    previouslyEnrolled: validPreviouslyEnrolled,
+    adjunctive: [validAdjunctive],
   }
   expect(isValidEligibility(eligibility)).toBe(true)
 })

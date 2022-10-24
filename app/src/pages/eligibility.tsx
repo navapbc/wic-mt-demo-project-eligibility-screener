@@ -9,7 +9,10 @@ import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
 import type { EditablePage, EligibilityData } from '@src/types'
-import { isValidEligibility } from '@utils/dataValidation'
+import {
+  isValidEligibility,
+  validEligibilityOptions,
+} from '@utils/dataValidation'
 import { initialEligibilityData } from '@utils/sessionData'
 
 const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
@@ -112,7 +115,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
           required
           titleKey="Eligibility.residential"
           type="radio"
-          choices={['yes', 'no'].map((option) => {
+          choices={validEligibilityOptions.residential.map((option) => {
             return {
               checked: form.residential === option,
               handleChange: handleChange,
@@ -130,14 +133,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
           required
           titleKey="Eligibility.categorical"
           type="checkbox"
-          choices={[
-            'pregnant',
-            'baby',
-            'child',
-            'guardian',
-            'loss',
-            'none',
-          ].map((option) => {
+          choices={validEligibilityOptions.categorical.map((option) => {
             return {
               checked: form.categorical.includes(option),
               handleChange: handleChange,
@@ -151,7 +147,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
           required
           titleKey="Eligibility.previouslyEnrolled"
           type="radio"
-          choices={['yes', 'no'].map((option) => {
+          choices={validEligibilityOptions.previouslyEnrolled.map((option) => {
             return {
               checked: form.previouslyEnrolled === option,
               handleChange: handleChange,
@@ -165,17 +161,15 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
           required
           titleKey="Eligibility.adjunctive"
           type="checkbox"
-          choices={['insurance', 'snap', 'tanf', 'fdpir', 'none'].map(
-            (option) => {
-              return {
-                checked: form.adjunctive.includes(option),
-                handleChange: handleChange,
-                labelKey: `Eligibility.${option}`,
-                name: 'adjunctive',
-                value: option,
-              }
+          choices={validEligibilityOptions.adjunctive.map((option) => {
+            return {
+              checked: form.adjunctive.includes(option),
+              handleChange: handleChange,
+              labelKey: `Eligibility.${option}`,
+              name: 'adjunctive',
+              value: option,
             }
-          )}
+          })}
         />
         <ButtonLink
           href={forwardRoute}
