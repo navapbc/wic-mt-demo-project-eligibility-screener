@@ -10,14 +10,8 @@ import { clearSessionStorage } from '@src/hooks/useSessionStorage'
 import type { ClearablePage } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
-interface OtherBenefitsProps extends ClearablePage {
-  backRoute: string
-}
-
-const OtherBenefits: NextPage<OtherBenefitsProps> = (
-  props: OtherBenefitsProps
-) => {
-  const { setSession, sessionKey, backRoute } = props
+const OtherBenefits: NextPage<ClearablePage> = (props: ClearablePage) => {
+  const { setSession, sessionKey, backRoute = '', forwardRoute = '' } = props
 
   // Handle the action button click for going back to the start of the form wizard.
   const handleClick = () => {
@@ -67,7 +61,7 @@ const OtherBenefits: NextPage<OtherBenefitsProps> = (
       <ButtonLink
         labelKey="OtherBenefits.button"
         onClick={handleClick}
-        href="/"
+        href={forwardRoute}
       />
     </>
   )

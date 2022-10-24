@@ -19,6 +19,7 @@ import {
 
 const route = '/other-benefits'
 const backRoute = '/eligibility'
+const forwardRoute = '/'
 
 /**
  * Begin tests
@@ -32,6 +33,7 @@ it('should match full page snapshot', () => {
       setSession={setMockSession}
       session={mockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -44,6 +46,7 @@ it('should pass accessibility scan', async () => {
       setSession={setMockSession}
       session={mockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
 })
@@ -56,6 +59,7 @@ it('should have a back link that matches the backRoute', () => {
       setSession={setMockSession}
       session={mockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />,
     backRoute
   )
@@ -71,12 +75,13 @@ it('should clear the session and redirect when the button is clicked', async () 
       setSession={setMockSession}
       session={mockSession}
       backRoute={backRoute}
+      forwardRoute={forwardRoute}
     />
   )
   const button = screen.getByRole('button', { name: /Return/i })
   await user.click(button)
 
   expect(setMockSession).toHaveBeenCalledWith(initialSessionData)
-  expect(singletonRouter).toMatchObject({ asPath: '/' })
+  expect(singletonRouter).toMatchObject({ asPath: forwardRoute })
   expect(spy).toHaveBeenCalled()
 })
