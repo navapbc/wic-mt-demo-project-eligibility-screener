@@ -11,7 +11,6 @@ import '@styles/styles.scss'
 import { getBackRoute, getForwardRoute, hasRoutingIssues } from '@utils/routing'
 import { initialSessionData } from '@utils/sessionData'
 
-// @TODO: add tests for components
 function MyApp({ Component, pageProps }: AppProps) {
   const sessionKey = 'session'
   const [session, setSession] = useSessionStorage(
