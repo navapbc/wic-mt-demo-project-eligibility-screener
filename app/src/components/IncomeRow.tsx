@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-type IncomeRowProps = {
+export type IncomeRowProps = {
   periods: string[]
   householdSize: string
   incomeForHouseholdSize: {
