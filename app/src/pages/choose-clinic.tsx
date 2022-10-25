@@ -11,7 +11,7 @@ import BackLink from '@components/BackLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
-import type { ChooseClinicData, EditablePage } from '@src/types'
+import type { ChooseClinicData, Clinic, EditablePage } from '@src/types'
 import { isValidChooseClinic, isValidZipCode } from '@utils/dataValidation'
 import { initialChooseClinicData } from '@utils/sessionData'
 
@@ -62,7 +62,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
   const [expandList, setExpandList] = useState<boolean>(false)
   // A state for holding nearest clinics by zip code.
   const [filteredClinics, setFilteredClinics] = useState<
-    (typeof clinics[0] | undefined)[]
+    (Clinic | undefined)[]
   >(form.clinic ? [form.clinic] : [])
   // Use useEffect() to load the selected clinic into filteredClinics state at component
   // mount if filteredClinics is empty. In other words, if the user has selected a clinic,
@@ -102,13 +102,12 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
       )
         .then(
           (sortedClinics: { default: { id: number; distance: string }[] }) => {
-            const clinicsWithDetails: (typeof clinics[0] | undefined)[] =
+            const clinicsWithDetails: (Clinic | undefined)[] =
               sortedClinics.default
                 .slice(0, numberOfClinicsToReturn)
                 .map((clinic: typeof sortedClinics.default[0]) =>
                   clinics.find(
-                    (clinicDetails: typeof clinics[0]) =>
-                      clinicDetails.id === clinic.id
+                    (clinicDetails: Clinic) => clinicDetails.id === clinic.id
                   )
                 )
                 .filter(Boolean)

@@ -1,4 +1,3 @@
-import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Trans } from 'next-i18next'
 import {
   ChangeEvent,
@@ -13,11 +12,13 @@ import ButtonLink, { ButtonLinkProps } from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
 
+import { Clinic } from '@src/types'
+
 export type ClinicSelectionListProps = {
-  filteredClinics: (typeof clinics[0] | undefined)[]
+  filteredClinics: (Clinic | undefined)[]
   expandList: boolean
   setExpandList: Dispatch<SetStateAction<boolean>> | (() => unknown)
-  selectedClinic: typeof clinics[0] | undefined
+  selectedClinic: Clinic | undefined
   handleSelection: (e: ChangeEvent<HTMLInputElement>) => void
   disabled: boolean
   actionButton: ButtonLinkProps

@@ -1,12 +1,23 @@
-import clinics from '@public/clinic-output/clinics-with-ids.json'
 import { Dispatch, SetStateAction } from 'react'
 import { UrlObject } from 'url'
 
 /*
  * Types relating to persistent user data
  */
+export type Clinic = {
+  id: number
+  agency: string
+  agencyAddress: string
+  agencyTelephone: string
+  clinic: string
+  clinicAddress: string
+  clinicTelephone: string
+  county: string
+  zip: string
+}
+
 export type ChooseClinicData = {
-  clinic: typeof clinics[0] | undefined
+  clinic: Clinic | undefined
   zipCode: string
 }
 
