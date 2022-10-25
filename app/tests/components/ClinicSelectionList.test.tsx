@@ -14,7 +14,7 @@ import { testSnapshot } from '../helpers/sharedTests'
 
 setupClinicMocks()
 const mockSelectedClinic = getMockClinic()
-const props = {
+const testProps = {
   filteredClinics: mockFilteredClinics,
   expandList: false,
   setExpandList: jest.fn(),
@@ -31,64 +31,51 @@ const props = {
  * Begin tests
  */
 it('should match snapshot if the list is not expanded', () => {
-  const testProps = cloneDeep(props)
   testSnapshot(<ClinicSelectionList {...testProps} />)
 })
 
 it('should match snapshot if the list is expanded', () => {
-  const testProps = cloneDeep(props)
-  testProps.expandList = true
-  testSnapshot(<ClinicSelectionList {...testProps} />)
+  testSnapshot(<ClinicSelectionList {...testProps} expandList={true} />)
 })
 
 it('should match snapshot if the list is empty', () => {
-  const testProps = cloneDeep(props)
-  testProps.filteredClinics = []
-  testSnapshot(<ClinicSelectionList {...testProps} />)
+  testSnapshot(<ClinicSelectionList {...testProps} filteredClinics={[]} />)
 })
 
 it('should display the right number of clinics if the list is not expanded', () => {
-  const testProps = cloneDeep(props)
   render(<ClinicSelectionList {...testProps} />)
   const radioButtons = screen.getAllByRole('radio')
   expect(radioButtons.length).toBe(4)
 })
 
 it('should display the right number of clinics if the list is expanded', () => {
-  const testProps = cloneDeep(props)
-  testProps.expandList = true
-  render(<ClinicSelectionList {...testProps} />)
+  render(<ClinicSelectionList {...testProps} expandList={true} />)
   const radioButtons = screen.getAllByRole('radio')
   expect(radioButtons.length).toBe(mockFilteredClinics.length)
 })
 
 it('should not display the show more button if the list is already expanded', () => {
-  const testProps = cloneDeep(props)
-  testProps.expandList = true
-  render(<ClinicSelectionList {...testProps} />)
+  render(<ClinicSelectionList {...testProps} expandList={true} />)
   const button = screen.queryByRole('button', { name: /show more/i })
   expect(button).not.toBeInTheDocument()
 })
 
 it('should not display the show more button if the filterd clinics list has only one clinic', () => {
-  const testProps = cloneDeep(props)
-  testProps.filteredClinics = [getMockClinic()]
-  render(<ClinicSelectionList {...testProps} />)
+  render(
+    <ClinicSelectionList {...testProps} filteredClinics={[getMockClinic()]} />
+  )
   const button = screen.queryByRole('button', { name: /show more/i })
   expect(button).not.toBeInTheDocument()
 })
 
 it('should only display the show more button if the filtered clinics list has multiple and the list is not already expanded', () => {
-  const testProps = cloneDeep(props)
   render(<ClinicSelectionList {...testProps} />)
   const button = screen.getByRole('button', { name: /show more/i })
   expect(button).toBeInTheDocument()
 })
 
 it('should display the selected clinic as selected', () => {
-  const testProps = cloneDeep(props)
-  testProps.expandList = true
-  render(<ClinicSelectionList {...testProps} />)
+  render(<ClinicSelectionList {...testProps} expandList={true} />)
   const radioButton = screen.getByRole('radio', {
     name: new RegExp(mockSelectedClinic.clinic),
   })
@@ -96,9 +83,7 @@ it('should display the selected clinic as selected', () => {
 })
 
 it('should control the action button', () => {
-  const testProps = cloneDeep(props)
-  testProps.disabled = true
-  render(<ClinicSelectionList {...testProps} />)
+  render(<ClinicSelectionList {...testProps} disabled={true} />)
   const button = screen.getByRole('button', { name: /continue/i })
   expect(button).toBeInTheDocument()
   expect(button).toBeDisabled()

@@ -13,7 +13,7 @@ import ButtonLink, { ButtonLinkProps } from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
 
-type ClinicSelectionListProps = {
+export type ClinicSelectionListProps = {
   filteredClinics: (typeof clinics[0] | undefined)[]
   expandList: boolean
   setExpandList: Dispatch<SetStateAction<boolean>> | (() => unknown)
