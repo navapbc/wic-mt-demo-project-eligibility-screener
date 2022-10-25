@@ -5,7 +5,7 @@ import { UrlObject } from 'url'
 import ButtonLink from '@components/ButtonLink'
 import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
 
-type ReviewCollectionProps = {
+export type ReviewCollectionProps = {
   headerKey: string
   reviewElements: ReviewElementProps[]
   editable: boolean
