@@ -3,10 +3,8 @@ import { ChangeEvent, ReactElement } from 'react'
 
 import Required from '@components/Required'
 
-interface Props<T> {
-  handleChange: (
-    e: ChangeEvent<HTMLSelectElement> & { target: { value: T } }
-  ) => void
+export interface DropdownProps {
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void
   id: string
   labelKey: string
   options: string[]
@@ -16,7 +14,7 @@ interface Props<T> {
 
 // @TODO: This component expects pre-translated option strings.
 //        It should be refactored if itos ever used with non-integer options.
-const Dropdown = <T extends string>(props: Props<T>): ReactElement => {
+const Dropdown = (props: DropdownProps): ReactElement => {
   const { handleChange, id, labelKey, options, required, selectedOption } =
     props
 
