@@ -17,16 +17,14 @@ const alertTypes: Array<AlertTypes[]> = [
 ]
 
 it.each(alertTypes)('should match snapshot for %s alerts', (type) => {
-  testProps.type = type
-  const element = <Alert {...testProps} />
+  const element = <Alert {...testProps} type={type} />
   testSnapshot(element)
 })
 
 it.each(alertTypes)(
   'should have the correct css class for %s alerts',
   (type) => {
-    testProps.type = type
-    const element = <Alert {...testProps} />
+    const element = <Alert {...testProps} type={type} />
     render(element)
 
     const alert = screen.getByRole('alert')
@@ -43,8 +41,7 @@ it('should display with no icon if the icon prop is undefined', () => {
 })
 
 it('should display with no icon if the icon prop is false', () => {
-  testProps.icon = false
-  const element = <Alert {...testProps} />
+  const element = <Alert {...testProps} icon={false} />
   render(element)
 
   const alert = screen.getByRole('alert')
@@ -52,8 +49,7 @@ it('should display with no icon if the icon prop is false', () => {
 })
 
 it('should display an icon if the icon prop is true', () => {
-  testProps.icon = true
-  const element = <Alert {...testProps} />
+  const element = <Alert {...testProps} icon={true} />
   render(element)
 
   const alert = screen.getByRole('alert')
