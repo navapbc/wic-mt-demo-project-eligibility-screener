@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 import StyledLink from '@components/StyledLink'
 
-export interface BackLinkProps {
+export type BackLinkProps = {
   href: string
 }
 
