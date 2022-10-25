@@ -3,7 +3,7 @@ import { ChangeEvent, ReactElement } from 'react'
 
 import Required from '@components/Required'
 
-type TextFieldProps = {
+export type TextFieldProps = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void
