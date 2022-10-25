@@ -1,16 +1,13 @@
-import { Meta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import {
-  StyledLink as StyledLinkComponent,
-  StyledLinkProps,
-} from '@components/StyledLink'
+import StyledLinkComponent from '@components/StyledLink'
 
 export default {
   title: 'Components',
   component: StyledLinkComponent,
-} as Meta
+} as ComponentMeta<typeof StyledLinkComponent>
 
-const Template: Story<StyledLinkProps> = (args) => (
+const Template: ComponentStory<typeof StyledLinkComponent> = (args) => (
   <StyledLinkComponent {...args} />
 )
 

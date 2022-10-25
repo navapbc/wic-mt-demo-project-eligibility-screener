@@ -2,7 +2,7 @@ import { Trans } from 'next-i18next'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 
-export interface StyledLinkProps {
+export type StyledLinkProps = {
   href: string
   textKey: string
   external?: boolean
