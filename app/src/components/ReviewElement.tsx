@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 
 export type ReviewElementProps = {
   labelKey: string
-  children: ReactElement | null
+  children: ReactElement | string | null
 }
 
 const ReviewElement = (props: ReviewElementProps): ReactElement => {
