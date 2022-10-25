@@ -1,18 +1,18 @@
 import { Trans } from 'next-i18next'
-import React, { ReactElement } from 'react'
+import { ChangeEvent, ReactElement } from 'react'
 
 import Accordion from '@components/Accordion'
 import Required from '@components/Required'
 
-interface Choice {
+export type Choice = {
   checked: boolean
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   labelKey: string
   name: string
   value: string
 }
 
-type Props = {
+export type InputChoiceGroupProps = {
   accordion?: {
     headerKey: string
     bodyKey: string
@@ -23,7 +23,7 @@ type Props = {
   type: 'checkbox' | 'radio'
 }
 
-const InputChoiceGroup = (props: Props): ReactElement => {
+const InputChoiceGroup = (props: InputChoiceGroupProps): ReactElement => {
   const { accordion, choices, titleKey, required, type } = props
 
   return (
