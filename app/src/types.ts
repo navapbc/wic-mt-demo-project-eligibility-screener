@@ -62,3 +62,8 @@ export interface Page {
 export type ReadOnlyPage = ReadSession & Page
 export type EditablePage = WriteSession & Page
 export type ClearablePage = ClearSession & Page
+
+/**
+ * i18n types.
+ */
+export type i18nKey = string

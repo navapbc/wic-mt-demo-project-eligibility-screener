@@ -3,12 +3,14 @@ import { ChangeEvent, ReactElement } from 'react'
 
 import Required from '@components/Required'
 
+import { i18nKey } from '@src/types'
+
 export type TextFieldProps = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void
   id: string
-  labelKey: string
+  labelKey: i18nKey
   required?: boolean
   type?: 'input' | 'textarea'
   value: string

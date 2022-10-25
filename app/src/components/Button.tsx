@@ -1,6 +1,8 @@
 import { Trans } from 'next-i18next'
 import React, { MouseEvent, ReactElement } from 'react'
 
+import { i18nKey } from '@src/types'
+
 export const buttonStyleOptions = [
   'default',
   'unstyled',
@@ -14,7 +16,7 @@ export const buttonStyleOptions = [
 
 export type ButtonProps = {
   disabled?: boolean
-  labelKey: string
+  labelKey: i18nKey
   style?: string
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }

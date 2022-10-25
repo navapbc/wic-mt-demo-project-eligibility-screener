@@ -5,8 +5,10 @@ import { UrlObject } from 'url'
 import ButtonLink from '@components/ButtonLink'
 import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
 
+import { i18nKey } from '@src/types'
+
 export type ReviewCollectionProps = {
-  headerKey: string
+  headerKey: i18nKey
   reviewElements: ReviewElementProps[]
   editable: boolean
   editHref: UrlObject | string
