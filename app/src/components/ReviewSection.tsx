@@ -14,7 +14,7 @@ import type {
   SessionData,
 } from '@src/types'
 
-type ReviewSectionProps = {
+export type ReviewSectionProps = {
   editable: boolean
   session: SessionData
 }
