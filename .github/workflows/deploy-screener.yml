@@ -51,14 +51,14 @@ jobs:
       - name: Push to ECR
         run: |
           aws ecs update-service --cluster ${{github.event.inputs.environment || 'test' }} --service ${{github.event.inputs.environment || 'test' }}-screener-ecs-service --force-new-deployment
-          
+
       - name: Wait for stable ECS service
         run: |
           CLUSTER_ARN=$(aws ecs describe-clusters --clusters ${{github.event.inputs.environment || 'test' }} --query 'clusters[*]['clusterArn']' --output text)
           SERVICE_ID=${{github.event.inputs.environment || 'test' }}-api-ecs-service
 
           # wait for ECS service to be stable
-          aws ecs wait services-stable --cluster $CLUSTER_ID --services $SERVICE_ID
+          aws ecs wait services-stable --cluster $CLUSTER_ARN --services $SERVICE_ID
 
   create-tag:
     needs: [build]
