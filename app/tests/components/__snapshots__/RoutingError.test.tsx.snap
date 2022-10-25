@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<div
+  className="margin-bottom-3"
+>
+  <div
+    className="usa-alert usa-alert--error "
+    role="alert"
+  >
+    <div
+      className="usa-alert__body"
+    >
+      <p
+        className="usa-alert__text"
+      >
+        Some required responses are missing. Please go back through the form and answer all required questions.
+      </p>
+    </div>
+  </div>
+</div>
+`;
