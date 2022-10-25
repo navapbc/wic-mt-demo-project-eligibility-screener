@@ -1,7 +1,7 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 
-export interface ListProps {
+export type ListProps = {
   i18nKeys: string[]
 }
 
