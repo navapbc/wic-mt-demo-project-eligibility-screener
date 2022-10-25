@@ -1,17 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import ButtonComponent from '@components/Button'
-
-const styleOptions = [
-  'default',
-  'unstyled',
-  'secondary',
-  'accent-cool',
-  'accent-warm',
-  'base',
-  'outline',
-  'big',
-]
+import ButtonComponent, { buttonStyleOptions } from '@components/Button'
 
 export default {
   title: 'Components',
@@ -19,7 +8,7 @@ export default {
   argTypes: {
     style: {
       control: 'select',
-      options: styleOptions,
+      options: buttonStyleOptions,
     },
   },
 } as ComponentMeta<typeof ButtonComponent>
