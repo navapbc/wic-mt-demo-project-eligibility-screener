@@ -3,6 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
+import path from 'path'
 import { MouseEvent, useEffect, useState } from 'react'
 import { UrlObject } from 'url'
 
@@ -19,8 +20,18 @@ import {
 import type { EditablePage } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
-const Review: NextPage<EditablePage> = (props: EditablePage) => {
-  const { session, setSession, backRoute = '', forwardRoute = '' } = props
+interface ReviewProps extends EditablePage {
+  baseUrl: string
+}
+
+const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
+  const {
+    session,
+    setSession,
+    backRoute = '',
+    forwardRoute = '',
+    baseUrl,
+  } = props
 
   // Using form to store all of the data in a component state
   // resolves all hydration issues.
@@ -71,7 +82,8 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
       }
 
       // Call /api/eligibility-screener.
-      const response = await fetch('/api/eligibility-screener', {
+      const screenerUrl = path.join(baseUrl, '/api/eligibility-screener')
+      const response = await fetch(screenerUrl, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
@@ -122,8 +134,14 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const baseUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : process.env.PRODUCTION_URL
+
   return {
     props: {
+      baseUrl: baseUrl,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }

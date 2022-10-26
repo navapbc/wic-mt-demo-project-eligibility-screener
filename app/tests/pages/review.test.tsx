@@ -21,6 +21,7 @@ import {
 const route = '/review'
 const backRoute = '/contact'
 const forwardRoute = '/confirmation'
+const baseUrl = 'http://localhost:3000'
 
 // Mock fetch().
 enableFetchMocks()
@@ -41,6 +42,7 @@ it.skip('should match full page snapshot', () => {
       setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
     />
   )
 })
@@ -53,6 +55,7 @@ it.skip('should pass accessibility scan', async () => {
       setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
     />
   )
 })
@@ -65,6 +68,7 @@ it.skip('should have a back link that matches the backRoute', () => {
       setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
     />,
     backRoute
   )
@@ -79,6 +83,7 @@ it('should not resubmit if it has already been submitted', async () => {
       setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
     />
   )
 
@@ -103,6 +108,7 @@ it('should submit a properly formatted session', async () => {
       setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
     />
   )
 
@@ -129,6 +135,7 @@ it('should handle submission errors', async () => {
       setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
     />
   )
 
