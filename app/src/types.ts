@@ -44,6 +44,7 @@ export type SessionData = {
   contact: ContactData
   eligibility: EligibilityData
   income: IncomeData
+  submitted: boolean
 }
 
 export interface ReadSession {

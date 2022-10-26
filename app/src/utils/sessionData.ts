@@ -34,4 +34,5 @@ export const initialSessionData: SessionData = {
   contact: initialContactData,
   eligibility: initialEligibilityData,
   income: initialIncomeData,
+  submitted: false,
 }

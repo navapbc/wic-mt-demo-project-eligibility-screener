@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import Review from '@pages/review'
 
 import { getMockSessionData } from '../helpers/mockData'
-import { setup } from '../helpers/setup'
+import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
   testActionButtonRoute,
@@ -29,6 +29,7 @@ it('should match full page snapshot', () => {
   testSnapshot(
     <Review
       session={mockSession}
+      setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
     />
@@ -40,6 +41,7 @@ it('should pass accessibility scan', async () => {
   await testAccessibility(
     <Review
       session={mockSession}
+      setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
     />
@@ -51,6 +53,7 @@ it('should have a back link that matches the backRoute', () => {
   testBackLink(
     <Review
       session={mockSession}
+      setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
     />,
@@ -63,6 +66,7 @@ it('should have an action button that routes to forwardRoute', async () => {
   const element = (
     <Review
       session={mockSession}
+      setSession={setMockSession}
       backRoute={backRoute}
       forwardRoute={forwardRoute}
     />
