@@ -5,7 +5,15 @@ import type {
   ContactData,
   EligibilityData,
   IncomeData,
+  SessionData,
 } from '@src/types'
+import {
+  initialChooseClinicData,
+  initialContactData,
+  initialEligibilityData,
+  initialIncomeData,
+  initialSessionData,
+} from '@utils/sessionData'
 
 // Validation function for zip codes.
 export function isValidZipCode(zipCode: string): boolean {
@@ -55,4 +63,62 @@ export function isValidContact(contact: ContactData): boolean {
     contact.phone !== '' &&
     contact.phone.replace(/[^0-9]/g, '').length === 10
   )
+}
+
+// This function explicitly disables some eslint checks because it is
+// meant to catch runtime checks that typescript cannot catch.
+function isDefined(
+  dataType:
+    | SessionData
+    | EligibilityData
+    | IncomeData
+    | ContactData
+    | ChooseClinicData,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any
+): boolean {
+  for (const attr in dataType) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (data[attr] === undefined) {
+      return false
+    }
+  }
+  return true
+}
+
+export function isValidSession(session: SessionData): boolean {
+  const checks = [
+    { dataType: initialSessionData, data: session },
+    { dataType: initialEligibilityData, data: session.eligibility },
+    { dataType: initialIncomeData, data: session.income },
+    { dataType: initialChooseClinicData, data: session.chooseClinic },
+    { dataType: initialContactData, data: session.contact },
+  ]
+
+  for (let i = 0, len = checks.length; i < len; i++) {
+    if (!isDefined(checks[i].dataType, checks[i].data)) {
+      return false
+    }
+  }
+
+  if (!isValidEligibility(session.eligibility)) {
+    return false
+  }
+
+  if (
+    session.eligibility.adjunctive.includes('none') &&
+    !isValidIncome(session.income)
+  ) {
+    return false
+  }
+
+  if (!isValidChooseClinic(session.chooseClinic)) {
+    return false
+  }
+
+  if (!isValidContact(session.contact)) {
+    return false
+  }
+
+  return true
 }
