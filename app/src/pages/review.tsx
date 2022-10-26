@@ -5,9 +5,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { MouseEvent, useEffect, useState } from 'react'
 
-import PageError from '@components/PageError'
 import BackLink from '@components/BackLink'
 import Button from '@components/Button'
+import PageError from '@components/PageError'
 import ReviewSection from '@components/ReviewSection'
 
 import {
@@ -41,43 +41,57 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
   const handleClick = async (e: MouseEvent<HTMLElement>): Promise<void> => {
     e.preventDefault()
 
-    const sessionCopy = cloneDeep(session)
-    const translatedCategorical = buildEligibilityArrays(
-      sessionCopy.eligibility.categorical
-    )
-    const translatedAdjunctive = buildEligibilityArrays(
-      sessionCopy.eligibility.adjunctive
-    )
-
-    const body: EligibilityScreenerBody = {
-      session: sessionCopy,
-      translatedCategorical: translatedCategorical,
-      translatedAdjunctive: translatedAdjunctive,
-    }
-
-    const response = await fetch('/api/eligibility-screener', {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-
-    if (response.status === 201) {
-      setSession({ ...session, submitted: true })
+    // Do not resubmit if already submitted.
+    if (session.submitted) {
       await router.push(forwardRoute)
-    } else {
-      const responseBody =
-        (await response.json()) as EligibilityScreenerResponse
-      setErrorMessage(`${t('Error.occurred')}: ${responseBody.error}`)
+    }
+    // If not already submitted, submit.
+    else {
+      const sessionCopy = cloneDeep(session)
+
+      // Translate eligibility.categorical and eligibility.adjunctive to user-friendly content.
+      const translatedCategorical = buildEligibilityArrays(
+        sessionCopy.eligibility.categorical
+      )
+      const translatedAdjunctive = buildEligibilityArrays(
+        sessionCopy.eligibility.adjunctive
+      )
+
+      // Create the body that /api/eligibility-screener expects.
+      const body: EligibilityScreenerBody = {
+        session: sessionCopy,
+        translatedCategorical: translatedCategorical,
+        translatedAdjunctive: translatedAdjunctive,
+      }
+
+      // Call /api/eligibility-screener.
+      const response = await fetch('/api/eligibility-screener', {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      })
+
+      // A 201 response means that /api/eligibility-screener created a new record.
+      if (response.status === 201) {
+        // Mark this session as submitted so duplicate entries won't be created.
+        setSession({ ...session, submitted: true })
+        // Route to the next page.
+        await router.push(forwardRoute)
+      }
+      // Any other responses indicate an error.
+      else {
+        const responseBody =
+          (await response.json()) as EligibilityScreenerResponse
+        setErrorMessage(`${t('apiError')} Error: ${responseBody.error}`)
+      }
     }
   }
 
   return (
     <>
-      {errorMessage && (
-        <PageError alertBody={errorMessage} />
-      )}
+      {errorMessage && <PageError alertBody={errorMessage} />}
       <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Review.title" />
