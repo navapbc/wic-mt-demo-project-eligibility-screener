@@ -56,12 +56,11 @@ export function buildSubmission(session: SessionData) {
 
   // Build income data.
   if (
-    !session.eligibility.adjunctive.includes('none') &&
+    session.eligibility.adjunctive.includes('none') &&
     session.income.householdSize !== ''
   ) {
     submission.household_size = parseInt(session.income.householdSize)
   }
-  submission.household_size = 'onetuhno'
 
   // Build choose clinic data.
   if (session.chooseClinic.clinic !== undefined) {
