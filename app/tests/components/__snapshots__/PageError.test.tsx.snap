@@ -14,7 +14,7 @@ exports[`should match snapshot 1`] = `
       <p
         className="usa-alert__text"
       >
-        Some required responses are missing. Please go back through the form and answer all required questions.
+        alert body text
       </p>
     </div>
   </div>

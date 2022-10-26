@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import Layout from '@components/Layout'
-import RoutingError from '@components/RoutingError'
+import PageError from '@components/PageError'
 
 import useSessionStorage from '@src/hooks/useSessionStorage'
 import '@styles/styles.scss'
@@ -64,7 +64,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <>
-        {router.query.error === 'missing-data' && <RoutingError />}
+        {router.query.error === 'missing-data' && (
+          <PageError alertBody="routingError" />
+        )}
         <Component {...props} />
       </>
     </Layout>

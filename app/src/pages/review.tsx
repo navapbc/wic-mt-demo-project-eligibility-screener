@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { MouseEvent, useEffect, useState } from 'react'
 
-import Alert from '@components/Alert'
+import PageError from '@components/PageError'
 import BackLink from '@components/BackLink'
 import Button from '@components/Button'
 import ReviewSection from '@components/ReviewSection'
@@ -76,9 +76,7 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
   return (
     <>
       {errorMessage && (
-        <div className="margin-bottom-3">
-          <Alert type="error" icon={true} alertBody={errorMessage} />
-        </div>
+        <PageError alertBody={errorMessage} />
       )}
       <BackLink href={backRoute} />
       <h1>
