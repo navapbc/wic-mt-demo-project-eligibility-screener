@@ -1,4 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
+import { renderHook } from '@testing-library/react-hooks'
+import { enableFetchMocks } from 'jest-fetch-mock'
+import mockEnv from 'mocked-env'
+import singletonRouter, { useRouter } from 'next/router'
 
 import Review from '@pages/review'
 
@@ -6,7 +10,6 @@ import { getMockSessionData } from '../helpers/mockData'
 import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,
-  testActionButtonRoute,
   testBackLink,
   testSnapshot,
 } from '../helpers/sharedTests'
@@ -18,6 +21,12 @@ import {
 const route = '/review'
 const backRoute = '/contact'
 const forwardRoute = '/confirmation'
+
+// Mock fetch().
+enableFetchMocks()
+beforeEach(() => {
+  fetchMock.dontMock()
+})
 
 /**
  * Begin tests
@@ -61,9 +70,10 @@ it('should have a back link that matches the backRoute', () => {
   )
 })
 
-it('should have an action button that routes to forwardRoute', async () => {
+it('should not resubmit if it has already been submitted', async () => {
   const { mockSession, user } = setup(route)
-  const element = (
+  mockSession.submitted = true
+  render(
     <Review
       session={mockSession}
       setSession={setMockSession}
@@ -71,5 +81,47 @@ it('should have an action button that routes to forwardRoute', async () => {
       forwardRoute={forwardRoute}
     />
   )
-  await testActionButtonRoute(element, forwardRoute, 'Submit', user)
+
+  fetchMock.mockResponseOnce(JSON.stringify({ foo: 'bar' }))
+  const button = screen.getByRole('button', { name: /Submit/i })
+  await user.click(button)
+  expect(fetchMock.mock.calls.length).toEqual(0)
+
+  expect(singletonRouter).toMatchObject({ asPath: '/confirmation' })
+})
+
+it('should submit a properly formatted session', async () => {
+  // // Mock process.env
+  // const restore = mockEnv({
+  //   API_HOST: 'dummyApi',
+  // })
+
+  const { user } = setup(route)
+  const mockSession = getMockSessionData()
+  render(
+    <Review
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+    />
+  )
+
+  fetchMock.mockResponseOnce(JSON.stringify({ foo: 'bar' }), { status: 201 })
+  const button = screen.getByRole('button', { name: /Submit/i })
+  await act(async () => {
+    await user.click(button)
+  })
+
+  expect(fetchMock.mock.calls.length).toEqual(1)
+  // expect(setMockSession).toHaveBeenCalled()
+  // expect(mockSession.submitted).toBe(true)
+  // expect(singletonRouter).toMatchObject({ asPath: '/confirmation' })
+
+  const { result } = renderHook(() => {
+    return useRouter()
+  })
+  expect(result.current).toMatchObject({ asPath: '/initial' })
+
+  // restore()
 })

@@ -38,7 +38,7 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
     return data.map((category) => t(`Eligibility.${category}`))
   }
 
-  const handleClick = async (e: MouseEvent<HTMLElement>): Promise<void> => {
+  const handleClick = async (e: MouseEvent<HTMLElement>) => {
     e.preventDefault()
 
     // Do not resubmit if already submitted.
@@ -65,16 +65,20 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
       }
 
       // Call /api/eligibility-screener.
-      const response = await fetch('/api/eligibility-screener', {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-          'Content-type': 'application/json',
-        },
-      })
+      const response = await fetch(
+        'http://localhost:3000/api/eligibility-screener',
+        {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      )
 
       // A 201 response means that /api/eligibility-screener created a new record.
       if (response.status === 201) {
+        console.log('hello?')
         // Mark this session as submitted so duplicate entries won't be created.
         setSession({ ...session, submitted: true })
         // Route to the next page.
@@ -82,6 +86,8 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
       }
       // Any other responses indicate an error.
       else {
+        console.log('note here')
+        console.log(response.status)
         const responseBody =
           (await response.json()) as EligibilityScreenerResponse
         setErrorMessage(`${t('apiError')} Error: ${responseBody.error}`)
