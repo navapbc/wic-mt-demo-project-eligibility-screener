@@ -1,6 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+import { SessionData } from '@src/types'
+import { isValidSession } from '@utils/dataValidation'
 import { buildSubmission } from '@utils/submission'
+
+export type ApiResponse = {
+  status_code: number
+}
+
+export type EligibilityScreenerResponse = {
+  success: boolean
+  error: string
+  errorDetails: string | ApiResponse
+}
+
+export type EligibilityScreenerBody = {
+  session: SessionData
+  translatedCategorical: string[]
+  translatedAdjunctive: string[]
+}
 
 // Throw an error if the env var API_HOST is missing or not set.
 function buildApiUrl() {
@@ -13,12 +31,27 @@ function buildApiUrl() {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<EligibilityScreenerResponse>
 ) {
   // The only allowed method for this endpoint is POST.
   if (req.method === 'POST') {
+    // Cast req.body to SessionData. We will explicitly check the object
+    // validates in isValidSession().
+    const castBody = req.body as EligibilityScreenerBody
+    const session = castBody.session
+
+    if (!isValidSession(session)) {
+      return res.status(500).json({
+        success: false,
+        error: 'Invalid data',
+        errorDetails: '',
+      })
+    }
+
     // Construct the request body.
-    const submission = buildSubmission(req.body)
+    session.eligibility.categorical = castBody.translatedCategorical
+    session.eligibility.adjunctive = castBody.translatedAdjunctive
+    const submission = buildSubmission(session)
 
     // Build the API url.
     let apiUrl: string
@@ -27,9 +60,11 @@ export default async function handler(
     } catch (e: unknown) {
       // If building the API url throws an error, the endpoint should return 500.
       const error = e as Error
-      return res
-        .status(500)
-        .json({ error: 'Configuration error', errorDetails: error.message })
+      return res.status(500).json({
+        success: false,
+        error: 'Configuration error',
+        errorDetails: error.message,
+      })
     }
 
     // Wrap fetch() in a try ... catch in case there is an error attempting
@@ -47,14 +82,15 @@ export default async function handler(
       })
 
       // Get the API call results.
-      const responseBody: object = (await response.json()) as object
+      const responseBody = (await response.json()) as ApiResponse
 
-      const castStatusCode = responseBody.status_code as number
+      const castStatusCode = responseBody.status_code
 
       // If the API call status is NOT 201, then pass through the status code
       // and return an error message.
       if (castStatusCode !== 201) {
         return res.status(castStatusCode).json({
+          success: false,
           error: 'API endpoint returned errors',
           errorDetails: responseBody,
         })
@@ -63,20 +99,26 @@ export default async function handler(
       // Otherwise, the API call was a success and the database record was created!
       // Redirect to /confirmation.
       else {
-        return res.status(castStatusCode).json({ success: true })
+        return res
+          .status(castStatusCode)
+          .json({ success: true, error: '', errorDetails: '' })
       }
     } catch (e: unknown) {
       // If there is an error attempting to reach the API, the endpoint should
       // return 500.
       const error = e as Error
-      return res
-        .status(500)
-        .json({ error: 'API connection error', errorDetails: error.message })
+      return res.status(500).json({
+        success: false,
+        error: 'API connection error',
+        errorDetails: error.message,
+      })
     }
   }
 
   // All non-POST methods for this endpoint return an error.
   else {
-    return res.status(500).json({ error: 'GET is not allowed' })
+    return res
+      .status(500)
+      .json({ success: false, error: 'GET is not allowed', errorDetails: '' })
   }
 }

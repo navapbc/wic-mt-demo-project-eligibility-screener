@@ -10,6 +10,11 @@ import BackLink from '@components/BackLink'
 import Button from '@components/Button'
 import ReviewSection from '@components/ReviewSection'
 
+import {
+  EligibilityScreenerBody,
+  EligibilityScreenerResponse,
+} from '@pages/api/eligibility-screener'
+
 import type { EditablePage } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
 
@@ -37,16 +42,22 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
     e.preventDefault()
 
     const sessionCopy = cloneDeep(session)
-    sessionCopy.eligibility.categorical = buildEligibilityArrays(
+    const translatedCategorical = buildEligibilityArrays(
       sessionCopy.eligibility.categorical
     )
-    sessionCopy.eligibility.adjunctive = buildEligibilityArrays(
+    const translatedAdjunctive = buildEligibilityArrays(
       sessionCopy.eligibility.adjunctive
     )
 
+    const body: EligibilityScreenerBody = {
+      session: sessionCopy,
+      translatedCategorical: translatedCategorical,
+      translatedAdjunctive: translatedAdjunctive,
+    }
+
     const response = await fetch('/api/eligibility-screener', {
       method: 'POST',
-      body: JSON.stringify(sessionCopy),
+      body: JSON.stringify(body),
       headers: {
         'Content-type': 'application/json',
       },
@@ -56,8 +67,9 @@ const Review: NextPage<EditablePage> = (props: EditablePage) => {
       setSession({ ...session, submitted: true })
       await router.push(forwardRoute)
     } else {
-      const responseBody: object = (await response.json()) as object
-      setErrorMessage(`${t('Error.occurred')}: ${responseBody.error as string}`)
+      const responseBody =
+        (await response.json()) as EligibilityScreenerResponse
+      setErrorMessage(`${t('Error.occurred')}: ${responseBody.error}`)
     }
   }
 
