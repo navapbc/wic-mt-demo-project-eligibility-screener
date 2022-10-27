@@ -1,7 +1,193 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChooseClinic should render the heading 1`] = `
-<h1>
-  Choose a clinic
-</h1>
+exports[`should match full page snapshot 1`] = `
+[
+  <a
+    className="usa-link"
+    href="/income"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    Back
+  </a>,
+  <h1>
+    Choose a clinic
+  </h1>,
+  <p>
+    All required questions are marked with an asterisk
+     (
+    <abbr
+      className="usa-hint usa-hint--required"
+    >
+      *
+    </abbr>
+    ).
+  </p>,
+  <div
+    className="content-group"
+  >
+    <p>
+      You’ll need to visit a clinic in person to complete a certification appointment for WIC. Choose the clinic you would like to go to during business hours.
+    </p>
+  </div>,
+  <div
+    className="content-group"
+  >
+    <h2>
+      Enter your residential ZIP code to search for a clinic:
+      <abbr
+        className="usa-hint usa-hint--required"
+      >
+         *
+      </abbr>
+    </h2>
+    <section
+      aria-label="Search clinic by zip"
+    >
+      <form
+        className="usa-search usa-search--small"
+        onSubmit={[Function]}
+        role="search"
+      >
+        <label
+          className="usa-sr-only"
+          htmlFor="search-field-en-small"
+        >
+          Enter your residential ZIP code to search for a clinic:
+        </label>
+        <input
+          className="usa-input usa-input-error"
+          id="search-field-en-small"
+          onChange={[Function]}
+          type="search"
+          value=""
+        />
+        <button
+          className="usa-button"
+          type="submit"
+        >
+          <span
+            style={
+              {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "inline-block",
+                "height": "initial",
+                "margin": 0,
+                "maxWidth": "100%",
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "relative",
+                "width": "initial",
+              }
+            }
+          >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "padding": 0,
+                  "width": "initial",
+                }
+              }
+            >
+              <img
+                alt=""
+                aria-hidden={true}
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              />
+            </span>
+            <img
+              alt="Search"
+              className="usa-search__submit-icon"
+              data-nimg="intrinsic"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": undefined,
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt="Search"
+                className="usa-search__submit-icon"
+                data-nimg="intrinsic"
+                decoding="async"
+                loading="lazy"
+                src="/img/search.svg"
+                srcSet="/img/search.svg 1x, /img/search.svg 2x"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": undefined,
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </button>
+      </form>
+    </section>
+  </div>,
+]
 `;
