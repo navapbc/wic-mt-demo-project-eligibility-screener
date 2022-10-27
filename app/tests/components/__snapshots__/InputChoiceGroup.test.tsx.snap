@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot when it is a set of checkboxes 1`] = `
+<fieldset
+  className="usa-fieldset"
+>
+  <h2>
+    title
+  </h2>
+  <div
+    className="usa-checkbox"
+  >
+    <input
+      checked={false}
+      className="usa-checkbox__input usa-checkbox__input--tile"
+      id="name-a-a"
+      name="name-a"
+      onChange={[Function]}
+      type="checkbox"
+      value="a"
+    />
+    <label
+      className="usa-checkbox__label"
+      htmlFor="name-a-a"
+    >
+      label a
+    </label>
+  </div>
+  <div
+    className="usa-checkbox"
+  >
+    <input
+      checked={false}
+      className="usa-checkbox__input usa-checkbox__input--tile"
+      id="name-b-b"
+      name="name-b"
+      onChange={[Function]}
+      type="checkbox"
+      value="b"
+    />
+    <label
+      className="usa-checkbox__label"
+      htmlFor="name-b-b"
+    >
+      label b
+    </label>
+  </div>
+  <div
+    className="usa-checkbox"
+  >
+    <input
+      checked={false}
+      className="usa-checkbox__input usa-checkbox__input--tile"
+      id="name-c-c"
+      name="name-c"
+      onChange={[Function]}
+      type="checkbox"
+      value="c"
+    />
+    <label
+      className="usa-checkbox__label"
+      htmlFor="name-c-c"
+    >
+      label c
+    </label>
+  </div>
+</fieldset>
+`;
+
+exports[`should match snapshot when it is a set of radio buttons 1`] = `
+<fieldset
+  className="usa-fieldset"
+>
+  <h2>
+    title
+  </h2>
+  <div
+    className="usa-radio"
+  >
+    <input
+      checked={false}
+      className="usa-radio__input usa-radio__input--tile"
+      id="name-a-a"
+      name="name-a"
+      onChange={[Function]}
+      type="radio"
+      value="a"
+    />
+    <label
+      className="usa-radio__label"
+      htmlFor="name-a-a"
+    >
+      label a
+    </label>
+  </div>
+  <div
+    className="usa-radio"
+  >
+    <input
+      checked={false}
+      className="usa-radio__input usa-radio__input--tile"
+      id="name-b-b"
+      name="name-b"
+      onChange={[Function]}
+      type="radio"
+      value="b"
+    />
+    <label
+      className="usa-radio__label"
+      htmlFor="name-b-b"
+    >
+      label b
+    </label>
+  </div>
+  <div
+    className="usa-radio"
+  >
+    <input
+      checked={false}
+      className="usa-radio__input usa-radio__input--tile"
+      id="name-c-c"
+      name="name-c"
+      onChange={[Function]}
+      type="radio"
+      value="c"
+    />
+    <label
+      className="usa-radio__label"
+      htmlFor="name-c-c"
+    >
+      label c
+    </label>
+  </div>
+</fieldset>
+`;
