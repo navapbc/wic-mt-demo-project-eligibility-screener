@@ -1,4 +1,4 @@
-import { formatPhone } from '@utils/submission'
+import { formatPhone } from '@utils/dataFormatting'
 
 it('should return a formatted phone number', () => {
   const result = formatPhone('1231231234')

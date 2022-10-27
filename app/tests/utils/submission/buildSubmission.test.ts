@@ -1,4 +1,5 @@
-import { buildSubmission, formatPhone } from '@utils/submission'
+import { formatPhone } from '@utils/dataFormatting'
+import { buildSubmission } from '@utils/submission'
 
 import { getMockIncomeData, getMockSessionData } from '../../helpers/mockData'
 

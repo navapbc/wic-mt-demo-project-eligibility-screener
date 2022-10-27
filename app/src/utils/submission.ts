@@ -2,6 +2,7 @@
 import cloneDeep from 'lodash/cloneDeep'
 
 import { SessionData } from '@src/types'
+import { formatPhone } from '@utils/dataFormatting'
 
 // Note: The snake case of these attributes is intention and meant to match
 //       the API fields exactly.
@@ -31,16 +32,6 @@ export const initialSubmissionData: Submission = {
   last_name: '',
   phone_number: '',
   applicant_notes: '',
-}
-
-// Modified from https://stackoverflow.com/a/8358141
-export function formatPhone(phone: string) {
-  const stripNonNumbers = ('' + phone).replace(/\D/g, '')
-  const match = stripNonNumbers.match(/^(\d{3})(\d{3})(\d{4})$/)
-  if (match) {
-    return `${match[1]}-${match[2]}-${match[3]}`
-  }
-  return ''
 }
 
 export function buildSubmission(session: SessionData) {

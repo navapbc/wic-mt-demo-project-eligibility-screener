@@ -13,6 +13,7 @@ import type {
   IncomeData,
   SessionData,
 } from '@src/types'
+import { formatPhone } from '@utils/dataFormatting'
 
 export type ReviewSectionProps = {
   editable: boolean
@@ -101,9 +102,13 @@ const ReviewSection = (props: ReviewSectionProps): ReactElement => {
   ): ReviewElementProps[] => {
     const contactResponses: ReviewElementProps[] = []
     for (const key in contact) {
+      const castKey = key as keyof typeof contact
       contactResponses.push({
         labelKey: `Contact.${key}`,
-        children: <Trans i18nKey={contact[key as keyof typeof contact]} />,
+        children:
+          castKey === 'phone'
+            ? formatPhone(contact[castKey])
+            : contact[castKey],
       })
     }
     return contactResponses
