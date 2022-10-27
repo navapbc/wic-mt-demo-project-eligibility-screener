@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+[
+  <label
+    className="usa-label"
+    htmlFor="test-id"
+  >
+    dropdown label
+  </label>,
+  <select
+    className="usa-select"
+    id="test-id"
+    name="test-id"
+    onChange={[Function]}
+  >
+    <option
+      value=""
+    >
+      - 
+      Select
+       -
+    </option>
+    <option
+      value="a"
+    >
+      a
+    </option>
+    <option
+      value="b"
+    >
+      b
+    </option>
+    <option
+      value="c"
+    >
+      c
+    </option>
+  </select>,
+]
+`;
