@@ -1,4 +1,3 @@
-import { useAppContext } from '@context/state'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -9,73 +8,104 @@ import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
-interface Props {
-  previousRoute: string
-}
+import type { EditablePage, EligibilityData } from '@src/types'
+import {
+  isValidEligibility,
+  validEligibilityOptions,
+} from '@utils/dataValidation'
+import { initialEligibilityData } from '@utils/sessionData'
 
-const Eligibility: NextPage<Props> = (props: Props) => {
-  const incomeRoute = '/income'
-  const { session, setSession } = useAppContext()
-  const [continueBtn, setContinueBtn] = useState({
-    labelKey: 'continue',
-    route: incomeRoute,
-  })
-  const [form, setForm] = useState(session?.eligibility)
-  const requiredMet = () => {
-    const categorical = [
-      'pregnant',
-      'baby',
-      'child',
-      'guardian',
-      'pregnant',
-      'none',
-    ].some((category) => form[category as keyof typeof form])
-    const programs = ['insurance', 'snap', 'tanf', 'none2'].some(
-      (program) => form[program as keyof typeof form]
-    )
-
-    return form.residential && categorical && form.before && programs
-  }
-  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
-
+const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
+  // Get the session from props.
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
+  // Initialize form as a state using blank values.
+  const [form, setForm] = useState<EligibilityData>(initialEligibilityData)
+  // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
-    /* NOTE: We are using useEffect() because we want to make sure the props provided by getServerSideProps() are reliably loaded into the page. */
-    const prevRouteIndex = props.previousRoute.lastIndexOf('/')
-    const previousRoute = props.previousRoute.substring(prevRouteIndex)
-    if (form.none) {
-      setContinueBtn({ ...continueBtn, route: '/other-benefits' })
-    } else if (previousRoute === '/review') {
-      setContinueBtn({
-        labelKey: 'updateAndReturn',
-        route: previousRoute,
-      })
-    } else setContinueBtn({ ...continueBtn, route: incomeRoute })
-  }, [form.none, props.previousRoute])
+    setForm(session.eligibility)
+  }, [session.eligibility])
 
+  // Set up action button and routing.
+  const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
+
+  // Set a state for whether the form requirements have been met and the
+  // form can be submitted. Otherwise, disable the submit button.
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration
+  // Since we need to use useEffect to update the enabled/disabled state for the button,
+  // this also handles anytime the form state is updated, so we don't need to call
+  // setDisabled during handleChange()
   useEffect(() => {
-    setDisabled(!requiredMet())
+    setDisabled(!isValidEligibility(form))
   }, [form])
 
+  // Handle all form element changes.
+  // - Determine new form values
+  // - Update the form and session states
+  // - Update the action button and routing for which page the user should be
+  //   routed to based on user-entered data
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name }: { value: string; name: string } = e.target
-    const castValue = value as keyof typeof form
-    let newValue
+    const { value, name, type }: { value: string; name: string; type: string } =
+      e.target
+    let newForm
 
-    if (['residential', 'before'].includes(name)) {
-      newValue = { [name]: value }
-    } else {
-      newValue = { [castValue]: !form[castValue] }
+    // Handle radio buttons and checkboxes need to be handled differently.
+    // Radio buttons are a boolean setting, so override the existing value.
+    if (type === 'radio') {
+      newForm = { ...form, [name]: value }
+    }
+    // Checkboxes are an array because multiple options are accepted,
+    // so manage the array elements.
+    else if (type === 'checkbox') {
+      // Cast the name as a key in form.
+      const castName = name as 'categorical' | 'adjunctive'
+      // If the checkbox is checked and that checkbox value isn't in the array,
+      // add it to the array.
+      // @TODO: consider using Immer
+      if (e.target.checked && !form[castName].includes(value)) {
+        const checkboxArray = [...form[castName]]
+        checkboxArray.push(value)
+        newForm = { ...form, [castName]: checkboxArray }
+
+        // If the checkbox is "None of the above", uncheck all other values.
+        if (value === 'none') {
+          newForm = { ...form, [castName]: [value] }
+        }
+        // Otherwise, make sure "None of the above" is unchecked.
+        else {
+          newForm[castName] = newForm[castName].filter((element) => {
+            return element !== 'none'
+          })
+        }
+      }
+      // If the checkbox is unchecked and the checkbox value IS in the array,
+      // remove it from the array.
+      else if (!e.target.checked && form[castName].includes(value)) {
+        const checkboxArray = form[castName].filter((element) => {
+          return element !== value
+        })
+        newForm = { ...form, [castName]: checkboxArray }
+      }
     }
 
-    const newForm = { ...form, ...newValue }
-
-    setForm(newForm)
-    setSession({ ...session, eligibility: newForm })
+    // Update state if there are changes to update.
+    if (newForm) {
+      // Update the eligibility state.
+      setForm(newForm)
+      // Update the session storage state.
+      setSession({ ...session, eligibility: newForm })
+    }
   }
 
   return (
     <>
-      <BackLink href="/how-it-works" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Eligibility.header" />
       </h1>
@@ -85,22 +115,15 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           required
           titleKey="Eligibility.residential"
           type="radio"
-          choices={[
-            {
-              checked: form.residential === 'yes',
-              handleChange,
-              labelKey: 'Eligibility.yes',
+          choices={validEligibilityOptions.residential.map((option) => {
+            return {
+              checked: form.residential === option,
+              handleChange: handleChange,
+              labelKey: `Eligibility.${option}`,
               name: 'residential',
-              value: 'yes',
-            },
-            {
-              checked: form.residential === 'no',
-              handleChange,
-              labelKey: 'Eligibility.no',
-              name: 'residential',
-              value: 'no',
-            },
-          ]}
+              value: option,
+            }
+          })}
         />
         <InputChoiceGroup
           accordion={{
@@ -110,106 +133,47 @@ const Eligibility: NextPage<Props> = (props: Props) => {
           required
           titleKey="Eligibility.categorical"
           type="checkbox"
-          choices={[
-            {
-              checked: form.pregnant,
-              handleChange,
-              labelKey: 'Eligibility.pregnant',
-              value: 'pregnant',
-            },
-            {
-              checked: form.baby,
-              handleChange,
-              labelKey: 'Eligibility.baby',
-              value: 'baby',
-            },
-            {
-              checked: form.child,
-              handleChange,
-              labelKey: 'Eligibility.child',
-              value: 'child',
-            },
-            {
-              checked: form.guardian,
-              handleChange,
-              labelKey: 'Eligibility.guardian',
-              value: 'guardian',
-            },
-            {
-              checked: form.loss,
-              handleChange,
-              labelKey: 'Eligibility.loss',
-              value: 'loss',
-            },
-            {
-              checked: form.none,
-              handleChange,
-              labelKey: 'Eligibility.none',
-              value: 'none',
-            },
-          ]}
+          choices={validEligibilityOptions.categorical.map((option) => {
+            return {
+              checked: form.categorical.includes(option),
+              handleChange: handleChange,
+              labelKey: `Eligibility.${option}`,
+              name: 'categorical',
+              value: option,
+            }
+          })}
         />
         <InputChoiceGroup
           required
-          titleKey="Eligibility.before"
+          titleKey="Eligibility.previouslyEnrolled"
           type="radio"
-          choices={[
-            {
-              checked: form.before === 'yes2',
-              handleChange,
-              labelKey: 'Eligibility.yes',
-              name: 'before',
-              value: 'yes2' /* TODO: refactor */,
-            },
-            {
-              checked: form.before === 'no2',
-              handleChange,
-              labelKey: 'Eligibility.no',
-              name: 'before',
-              value: 'no2',
-            },
-          ]}
+          choices={validEligibilityOptions.previouslyEnrolled.map((option) => {
+            return {
+              checked: form.previouslyEnrolled === option,
+              handleChange: handleChange,
+              labelKey: `Eligibility.${option}`,
+              name: 'previouslyEnrolled',
+              value: option,
+            }
+          })}
         />
         <InputChoiceGroup
           required
-          titleKey="Eligibility.programs"
+          titleKey="Eligibility.adjunctive"
           type="checkbox"
-          choices={[
-            {
-              checked: form.insurance,
-              handleChange,
-              labelKey: 'Eligibility.insurance',
-              value: 'insurance',
-            },
-            {
-              checked: form.snap,
-              handleChange,
-              labelKey: 'Eligibility.snap',
-              value: 'snap',
-            },
-            {
-              checked: form.tanf,
-              handleChange,
-              labelKey: 'Eligibility.tanf',
-              value: 'tanf',
-            },
-            {
-              checked: form.fdpir,
-              handleChange,
-              labelKey: 'Eligibility.fdpir',
-              value: 'fdpir',
-            },
-            {
-              checked: form.none2,
-              handleChange,
-              labelKey: 'Eligibility.none',
-              value: 'none2',
-            },
-          ]}
+          choices={validEligibilityOptions.adjunctive.map((option) => {
+            return {
+              checked: form.adjunctive.includes(option),
+              handleChange: handleChange,
+              labelKey: `Eligibility.${option}`,
+              name: 'adjunctive',
+              value: option,
+            }
+          })}
         />
         <ButtonLink
-          href={continueBtn.route}
-          labelKey={continueBtn.labelKey}
+          href={forwardRoute}
+          labelKey={actionButtonLabel}
           disabled={disabled}
         />
       </form>
@@ -217,13 +181,9 @@ const Eligibility: NextPage<Props> = (props: Props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      previousRoute: req.headers.referer,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
