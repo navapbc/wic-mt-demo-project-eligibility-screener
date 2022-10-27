@@ -1,9 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HowItWorks should render title text 1`] = `
-<p
-  class="margin-top-1"
->
-  You can start applying for WIC by checking to see if you're eligible.
-</p>
+exports[`should match full page snapshot 1`] = `
+[
+  <a
+    className="usa-link"
+    href="/"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    Back
+  </a>,
+  <h1>
+    How it works
+  </h1>,
+  <ol
+    className="usa-process-list"
+  >
+    <li
+      className="usa-process-list__item"
+    >
+      <h2
+        className="usa-process-list__heading"
+      >
+        Check your eligibility
+      </h2>
+      <p
+        className="margin-top-1"
+      >
+        You can start applying for WIC by checking to see if you're eligible.
+      </p>
+    </li>
+    <li
+      className="usa-process-list__item"
+    >
+      <h2
+        className="usa-process-list__heading"
+      >
+        WIC clinic staff will schedule a certification appointment
+      </h2>
+      <p
+        className="margin-top-1"
+      >
+        <strong>
+          If you are eligible
+        </strong>
+        , a staff member from your local WIC office will call you for additional information and to set up a certification appointment.
+      </p>
+    </li>
+    <li
+      className="usa-process-list__item"
+    >
+      <h2
+        className="usa-process-list__heading"
+      >
+        Complete your appointment with your local WIC clinic
+      </h2>
+      <p
+        className="margin-top-1"
+      >
+        During your appointment, you'll need to show documentation of your income, identity, and residence.
+      </p>
+    </li>
+  </ol>,
+  <div
+    className="usa-alert usa-alert--warning usa-alert--no-icon"
+    role="alert"
+  >
+    <div
+      className="usa-alert__body"
+    >
+      <p
+        className="usa-alert__text"
+      >
+        <strong>
+          Note:
+        </strong>
+         this form does not guarantee enrollment in WIC; your eligibility will be confirmed when you have your first appointment with WIC.
+      </p>
+    </div>
+  </div>,
+  <button
+    className="usa-button usa-button--small display-block margin-top-6"
+    onClick={[Function]}
+  >
+    Check your eligibility
+  </button>,
+]
 `;
