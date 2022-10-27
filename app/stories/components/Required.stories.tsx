@@ -1,12 +1,14 @@
-import { Meta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { Required as RequiredComponent } from '@components/Required'
+import RequiredComponent from '@components/Required'
 
 export default {
   title: 'Components',
   component: RequiredComponent,
-} as Meta
+} as ComponentMeta<typeof RequiredComponent>
 
-const Template: Story = (args) => <RequiredComponent {...args} />
+const Template: ComponentStory<typeof RequiredComponent> = () => (
+  <RequiredComponent />
+)
 
 export const Required = Template.bind({})
