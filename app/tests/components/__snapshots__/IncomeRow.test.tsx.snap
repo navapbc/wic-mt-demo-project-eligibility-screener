@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot when householdSize is an empty string 1`] = `
+<tr>
+  <td>
+    $XX,XXX
+  </td>
+  <td>
+    $XX,XXX
+  </td>
+  <td>
+    $XX,XXX
+  </td>
+</tr>
+`;
+
+exports[`should match snapshot when householdSize is not empty string 1`] = `
+<tr>
+  <td>
+    $100
+  </td>
+  <td>
+    $200
+  </td>
+  <td>
+    $300
+  </td>
+</tr>
+`;

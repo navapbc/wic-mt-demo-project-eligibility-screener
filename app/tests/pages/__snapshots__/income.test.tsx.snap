@@ -1,19 +1,236 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Income should render the heading 1`] = `
-<h2>
-  To be eligible for WIC, your 
-  <strong>
-    household income before taxes
-  </strong>
-   must be 
-  <strong>
-    at
-  </strong>
-   or 
-  <strong>
-    below
-  </strong>
-   a certain income level.
-</h2>
+exports[`should match full page snapshot 1`] = `
+[
+  <a
+    className="usa-link"
+    href="/eligibility"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    Back
+  </a>,
+  <h1>
+    Check your eligibility
+  </h1>,
+  <p>
+    All required questions are marked with an asterisk
+     (
+    <abbr
+      className="usa-hint usa-hint--required"
+    >
+      *
+    </abbr>
+    ).
+  </p>,
+  <div
+    className="content-group"
+  >
+    <h2>
+      To be eligible for WIC, your 
+      <strong>
+        household income before taxes
+      </strong>
+       must be 
+      <strong>
+        at
+      </strong>
+       or 
+      <strong>
+        below
+      </strong>
+       a certain income level.
+    </h2>
+    <p>
+      If you or someone in your household are currently enrolled in 
+      <strong>
+        Medicaid, Healthy Montana Kids Plus
+      </strong>
+      , Supplemental Nutrition Assistance Program (
+      <strong>
+        SNAP
+      </strong>
+      ), Temporary Assistance for Needy Families (
+      <strong>
+        TANF
+      </strong>
+      ), or Food Distribution Program on Indian Reservations (
+      <strong>
+        FDPIR
+      </strong>
+      ), you may be automatically eligible for WIC.
+    </p>
+    <p>
+      If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.
+    </p>
+    <p>
+      <strong>
+        If you are unsure about your income, please continue to apply.
+      </strong>
+       A WIC staff member can answer more specific questions about your situation.
+    </p>
+  </div>,
+  <form
+    className="usa-form usa-form--large"
+  >
+    <fieldset
+      className="usa-fieldset"
+    >
+      <h2>
+        What is your household size?
+      </h2>
+      <div
+        className="usa-accordion usa-accordion--bordered"
+      >
+        <h3
+          className="usa-accordion__heading"
+        >
+          <button
+            aria-controls="b-a1"
+            aria-expanded={false}
+            className="usa-accordion__button"
+            onClick={[Function]}
+            type="button"
+          >
+            Who counts in my household?
+          </button>
+        </h3>
+        <div
+          className="usa-accordion__content"
+          hidden={true}
+          id="b-a1"
+        >
+          <p>
+            A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.
+          </p>
+          <p>
+            If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.
+          </p>
+        </div>
+      </div>
+      <label
+        className="usa-label"
+        htmlFor="householdSize"
+      >
+        Household size
+        <abbr
+          className="usa-hint usa-hint--required"
+        >
+           *
+        </abbr>
+      </label>
+      <select
+        className="usa-select"
+        id="householdSize"
+        name="householdSize"
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          value=""
+        >
+          - 
+          Select
+           -
+        </option>
+        <option
+          value="1"
+        >
+          1
+        </option>
+        <option
+          value="2"
+        >
+          2
+        </option>
+        <option
+          value="3"
+        >
+          3
+        </option>
+        <option
+          value="4"
+        >
+          4
+        </option>
+        <option
+          value="5"
+        >
+          5
+        </option>
+        <option
+          value="6"
+        >
+          6
+        </option>
+        <option
+          value="7"
+        >
+          7
+        </option>
+        <option
+          value="8"
+        >
+          8
+        </option>
+      </select>
+    </fieldset>
+    <fieldset
+      className="usa-fieldset"
+    >
+      <table
+        className="usa-table usa-table--stacked usa-table--borderless"
+      >
+        <caption>
+          <h2>
+            Estimated maximum income limit before taxes
+          </h2>
+        </caption>
+        <thead>
+          <tr>
+            <th
+              scope="col"
+            >
+              Annual
+            </th>
+            <th
+              scope="col"
+            >
+              Monthly
+            </th>
+            <th
+              scope="col"
+            >
+              Bi-weekly
+            </th>
+            <th
+              scope="col"
+            >
+              Weekly
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+      <p>
+        <a
+          className="usa-link usa-link--external"
+          href="https://dphhs.mt.gov/Assistance"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Learn about other assistance
+        </a>
+      </p>
+    </fieldset>
+    <button
+      className="usa-button usa-button--small display-block margin-top-6"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Continue
+    </button>
+  </form>,
+]
 `;
