@@ -1,19 +1,18 @@
-import { Meta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import {
-  BackLink as BackLinkComponent,
-  BackLinkProps,
-} from '@components/BackLink'
+import BackLinkComponent from '@components/BackLink'
 
 export default {
   title: 'Components',
   component: BackLinkComponent,
-} as Meta
+} as ComponentMeta<typeof BackLinkComponent>
 
-const Template: Story<BackLinkProps> = (args) => <BackLinkComponent {...args} />
+const Template: ComponentStory<typeof BackLinkComponent> = (args) => (
+  <BackLinkComponent {...args} />
+)
 
 export const BackLink = Template.bind({})
 
 BackLink.args = {
-  href: 'test.com',
+  href: '/internal-route',
 }

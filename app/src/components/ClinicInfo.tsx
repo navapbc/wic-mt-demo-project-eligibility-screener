@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-export interface ClinicInfoProps {
+export type ClinicInfoProps = {
   name: string
   streetAddress: string
   phone: string
