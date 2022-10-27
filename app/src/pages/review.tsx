@@ -5,7 +5,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import path from 'path'
 import { MouseEvent, useEffect, useState } from 'react'
-import { UrlObject } from 'url'
 
 import BackLink from '@components/BackLink'
 import Button from '@components/Button'
@@ -50,22 +49,20 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
     return data.map((category) => t(`Eligibility.${category}`))
   }
 
-  // Note: This click handler returns a promise to an attribute that expects a return value of void. This is intentional.
-  // We've disabled the eslint error.
-  // See https://typescript-eslint.io/rules/no-misused-promises/#checksvoidreturn
-  const handleClick = async (e: MouseEvent<HTMLElement>) => {
+  // Note: All router.push() calls have linting disabled on them.
+  // See https://nextjs.org/docs/api-reference/next/router#potential-solutions
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    let routeToPush: string | UrlObject = ''
 
     // Do not resubmit if already submitted.
     if (session.submitted) {
       // Route to next page.
-      routeToPush = forwardRoute
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push(forwardRoute)
     }
     // If not already submitted, submit.
     else {
       const sessionCopy = cloneDeep(session)
-
       // Translate eligibility.categorical and eligibility.adjunctive to user-friendly content.
       const translatedCategorical = buildEligibilityArrays(
         sessionCopy.eligibility.categorical
@@ -83,38 +80,45 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
 
       // Call /api/eligibility-screener.
       const screenerUrl = path.join(baseUrl, '/api/eligibility-screener')
-      const response = await fetch(screenerUrl, {
+      fetch(screenerUrl, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
-          'Content-type': 'application/json',
+          'Content-Type': 'application/json',
         },
       })
-
-      console.log(response)
-
-      // A 201 response means that /api/eligibility-screener created a new record.
-      if (response.status === 201) {
-        console.log('new submitted')
-        // Mark this session as submitted so duplicate entries won't be created.
-        setSession({ ...session, submitted: true })
-        // Route to the next page.
-        routeToPush = forwardRoute
-      }
-      // Any other responses indicate an error.
-      else {
-        console.log('error')
-        const responseBody =
-          (await response.json()) as EligibilityScreenerResponse
-        setErrorMessage(`${t('apiError')} Error: ${responseBody.error}`)
-        // Reload current page.
-        routeToPush = ''
-      }
+        .then((response) => {
+          return response.json()
+        })
+        .then((data: EligibilityScreenerResponse) => {
+          if (data.success) {
+            // Mark this session as submitted so duplicate entries won't be created.
+            setSession({ ...session, submitted: true })
+            // Route to the next page.
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            router.push(forwardRoute)
+          } else {
+            console.log(
+              'An error occurred while attempting to submit the session',
+              data.error
+            )
+            setErrorMessage(`${t('apiError')} Error: ${data.error}`)
+            // Reload current page.
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            router.push('')
+          }
+        })
+        .catch((error) => {
+          console.log(
+            'An error occurred while attempting to call fetch()',
+            error
+          )
+          setErrorMessage(`${t('apiError')}`)
+          // Reload current page.
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          router.push('')
+        })
     }
-    // Note: All router.push() calls have linting disabled on them.
-    // See https://nextjs.org/docs/api-reference/next/router#potential-solutions
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.push(routeToPush)
   }
 
   return (
@@ -134,10 +138,7 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const baseUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.PRODUCTION_URL
+  const baseUrl = process.env.BASE_URL || ''
 
   return {
     props: {

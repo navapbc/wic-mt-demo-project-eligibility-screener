@@ -19,14 +19,6 @@
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        "checksVoidReturn": {
-          "attributes": false
-        }
-      }
-    ],
     "@typescript-eslint/no-unused-vars": "error",
     "comma-dangle": ["error", "only-multiline"],
     "react/react-in-jsx-scope": "off"
