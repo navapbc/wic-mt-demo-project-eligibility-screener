@@ -4,7 +4,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
 
-const Index: NextPage = () => {
+import type { Page } from '@src/types'
+
+const Index: NextPage<Page> = (props: Page) => {
+  const { forwardRoute = '' } = props
+  // @TODO: https://wicmtdp.atlassian.net/browse/WMDP-252
+  //        Move as much translation content out of code as possible.
+  //        Consider removing auto-sort on translation files and
+  //        using https://www.i18next.com/translation-function/objects-and-arrays.
   const listCopyKeys: string[] = ['benefits', 'supplement', 'voluntary']
 
   return (
@@ -21,7 +28,7 @@ const Index: NextPage = () => {
         ))}
       </ul>
       <Trans i18nKey="Index.time" />
-      <ButtonLink href="/how-it-works" labelKey="Index.button" />
+      <ButtonLink href={forwardRoute} labelKey="Index.button" />
     </>
   )
 }

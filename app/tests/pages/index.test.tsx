@@ -1,25 +1,35 @@
-// test/pages/index.test.js
-import { render, screen, waitFor } from '@testing-library/react'
-import { axe } from 'jest-axe'
-
 import Index from '@pages/index'
 
-describe('Index', () => {
-  it('should render the heading', () => {
-    render(<Index />)
+import { setup } from '../helpers/setup'
+import {
+  testAccessibility,
+  testActionButtonRoute,
+  testSnapshot,
+} from '../helpers/sharedTests'
 
-    const heading = screen.getByText(/Start an application for WIC/i)
+/**
+ * Test setup
+ */
 
-    expect(heading).toBeInTheDocument()
-    expect(heading).toMatchSnapshot()
-  })
+const route = '/'
+const forwardRoute = '/how-it-works'
 
-  it('should pass accessibility scan', async () => {
-    const { container } = render(<Index />)
-    const results = await axe(container)
+/**
+ * Begin tests
+ */
 
-    await waitFor(() => {
-      expect(results).toHaveNoViolations()
-    })
-  })
+it('should match full page snapshot', () => {
+  setup(route)
+  testSnapshot(<Index forwardRoute={forwardRoute} />)
+})
+
+it('should pass accessibility scan', async () => {
+  setup(route)
+  await testAccessibility(<Index forwardRoute={forwardRoute} />)
+})
+
+it('should have an action button that routes to forwardRoute', async () => {
+  const { mockSession, user } = setup(route)
+  const element = <Index forwardRoute={forwardRoute} />
+  await testActionButtonRoute(element, forwardRoute, 'Started', user)
 })
