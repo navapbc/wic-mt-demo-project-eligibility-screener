@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -5,10 +6,24 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 
-const OtherBenefits: NextPage = () => {
+import { clearSessionStorage } from '@src/hooks/useSessionStorage'
+import type { ClearablePage } from '@src/types'
+import { initialSessionData } from '@utils/sessionData'
+
+const OtherBenefits: NextPage<ClearablePage> = (props: ClearablePage) => {
+  const { setSession, sessionKey, backRoute = '', forwardRoute = '' } = props
+
+  // Handle the action button click for going back to the start of the form wizard.
+  const handleClick = () => {
+    // Clear the session storage.
+    clearSessionStorage(sessionKey)
+    // Then set the session state variable to blank.
+    setSession(cloneDeep(initialSessionData))
+  }
+
   return (
     <>
-      <BackLink href="/eligibility" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="OtherBenefits.title" />
       </h1>
@@ -43,7 +58,11 @@ const OtherBenefits: NextPage = () => {
           i18nKey={'OtherBenefits.location'}
         />
       </p>
-      <ButtonLink href="/" labelKey="OtherBenefits.button" />
+      <ButtonLink
+        labelKey="OtherBenefits.button"
+        onClick={handleClick}
+        href={forwardRoute}
+      />
     </>
   )
 }
