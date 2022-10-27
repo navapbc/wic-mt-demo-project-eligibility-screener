@@ -43,3 +43,6 @@ build-storybook.log
 
 # uswds assets
 /public/uswds
+
+# playwright test results
+/tests-e2e/results
