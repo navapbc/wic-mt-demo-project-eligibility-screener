@@ -1,180 +1,151 @@
-import { DefaultState, useAppContext } from '@context/state'
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
-import { Trans } from 'next-i18next'
+import cloneDeep from 'lodash/cloneDeep'
+import type { GetServerSideProps, NextPage } from 'next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ReactElement } from 'react'
+import { useRouter } from 'next/router'
+import path from 'path'
+import { MouseEvent, useEffect, useState } from 'react'
 
 import BackLink from '@components/BackLink'
-import ButtonLink from '@components/ButtonLink'
-import ClinicInfo from '@components/ClinicInfo'
-import List from '@components/List'
-import ReviewCollection from '@components/ReviewCollection'
-import { ReviewElementProps } from '@components/ReviewElement'
+import Button from '@components/Button'
+import PageError from '@components/PageError'
+import ReviewSection from '@components/ReviewSection'
 
-type Category = 'pregnant' | 'baby' | 'child' | 'guardian' | 'loss'
-type Program = 'insurance' | 'snap' | 'tanf' | 'fdpir'
-type Contact = 'firstName' | 'lastName' | 'phone' | 'comments'
+import {
+  EligibilityScreenerBody,
+  EligibilityScreenerResponse,
+} from '@pages/api/eligibility-screener'
 
-const categoryKeys: Category[] = [
-  'pregnant',
-  'baby',
-  'child',
-  'guardian',
-  'loss',
-]
-const programKeys: Program[] = ['insurance', 'snap', 'tanf', 'fdpir']
-const contactKeys: Contact[] = ['firstName', 'lastName', 'phone', 'comments']
+import type { EditablePage } from '@src/types'
+import { initialSessionData } from '@utils/sessionData'
 
-const formatCategoricalOrAdjunctive = (
-  keys: (Category | Program)[],
-  session: DefaultState
-): ReactElement => {
-  const i18nKeys: string[] = []
+interface ReviewProps extends EditablePage {
+  baseUrl: string
+}
 
-  keys.forEach((key: Category | Program) => {
-    if (session.eligibility[key]) {
-      i18nKeys.push(`Eligibility.${key}`)
+const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
+  const {
+    session,
+    setSession,
+    backRoute = '',
+    forwardRoute = '',
+    baseUrl,
+  } = props
+
+  // Using form to store all of the data in a component state
+  // resolves all hydration issues.
+  const [form, setForm] = useState(initialSessionData)
+  useEffect(() => {
+    setForm(session)
+  }, [session])
+
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const { t } = useTranslation('common')
+
+  const router = useRouter()
+
+  const buildEligibilityArrays = (data: string[]) => {
+    return data.map((category) => t(`Eligibility.${category}`))
+  }
+
+  // Note: All router.push() calls have linting disabled on them.
+  // See https://nextjs.org/docs/api-reference/next/router#potential-solutions
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+
+    // Do not resubmit if already submitted.
+    if (session.submitted) {
+      // Route to next page.
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push(forwardRoute)
     }
-  })
+    // If not already submitted, submit.
+    else {
+      const sessionCopy = cloneDeep(session)
+      // Translate eligibility.categorical and eligibility.adjunctive to user-friendly content.
+      const translatedCategorical = buildEligibilityArrays(
+        sessionCopy.eligibility.categorical
+      )
+      const translatedAdjunctive = buildEligibilityArrays(
+        sessionCopy.eligibility.adjunctive
+      )
 
-  return <List i18nKeys={i18nKeys} />
-}
+      // Create the body that /api/eligibility-screener expects.
+      const body: EligibilityScreenerBody = {
+        session: sessionCopy,
+        translatedCategorical: translatedCategorical,
+        translatedAdjunctive: translatedAdjunctive,
+      }
 
-export const formatEligibilityResponses = (
-  session: DefaultState
-): ReviewElementProps[] => {
-  return [
-    {
-      labelKey: 'Eligibility.residential',
-      children:
-        (session?.eligibility?.residential && (
-          <Trans i18nKey={session?.eligibility?.residential} />
-        )) ||
-        null,
-    },
-    {
-      labelKey: 'Eligibility.categorical',
-      children: formatCategoricalOrAdjunctive(categoryKeys, session),
-    },
-    {
-      labelKey: 'Eligibility.before',
-      children:
-        (session?.eligibility?.before && (
-          <Trans i18nKey={session?.eligibility?.before.replace(/[2]/g, '')} />
-        )) ||
-        null,
-    },
-    {
-      labelKey: 'Eligibility.programs',
-      children: formatCategoricalOrAdjunctive(programKeys, session),
-    },
-  ]
-}
-
-export const formatClinicResponses = (
-  session: DefaultState
-): ReviewElementProps[] => {
-  return [
-    {
-      labelKey: 'Review.clinicSelected',
-      children:
-        (session?.clinic && (
-          <ClinicInfo
-            name={session?.clinic.clinic}
-            streetAddress={session?.clinic.clinicAddress}
-            phone={session?.clinic.clinicTelephone}
-            isFormElement={false}
-          />
-        )) ||
-        null,
-    },
-  ]
-}
-
-export const formatContactResponses = (
-  session: DefaultState
-): ReviewElementProps[] => {
-  const contactResponses: ReviewElementProps[] = []
-  contactKeys.forEach((key: string) => {
-    contactResponses.push({
-      labelKey: `Contact.${key}`,
-      children:
-        (session?.contact[key as Contact] && (
-          <Trans i18nKey={session?.contact[key as Contact]} />
-        )) ||
-        null,
-    })
-  })
-  return contactResponses
-}
-
-const Review: NextPage = () => {
-  const { session } = useAppContext()
+      // Call /api/eligibility-screener.
+      const screenerUrl = path.join(baseUrl, '/api/eligibility-screener')
+      fetch(screenerUrl, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => {
+          return response.json()
+        })
+        .then((data: EligibilityScreenerResponse) => {
+          if (data.success) {
+            // Mark this session as submitted so duplicate entries won't be created.
+            setSession({ ...session, submitted: true })
+            // Route to the next page.
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            router.push(forwardRoute)
+          } else {
+            console.log(
+              'An error occurred while attempting to submit the session',
+              data.error
+            )
+            setErrorMessage(`${t('apiError')} Error: ${data.error}`)
+            // Reload current page.
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            router.push('')
+          }
+        })
+        .catch((error) => {
+          console.log(
+            'An error occurred while attempting to call fetch()',
+            error
+          )
+          setErrorMessage(`${t('apiError')}`)
+          // Reload current page.
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          router.push('')
+        })
+    }
+  }
 
   return (
     <>
-      <BackLink href="/contact" />
+      {errorMessage && <PageError alertBody={errorMessage} />}
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Review.title" />
       </h1>
       <p>
         <Trans i18nKey="Review.subHeader" />
       </p>
-      <ReviewCollection
-        headerKey="Review.eligibilityTitle"
-        editable={true}
-        editHref="/eligibility"
-        reviewElements={formatEligibilityResponses(session)}
-      />
-      <ReviewCollection
-        headerKey="Clinic.title"
-        editable={true}
-        editHref="/clinic"
-        reviewElements={formatClinicResponses(session)}
-      />
-      <ReviewCollection
-        headerKey="Contact.title"
-        editable={true}
-        editHref="/contact"
-        reviewElements={formatContactResponses(session)}
-      />
-      <ButtonLink href="/confirmation" labelKey="Review.button" />
+      <ReviewSection editable={true} session={form} />
+      <Button labelKey="Review.button" onClick={handleClick} />
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  const baseUrl = process.env.BASE_URL || ''
+
+  return {
     props: {
+      baseUrl: baseUrl,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
-
-  if (
-    !['/choose-clinic', '/eligibility', '/contact'].includes(
-      previousRoute as string
-    )
-  ) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
-  }
-
-  return returnval
 }
 
 export default Review

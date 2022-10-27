@@ -1,7 +1,220 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Review should render the heading 1`] = `
-<h1>
-  Review and submit your information
-</h1>
+exports[`should match full page snapshot 1`] = `
+[
+  <a
+    className="usa-link"
+    href="/contact"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onTouchStart={[Function]}
+  >
+    Back
+  </a>,
+  <h1>
+    Review and submit your information
+  </h1>,
+  <p>
+    Review the information on this page before submitting. If you want to make changes, select "Edit" to go to the section you want to change.
+  </p>,
+  <div
+    className="review-collection margin-top-6 border-bottom-1px"
+  >
+    <h2>
+      Eligibility questions
+      <div
+        className="float-right"
+      >
+        <button
+          className="usa-button usa-button--small display-block usa-button--unstyled margin-top-1"
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+      </div>
+    </h2>
+    <dl
+      className="margin-bottom-2"
+    >
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Do you live or work in Montana?
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          Eligibility.
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Please select all the following that apply to your household:
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          <ul />
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Have you or someone in your household received WIC benefits before?
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          Eligibility.
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Are you or someone in your household currently enrolled in any of the following programs in Montana?
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          <ul />
+        </dd>
+      </div>
+    </dl>
+  </div>,
+  <div
+    className="review-collection margin-top-6 border-bottom-1px"
+  >
+    <h2>
+      Choose a clinic
+      <div
+        className="float-right"
+      >
+        <button
+          className="usa-button usa-button--small display-block usa-button--unstyled margin-top-1"
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+      </div>
+    </h2>
+    <dl
+      className="margin-bottom-2"
+    >
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Residential ZIP code
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          <div />
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            You selected this WIC Clinic to visit
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+    </dl>
+  </div>,
+  <div
+    className="review-collection margin-top-6 border-bottom-1px"
+  >
+    <h2>
+      Contact information
+      <div
+        className="float-right"
+      >
+        <button
+          className="usa-button usa-button--small display-block usa-button--unstyled margin-top-1"
+          onClick={[Function]}
+        >
+          Edit
+        </button>
+      </div>
+    </h2>
+    <dl
+      className="margin-bottom-2"
+    >
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            First name
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Last name
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Phone number
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Comments, questions, other information
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+    </dl>
+  </div>,
+  <button
+    className="usa-button usa-button--small display-block margin-top-6"
+    onClick={[Function]}
+  >
+    Submit
+  </button>,
+]
 `;
