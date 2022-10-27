@@ -1,76 +1,74 @@
-import { useAppContext } from '@context/state'
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEventHandler, useEffect, useState } from 'react'
-import NumberFormat from 'react-number-format'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { PatternFormat } from 'react-number-format'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
-import TextArea from '@components/TextArea'
-import TextInput from '@components/TextInput'
+import TextField from '@components/TextField'
 
-interface Props {
-  previousRoute: string
-}
+import type { ContactData, EditablePage } from '@src/types'
+import { isValidContact } from '@utils/dataValidation'
+import { initialContactData } from '@utils/sessionData'
 
-const Contact: NextPage<Props> = (props: Props) => {
-  const { session, setSession } = useAppContext()
-  const [form, setForm] = useState(session?.contact)
-  const [continueBtn, setContinueBtn] = useState<{
-    labelKey: string
-  }>({ labelKey: 'continue' })
-  const requiredMet = (): boolean => {
-    const validPhoneLength = form.phone.replace(/[^0-9]/g, '').length === 10
-    return (
-      validPhoneLength &&
-      ['firstName', 'lastName', 'phone'].every(
-        (field) => form[field as keyof typeof form]
-      )
-    )
-  }
-  const [disabled, setDisabled] = useState<boolean>(!requiredMet())
-
+const Contact: NextPage<EditablePage> = (props: EditablePage) => {
+  // Get the session from props.
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
+  // Initialize form as a state using the value with default blank values.
+  // This prevents bugginess around hydration. DO NOT try to initialize from the session!
+  // That can cause fields like <textarea> to not load values correctly.
+  const [form, setForm] = useState<ContactData>(initialContactData)
+  // Need to use useEffect() to properly load the data from session storage on component mount.
+  // This also updates form whenever session is updated, which isn't ideal since
+  // we update form AND session in handleChange(), but:
+  // 1. React requires session.contact as a dependency
+  // 2. We could remove setForm() from handleChange(), but that would put the update first
+  //    into sessionStorage before updating state and that is less ideal.
+  // Instead, we accept that this runs on component mount and on handleChange(), we run setForm(),
+  // then, setSession(), which then calls setForm() a second time.
   useEffect(() => {
-    setDisabled(!requiredMet())
+    setForm(session.contact)
+  }, [session.contact])
+
+  // If the user is reviewing previously entered data, use the review button.
+  // Otherwise, use the default button.
+  const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
+
+  // Set a state for whether the form requirements have been met and the
+  // form can be submitted. Otherwise, disable the submit button.
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration.
+  useEffect(() => {
+    setDisabled(!isValidContact(form))
   }, [form])
 
-  useEffect(() => {
-    if (props.previousRoute === '/review') {
-      setContinueBtn({
-        labelKey: 'updateAndReturn',
-      })
-    }
-  }, [props.previousRoute])
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { value, id }: { value: string; id: string } = e.target
-    const castId = id as keyof typeof form
-    const newForm = { ...form, [castId]: value }
-
-    setForm(newForm)
-    setSession({ ...session, contact: newForm })
+  // Handle changes to text and textarea fields.
+  const handleChangeEvent = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    handleChange(name, value)
   }
 
-  const handleChangeTextArea: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    const { value, id }: { value: string; id: string } = e.target
-    const castId = id as keyof typeof form
-    const newForm = { ...form, [castId]: value }
-
+  const handleChange = (name: string, value: string) => {
+    const newForm = { ...form, [name]: value }
     setForm(newForm)
     setSession({ ...session, contact: newForm })
   }
 
   return (
     <>
-      <BackLink href="/choose-clinic" />
+      <BackLink href={backRoute} />
       <form className="usa-form usa-form--large">
         <h1>
           <Trans i18nKey="Contact.title" />
@@ -81,15 +79,15 @@ const Contact: NextPage<Props> = (props: Props) => {
             <Trans i18nKey="Contact.name" />
             <Required />
           </h2>
-          <TextInput
-            handleChange={handleChange}
+          <TextField
+            handleChange={handleChangeEvent}
             id="firstName"
             labelKey="Contact.firstName"
             required
             value={form.firstName}
           />
-          <TextInput
-            handleChange={handleChange}
+          <TextField
+            handleChange={handleChangeEvent}
             id="lastName"
             labelKey="Contact.lastName"
             required
@@ -106,30 +104,35 @@ const Contact: NextPage<Props> = (props: Props) => {
             <Trans i18nKey="Contact.phone" />
             <Required />
           </label>
-          <NumberFormat
+          <PatternFormat
             format="###-###-####"
             mask="_"
             role="textbox"
             className="usa-input"
             id="phone"
+            name="phone"
             value={form.phone}
-            onChange={handleChange}
+            onValueChange={(values) => {
+              handleChange('phone', values.value)
+            }}
+            valueIsNumericString={true}
           />
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
             <Trans i18nKey="Contact.commentsHeader" />
           </h2>
-          <TextArea
-            handleChange={handleChangeTextArea}
+          <TextField
+            handleChange={handleChangeEvent}
             id="comments"
             labelKey="Contact.comments"
             value={form.comments}
+            type="textarea"
           />
         </fieldset>
         <ButtonLink
-          href="/review"
-          labelKey={continueBtn.labelKey}
+          href={forwardRoute}
+          labelKey={actionButtonLabel}
           disabled={disabled}
         />
       </form>
@@ -137,32 +140,12 @@ const Contact: NextPage<Props> = (props: Props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
-    {
-      props: {
-        previousRoute: previousRoute as string,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
-      },
-    }
-
-  if (!['/choose-clinic', '/review'].includes(previousRoute as string)) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
   }
-
-  return returnval
 }
 
 export default Contact
