@@ -1,14 +1,14 @@
-import { Meta, Story } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { RequiredQuestionStatement as RequiredQuestionStatementComponent } from '@components/RequiredQuestionStatement'
+import RequiredQuestionStatementComponent from '@components/RequiredQuestionStatement'
 
 export default {
   title: 'Components',
   component: RequiredQuestionStatementComponent,
-} as Meta
+} as ComponentMeta<typeof RequiredQuestionStatementComponent>
 
-const Template: Story = (args) => (
-  <RequiredQuestionStatementComponent {...args} />
-)
+const Template: ComponentStory<
+  typeof RequiredQuestionStatementComponent
+> = () => <RequiredQuestionStatementComponent />
 
 export const RequiredQuestionStatement = Template.bind({})
