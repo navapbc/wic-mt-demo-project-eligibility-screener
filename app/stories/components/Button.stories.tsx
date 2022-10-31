@@ -1,10 +1,16 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import ButtonComponent from '@components/Button'
+import ButtonComponent, { buttonStyleOptions } from '@components/Button'
 
 export default {
   title: 'Components',
   component: ButtonComponent,
+  argTypes: {
+    style: {
+      control: 'select',
+      options: buttonStyleOptions,
+    },
+  },
 } as ComponentMeta<typeof ButtonComponent>
 
 const Template: ComponentStory<typeof ButtonComponent> = (args) => (

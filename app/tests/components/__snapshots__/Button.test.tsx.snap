@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot for accent-cool style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--accent-cool margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for accent-warm style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--accent-warm margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for base style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--base margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for big style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--big margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for default style 1`] = `
+<button
+  className="usa-button usa-button--small display-block margin-top-6"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for outline style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--outline margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for secondary style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--secondary margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
+
+exports[`should match snapshot for unstyled style 1`] = `
+<button
+  className="usa-button usa-button--small display-block usa-button--unstyled margin-top-1"
+  disabled={false}
+>
+  button label
+</button>
+`;
