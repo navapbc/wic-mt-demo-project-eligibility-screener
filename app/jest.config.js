@@ -8,7 +8,6 @@ module.exports = {
     '@public/clinic-output/clinics-with-ids.json':
       '<rootDir>/tests/__mocks__/clinics-with-ids-mock.json',
     '^@components(.*)$': '<rootDir>/src/components$1',
-    '^@context(.*)$': '<rootDir>/src/context$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
     '^@public(.*)$': '<rootDir>/public$1',
     '^@src(.*)$': '<rootDir>/src$1',
