@@ -1,14 +1,14 @@
 import { ReactElement } from 'react'
 
-import ButtonLink from '@components/ButtonLink'
+import StyledLink from '@components/StyledLink'
 
-export interface BackLinkProps {
+export type BackLinkProps = {
   href: string
 }
 
 export const BackLink = (props: BackLinkProps): ReactElement => {
   const { href } = props
-  return <ButtonLink labelKey="backlinkText" href={href} style="unstyled" />
+  return <StyledLink textKey="backlinkText" href={href} external={false} />
 }
 
 export default BackLink

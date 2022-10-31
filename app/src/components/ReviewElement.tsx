@@ -1,9 +1,11 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 
+import { i18nKey } from '@src/types'
+
 export type ReviewElementProps = {
-  labelKey: string
-  children: ReactElement | null
+  labelKey: i18nKey
+  children: ReactElement | string | null
 }
 
 const ReviewElement = (props: ReviewElementProps): ReactElement => {

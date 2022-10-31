@@ -1,13 +1,17 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 
-type Props = {
-  alertBody: string
-  type: 'error' | 'info' | 'success' | 'warning'
+import { i18nKey } from '@src/types'
+
+export type AlertTypes = 'error' | 'info' | 'success' | 'warning'
+
+export type AlertProps = {
+  alertBody: i18nKey
+  type: AlertTypes
   icon?: boolean
 }
 
-const Alert = (props: Props): ReactElement => {
+export const Alert = (props: AlertProps): ReactElement => {
   const { alertBody, type, icon } = props
 
   return (

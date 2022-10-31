@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<div
+  className="review-element margin-bottom-3"
+>
+  <dt>
+    <strong>
+      label
+    </strong>
+  </dt>
+  <dd
+    className="margin-left-0"
+  >
+    This is a child
+  </dd>
+</div>
+`;
