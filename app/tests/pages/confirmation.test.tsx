@@ -1,24 +1,62 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import { axe } from 'jest-axe'
+import { render, screen } from '@testing-library/react'
+import singletonRouter from 'next/router'
 
 import Confirmation from '@pages/confirmation'
 
-describe('Confirmation', () => {
-  it('should render the heading', () => {
-    render(<Confirmation />)
+import * as sessionModule from '@src/hooks/useSessionStorage'
+import { initialSessionData } from '@utils/sessionData'
 
-    const heading = screen.getByText(/Your confirmation/)
+import { setMockSession, setup } from '../helpers/setup'
+import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
 
-    expect(heading).toBeInTheDocument()
-    expect(heading).toMatchSnapshot()
-  })
+/**
+ * Test setup
+ */
 
-  it('should pass accessibility scan', async () => {
-    const { container } = render(<Confirmation />)
-    const results = await axe(container)
+const route = '/confirmation'
 
-    await waitFor(() => {
-      expect(results).toHaveNoViolations()
-    })
-  })
+/**
+ * Begin tests
+ */
+
+it('should match full page snapshot', () => {
+  const { mockSession } = setup(route)
+  testSnapshot(
+    <Confirmation
+      sessionKey="mockSessionKey"
+      session={mockSession}
+      setSession={setMockSession}
+    />
+  )
+})
+
+it('should pass accessibility scan', async () => {
+  const { mockSession } = setup(route)
+  await testAccessibility(
+    <Confirmation
+      sessionKey="mockSessionKey"
+      session={mockSession}
+      setSession={setMockSession}
+    />
+  )
+})
+
+it('should clear the session and redirect when start new application button is clicked', async () => {
+  const { mockSession, user } = setup(route)
+  // Spy on clearSessionStorage() to make sure it gets called.
+  const spy = jest.spyOn(sessionModule, 'clearSessionStorage')
+  render(
+    <Confirmation
+      sessionKey="mockSessionKey"
+      session={mockSession}
+      setSession={setMockSession}
+    />
+  )
+
+  const button = screen.getByRole('button', { name: /Start/i })
+  await user.click(button)
+
+  expect(setMockSession).toHaveBeenCalledWith(initialSessionData)
+  expect(singletonRouter).toMatchObject({ asPath: '/' })
+  expect(spy).toHaveBeenCalled()
 })

@@ -1,29 +1,31 @@
 import { Trans } from 'next-i18next'
-import React, { ReactElement } from 'react'
+import { ChangeEvent, ReactElement } from 'react'
 
 import Accordion from '@components/Accordion'
 import Required from '@components/Required'
 
-interface Choice {
+import { i18nKey } from '@src/types'
+
+export type Choice = {
   checked: boolean
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  labelKey: string
-  name?: string
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void
+  labelKey: i18nKey
+  name: string
   value: string
 }
 
-type Props = {
+export type InputChoiceGroupProps = {
   accordion?: {
-    headerKey: string
-    bodyKey: string
+    headerKey: i18nKey
+    bodyKey: i18nKey
   }
   choices: Choice[]
-  titleKey: string
+  titleKey: i18nKey
   required?: boolean
   type: 'checkbox' | 'radio'
 }
 
-const InputChoiceGroup = (props: Props): ReactElement => {
+const InputChoiceGroup = (props: InputChoiceGroupProps): ReactElement => {
   const { accordion, choices, titleKey, required, type } = props
 
   return (
@@ -43,13 +45,16 @@ const InputChoiceGroup = (props: Props): ReactElement => {
           <input
             checked={choice.checked}
             className={`usa-${type}__input usa-${type}__input--tile`}
-            id={choice.value}
+            id={`${choice.name}-${choice.value}`}
             name={choice.name}
             onChange={choice.handleChange}
             type={type}
             value={choice.value}
           />
-          <label className={`usa-${type}__label`} htmlFor={choice.value}>
+          <label
+            className={`usa-${type}__label`}
+            htmlFor={`${choice.name}-${choice.value}`}
+          >
             <Trans i18nKey={choice.labelKey} />
           </label>
         </div>

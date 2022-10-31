@@ -1,87 +1,132 @@
-import { useAppContext } from '@context/state'
 import clinics from '@public/clinic-output/clinics-with-ids.json'
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
-import Button from '@components/Button'
-import ButtonLink from '@components/ButtonLink'
-import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 
-interface Props {
-  previousRoute: string
-}
+import type { ChooseClinicData, Clinic, EditablePage } from '@src/types'
+import { isValidChooseClinic, isValidZipCode } from '@utils/dataValidation'
+import { initialChooseClinicData } from '@utils/sessionData'
 
-const ChooseClinic: NextPage<Props> = (props: Props) => {
-  const { session, setSession } = useAppContext()
-  const [expandList, setExpandList] = useState<boolean>(false)
-  const numberOfClinicsToReturn = 8
-  const [selectedClinic, setSelectedClinic] = useState<
-    typeof clinics[0] | undefined
-  >(session?.clinic)
-  const [filteredClinics, setFilteredClinics] = useState<
-    (typeof clinics[0] | undefined)[]
-  >(session?.clinic ? [selectedClinic] : [])
-  const [search, setSearch] = useState('')
-  const [searchError, setSearchError] = useState<boolean>(false)
-  const [zipValidationError, setZipValidationError] = useState<boolean>(false)
-  const [continueBtn, setContinueBtn] = useState<{
-    labelKey: string
-    route: string
-  }>({ labelKey: 'ChooseClinic.button', route: '/contact' })
+// Dynamically load the <ClinicSelectionList> component to prevent SSR hydration conflicts.
+const ClinicSelectionList = dynamic(
+  () => import('@components/ClinicSelectionList'),
+  {
+    ssr: false,
+  }
+)
 
+const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
+  // Get the session from props.
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
+  // Initialize form as a state using blank values.
+  const [form, setForm] = useState<ChooseClinicData>(initialChooseClinicData)
+  // Use useEffect() to properly load the data from session storage during react hydration.
   useEffect(() => {
-    if (props.previousRoute === '/review') {
-      setContinueBtn({
-        labelKey: 'updateAndReturn',
-        route: props.previousRoute,
-      })
-    }
-  }, [props.previousRoute])
+    setForm(session.chooseClinic)
+  }, [session.chooseClinic])
 
-  const isValidZip = (zip: string) => {
-    return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip)
+  // If the user is reviewing previously entered data, use the review button.
+  // Otherwise, use the default button.
+  const actionButtonLabel = reviewMode
+    ? 'updateAndReturn'
+    : 'ChooseClinic.button'
+
+  // Set a state for whether the form requirements have been met and the
+  // form can be submitted. Otherwise, disable the submit button.
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration
+  // Since we need to use useEffect to update this state, this also handles anytime the
+  // form state is updated, so we don't need to call the same function in handleChange().
+  useEffect(() => {
+    setDisabled(!isValidChooseClinic(form))
+  }, [form])
+
+  // Page specific states & consts.
+  // The max number of clinic results to show the user.
+  const numberOfClinicsToReturn = 8
+  // A state for handling whether the list of clinics shown to the user is expanded.
+  const [expandList, setExpandList] = useState<boolean>(false)
+  // A state for holding nearest clinics by zip code.
+  const [filteredClinics, setFilteredClinics] = useState<
+    (Clinic | undefined)[]
+  >(form.clinic ? [form.clinic] : [])
+  // Use useEffect() to load the selected clinic into filteredClinics state at component
+  // mount if filteredClinics is empty. In other words, if the user has selected a clinic,
+  // put it into the filtered list to show just that one clinic.
+  useEffect(() => {
+    if (filteredClinics.length === 0 && form.clinic !== undefined) {
+      setFilteredClinics([form.clinic])
+    }
+  }, [form.clinic, filteredClinics.length])
+  // A state for tracking whether the zip code the user entered is out of state.
+  const [zipNotInStateError, setZipNotInStateError] = useState<boolean>(false)
+  // A state for tracking if there is a validation error in the zip.
+  const [zipValidationError, setZipValidationError] = useState<boolean>(false)
+
+  // Change handler for any updates to the zip code search field.
+  const handleZipCodeChange = (zipCode: string) => {
+    const newForm = { ...form, zipCode: zipCode, clinic: undefined }
+    updateFormAndSession(newForm)
+    // Reset all the clinic result states.
+    setZipNotInStateError(false)
+    setFilteredClinics([])
+    setExpandList(false)
   }
 
+  // Handle submitting the zip code search form.
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSelectedClinic(undefined)
+    // Reset any saved clinic to undefined.
+    updateFormAndSession({ ...form, clinic: undefined })
 
-    if (isValidZip(search)) {
+    // Do the lookup only if the zip code is valid.
+    if (isValidZipCode(form.zipCode)) {
       setZipValidationError(false)
+      // Lookup the clinics that match that zip code.
       import(
-        `../../public/clinic-output/clinics-zip-code-lookup/${search}.json`
+        `@public/clinic-output/clinics-zip-code-lookup/${form.zipCode}.json`
       )
         .then(
           (sortedClinics: { default: { id: number; distance: string }[] }) => {
-            const clinicsWithDetails: (typeof clinics[0] | undefined)[] =
+            const clinicsWithDetails: (Clinic | undefined)[] =
               sortedClinics.default
                 .slice(0, numberOfClinicsToReturn)
                 .map((clinic: typeof sortedClinics.default[0]) =>
                   clinics.find(
-                    (clinicDetails: typeof clinics[0]) =>
-                      clinicDetails.id === clinic.id
+                    (clinicDetails: Clinic) => clinicDetails.id === clinic.id
                   )
                 )
                 .filter(Boolean)
 
-            setSearchError(false)
+            // Reset the not-in-state error, if any.
+            setZipNotInStateError(false)
+            // Save the results.
             setFilteredClinics(clinicsWithDetails)
+            // Reset the expand list.
+            setExpandList(false)
           }
         )
+        // If the zip is not in state, then:
+        // - log it
+        // - display the not-in-state error
+        // - clear any previously saved results
         .catch((error) => {
           console.log(error)
-          setSearchError(true)
+          setZipNotInStateError(true)
           setFilteredClinics([])
         })
     } else {
@@ -89,24 +134,27 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
     }
   }
 
+  // Handle selecting a clinic.
   const handleSelection = (e: ChangeEvent<HTMLInputElement>) => {
     const { value }: { value: string } = e.target
     const clinicIndex = filteredClinics?.findIndex(
       (clinic) => clinic?.clinic === value
     )
-    const selectedClinic = filteredClinics[clinicIndex]
-
-    setSelectedClinic(selectedClinic)
-    setSession({ ...session, clinic: selectedClinic })
+    const newSelectedClinic = filteredClinics[clinicIndex]
+    const newForm = { ...form, clinic: newSelectedClinic }
+    updateFormAndSession(newForm)
   }
 
-  const selected = (clinic: typeof clinics[0]) => {
-    return clinic.clinic === selectedClinic?.clinic
+  const updateFormAndSession = (newForm: ChooseClinicData) => {
+    setForm(newForm)
+    setSession({ ...session, chooseClinic: newForm })
   }
 
+  // @TODO: zip code search box and alert are not set to the correct form max-width on non-mobile
+  // @TODO: Switch zip code field to use react-number-format. Requires react-number-format to support type=search
   return (
     <>
-      <BackLink href="/income" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="ChooseClinic.title" />
       </h1>
@@ -141,8 +189,8 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
               className="usa-input usa-input-error"
               id="search-field-en-small"
               type="search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={form.zipCode}
+              onChange={(e) => handleZipCodeChange(e.target.value)}
             />
             <button className="usa-button" type="submit">
               <Image
@@ -155,7 +203,7 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
             </button>
           </form>
         </section>
-        {searchError && (
+        {zipNotInStateError && (
           <Alert
             type="error"
             alertBody="ChooseClinic.zipSearchError"
@@ -163,95 +211,28 @@ const ChooseClinic: NextPage<Props> = (props: Props) => {
           />
         )}
       </div>
-
-      {filteredClinics.length > 0 ? (
-        <>
-          <h2>
-            <Trans i18nKey="ChooseClinic.listTitle" />
-            <Required />
-          </h2>
-          <form className="usa-form usa-form--large">
-            <fieldset className="usa-fieldset">
-              {filteredClinics
-                ?.slice(0, expandList ? filteredClinics.length : 4)
-                .map(
-                  (clinic, index) =>
-                    clinic && (
-                      <div className="usa-radio" key={index}>
-                        <input
-                          checked={selected(clinic)}
-                          className="usa-radio__input usa-radio__input--tile"
-                          id={clinic.clinic}
-                          onChange={handleSelection}
-                          type="radio"
-                          value={clinic.clinic}
-                        />
-                        <label
-                          className="usa-radio__label"
-                          htmlFor={clinic.clinic}
-                        >
-                          <ClinicInfo
-                            name={clinic.clinic}
-                            streetAddress={clinic.clinicAddress}
-                            phone={clinic.clinicTelephone}
-                            isFormElement={true}
-                          />
-                        </label>
-                      </div>
-                    )
-                )}
-              {!expandList && (
-                <Button
-                  labelKey="ChooseClinic.showMoreOptions"
-                  style="unstyled"
-                  onClick={() => setExpandList(true)}
-                />
-              )}
-            </fieldset>
-            <ButtonLink
-              disabled={selectedClinic === undefined}
-              href={continueBtn.route}
-              labelKey={continueBtn.labelKey}
-            />
-          </form>
-        </>
-      ) : (
-        <></>
-      )}
+      <ClinicSelectionList
+        filteredClinics={filteredClinics}
+        expandList={expandList}
+        setExpandList={setExpandList}
+        selectedClinic={form.clinic}
+        handleSelection={handleSelection}
+        disabled={disabled}
+        actionButton={{
+          labelKey: actionButtonLabel,
+          href: forwardRoute,
+        }}
+      />
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object | string }> =
-    {
-      props: {
-        previousRoute: previousRoute as string,
-        ...(await serverSideTranslations(locale || 'en', ['common'])),
-      },
-    }
-
-  if (
-    !['/income', '/review', '/contact', '/eligibility'].includes(
-      previousRoute as string
-    )
-  ) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
   }
-
-  return returnval
 }
 
 export default ChooseClinic

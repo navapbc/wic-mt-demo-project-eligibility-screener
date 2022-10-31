@@ -1,20 +1,34 @@
-import { useAppContext } from '@context/state'
+import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useEffect, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
-import ReviewCollection from '@components/ReviewCollection'
+import ReviewSection from '@components/ReviewSection'
 import StyledLink from '@components/StyledLink'
 
-import {
-  formatClinicResponses,
-  formatContactResponses,
-  formatEligibilityResponses,
-} from '@pages/review'
+import { clearSessionStorage } from '@src/hooks/useSessionStorage'
+import type { ClearablePage } from '@src/types'
+import { initialSessionData } from '@utils/sessionData'
 
-const Confirmation: NextPage = () => {
-  const { session } = useAppContext()
+const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
+  const { session, setSession, sessionKey } = props
+
+  // Using form to store all of the data in a component state
+  // resolves all hydration issues.
+  const [form, setForm] = useState(initialSessionData)
+  useEffect(() => {
+    setForm(session)
+  }, [session])
+
+  // Handle the action button click for going back to the start of the form wizard.
+  const handleClick = () => {
+    // Clear the session storage.
+    clearSessionStorage(sessionKey)
+    // Then set the session state variable to blank.
+    setSession(cloneDeep(initialSessionData))
+  }
 
   return (
     <>
@@ -40,32 +54,19 @@ const Confirmation: NextPage = () => {
         <h2 className="font-sans-xs">
           <Trans i18nKey="Confirmation.submitAnother" />
         </h2>
-        <ButtonLink labelKey="Confirmation.startNew" href="/" style="outline" />
+        <ButtonLink
+          labelKey="Confirmation.startNew"
+          style="outline"
+          onClick={handleClick}
+          href="/"
+        />
       </div>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
           <Trans i18nKey="Confirmation.keepCopy" />
         </h2>
       </div>
-      <ReviewCollection
-        headerKey="Review.eligibilityTitle"
-        editable={false}
-        editHref="/eligibility"
-        reviewElements={formatEligibilityResponses(session)}
-        firstElement={true}
-      />
-      <ReviewCollection
-        headerKey="ChooseClinic.title"
-        editable={false}
-        editHref="/choose-clinic"
-        reviewElements={formatClinicResponses(session)}
-      />
-      <ReviewCollection
-        headerKey="Contact.title"
-        editable={false}
-        editHref="/contact"
-        reviewElements={formatContactResponses(session)}
-      />
+      <ReviewSection editable={false} session={form} />
     </>
   )
 }
