@@ -1,12 +1,14 @@
 import { Trans } from 'next-i18next'
 import { ReactElement, useState } from 'react'
 
-type Props = {
-  bodyKey: string
-  headerKey: string
+import { i18nKey } from '@src/types'
+
+export type AccordionProps = {
+  bodyKey: i18nKey
+  headerKey: i18nKey
 }
 
-const Accordion = (props: Props): ReactElement => {
+const Accordion = (props: AccordionProps): ReactElement => {
   const { bodyKey, headerKey } = props
   const [isExpanded, setExpanded] = useState(false)
 

@@ -1,9 +1,14 @@
 const nextConfig = require('../next.config')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const path = require('path')
 
 module.exports = {
   stories: ['../stories/**/*.stories.@(mdx|js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-essentials', 'storybook-react-i18next'],
+  addons: [
+    '@storybook/addon-essentials',
+    'storybook-addon-next-router',
+    'storybook-react-i18next',
+  ],
   framework: '@storybook/react',
   core: {
     // Use webpack5 instead of webpack4.
@@ -49,6 +54,12 @@ module.exports = {
         extensions: config.resolve.extensions,
       }),
     ]
+
+    // Workaround for TsconfigPathsPlugin not being able to resolve @public
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@public': path.resolve(__dirname, '../public'),
+    }
 
     // Required for i18next.
     config.resolve.fallback = {

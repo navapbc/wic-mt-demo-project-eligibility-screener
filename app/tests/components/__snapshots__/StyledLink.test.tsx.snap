@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot for external link 1`] = `
+<a
+  className="usa-link usa-link--external"
+  href="/somewhere"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  link text
+</a>
+`;
+
+exports[`should match snapshot for internal link 1`] = `
+<a
+  className="usa-link"
+  href="/somewhere"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onTouchStart={[Function]}
+>
+  link text
+</a>
+`;

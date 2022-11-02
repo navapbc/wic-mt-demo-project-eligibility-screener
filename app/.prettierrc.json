@@ -2,7 +2,7 @@
   "importOrder": [
     "^@components/(.*)$",
     "^@pages/(.*)$",
-    "^@styles/(.*)$",
+    "^@(styles|src|utils)/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

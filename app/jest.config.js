@@ -5,12 +5,14 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     '\\.(css|scss)$': '<rootDir>/tests/__mocks__/styleMock.js', // sets up routing to mocks style sheet
-    '^@clinics/*': '<rootDir>/public/clinic-output/clinics-zip-code-lookup$1',
+    '@public/clinic-output/clinics-with-ids.json':
+      '<rootDir>/tests/__mocks__/clinics-with-ids-mock.json',
     '^@components(.*)$': '<rootDir>/src/components$1',
-    '^@context(.*)$': '<rootDir>/src/context$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1', //allows module imports of page components
     '^@public(.*)$': '<rootDir>/public$1',
+    '^@src(.*)$': '<rootDir>/src$1',
     '^@styles(.*)$': '<rootDir>/styles$1',
+    '^@utils(.*)$': '<rootDir>/src/utils$1',
   },
   setupFilesAfterEnv: [
     '<rootDir>/tests/jest.setup.js',

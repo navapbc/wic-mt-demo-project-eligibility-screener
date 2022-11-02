@@ -1,14 +1,17 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
+import { UrlObject } from 'url'
 
 import ButtonLink from '@components/ButtonLink'
 import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
 
-type ReviewCollectionProps = {
-  headerKey: string
+import { i18nKey } from '@src/types'
+
+export type ReviewCollectionProps = {
+  headerKey: i18nKey
   reviewElements: ReviewElementProps[]
   editable: boolean
-  editHref: string
+  editHref: UrlObject | string
   firstElement?: boolean
 }
 

@@ -13,12 +13,12 @@
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@clinics/*": ["./public/clinic-output/clinics-zip-code-lookup/*"],
       "@components/*": ["./src/components/*"],
-      "@context/*": ["./src/context/*"],
       "@pages/*": ["./src/pages/*"],
       "@public/*": ["./public/*"],
-      "@styles/*": ["./styles/*"]
+      "@src/*": ["./src/*"],
+      "@styles/*": ["./styles/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

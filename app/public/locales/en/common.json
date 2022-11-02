@@ -33,8 +33,8 @@
   "Eligibility": {
     "accordionBody": "There are multiple categories of eligibility, and your answers here help us understand what benefits you and/or your household may qualify for.",
     "accordionHeader": "Why are we asking this?",
+    "adjunctive": "Are you or someone in your household currently enrolled in any of the following programs in Montana?",
     "baby": "I've had a baby in the past 12 months",
-    "before": "Have you or someone in your household received WIC benefits before?",
     "categorical": "Please select all the following that apply to your household:",
     "child": "I'm the parent of an infant or child under the age of 5 years old",
     "fdpir": "FDPIR (Food Distribution Program on Indian Reservations)",
@@ -45,7 +45,7 @@
     "no": "No",
     "none": "None of the above",
     "pregnant": "I'm pregnant",
-    "programs": "Are you or someone in your household currently enrolled in any of the following programs in Montana?",
+    "previouslyEnrolled": "Have you or someone in your household received WIC benefits before?",
     "residential": "Do you live or work in Montana?",
     "snap": "SNAP (Supplemental Nutrition Assistance Program)",
     "tanf": "TANF (Temporary Assistance for Needy Families)",
@@ -66,12 +66,12 @@
     "accordionBody": "<p>A household is defined as all persons, related or unrelated, living together in the same dwelling and sharing financial resources and costs, with the exception of foster children.</p><p>If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.</p>",
     "accordionHeader": "Who counts in my household?",
     "assistance": "Learn about other assistance",
-    "dropdownLabel": "Household size",
     "enrolled": "If you or someone in your household are currently enrolled in <strong>Medicaid, Healthy Montana Kids Plus</strong>, Supplemental Nutrition Assistance Program (<strong>SNAP</strong>), Temporary Assistance for Needy Families (<strong>TANF</strong>), or Food Distribution Program on Indian Reservations (<strong>FDPIR</strong>), you may be automatically eligible for WIC.",
     "estimatedIncome": "Estimated maximum income limit before taxes",
     "header": "Check your eligibility",
     "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
-    "householdSize": "What is your household size?",
+    "householdSize": "Household size",
+    "householdSizeHeader": "What is your household size?",
     "incomePeriods": {
       "annual": "Annual",
       "biweekly": "Bi-weekly",
@@ -108,12 +108,15 @@
     "clinicSelected": "You selected this WIC Clinic to visit",
     "eligibilityTitle": "Eligibility questions",
     "subHeader": "Review the information on this page before submitting. If you want to make changes, select \"Edit\" to go to the section you want to change.",
-    "title": "Review and submit your information"
+    "title": "Review and submit your information",
+    "zipCode": "Residential ZIP code"
   },
+  "apiError": "An unexpected error occurred when attempting to submit your information. Please try again later.",
   "asterisk": "All required questions are marked with an asterisk",
   "backlinkText": "Back",
   "continue": "Continue",
   "edit": "Edit",
+  "routingError": "Some required responses are missing. Please go back through the form and answer all required questions.",
   "select": "Select",
-  "updateAndReturn": "Update and return to review"
+  "updateAndReturn": "Update"
 }

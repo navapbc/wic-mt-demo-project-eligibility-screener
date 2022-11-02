@@ -1,7 +1,218 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Confirmation should render the heading 1`] = `
-<h1>
-  Your confirmation
-</h1>
+exports[`should match full page snapshot 1`] = `
+[
+  <h1>
+    Your confirmation
+  </h1>,
+  <p>
+    Thank you for submitting your information. If you're eligible, you should hear from WIC staff at your chosen clinic within 20 days.
+  </p>,
+  <div
+    className="content-group-small"
+  >
+    <h2
+      className="font-sans-xs"
+    >
+      Interested in other available assistance and benefits?
+    </h2>
+    <p>
+      <a
+        className="usa-link usa-link--external"
+        href="https://dphhs.mt.gov/Assistance"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Learn about other assistance
+      </a>
+    </p>
+  </div>,
+  <div
+    className="content-group-small"
+  >
+    <h2
+      className="font-sans-xs"
+    >
+      Do you need to submit another application for someone else?
+    </h2>
+    <button
+      className="usa-button usa-button--small display-block usa-button--outline margin-top-1"
+      onClick={[Function]}
+    >
+      Start a new application
+    </button>
+  </div>,
+  <div
+    className="content-group-small"
+  >
+    <h2
+      className="font-sans-xs"
+    >
+      Keep a copy of your confirmation for your records.
+    </h2>
+  </div>,
+  <div
+    className="review-collection margin-top-6 border-bottom-1px"
+  >
+    <h2>
+      Eligibility questions
+    </h2>
+    <dl
+      className="margin-bottom-2"
+    >
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Do you live or work in Montana?
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          Eligibility.
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Please select all the following that apply to your household:
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          <ul />
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Have you or someone in your household received WIC benefits before?
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          Eligibility.
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Are you or someone in your household currently enrolled in any of the following programs in Montana?
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          <ul />
+        </dd>
+      </div>
+    </dl>
+  </div>,
+  <div
+    className="review-collection margin-top-6 border-bottom-1px"
+  >
+    <h2>
+      Choose a clinic
+    </h2>
+    <dl
+      className="margin-bottom-2"
+    >
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Residential ZIP code
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        >
+          <div />
+        </dd>
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            You selected this WIC Clinic to visit
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+    </dl>
+  </div>,
+  <div
+    className="review-collection margin-top-6 border-bottom-1px"
+  >
+    <h2>
+      Contact information
+    </h2>
+    <dl
+      className="margin-bottom-2"
+    >
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            First name
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Last name
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Phone number
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+      <div
+        className="review-element margin-bottom-3"
+      >
+        <dt>
+          <strong>
+            Comments, questions, other information
+          </strong>
+        </dt>
+        <dd
+          className="margin-left-0"
+        />
+      </div>
+    </dl>
+  </div>,
+]
 `;

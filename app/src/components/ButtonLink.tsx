@@ -1,21 +1,30 @@
 import Link from 'next/link'
-import { ReactElement } from 'react'
+import { MouseEvent, ReactElement } from 'react'
+import { UrlObject } from 'url'
 
 import Button from '@components/Button'
 
-type Props = {
+import { i18nKey } from '@src/types'
+
+export type ButtonLinkProps = {
   disabled?: boolean
-  labelKey: string
-  href: string /* TODO: create global type for routes */
+  labelKey: i18nKey
+  href: UrlObject | string
   style?: string
+  onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
-const ButtonLink = (props: Props): ReactElement => {
-  const { disabled, href, labelKey, style } = props
+const ButtonLink = (props: ButtonLinkProps): ReactElement => {
+  const { disabled, href, labelKey, style, onClick } = props
 
   return (
-    <Link href={href} passHref>
-      <Button disabled={disabled} labelKey={labelKey} style={style} />
+    <Link href={href}>
+      <Button
+        disabled={disabled}
+        labelKey={labelKey}
+        style={style}
+        onClick={onClick}
+      />
     </Link>
   )
 }

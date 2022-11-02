@@ -1,12 +1,9 @@
 import incomeData from '@public/data/income.json'
-import type {
-  GetServerSideProps,
-  GetServerSidePropsResult,
-  NextPage,
-} from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEvent, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import Accordion from '@components/Accordion'
 import BackLink from '@components/BackLink'
@@ -15,23 +12,69 @@ import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
 
-const Income: NextPage = () => {
-  const { t } = useTranslation('common')
-  const [householdSize, setHouseholdSize] = useState<keyof typeof incomeData>()
-  const householdSizes: string[] = Object.keys(incomeData)
-  const incomePeriods: string[] = ['annual', 'monthly', 'biweekly', 'weekly']
+import type { EditablePage, IncomeData } from '@src/types'
+import { isValidIncome } from '@utils/dataValidation'
+import { initialIncomeData } from '@utils/sessionData'
 
-  const handleChange = (
-    e: ChangeEvent<HTMLSelectElement> & {
-      target: { value: keyof typeof incomeData }
-    }
-  ) => {
-    setHouseholdSize(e.target.value)
+// Dynamically load the <IncomeRow> component to prevent SSR hydration conflicts.
+const IncomeRow = dynamic(() => import('@components/IncomeRow'), {
+  ssr: false,
+})
+
+const Income: NextPage<EditablePage> = (props: EditablePage) => {
+  // Get the session from props.
+  const {
+    session,
+    setSession,
+    reviewMode = false,
+    backRoute = '',
+    forwardRoute = '',
+  } = props
+  // Initialize form as a state with blank values.
+  const [form, setForm] = useState<IncomeData>(initialIncomeData)
+  // Use useEffect() to properly load the data from session storage during react hydration.
+  useEffect(() => {
+    setForm(session.income)
+  }, [session.income])
+
+  // If the user is reviewing previously entered data, use the review button.
+  // Otherwise, use the default button.
+  const actionButtonLabel = reviewMode ? 'updateAndReturn' : 'continue'
+
+  // Set a state for whether the form requirements have been met and the
+  // form can be submitted. Otherwise, disable the submit button.
+  const [disabled, setDisabled] = useState(true)
+  // Use useEffect() to properly load the data from session storage during react hydration
+  // Since we need to use useEffect to update this state, this also handles anytime the
+  // form state is updated, so we don't need to call the same function in handleChange().
+  useEffect(() => {
+    setDisabled(!isValidIncome(form))
+  }, [form])
+
+  // Page-specific consts.
+  // Get the allowed household sizes from the json file.
+  const householdSizes: string[] = Object.keys(incomeData)
+  // Get the list of allowed income periods.
+  const incomePeriods: string[] = Object.keys(
+    incomeData[householdSizes[0] as keyof typeof incomeData]
+  )
+  // Initialize translations.
+  const { t } = useTranslation('common')
+
+  // Handle form element changes.
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value, name }: { value: string; name: string } = e.target
+
+    const newForm = { ...form, [name]: value }
+    // Update the income state.
+    setForm(newForm)
+    // Update the session storage state.
+    setSession({ ...session, income: newForm })
   }
 
   return (
     <>
-      <BackLink href="/eligibility" />
+      <BackLink href={backRoute} />
       <h1>
         <Trans i18nKey="Income.header" />
       </h1>
@@ -55,18 +98,19 @@ const Income: NextPage = () => {
       <form className="usa-form usa-form--large">
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Income.householdSize" />
+            <Trans i18nKey="Income.householdSizeHeader" />
           </h2>
           <Accordion
             bodyKey={'Income.accordionBody'}
             headerKey={'Income.accordionHeader'}
           />
           <Dropdown
-            id="income"
-            labelKey="Income.dropdownLabel"
+            id="householdSize"
+            labelKey="Income.householdSize"
             handleChange={handleChange}
             options={householdSizes}
             required={true}
+            selectedOption={form.householdSize}
           />
         </fieldset>
 
@@ -87,20 +131,13 @@ const Income: NextPage = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                {incomePeriods.map((period: string) => (
-                  <td
-                    data-label={t(`Income.incomePeriods.${period}`)}
-                    key={period}
-                  >
-                    {(householdSize &&
-                      incomeData[householdSize][
-                        period as keyof typeof incomeData[1]
-                      ]) ||
-                      '$XX,XXX'}
-                  </td>
-                ))}
-              </tr>
+              <IncomeRow
+                periods={incomePeriods}
+                householdSize={form.householdSize}
+                incomeForHouseholdSize={
+                  incomeData[form.householdSize as keyof typeof incomeData]
+                }
+              />
             </tbody>
           </table>
           <p>
@@ -111,36 +148,22 @@ const Income: NextPage = () => {
             />
           </p>
         </fieldset>
-        <ButtonLink href="/choose-clinic" labelKey="continue" />
+        <ButtonLink
+          href={forwardRoute}
+          labelKey={actionButtonLabel}
+          disabled={disabled}
+        />
       </form>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const prevRouteIndex = req.headers.referer?.lastIndexOf('/')
-  const previousRoute =
-    prevRouteIndex && req.headers.referer?.substring(prevRouteIndex)
-  let returnval: GetServerSidePropsResult<{ [key: string]: object }> = {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
     props: {
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
-
-  if (!['/eligibility', '/choose-clinic'].includes(previousRoute as string)) {
-    returnval = {
-      ...returnval,
-      redirect: {
-        destination: previousRoute || '/',
-        permanent: false,
-      },
-    }
-  }
-
-  return returnval
 }
 
 export default Income

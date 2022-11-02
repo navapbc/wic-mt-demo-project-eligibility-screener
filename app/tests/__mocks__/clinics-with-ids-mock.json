@@ -1,0 +1,101 @@
+[
+  {
+    "agency": "AGENCY ZERO",
+    "agencyAddress": "0000 St, Helena, MT 00000",
+    "agencyTelephone": "(000) 000-0000",
+    "clinic": "CLINIC ZERO",
+    "clinicAddress": "0000 St, Helena, MT 00000",
+    "clinicTelephone": "(000) 000-0000",
+    "county": "COUNTY ZERO",
+    "id": 0,
+    "zip": "00000"
+  },
+  {
+    "agency": "AGENCY ONE",
+    "agencyAddress": "1111 St, Helena, MT 11111",
+    "agencyTelephone": "(111) 111-1111",
+    "clinic": "CLINIC ONE",
+    "clinicAddress": "1111 St, Helena, MT 11111",
+    "clinicTelephone": "(111) 111-1111",
+    "county": "COUNTY ONE",
+    "id": 1,
+    "zip": "11111"
+  },
+  {
+    "agency": "AGENCY TWO",
+    "agencyAddress": "2222 St, Helena, MT 22222",
+    "agencyTelephone": "(222) 222-2222",
+    "clinic": "CLINIC TWO",
+    "clinicAddress": "2222 St, Helena, MT 22222",
+    "clinicTelephone": "(222) 222-2222",
+    "county": "COUNTY TWO",
+    "id": 2,
+    "zip": "22222"
+  },
+  {
+    "agency": "AGENCY THREE",
+    "agencyAddress": "3333 St, Helena, MT 33333",
+    "agencyTelephone": "(333) 333-3333",
+    "clinic": "CLINIC THREE",
+    "clinicAddress": "3333 St, Helena, MT 33333",
+    "clinicTelephone": "(333) 333-3333",
+    "county": "COUNTY THREE",
+    "id": 3,
+    "zip": "33333"
+  },
+  {
+    "agency": "AGENCY FOUR",
+    "agencyAddress": "4444 St, Helena, MT 44444",
+    "agencyTelephone": "(444) 444-4444",
+    "clinic": "CLINIC FOUR",
+    "clinicAddress": "4444 St, Helena, MT 44444",
+    "clinicTelephone": "(444) 444-4444",
+    "county": "COUNTY FOUR",
+    "id": 4,
+    "zip": "44444"
+  },
+  {
+    "agency": "AGENCY FIVE",
+    "agencyAddress": "5555 St, Helena, MT 55555",
+    "agencyTelephone": "(555) 555-5555",
+    "clinic": "CLINIC FIVE",
+    "clinicAddress": "5555 St, Helena, MT 55555",
+    "clinicTelephone": "(555) 555-5555",
+    "county": "COUNTY FIVE",
+    "id": 5,
+    "zip": "55555"
+  },
+  {
+    "agency": "AGENCY SIX",
+    "agencyAddress": "6666 St, Helena, MT 66666",
+    "agencyTelephone": "(666) 666-6666",
+    "clinic": "CLINIC SIX",
+    "clinicAddress": "6666 St, Helena, MT 66666",
+    "clinicTelephone": "(666) 666-6666",
+    "county": "COUNTY SIX",
+    "id": 6,
+    "zip": "66666"
+  },
+  {
+    "agency": "AGENCY SEVEN",
+    "agencyAddress": "7777 St, Helena, MT 77777",
+    "agencyTelephone": "(777) 777-7777",
+    "clinic": "CLINIC SEVEN",
+    "clinicAddress": "7777 St, Helena, MT 77777",
+    "clinicTelephone": "(777) 777-7777",
+    "county": "COUNTY SEVEN",
+    "id": 7,
+    "zip": "77777"
+  },
+  {
+    "agency": "AGENCY EIGHT",
+    "agencyAddress": "8888 St, Helena, MT 88888",
+    "agencyTelephone": "(888) 888-8888",
+    "clinic": "CLINIC EIGHT",
+    "clinicAddress": "8888 St, Helena, MT 88888",
+    "clinicTelephone": "(888) 888-8888",
+    "county": "COUNTY EIGHT",
+    "id": 8,
+    "zip": "88888"
+  }
+]

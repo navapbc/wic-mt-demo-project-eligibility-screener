@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<p>
+  All required questions are marked with an asterisk
+   (
+  <abbr
+    className="usa-hint usa-hint--required"
+  >
+    *
+  </abbr>
+  ).
+</p>
+`;

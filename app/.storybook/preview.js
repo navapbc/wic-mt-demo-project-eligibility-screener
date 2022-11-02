@@ -1,4 +1,8 @@
 // Apply global styling to our stories
+// Import to support next/router behavior in storybook.
+// See https://storybook.js.org/addons/storybook-addon-next-router
+import { RouterContext } from 'next/dist/shared/lib/router-context'
+
 import '@styles/styles.scss'
 
 // Import i18next config.
@@ -37,5 +41,8 @@ export const parameters = {
         ],
       ],
     },
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 }
