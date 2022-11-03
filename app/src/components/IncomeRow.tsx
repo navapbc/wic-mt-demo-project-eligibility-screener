@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import { ReactElement } from 'react'
 
 export type IncomeRowProps = {
@@ -15,10 +16,12 @@ const IncomeRow = (props: IncomeRowProps): ReactElement => {
   // to lookup the income amounts for each time period.
   // Otherwise, return a placeholder row.
 
+  const { t } = useTranslation('common')
+
   return (
     <tr>
       {periods.map((period: string) => (
-        <td key={period}>
+        <td key={period} data-label={t(`Income.incomePeriods.${period}`)}>
           {householdSize !== '' ? incomeForHouseholdSize[period] : '$XX,XXX'}
         </td>
       ))}
