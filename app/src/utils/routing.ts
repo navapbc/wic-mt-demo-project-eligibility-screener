@@ -2,10 +2,9 @@ import { UrlObject } from 'url'
 
 import { SessionData } from '@src/types'
 import {
-  isValidChooseClinic,
-  isValidContact,
   isValidEligibility,
   isValidIncome,
+  isValidSession,
 } from '@utils/dataValidation'
 
 interface RestrictedPages {
@@ -155,10 +154,10 @@ export function hasRoutingIssues(
   // These pages have restricted access based on user data.
   // All other pages have no routing issues.
   const restrictedPages: RestrictedPages = {
-    '/income': ['/eligibility'],
-    '/choose-clinic': ['/eligibility', '/income'],
-    '/contact': ['/eligibility', '/income', '/choose-clinic'],
-    '/review': ['/eligibility', '/income', '/choose-clinic', '/contact'],
+    '/income': ['eligibility'],
+    '/choose-clinic': ['eligibility', 'income'],
+    '/contact': ['eligibility', 'income', 'choose-clinic'],
+    '/review': ['eligibility', 'income', 'choose-clinic', 'contact'],
   }
   if (!Object.keys(restrictedPages).includes(pathname)) {
     return pass
@@ -171,45 +170,10 @@ export function hasRoutingIssues(
     else {
       for (let i = 0, len = restrictedPages[pathname].length; i < len; i++) {
         const check = restrictedPages[pathname][i]
-        // Check first for /eligibility requirements.
-        if (
-          check === '/eligibility' &&
-          !isValidEligibility(session.eligibility)
-        ) {
+        if (!isValidSession(session, check)) {
           return {
             error: true,
-            cause: 'eligibility',
-          }
-        }
-
-        // Then, check for /income requirements.
-        if (
-          check === '/income' &&
-          session.eligibility.adjunctive.includes('none') &&
-          !isValidIncome(session.income)
-        ) {
-          return {
-            error: true,
-            cause: 'income',
-          }
-        }
-
-        // Then, check for /choose-clinic requirements.
-        if (
-          check === '/choose-clinic' &&
-          !isValidChooseClinic(session.chooseClinic)
-        ) {
-          return {
-            error: true,
-            cause: 'choose-clinic',
-          }
-        }
-
-        // Then, check for /contact requirements.
-        if (check === '/contact' && !isValidContact(session.contact)) {
-          return {
-            error: true,
-            cause: 'contact',
+            cause: check,
           }
         }
       }
