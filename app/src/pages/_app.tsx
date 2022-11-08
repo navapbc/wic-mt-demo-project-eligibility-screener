@@ -2,6 +2,7 @@ import { appWithTranslation } from 'next-i18next'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { UrlObject } from 'url'
 
 import Layout from '@components/Layout'
 import PageError from '@components/PageError'
@@ -29,12 +30,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     try {
       const outcome = hasRoutingIssues(router.pathname, session)
-      if (outcome.error) {
+      if (outcome.hasIssues) {
+        const redirectTo: UrlObject = {
+          pathname: outcome.redirect,
+        }
+        if (outcome.showError) {
+          redirectTo.query = { error: 'missing-data' }
+        }
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push({
-          pathname: outcome.cause,
-          query: { error: 'missing-data' },
-        })
+        router.push(redirectTo)
       }
     } catch (e: unknown) {
       const error = e as Error

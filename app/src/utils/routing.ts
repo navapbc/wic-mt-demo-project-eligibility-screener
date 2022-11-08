@@ -148,38 +148,56 @@ export function hasRoutingIssues(
   session: SessionData | ((value: SessionData) => void)
 ) {
   const pass = {
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   }
   // These pages have restricted access based on user data.
-  // All other pages have no routing issues.
+  // Order matters in these arrays because it will determine which page the
+  // user is redirected to.
   const restrictedPages: RestrictedPages = {
     '/income': ['eligibility'],
     '/choose-clinic': ['eligibility', 'income'],
     '/contact': ['eligibility', 'income', 'choose-clinic'],
     '/review': ['eligibility', 'income', 'choose-clinic', 'contact'],
+    '/confirmation': [],
   }
+
   if (!Object.keys(restrictedPages).includes(pathname)) {
     return pass
-  } else {
-    // Same as getBackLink(), typescript warns that session might be a function.
-    if (typeof session === 'function') {
-      throw new Error('Routing error: expected a session, but none was found')
-    }
-    // If it's not, handle each restricted page.
-    else {
-      for (let i = 0, len = restrictedPages[pathname].length; i < len; i++) {
-        const check = restrictedPages[pathname][i]
-        if (!isValidSession(session, check)) {
-          return {
-            error: true,
-            cause: check,
-          }
-        }
-      }
+  }
 
-      // If none of the other checks failed, pass.
+  // Same as getBackLink(), typescript warns that session might be a function.
+  if (typeof session === 'function') {
+    throw new Error('Routing error: expected a session, but none was found')
+  }
+
+  // Handle special edge case for /confirmation, which should redirect
+  // to the index page and not display any errors.
+  if (pathname === '/confirmation') {
+    if (!isValidSession(session)) {
+      return {
+        hasIssues: true,
+        showError: false,
+        redirect: '/',
+      }
+    } else {
       return pass
     }
   }
+
+  // If it's not, handle each restricted page.
+  for (let i = 0, len = restrictedPages[pathname].length; i < len; i++) {
+    const check = restrictedPages[pathname][i]
+    if (!isValidSession(session, check)) {
+      return {
+        hasIssues: true,
+        showError: true,
+        redirect: check,
+      }
+    }
+  }
+
+  // If none of the other checks failed, pass.
+  return pass
 }
