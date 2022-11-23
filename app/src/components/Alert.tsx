@@ -1,5 +1,6 @@
-import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
+
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -23,7 +24,7 @@ export const Alert = (props: AlertProps): ReactElement => {
     >
       <div className="usa-alert__body">
         <p className="usa-alert__text">
-          <Trans i18nKey={alertBody} />
+          <TransLine i18nKey={alertBody} />
         </p>
       </div>
     </div>

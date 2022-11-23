@@ -1,4 +1,3 @@
-import { Trans } from 'next-i18next'
 import {
   ChangeEvent,
   Dispatch,
@@ -11,6 +10,7 @@ import Button from '@components/Button'
 import ButtonLink, { ButtonLinkProps } from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
+import TransLine from '@components/TransLine'
 
 import { Clinic } from '@src/types'
 
@@ -47,7 +47,7 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
     list = (
       <>
         <h2>
-          <Trans i18nKey="ChooseClinic.listTitle" />
+          <TransLine i18nKey="ChooseClinic.listTitle" />
           <Required />
         </h2>
         <form className="usa-form usa-form--large">

@@ -1,6 +1,7 @@
-import { Trans } from 'next-i18next'
 import Link from 'next/link'
 import { ReactElement } from 'react'
+
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -20,7 +21,7 @@ export const StyledLink = (props: StyledLinkProps): ReactElement => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Trans i18nKey={textKey} />
+        <TransLine i18nKey={textKey} />
       </a>
     )
   } else {
@@ -28,7 +29,7 @@ export const StyledLink = (props: StyledLinkProps): ReactElement => {
     return (
       <Link href={href} passHref>
         <a className="usa-link">
-          <Trans i18nKey={textKey} />
+          <TransLine i18nKey={textKey} />
         </a>
       </Link>
     )

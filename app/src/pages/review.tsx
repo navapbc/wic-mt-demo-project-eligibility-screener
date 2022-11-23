@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans, useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import path from 'path'
@@ -10,6 +10,7 @@ import BackLink from '@components/BackLink'
 import Button from '@components/Button'
 import PageError from '@components/PageError'
 import ReviewSection from '@components/ReviewSection'
+import TransLine from '@components/TransLine'
 
 import {
   EligibilityScreenerBody,
@@ -126,10 +127,10 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
       {errorMessage && <PageError alertBody={errorMessage} />}
       <BackLink href={backRoute} />
       <h1>
-        <Trans i18nKey="Review.title" />
+        <TransLine i18nKey="Review.title" />
       </h1>
       <p>
-        <Trans i18nKey="Review.subHeader" />
+        <TransLine i18nKey="Review.subHeader" />
       </p>
       <ReviewSection editable={true} session={form} />
       <Button labelKey="Review.button" onClick={handleClick} />

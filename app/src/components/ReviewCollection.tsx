@@ -1,9 +1,9 @@
-import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 import { UrlObject } from 'url'
 
 import ButtonLink from '@components/ButtonLink'
 import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -29,7 +29,7 @@ const ReviewCollection = (props: ReviewCollectionProps): ReactElement => {
   return (
     <div className={`review-collection ${marginTop} border-bottom-1px`}>
       <h2>
-        <Trans i18nKey={headerKey} />
+        <TransLine i18nKey={headerKey} />
         {editable && (
           <div className="float-right">
             <ButtonLink labelKey="edit" href={editHref} style="unstyled" />

@@ -1,6 +1,5 @@
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -10,6 +9,7 @@ import Alert from '@components/Alert'
 import BackLink from '@components/BackLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
+import TransLine from '@components/TransLine'
 
 import type { ChooseClinicData, Clinic, EditablePage } from '@src/types'
 import { isValidChooseClinic, isValidZipCode } from '@utils/dataValidation'
@@ -156,25 +156,25 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
     <>
       <BackLink href={backRoute} />
       <h1>
-        <Trans i18nKey="ChooseClinic.title" />
+        <TransLine i18nKey="ChooseClinic.title" />
       </h1>
       <RequiredQuestionStatement />
 
       <div className="content-group">
         <p>
-          <Trans i18nKey="ChooseClinic.body" />
+          <TransLine i18nKey="ChooseClinic.body" />
         </p>
       </div>
 
       <div className="content-group">
         <h2>
-          <Trans i18nKey="ChooseClinic.searchLabel" />
+          <TransLine i18nKey="ChooseClinic.searchLabel" />
           <Required />
         </h2>
         <section aria-label="Search clinic by zip">
           {zipValidationError && (
             <span className="usa-error-message">
-              <Trans i18nKey="ChooseClinic.zipValidationError" />
+              <TransLine i18nKey="ChooseClinic.zipValidationError" />
             </span>
           )}
           <form
@@ -183,7 +183,7 @@ const ChooseClinic: NextPage<EditablePage> = (props: EditablePage) => {
             onSubmit={handleSearch}
           >
             <label className="usa-sr-only" htmlFor="search-field-en-small">
-              <Trans i18nKey="ChooseClinic.searchLabel" />
+              <TransLine i18nKey="ChooseClinic.searchLabel" />
             </label>
             <input
               className="usa-input usa-input-error"

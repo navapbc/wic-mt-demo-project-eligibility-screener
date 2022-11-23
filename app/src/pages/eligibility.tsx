@@ -1,5 +1,4 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useState } from 'react'
 
@@ -7,6 +6,7 @@ import BackLink from '@components/BackLink'
 import ButtonLink from '@components/ButtonLink'
 import InputChoiceGroup from '@components/InputChoiceGroup'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
+import TransLine from '@components/TransLine'
 
 import type { EditablePage, EligibilityData } from '@src/types'
 import {
@@ -107,7 +107,7 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
     <>
       <BackLink href={backRoute} />
       <h1>
-        <Trans i18nKey="Eligibility.header" />
+        <TransLine i18nKey="Eligibility.header" />
       </h1>
       <RequiredQuestionStatement />
       <form className="usa-form usa-form--large">

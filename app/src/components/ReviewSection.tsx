@@ -1,10 +1,10 @@
-import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 
 import ClinicInfo from '@components/ClinicInfo'
 import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
 import { ReviewElementProps } from '@components/ReviewElement'
+import TransLine from '@components/TransLine'
 
 import type {
   ChooseClinicData,
@@ -42,7 +42,9 @@ const ReviewSection = (props: ReviewSectionProps): ReactElement => {
     return [
       {
         labelKey: 'Eligibility.residential',
-        children: <Trans i18nKey={`Eligibility.${eligibility.residential}`} />,
+        children: (
+          <TransLine i18nKey={`Eligibility.${eligibility.residential}`} />
+        ),
       },
       {
         labelKey: 'Eligibility.categorical',
@@ -51,7 +53,9 @@ const ReviewSection = (props: ReviewSectionProps): ReactElement => {
       {
         labelKey: 'Eligibility.previouslyEnrolled',
         children: (
-          <Trans i18nKey={`Eligibility.${eligibility.previouslyEnrolled}`} />
+          <TransLine
+            i18nKey={`Eligibility.${eligibility.previouslyEnrolled}`}
+          />
         ),
       },
       {

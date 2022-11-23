@@ -1,5 +1,6 @@
-import { Trans } from 'next-i18next'
 import React, { MouseEvent, ReactElement } from 'react'
+
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -47,7 +48,7 @@ const Button = React.forwardRef(
         onClick={onClick}
         ref={ref}
       >
-        <Trans i18nKey={labelKey} />
+        <TransLine i18nKey={labelKey} />
       </button>
     )
   }

@@ -1,5 +1,6 @@
-import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
+
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -15,7 +16,7 @@ const ReviewElement = (props: ReviewElementProps): ReactElement => {
     <div className="review-element margin-bottom-3">
       <dt>
         <strong>
-          <Trans i18nKey={labelKey} />
+          <TransLine i18nKey={labelKey} />
         </strong>
       </dt>
       <dd className="margin-left-0">{children}</dd>

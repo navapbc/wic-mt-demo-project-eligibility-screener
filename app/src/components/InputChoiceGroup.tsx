@@ -1,8 +1,8 @@
-import { Trans } from 'next-i18next'
 import { ChangeEvent, ReactElement } from 'react'
 
 import Accordion from '@components/Accordion'
 import Required from '@components/Required'
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -31,7 +31,7 @@ const InputChoiceGroup = (props: InputChoiceGroupProps): ReactElement => {
   return (
     <fieldset className="usa-fieldset">
       <h2>
-        <Trans i18nKey={titleKey} />
+        <TransLine i18nKey={titleKey} />
         {required && <Required />}
       </h2>
       {accordion && (
@@ -55,7 +55,7 @@ const InputChoiceGroup = (props: InputChoiceGroupProps): ReactElement => {
             className={`usa-${type}__label`}
             htmlFor={`${choice.name}-${choice.value}`}
           >
-            <Trans i18nKey={choice.labelKey} />
+            <TransLine i18nKey={choice.labelKey} />
           </label>
         </div>
       ))}

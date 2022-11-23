@@ -1,7 +1,7 @@
-import { Trans } from 'next-i18next'
 import { ChangeEvent, ReactElement } from 'react'
 
 import Required from '@components/Required'
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -23,7 +23,7 @@ const Dropdown = (props: DropdownProps): ReactElement => {
   return (
     <>
       <label className="usa-label" htmlFor={id}>
-        <Trans i18nKey={labelKey} />
+        <TransLine i18nKey={labelKey} />
         {required && <Required />}
       </label>
       <select
@@ -35,7 +35,7 @@ const Dropdown = (props: DropdownProps): ReactElement => {
       >
         <option value="">
           -&nbsp;
-          <Trans i18nKey="select" />
+          <TransLine i18nKey="select" />
           &nbsp;-
         </option>
         {options.map((option: string) => (

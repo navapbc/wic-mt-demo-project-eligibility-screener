@@ -1,5 +1,6 @@
-import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
+
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -14,7 +15,7 @@ export const List = (props: ListProps): ReactElement => {
     <ul>
       {i18nKeys.map((key, index) => (
         <li key={index}>
-          <Trans i18nKey={key} />
+          <TransLine i18nKey={key} />
         </li>
       ))}
     </ul>

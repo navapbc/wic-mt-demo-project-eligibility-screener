@@ -92,14 +92,31 @@
     "voluntary": "WIC is a voluntary program and participation will not interfere with use of other programs like SNAP or Medicaid."
   },
   "Layout": {
-    "footer1": "This site is a demonstration project built with <0>Montana WIC</0> and is for example purposes only. If you need to submit an application for WIC, please use <1>SignUpWIC.com</1> to find a location near you.",
-    "footer2": "This institution is an equal opportunity provider. <0>USDA Non-Discrimination Statement</0>",
+    "footer1": {
+      "links": [
+        "https://dphhs.mt.gov/ecfsd/wic/index",
+        "https://www.signupwic.com/"
+      ],
+      "text": "This site is a demonstration project built with <0>Montana WIC</0> and is for example purposes only. If you need to submit an application for WIC, please use <1>SignUpWIC.com</1> to find a location near you."
+    },
+    "footer2": {
+      "links": [
+        "https://www.fns.usda.gov/civil-rights/usda-nondiscrimination-statement-other-fns-programs"
+      ],
+      "text": "This institution is an equal opportunity provider. <0>USDA Non-Discrimination Statement</0>"
+    },
     "header": "Apply for WIC in Montana"
   },
   "OtherBenefits": {
-    "assistance": "We recommend visiting <0>https://dphhs.mt.gov/Assistance</0> to learn about other assistance in Montana.",
+    "assistance": {
+      "links": ["https://dphhs.mt.gov/Assistance"],
+      "text": "We recommend visiting <0>https://dphhs.mt.gov/Assistance</0> to learn about other assistance in Montana."
+    },
     "button": "Return to start page",
-    "location": "If you are not currently living or working in Montana, visit <0>SignUpWIC.com</0> to find a clinic near you.",
+    "location": {
+      "links": ["https://www.signupwic.com/"],
+      "text": "If you are not currently living or working in Montana, visit <0>SignUpWIC.com</0> to find a clinic near you."
+    },
     "subHeader": "Given your responses, you are likely not eligible for WIC in Montana.",
     "title": "Your eligibility"
   },

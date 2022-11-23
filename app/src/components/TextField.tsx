@@ -1,7 +1,7 @@
-import { Trans } from 'next-i18next'
 import { ChangeEvent, ReactElement } from 'react'
 
 import Required from '@components/Required'
+import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
 
@@ -45,7 +45,7 @@ const TextField = (props: TextFieldProps): ReactElement => {
   return (
     <>
       <label className="usa-label" htmlFor={id}>
-        <Trans i18nKey={labelKey} />
+        <TransLine i18nKey={labelKey} />
         {required && <Required />}
       </label>
       {textfield}
