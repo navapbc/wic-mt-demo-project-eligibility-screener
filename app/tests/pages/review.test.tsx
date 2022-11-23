@@ -22,6 +22,7 @@ const route = '/review'
 const backRoute = '/contact'
 const forwardRoute = '/confirmation'
 const baseUrl = 'http://localhost:3000'
+const demoMode = 'false'
 
 // Mock fetch().
 enableFetchMocks()
@@ -44,6 +45,7 @@ it('should match full page snapshot', () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />
   )
 })
@@ -57,6 +59,7 @@ it('should pass accessibility scan', async () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />
   )
 })
@@ -70,6 +73,7 @@ it('should have a back link that matches the backRoute', () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />,
     backRoute
   )
@@ -90,6 +94,7 @@ it('should not resubmit if it has already been submitted', async () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />
   )
 
@@ -122,6 +127,7 @@ it('should submit a properly formatted session', async () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />
   )
 
@@ -158,6 +164,7 @@ it('should handle submission errors', async () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />
   )
 
@@ -195,6 +202,7 @@ it('should handle fetch errors', async () => {
       backRoute={backRoute}
       forwardRoute={forwardRoute}
       baseUrl={baseUrl}
+      demoMode={demoMode}
     />
   )
 
@@ -210,6 +218,39 @@ it('should handle fetch errors', async () => {
     expect(alert).toBeInTheDocument()
     expect(singletonRouter).toMatchObject({ asPath: '/review' })
     expect(fetchMock.mock.calls.length).toEqual(1)
+  })
+
+  restore()
+})
+
+it('should skip submitting when in demo mode', async () => {
+  // Mock process.env
+  const restore = mockEnv({
+    BASE_URL: 'http://something.com',
+    DEMO_MODE: 'true',
+  })
+
+  const { mockSession, user } = setup(route)
+  render(
+    <Review
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
+      demoMode={'true'}
+    />
+  )
+
+  fetchMock.doMockOnce().mockOnce(JSON.stringify({ foo: 'bar' }))
+  const button = screen.getByRole('button', { name: /Submit/i })
+  await user.click(button)
+
+  // Must waitFor() the result since we rely on route changes in this case to be async.
+  // See https://github.com/scottrippey/next-router-mock#sync-vs-async
+  await waitFor(() => {
+    expect(fetchMock.mock.calls.length).toEqual(0)
+    expect(singletonRouter).toMatchObject({ asPath: '/confirmation' })
   })
 
   restore()

@@ -22,6 +22,7 @@ import { initialSessionData } from '@utils/sessionData'
 
 interface ReviewProps extends EditablePage {
   baseUrl: string
+  demoMode: string
 }
 
 const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
@@ -31,6 +32,7 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
     backRoute = '',
     forwardRoute = '',
     baseUrl,
+    demoMode,
   } = props
 
   // Using form to store all of the data in a component state
@@ -55,8 +57,9 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault()
 
-    // Do not resubmit if already submitted.
-    if (session.submitted) {
+    // Do not resubmit if already submitted OR
+    // if in demo mode, go directly to next page.
+    if (session.submitted || demoMode === 'true') {
       // Route to next page.
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push(forwardRoute)
@@ -139,11 +142,13 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const baseUrl = process.env.BASE_URL || ''
+  const baseUrl = process.env.BASE_URL ?? ''
+  const demoMode = process.env.DEMO_MODE ?? 'false'
 
   return {
     props: {
       baseUrl: baseUrl,
+      demoMode: demoMode,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
