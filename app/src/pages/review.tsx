@@ -22,7 +22,6 @@ import { initialSessionData } from '@utils/sessionData'
 
 interface ReviewProps extends EditablePage {
   baseUrl: string
-  demoMode: string
 }
 
 const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
@@ -32,7 +31,6 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
     backRoute = '',
     forwardRoute = '',
     baseUrl,
-    demoMode,
   } = props
 
   // Using form to store all of the data in a component state
@@ -56,6 +54,10 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
   // See https://nextjs.org/docs/api-reference/next/router#potential-solutions
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault()
+
+    // Next.js can expose environment variables prefixed with NEXT_PUBLIC_ to the browser.
+    // See https://nextjs.org/docs/basic-features/environment-variables
+    const demoMode = process.env.NEXT_PUBLIC_DEMO_MODE ?? 'false'
 
     // Do not resubmit if already submitted OR
     // if in demo mode, go directly to next page.
@@ -143,12 +145,10 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const baseUrl = process.env.BASE_URL ?? ''
-  const demoMode = process.env.DEMO_MODE ?? 'false'
 
   return {
     props: {
       baseUrl: baseUrl,
-      demoMode: demoMode,
       ...(await serverSideTranslations(locale || 'en', ['common'])),
     },
   }
