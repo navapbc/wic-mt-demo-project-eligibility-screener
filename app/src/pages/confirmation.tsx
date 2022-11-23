@@ -3,6 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
 
+import Alert from '@components/Alert'
 import ButtonLink from '@components/ButtonLink'
 import ReviewSection from '@components/ReviewSection'
 import StyledLink from '@components/StyledLink'
@@ -35,6 +36,9 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
       <h1>
         <TransLine i18nKey="Confirmation.title" />
       </h1>
+      {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
+        <Alert alertBody="demoAlertNotice.text" type="warning" icon={true} />
+      )}
       <p>
         <TransLine i18nKey="Confirmation.body" />
       </p>

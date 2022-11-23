@@ -10,16 +10,17 @@ export type AlertProps = {
   alertBody: I18nKey
   type: AlertTypes
   icon?: boolean
+  slim?: boolean
 }
 
 export const Alert = (props: AlertProps): ReactElement => {
-  const { alertBody, type, icon } = props
+  const { alertBody, type, icon, slim } = props
 
   return (
     <div
       className={`usa-alert usa-alert--${type} ${
         icon ? '' : 'usa-alert--no-icon'
-      }`}
+      } ${slim ? 'usa-alert--slim' : ''}`}
       role="alert"
     >
       <div className="usa-alert__body">

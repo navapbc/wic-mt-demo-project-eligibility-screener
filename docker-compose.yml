@@ -7,6 +7,9 @@ services:
   nextjs:
     build: ./app
     command: ["yarn", "dev"]
+    environment:
+      # Comment out the next line to test connecting with the API.
+      - NEXT_PUBLIC_DEMO_MODE=true
     ports:
       # Expose a port to access the application.
       - 3000:3000
