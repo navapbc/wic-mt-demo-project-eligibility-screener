@@ -30,8 +30,7 @@ jobs:
         uses: actions/configure-pages@v2
         id: pages_config
       - name: Install dependencies
-        run: npm install --location=global yarn
-        run: yarn install --frozen-lockfile
+        run: npm install --location=global yarn && yarn install --frozen-lockfile
         working-directory: ./app
       - name: Build
         run: BASE_PATH=${{ steps.pages_config.outputs.base_path }} yarn storybook-build
