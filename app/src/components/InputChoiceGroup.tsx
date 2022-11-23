@@ -4,23 +4,23 @@ import { ChangeEvent, ReactElement } from 'react'
 import Accordion from '@components/Accordion'
 import Required from '@components/Required'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type Choice = {
   checked: boolean
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
-  labelKey: i18nKey
+  labelKey: I18nKey
   name: string
   value: string
 }
 
 export type InputChoiceGroupProps = {
   accordion?: {
-    headerKey: i18nKey
-    bodyKey: i18nKey
+    headerKey: I18nKey
+    bodyKey: I18nKey
   }
   choices: Choice[]
-  titleKey: i18nKey
+  titleKey: I18nKey
   required?: boolean
   type: 'checkbox' | 'radio'
 }

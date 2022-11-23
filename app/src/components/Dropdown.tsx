@@ -3,12 +3,12 @@ import { ChangeEvent, ReactElement } from 'react'
 
 import Required from '@components/Required'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export interface DropdownProps {
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void
   id: string
-  labelKey: i18nKey
+  labelKey: I18nKey
   options: string[]
   required?: boolean
   selectedOption?: string

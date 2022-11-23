@@ -1,12 +1,12 @@
 import { Trans } from 'next-i18next'
 import { ReactElement } from 'react'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type AlertTypes = 'error' | 'info' | 'success' | 'warning'
 
 export type AlertProps = {
-  alertBody: i18nKey
+  alertBody: I18nKey
   type: AlertTypes
   icon?: boolean
 }

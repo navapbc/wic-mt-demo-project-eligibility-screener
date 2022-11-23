@@ -1,11 +1,11 @@
 import { Trans } from 'next-i18next'
 import { ReactElement, useState } from 'react'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type AccordionProps = {
-  bodyKey: i18nKey
-  headerKey: i18nKey
+  bodyKey: I18nKey
+  headerKey: I18nKey
 }
 
 const Accordion = (props: AccordionProps): ReactElement => {
