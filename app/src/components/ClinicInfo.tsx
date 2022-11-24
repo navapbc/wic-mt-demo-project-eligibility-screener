@@ -1,5 +1,3 @@
-import { ReactElement } from 'react'
-
 export type ClinicInfoProps = {
   name: string
   streetAddress: string
@@ -7,7 +5,7 @@ export type ClinicInfoProps = {
   isFormElement?: boolean
 }
 
-export const ClinicInfo = (props: ClinicInfoProps): ReactElement => {
+export const ClinicInfo = (props: ClinicInfoProps) => {
   const { name, streetAddress, phone, isFormElement = false } = props
 
   const formClass = isFormElement ? 'usa-checkbox__label-description' : ''
