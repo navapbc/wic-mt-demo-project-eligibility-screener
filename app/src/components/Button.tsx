@@ -12,12 +12,12 @@ export const buttonStyleOptions = [
   'base',
   'outline',
   'big',
-]
+] as const
 
 export type ButtonProps = {
   disabled?: boolean
   labelKey: i18nKey
-  style?: string
+  style?: typeof buttonStyleOptions[number]
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 

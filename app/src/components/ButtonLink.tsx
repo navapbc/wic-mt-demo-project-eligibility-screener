@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { MouseEvent, ReactElement } from 'react'
 import { UrlObject } from 'url'
 
-import Button from '@components/Button'
+import Button, { buttonStyleOptions } from '@components/Button'
 
 import { i18nKey } from '@src/types'
 
@@ -10,7 +10,7 @@ export type ButtonLinkProps = {
   disabled?: boolean
   labelKey: i18nKey
   href: UrlObject | string
-  style?: string
+  style?: typeof buttonStyleOptions[number]
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
