@@ -1,26 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match full page snapshot 1`] = `
-[
+<div>
   <a
-    className="usa-link"
+    class="usa-link"
     href="/eligibility"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onTouchStart={[Function]}
   >
     Back
-  </a>,
+  </a>
   <h1>
     Your eligibility
-  </h1>,
+  </h1>
   <h2>
     Given your responses, you are likely not eligible for WIC in Montana.
-  </h2>,
+  </h2>
   <p>
     We recommend visiting 
     <a
-      className="usa-link usa-link--external"
+      class="usa-link usa-link--external"
       href="https://dphhs.mt.gov/Assistance"
       rel="noopener noreferrer"
       target="_blank"
@@ -28,11 +25,11 @@ exports[`should match full page snapshot 1`] = `
       https://dphhs.mt.gov/Assistance
     </a>
      to learn about other assistance in Montana.
-  </p>,
+  </p>
   <p>
     If you are not currently living or working in Montana, visit 
     <a
-      className="usa-link usa-link--external"
+      class="usa-link usa-link--external"
       href="https://www.signupwic.com/"
       rel="noopener noreferrer"
       target="_blank"
@@ -40,12 +37,11 @@ exports[`should match full page snapshot 1`] = `
       SignUpWIC.com
     </a>
      to find a clinic near you.
-  </p>,
+  </p>
   <button
-    className="usa-button usa-button--small display-block margin-top-6"
-    onClick={[Function]}
+    class="usa-button usa-button--small display-block margin-top-6"
   >
     Return to start page
-  </button>,
-]
+  </button>
+</div>
 `;
