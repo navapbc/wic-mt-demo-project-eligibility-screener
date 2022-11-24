@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ConfirmationPage from '@pages/confirmation'
 
-import { getMockSessionData } from '../../tests/helpers/mockData'
+import { getMockSessionData } from '@lib/mockData'
 
 export default {
   title: 'Pages/Confirmation',

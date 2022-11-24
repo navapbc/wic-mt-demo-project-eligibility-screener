@@ -1,16 +1,15 @@
 import mockRouter from 'next-router-mock'
 import singletonRouter from 'next/router'
 
-import { SessionData } from '@src/types'
-import { hasRoutingIssues } from '@utils/routing'
-
 import {
   getMockChooseClinicData,
   getMockContactData,
   getMockEligibilityData,
   getMockIncomeData,
-} from '../../helpers/mockData'
-import { getEmptyMockSession } from '../../helpers/mockData'
+} from '@lib/mockData'
+import { getEmptyMockSession } from '@lib/mockData'
+import { SessionData } from '@src/types'
+import { hasRoutingIssues } from '@utils/routing'
 
 interface RoutingTestCombo {
   validEligibility?: string

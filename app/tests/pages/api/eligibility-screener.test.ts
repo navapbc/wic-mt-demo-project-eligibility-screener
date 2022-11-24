@@ -4,7 +4,7 @@ import { createMocks } from 'node-mocks-http'
 
 import handler from '@pages/api/eligibility-screener'
 
-import { getEmptyMockSession, getMockSessionData } from '../../helpers/mockData'
+import { getEmptyMockSession, getMockSessionData } from '@lib/mockData'
 
 /**
  * Setup tests: specifically to mock fetch().

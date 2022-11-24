@@ -1,5 +1,3 @@
-// Note: This file is loaded by Storybook.
-// Don't directly call jest in it.
 import cloneDeep from 'lodash/cloneDeep'
 
 import type { SessionData } from '@src/types'

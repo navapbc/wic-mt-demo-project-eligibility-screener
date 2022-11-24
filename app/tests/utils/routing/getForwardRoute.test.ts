@@ -1,11 +1,7 @@
+import { getMockEligibilityData, getMockIncomeData } from '@lib/mockData'
+import { getEmptyMockSession } from '@lib/mockData'
 import { SessionData } from '@src/types'
 import { getForwardRoute } from '@utils/routing'
-
-import {
-  getMockEligibilityData,
-  getMockIncomeData,
-} from '../../helpers/mockData'
-import { getEmptyMockSession } from '../../helpers/mockData'
 
 const simplePaths = [
   ['/', '/how-it-works'],

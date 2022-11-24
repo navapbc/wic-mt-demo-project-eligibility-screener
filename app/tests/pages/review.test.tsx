@@ -6,7 +6,8 @@ import singletonRouter from 'next/router'
 
 import Review from '@pages/review'
 
-import { getMockSessionData } from '../helpers/mockData'
+import { getMockSessionData } from '@lib/mockData'
+
 import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,

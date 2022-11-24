@@ -2,9 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import HowItWorksPage from '@pages/how-it-works'
 
+import { getEmptyMockSession } from '@lib/mockData'
 import { getBackRoute, getForwardRoute } from '@utils/routing'
-
-import { getEmptyMockSession } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/How It Works',
