@@ -2,8 +2,6 @@ import { render, screen } from '@testing-library/react'
 
 import Alert, { AlertProps, AlertTypes } from '@components/Alert'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const testProps: AlertProps = {
   alertBody: 'body',
   type: 'info',
@@ -17,8 +15,8 @@ const alertTypes: Array<AlertTypes[]> = [
 ]
 
 it.each(alertTypes)('should match snapshot for %s alerts', (type) => {
-  const element = <Alert {...testProps} type={type} />
-  testSnapshot(element)
+  const { container } = render(<Alert {...testProps} type={type} />)
+  expect(container).toMatchSnapshot()
 })
 
 it.each(alertTypes)(

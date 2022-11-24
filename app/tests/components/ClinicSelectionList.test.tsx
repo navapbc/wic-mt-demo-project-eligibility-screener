@@ -10,7 +10,6 @@ import cloneDeep from 'lodash/cloneDeep'
 import ClinicSelectionList from '@components/ClinicSelectionList'
 
 import { getMockClinic, setupClinicMocks } from '../helpers/setupClinics'
-import { testSnapshot } from '../helpers/sharedTests'
 
 setupClinicMocks()
 const mockSelectedClinic = getMockClinic()
@@ -31,15 +30,22 @@ const testProps = {
  * Begin tests
  */
 it('should match snapshot if the list is not expanded', () => {
-  testSnapshot(<ClinicSelectionList {...testProps} />)
+  const { container } = render(<ClinicSelectionList {...testProps} />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot if the list is expanded', () => {
-  testSnapshot(<ClinicSelectionList {...testProps} expandList={true} />)
+  const { container } = render(
+    <ClinicSelectionList {...testProps} expandList={true} />
+  )
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot if the list is empty', () => {
-  testSnapshot(<ClinicSelectionList {...testProps} filteredClinics={[]} />)
+  const { container } = render(
+    <ClinicSelectionList {...testProps} filteredClinics={[]} />
+  )
+  expect(container).toMatchSnapshot()
 })
 
 it('should display the right number of clinics if the list is not expanded', () => {

@@ -5,8 +5,6 @@ import InputChoiceGroup, {
   InputChoiceGroupProps,
 } from '@components/InputChoiceGroup'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const choices = [
   {
     checked: false,
@@ -39,11 +37,13 @@ const testProps: InputChoiceGroupProps = {
 }
 
 it('should match snapshot when it is a set of checkboxes', () => {
-  testSnapshot(<InputChoiceGroup {...testProps} />)
+  const { container } = render(<InputChoiceGroup {...testProps} />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot when it is a set of radio buttons', () => {
-  testSnapshot(<InputChoiceGroup {...testProps} type="radio" />)
+  const { container } = render(<InputChoiceGroup {...testProps} type="radio" />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match display required marker if required is true', () => {

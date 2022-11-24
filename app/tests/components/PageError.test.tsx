@@ -1,7 +1,8 @@
+import { render } from '@testing-library/react'
+
 import PageError from '@components/PageError'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 it('should match snapshot', () => {
-  testSnapshot(<PageError alertBody="alert body text" />)
+  const { container } = render(<PageError alertBody="alert body text" />)
+  expect(container).toMatchSnapshot()
 })
