@@ -3,14 +3,8 @@ import { axe } from 'jest-axe'
 import mockRouter from 'next-router-mock'
 import singletonRouter from 'next/router'
 import { ReactElement } from 'react'
-import renderer from 'react-test-renderer'
 
 import { UserEventReturn } from './setup'
-
-export function testSnapshot(element: ReactElement) {
-  const tree = renderer.create(element).toJSON()
-  expect(tree).toMatchSnapshot()
-}
 
 export async function testAccessibility(element: ReactElement) {
   const { container } = render(element)
