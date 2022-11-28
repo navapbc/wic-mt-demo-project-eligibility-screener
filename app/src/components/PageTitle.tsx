@@ -8,7 +8,6 @@ export type PageTitleProps = {
 
 const PageTitle = (props: PageTitleProps): ReactElement => {
   const { pathname } = props
-  console.log(pathname)
 
   const { t } = useTranslation('common')
   let pageTitle = ''
