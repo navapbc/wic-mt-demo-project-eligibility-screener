@@ -18,13 +18,20 @@ const resources = ns.reduce((acc, n) => {
   return acc
 }, {})
 
-i18n.use(initReactI18next).use(LanguageDetector).use(Backend).init({
-  lng: 'en',
-  fallbackLng: 'en',
-  defaultNS: 'common',
-  ns,
-  supportedLngs,
-  resources,
-})
+i18n
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(Backend)
+  .init({
+    lng: 'en',
+    fallbackLng: 'en',
+    defaultNS: 'common',
+    ns,
+    supportedLngs,
+    resources,
+    backend: {
+      loadPath: `${process.env.BASE_PATH ?? ''}/locales/{{lng}}/{{ns}}.json`,
+    },
+  })
 
 export default i18n
