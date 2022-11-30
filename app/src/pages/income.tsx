@@ -76,13 +76,13 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
     <>
       <BackLink href={backRoute} />
       <h1>
-        <Trans i18nKey="Income.header" />
+        <Trans i18nKey="Income.title" />
       </h1>
       <RequiredQuestionStatement />
 
       <div className="content-group">
         <h2>
-          <Trans i18nKey="Income.title" />
+          <Trans i18nKey="Income.header" />
         </h2>
         <p>
           <Trans i18nKey="Income.enrolled" />
