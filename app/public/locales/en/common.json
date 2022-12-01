@@ -68,7 +68,7 @@
     "assistance": "Learn about other assistance",
     "enrolled": "If you or someone in your household are currently enrolled in <strong>Medicaid, Healthy Montana Kids Plus</strong>, Supplemental Nutrition Assistance Program (<strong>SNAP</strong>), Temporary Assistance for Needy Families (<strong>TANF</strong>), or Food Distribution Program on Indian Reservations (<strong>FDPIR</strong>), you may be automatically eligible for WIC.",
     "estimatedIncome": "Estimated maximum income limit before taxes",
-    "header": "Check your eligibility",
+    "header": "To be eligible for WIC, your <strong>household income before taxes</strong> must be <strong>at</strong> or <strong>below</strong> a certain income level.",
     "helper": "If someone in your household is pregnant and applying for WIC benefits and is determined to be ineligible based on your household income, you may then increase your household size by the number of expected births.",
     "householdSize": "Household size",
     "householdSizeHeader": "What is your household size?",
@@ -79,7 +79,7 @@
       "weekly": "Weekly"
     },
     "notEnrolled": "If you are not currently enrolled in one or more of those programs, you will have to show proof your income is within a certain level.",
-    "title": "To be eligible for WIC, your <strong>household income before taxes</strong> must be <strong>at</strong> or <strong>below</strong> a certain income level.",
+    "title": "Check your eligibility",
     "unsure": "<strong>If you are unsure about your income, please continue to apply.</strong> A WIC staff member can answer more specific questions about your situation."
   },
   "Index": {
