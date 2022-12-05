@@ -141,7 +141,7 @@
       "https://signupwic.com",
       "/data/wic-eligibility-screener-example-output.csv"
     ],
-    "text": "Thank you for trying out this prototype WIC eligibility screener. This is a demonstration project, so your data will not be sent to a WIC clinic and was not saved on our servers. If you'd like to apply for WIC, please visit <0>SignUpWIC.com</0>. This is a <1>sample CSV</1>."
+    "text": "Thank you for trying out this prototype WIC eligibility screener. This is a demonstration project, so your data will not be sent to a WIC clinic and was not saved on our servers. This is a <1>sample CSV</1> of submissions to this form.<br/><br/>If you'd like to apply for WIC, please visit <0>SignUpWIC.com</0>."
   },
   "edit": "Edit",
   "routingError": "Some required responses are missing. Please go back through the form and answer all required questions.",
