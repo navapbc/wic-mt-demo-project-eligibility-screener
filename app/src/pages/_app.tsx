@@ -6,6 +6,7 @@ import { UrlObject } from 'url'
 
 import Layout from '@components/Layout'
 import PageError from '@components/PageError'
+import PageTitle from '@components/PageTitle'
 
 import useSessionStorage from '@src/hooks/useSessionStorage'
 import '@styles/styles.scss'
@@ -71,6 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         {router.query.error === 'missing-data' && (
           <PageError alertBody="routingError" />
         )}
+        <PageTitle pathname={router.pathname} />
         <Component {...props} />
       </>
     </Layout>
