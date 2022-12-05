@@ -18,26 +18,30 @@ export const TransLine = (props: TransLineProps): ReactElement => {
   // and construct an array of empty `<a></a>` tags to pass to the <TransLine> component
   // which will interpolate the links into the translation string.
   if (/\.text$/.test(i18nKey)) {
-    const linkArray: string[] = t(i18nKey.replace('.text', '.links'), {
+    const linkArray = t(i18nKey.replace('.text', '.links'), {
       returnObjects: true,
     })
 
-    transLinks = linkArray.map((href: string) => {
-      if (/^\//.test(href)) {
-        // We can't use <StyledLink> because <TransLine> doesn't know what to do with it.
-        return <a href={href} className="usa-link" key={href}></a>
-      } else {
-        return (
-          <a
-            href={href}
-            className="usa-link usa-link--external"
-            target="_blank"
-            rel="noopener noreferrer"
-            key={href}
-          ></a>
-        )
-      }
-    })
+    // It's possible that t() doesn't return an array.
+    // In that case, don't include any links.
+    if (Array.isArray(linkArray)) {
+      transLinks = linkArray.map((href: string) => {
+        if (/^\//.test(href)) {
+          // We can't use <StyledLink> because <TransLine> doesn't know what to do with it.
+          return <a href={href} className="usa-link" key={href}></a>
+        } else {
+          return (
+            <a
+              href={href}
+              className="usa-link usa-link--external"
+              target="_blank"
+              rel="noopener noreferrer"
+              key={href}
+            ></a>
+          )
+        }
+      })
+    }
   }
 
   return <Trans i18nKey={i18nKey}>{transLinks}</Trans>
