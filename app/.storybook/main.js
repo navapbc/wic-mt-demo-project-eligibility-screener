@@ -42,6 +42,7 @@ module.exports = {
             // This adds the BASE_PATH to the beginning of all relative URLs in the CSS.
             search: /url\(("?)\//,
             replace(match, p1, offset, string) {
+              console.log(`Replace "${match}" in file "${this.resource}".`)
               return `url(${p1}${BASE_PATH}/`
             },
             flags: 'g',
