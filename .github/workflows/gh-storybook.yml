@@ -1,29 +1,37 @@
 name: Deploy Storybook
+
 on:
   # Runs on pushes targeting the default branch
+  # !! Uncomment the lines below to enable this workflow
   push:
     branches: ["main"]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 # Sets permissions of the GITHUB_TOKEN to allow access to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
+
 # Cancel any older in-progress runs of this workflow
 concurrency:
   group: "pages"
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node
+      - name: Setup Yarn
         uses: actions/setup-node@v3
         with:
           node-version: "16"
+          cache-dependency-path: yarn.lock
+          cache: yarn
       - name: Setup Pages
         uses: actions/configure-pages@v2
         id: pages_config
@@ -37,6 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./app/storybook-static
+
   deploy:
     environment:
       name: github-pages
