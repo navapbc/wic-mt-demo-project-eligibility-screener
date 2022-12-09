@@ -60,7 +60,7 @@
     "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-storybook": "^0.6.1",
     "husky": "^8.0.1",
-    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-browser-languagedetector": "^6.1.8",
     "i18next-http-backend": "^1.4.1",
     "jest": "^28.1.0",
     "jest-axe": "^6.0.0",
