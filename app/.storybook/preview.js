@@ -27,7 +27,6 @@ export const parameters = {
     storySort: {
       method: 'alphabetical',
       order: [
-        'Components',
         'Pages',
         [
           'Index',
@@ -39,6 +38,7 @@ export const parameters = {
           'Review',
           'Confirmation',
         ],
+        'Components',
       ],
     },
   },

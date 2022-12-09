@@ -35,13 +35,13 @@ const Layout = ({ children }: Props) => {
             <div className="desktop:grid-col-8 padding-2">
               <div className="logos">
                 <Image
-                  src="/img/wic-logo.svg"
+                  src={`${process.env.BASE_PATH ?? ''}/img/wic-logo.svg`}
                   alt="WIC logo"
                   width={64.52}
                   height={32}
                 />
                 <Image
-                  src="/img/montana-logo.svg"
+                  src={`${process.env.BASE_PATH ?? ''}/img/montana-logo.svg`}
                   alt="Monthana DPHHS logo"
                   width={46.22}
                   height={32}
