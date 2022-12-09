@@ -1,56 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should match snapshot if the list is empty 1`] = `null`;
+exports[`should match snapshot if the list is empty 1`] = `<div />`;
 
 exports[`should match snapshot if the list is expanded 1`] = `
-[
+<div>
   <h2>
     Choose a clinic from the following list:
     <abbr
-      className="usa-hint usa-hint--required"
+      class="usa-hint usa-hint--required"
     >
        *
     </abbr>
-  </h2>,
+  </h2>
   <form
-    className="usa-form usa-form--large"
+    class="usa-form usa-form--large"
   >
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC ZERO"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC ZERO"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC ZERO"
+          class="usa-radio__label"
+          for="CLINIC ZERO"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC ZERO
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 0000 St, Helena, MT 00000
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (000) 000-0000
               </div>
@@ -59,38 +57,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC ONE"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC ONE"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC ONE"
+          class="usa-radio__label"
+          for="CLINIC ONE"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC ONE
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 1111 St, Helena, MT 11111
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (111) 111-1111
               </div>
@@ -99,38 +95,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC TWO"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC TWO"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC TWO"
+          class="usa-radio__label"
+          for="CLINIC TWO"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC TWO
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 2222 St, Helena, MT 22222
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (222) 222-2222
               </div>
@@ -139,38 +133,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC THREE"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC THREE"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC THREE"
+          class="usa-radio__label"
+          for="CLINIC THREE"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC THREE
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 3333 St, Helena, MT 33333
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (333) 333-3333
               </div>
@@ -179,38 +171,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC FOUR"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC FOUR"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC FOUR"
+          class="usa-radio__label"
+          for="CLINIC FOUR"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC FOUR
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 4444 St, Helena, MT 44444
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (444) 444-4444
               </div>
@@ -219,38 +209,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC FIVE"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC FIVE"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC FIVE"
+          class="usa-radio__label"
+          for="CLINIC FIVE"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC FIVE
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 5555 St, Helena, MT 55555
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (555) 555-5555
               </div>
@@ -259,38 +247,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC SIX"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC SIX"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC SIX"
+          class="usa-radio__label"
+          for="CLINIC SIX"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC SIX
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 6666 St, Helena, MT 66666
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (666) 666-6666
               </div>
@@ -299,38 +285,36 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC SEVEN"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC SEVEN"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC SEVEN"
+          class="usa-radio__label"
+          for="CLINIC SEVEN"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC SEVEN
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 7777 St, Helena, MT 77777
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (777) 777-7777
               </div>
@@ -339,38 +323,37 @@ exports[`should match snapshot if the list is expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={true}
-          className="usa-radio__input usa-radio__input--tile"
+          checked=""
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC EIGHT"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC EIGHT"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC EIGHT"
+          class="usa-radio__label"
+          for="CLINIC EIGHT"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC EIGHT
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 8888 St, Helena, MT 88888
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (888) 888-8888
               </div>
@@ -380,65 +363,61 @@ exports[`should match snapshot if the list is expanded 1`] = `
       </div>
     </fieldset>
     <button
-      className="usa-button usa-button--small display-block margin-top-6"
-      disabled={false}
-      onClick={[Function]}
+      class="usa-button usa-button--small display-block margin-top-6"
     >
       Continue
     </button>
-  </form>,
-]
+  </form>
+</div>
 `;
 
 exports[`should match snapshot if the list is not expanded 1`] = `
-[
+<div>
   <h2>
     Choose a clinic from the following list:
     <abbr
-      className="usa-hint usa-hint--required"
+      class="usa-hint usa-hint--required"
     >
        *
     </abbr>
-  </h2>,
+  </h2>
   <form
-    className="usa-form usa-form--large"
+    class="usa-form usa-form--large"
   >
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC ZERO"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC ZERO"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC ZERO"
+          class="usa-radio__label"
+          for="CLINIC ZERO"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC ZERO
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 0000 St, Helena, MT 00000
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (000) 000-0000
               </div>
@@ -447,38 +426,36 @@ exports[`should match snapshot if the list is not expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC ONE"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC ONE"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC ONE"
+          class="usa-radio__label"
+          for="CLINIC ONE"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC ONE
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 1111 St, Helena, MT 11111
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (111) 111-1111
               </div>
@@ -487,38 +464,36 @@ exports[`should match snapshot if the list is not expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC TWO"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC TWO"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC TWO"
+          class="usa-radio__label"
+          for="CLINIC TWO"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC TWO
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 2222 St, Helena, MT 22222
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (222) 222-2222
               </div>
@@ -527,38 +502,36 @@ exports[`should match snapshot if the list is not expanded 1`] = `
         </label>
       </div>
       <div
-        className="usa-radio"
+        class="usa-radio"
       >
         <input
-          checked={false}
-          className="usa-radio__input usa-radio__input--tile"
+          class="usa-radio__input usa-radio__input--tile"
           id="CLINIC THREE"
-          onChange={[MockFunction]}
           type="radio"
           value="CLINIC THREE"
         />
         <label
-          className="usa-radio__label"
-          htmlFor="CLINIC THREE"
+          class="usa-radio__label"
+          for="CLINIC THREE"
         >
           <div
-            className="clinic-info"
+            class="clinic-info"
           >
             <div
-              className="clinic-name"
+              class="clinic-name"
             >
               CLINIC THREE
             </div>
             <div
-              className="usa-checkbox__label-description"
+              class="usa-checkbox__label-description"
             >
               <div
-                className="clinic-street-address"
+                class="clinic-street-address"
               >
                 3333 St, Helena, MT 33333
               </div>
               <div
-                className="clinic-phone"
+                class="clinic-phone"
               >
                 (333) 333-3333
               </div>
@@ -567,19 +540,16 @@ exports[`should match snapshot if the list is not expanded 1`] = `
         </label>
       </div>
       <button
-        className="usa-button usa-button--small display-block usa-button--unstyled margin-top-1"
-        onClick={[Function]}
+        class="usa-button usa-button--small display-block usa-button--unstyled margin-top-1"
       >
         Show more clinic options
       </button>
     </fieldset>
     <button
-      className="usa-button usa-button--small display-block margin-top-6"
-      disabled={false}
-      onClick={[Function]}
+      class="usa-button usa-button--small display-block margin-top-6"
     >
       Continue
     </button>
-  </form>,
-]
+  </form>
+</div>
 `;

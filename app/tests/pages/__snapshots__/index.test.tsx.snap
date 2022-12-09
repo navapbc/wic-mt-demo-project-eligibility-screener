@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match full page snapshot 1`] = `
-[
+<div>
   <h1>
     Start an application for WIC
-  </h1>,
+  </h1>
   <strong>
     WIC (Women, Infants, and Children)
-  </strong>,
-  " is a program designed to help families and young children during an important time in growth and development.",
+  </strong>
+   is a program designed to help families and young children during an important time in growth and development.
   <ul
-    className="usa-list"
+    class="usa-list"
   >
     <li>
       There are many benefits including healthy food, breastfeeding support, nutrition education, and connections to local resources.
@@ -21,16 +21,15 @@ exports[`should match full page snapshot 1`] = `
     <li>
       WIC is a voluntary program and participation will not interfere with use of other programs like SNAP or Medicaid.
     </li>
-  </ul>,
-  "You can start the application process for WIC now. ",
+  </ul>
+  You can start the application process for WIC now. 
   <strong>
     This form should take about 10 minutes to complete.
-  </strong>,
+  </strong>
   <button
-    className="usa-button usa-button--small display-block margin-top-6"
-    onClick={[Function]}
+    class="usa-button usa-button--small display-block margin-top-6"
   >
     Get started
-  </button>,
-]
+  </button>
+</div>
 `;

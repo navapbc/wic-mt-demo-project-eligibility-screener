@@ -1,15 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot 1`] = `
-<ul>
-  <li>
-    list item a
-  </li>
-  <li>
-    list item b
-  </li>
-  <li>
-    list item c
-  </li>
-</ul>
+<div>
+  <ul>
+    <li>
+      list item a
+    </li>
+    <li>
+      list item b
+    </li>
+    <li>
+      list item c
+    </li>
+  </ul>
+</div>
 `;

@@ -17,7 +17,6 @@ import {
   testActionButtonReviewMode,
   testActionButtonRoute,
   testBackLink,
-  testSnapshot,
 } from '../helpers/sharedTests'
 
 /**
@@ -49,7 +48,7 @@ function setZipCode(mockSession: SessionData, type: string): SessionData {
 
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
-  testSnapshot(
+  const { container } = render(
     <ChooseClinic
       session={mockSession}
       setSession={setMockSession}
@@ -57,6 +56,7 @@ it('should match full page snapshot', () => {
       forwardRoute={forwardRoute}
     />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {

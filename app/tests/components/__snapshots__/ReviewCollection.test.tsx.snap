@@ -1,85 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot when it is not the first element 1`] = `
-<div
-  className="review-collection margin-top-6 border-bottom-1px"
->
-  <h2>
-    header key
-  </h2>
-  <dl
-    className="margin-bottom-2"
+<div>
+  <div
+    class="review-collection margin-top-6 border-bottom-1px"
   >
-    <div
-      className="review-element margin-bottom-3"
+    <h2>
+      header key
+    </h2>
+    <dl
+      class="margin-bottom-2"
     >
-      <dt>
-        <strong>
-          element a
-        </strong>
-      </dt>
-      <dd
-        className="margin-left-0"
+      <div
+        class="review-element margin-bottom-3"
       >
-        child a
-      </dd>
-    </div>
-    <div
-      className="review-element margin-bottom-3"
-    >
-      <dt>
-        <strong>
-          element b
-        </strong>
-      </dt>
-      <dd
-        className="margin-left-0"
+        <dt>
+          <strong>
+            element a
+          </strong>
+        </dt>
+        <dd
+          class="margin-left-0"
+        >
+          child a
+        </dd>
+      </div>
+      <div
+        class="review-element margin-bottom-3"
       >
-        child b
-      </dd>
-    </div>
-  </dl>
+        <dt>
+          <strong>
+            element b
+          </strong>
+        </dt>
+        <dd
+          class="margin-left-0"
+        >
+          child b
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>
 `;
 
 exports[`should match snapshot when it is the first element 1`] = `
-<div
-  className="review-collection margin-top-3 border-bottom-1px"
->
-  <h2>
-    header key
-  </h2>
-  <dl
-    className="margin-bottom-2"
+<div>
+  <div
+    class="review-collection margin-top-3 border-bottom-1px"
   >
-    <div
-      className="review-element margin-bottom-3"
+    <h2>
+      header key
+    </h2>
+    <dl
+      class="margin-bottom-2"
     >
-      <dt>
-        <strong>
-          element a
-        </strong>
-      </dt>
-      <dd
-        className="margin-left-0"
+      <div
+        class="review-element margin-bottom-3"
       >
-        child a
-      </dd>
-    </div>
-    <div
-      className="review-element margin-bottom-3"
-    >
-      <dt>
-        <strong>
-          element b
-        </strong>
-      </dt>
-      <dd
-        className="margin-left-0"
+        <dt>
+          <strong>
+            element a
+          </strong>
+        </dt>
+        <dd
+          class="margin-left-0"
+        >
+          child a
+        </dd>
+      </div>
+      <div
+        class="review-element margin-bottom-3"
       >
-        child b
-      </dd>
-    </div>
-  </dl>
+        <dt>
+          <strong>
+            element b
+          </strong>
+        </dt>
+        <dd
+          class="margin-left-0"
+        >
+          child b
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>
 `;

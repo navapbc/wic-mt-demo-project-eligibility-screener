@@ -1,6 +1,14 @@
+/**
+ * The Income page (/income) is an editable form page in the form wizard flow. In order
+ * for a user to be allowed onto this page, they must have filled out all previous form
+ * pages with valid data.
+ *
+ * Routing is conditional for this page: The user is only routed here if they indicate
+ * that they are not enrolled in any qualifying adjunctive programs (such as medicaid).
+ */
 import incomeData from '@public/data/income.json'
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans, useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import dynamic from 'next/dynamic'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -11,6 +19,7 @@ import ButtonLink from '@components/ButtonLink'
 import Dropdown from '@components/Dropdown'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import StyledLink from '@components/StyledLink'
+import TransLine from '@components/TransLine'
 
 import type { EditablePage, IncomeData } from '@src/types'
 import { isValidIncome } from '@utils/dataValidation'
@@ -76,29 +85,29 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
     <>
       <BackLink href={backRoute} />
       <h1>
-        <Trans i18nKey="Income.title" />
+        <TransLine i18nKey="Income.title" />
       </h1>
       <RequiredQuestionStatement />
 
       <div className="content-group">
         <h2>
-          <Trans i18nKey="Income.header" />
+          <TransLine i18nKey="Income.header" />
         </h2>
         <p>
-          <Trans i18nKey="Income.enrolled" />
+          <TransLine i18nKey="Income.enrolled" />
         </p>
         <p>
-          <Trans i18nKey="Income.notEnrolled" />
+          <TransLine i18nKey="Income.notEnrolled" />
         </p>
         <p>
-          <Trans i18nKey="Income.unsure" />
+          <TransLine i18nKey="Income.unsure" />
         </p>
       </div>
 
       <form className="usa-form usa-form--large">
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Income.householdSizeHeader" />
+            <TransLine i18nKey="Income.householdSizeHeader" />
           </h2>
           <Accordion
             bodyKey={'Income.accordionBody'}
@@ -118,7 +127,7 @@ const Income: NextPage<EditablePage> = (props: EditablePage) => {
           <table className="usa-table usa-table--stacked usa-table--borderless">
             <caption>
               <h2>
-                <Trans i18nKey="Income.estimatedIncome" />
+                <TransLine i18nKey="Income.estimatedIncome" />
               </h2>
             </caption>
             <thead>

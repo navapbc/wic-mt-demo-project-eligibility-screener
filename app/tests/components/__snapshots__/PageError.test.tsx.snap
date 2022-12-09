@@ -1,21 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot 1`] = `
-<div
-  className="margin-bottom-3"
->
+<div>
   <div
-    className="usa-alert usa-alert--error "
-    role="alert"
+    class="margin-bottom-3"
   >
     <div
-      className="usa-alert__body"
+      class="usa-alert usa-alert--error "
+      role="alert"
     >
-      <p
-        className="usa-alert__text"
+      <div
+        class="usa-alert__body"
       >
-        alert body text
-      </p>
+        <p
+          class="usa-alert__text"
+        >
+          alert body text
+        </p>
+      </div>
     </div>
   </div>
 </div>

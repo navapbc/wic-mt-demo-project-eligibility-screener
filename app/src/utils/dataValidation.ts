@@ -1,3 +1,7 @@
+/**
+ * A utility file for all user data validation, including one function for each form
+ * wizard page.
+ */
 import incomeData from '@public/data/income.json'
 
 import type {
@@ -86,37 +90,46 @@ function isDefined(
   return true
 }
 
-export function isValidSession(session: SessionData): boolean {
-  const checks = [
-    { dataType: initialSessionData, data: session },
-    { dataType: initialEligibilityData, data: session.eligibility },
-    { dataType: initialIncomeData, data: session.income },
-    { dataType: initialChooseClinicData, data: session.chooseClinic },
-    { dataType: initialContactData, data: session.contact },
-  ]
-
-  for (let i = 0, len = checks.length; i < len; i++) {
-    if (!isDefined(checks[i].dataType, checks[i].data)) {
-      return false
-    }
-  }
-
-  if (!isValidEligibility(session.eligibility)) {
+export function isValidSession(session: SessionData, check = 'any'): boolean {
+  if (!isDefined(initialSessionData, session)) {
     return false
   }
 
   if (
-    session.eligibility.adjunctive.includes('none') &&
-    !isValidIncome(session.income)
+    (check === 'eligibility' || check === 'any') &&
+    (!isDefined(initialEligibilityData, session.eligibility) ||
+      !isValidEligibility(session.eligibility))
   ) {
     return false
   }
 
-  if (!isValidChooseClinic(session.chooseClinic)) {
+  // This is a complicated bit of business logic. Basically, in order to be eligible for WIC,
+  // an applicant must EITHER have "adjunctive eligibility" by being enrolled in another
+  // qualifying program, such as medicaid, SNAP, or TANF, OR they must meet income requirements.
+  // Having valid income data only matters if the applicant has selected "none of the above"
+  // for the "do you have adjunctive eligibility" (paraphrase) question.
+  if (
+    (check === 'income' || check === 'any') &&
+    (!isDefined(initialIncomeData, session.income) ||
+      (session.eligibility.adjunctive.includes('none') &&
+        !isValidIncome(session.income)))
+  ) {
     return false
   }
 
-  if (!isValidContact(session.contact)) {
+  if (
+    (check === 'choose-clinic' || check === 'any') &&
+    (!isDefined(initialChooseClinicData, session.chooseClinic) ||
+      !isValidChooseClinic(session.chooseClinic))
+  ) {
+    return false
+  }
+
+  if (
+    (check === 'contact' || check === 'any') &&
+    (!isDefined(initialContactData, session.contact) ||
+      !isValidContact(session.contact))
+  ) {
     return false
   }
 

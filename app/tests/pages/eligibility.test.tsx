@@ -11,7 +11,6 @@ import {
   testActionButtonReviewMode,
   testActionButtonRoute,
   testBackLink,
-  testSnapshot,
 } from '../helpers/sharedTests'
 import { invalidEligibilityCombinations } from '../utils/dataValidation/isValidEligibility.test'
 
@@ -29,7 +28,7 @@ const forwardRoute = '/income'
 
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
-  testSnapshot(
+  const { container } = render(
     <Eligibility
       session={mockSession}
       setSession={setMockSession}
@@ -37,6 +36,7 @@ it('should match full page snapshot', () => {
       forwardRoute={forwardRoute}
     />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {

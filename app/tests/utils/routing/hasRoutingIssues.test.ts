@@ -17,8 +17,9 @@ interface RoutingTestCombo {
   validIncome?: string
   validChooseClinic?: string
   validContact?: string
-  error: boolean
-  cause: string
+  hasIssues: boolean
+  showError: boolean
+  redirect: string
 }
 
 /**
@@ -90,7 +91,8 @@ it('should have no issues on /', () => {
   const pathname = '/'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
-  expect(outcome.error).toBe(false)
+  expect(outcome.hasIssues).toBe(false)
+  expect(outcome.showError).toBe(false)
 })
 
 it('should have no issues on /how-it-works', () => {
@@ -98,7 +100,8 @@ it('should have no issues on /how-it-works', () => {
   const pathname = '/how-it-works'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
-  expect(outcome.error).toBe(false)
+  expect(outcome.hasIssues).toBe(false)
+  expect(outcome.showError).toBe(false)
 })
 
 it('should have no issues on /eligibility', () => {
@@ -106,15 +109,8 @@ it('should have no issues on /eligibility', () => {
   const pathname = '/eligibility'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
-  expect(outcome.error).toBe(false)
-})
-
-it('should have no issues on /confirmation', () => {
-  const mockSession = getEmptyMockSession()
-  const pathname = '/confirmation'
-  singletonRouter.push(pathname)
-  const outcome = hasRoutingIssues(pathname, mockSession)
-  expect(outcome.error).toBe(false)
+  expect(outcome.hasIssues).toBe(false)
+  expect(outcome.showError).toBe(false)
 })
 
 it('should have no issues on /other-benefits', () => {
@@ -122,7 +118,8 @@ it('should have no issues on /other-benefits', () => {
   const pathname = '/other-benefits'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
-  expect(outcome.error).toBe(false)
+  expect(outcome.hasIssues).toBe(false)
+  expect(outcome.showError).toBe(false)
 })
 
 it('should have no issues on unknown pages', () => {
@@ -130,7 +127,8 @@ it('should have no issues on unknown pages', () => {
   const pathname = '/unknown'
   singletonRouter.push(pathname)
   const outcome = hasRoutingIssues(pathname, mockSession)
-  expect(outcome.error).toBe(false)
+  expect(outcome.hasIssues).toBe(false)
+  expect(outcome.showError).toBe(false)
 })
 
 /**
@@ -151,24 +149,27 @@ it('should throw an error if a function is passed instead of a session on a rest
 const incomePageCombos: RoutingTestCombo[] = [
   {
     validEligibility: 'invalid',
-    error: true,
-    cause: 'eligibility',
+    hasIssues: true,
+    showError: true,
+    redirect: 'eligibility',
   },
   {
     validEligibility: 'valid',
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   },
 ]
 it.each(incomePageCombos)(
-  '/income should have issues ($error caused by $cause) with $validEligibility eligibility',
-  ({ validEligibility, error, cause }) => {
+  '/income should have issues ($hasIssues caused by $redirect) with $validEligibility eligibility',
+  ({ validEligibility, hasIssues, showError, redirect }) => {
     const mockSession = buildRoutingIssuesMockSession(validEligibility)
     const pathname = '/income'
     singletonRouter.push(pathname)
     const outcome = hasRoutingIssues(pathname, mockSession)
-    expect(outcome.error).toBe(error)
-    expect(outcome.cause).toBe(cause)
+    expect(outcome.hasIssues).toBe(hasIssues)
+    expect(outcome.showError).toBe(showError)
+    expect(outcome.redirect).toBe(redirect)
   }
 )
 
@@ -177,36 +178,41 @@ const invalidChooseClinicPageCombos: RoutingTestCombo[] = [
     validEligibility: 'valid',
     adjunctiveMatch: 'none',
     validIncome: 'invalid',
-    error: true,
-    cause: 'income',
+    hasIssues: true,
+    showError: true,
+    redirect: 'income',
   },
   {
     validEligibility: 'invalid',
     adjunctiveMatch: 'none',
     validIncome: 'invalid',
-    error: true,
-    cause: 'eligibility',
+    hasIssues: true,
+    showError: true,
+    redirect: 'eligibility',
   },
   {
     validEligibility: 'invalid',
     adjunctiveMatch: 'none',
     validIncome: 'valid',
-    error: true,
-    cause: 'eligibility',
+    hasIssues: true,
+    showError: true,
+    redirect: 'eligibility',
   },
   {
     validEligibility: 'invalid',
     adjunctiveMatch: 'tanf',
     validIncome: 'valid',
-    error: true,
-    cause: 'eligibility',
+    hasIssues: true,
+    showError: true,
+    redirect: 'eligibility',
   },
   {
     validEligibility: 'invalid',
     adjunctiveMatch: 'tanf',
     validIncome: 'invalid',
-    error: true,
-    cause: 'eligibility',
+    hasIssues: true,
+    showError: true,
+    redirect: 'eligibility',
   },
 ]
 const validChooseClinicPageCombos: RoutingTestCombo[] = [
@@ -214,30 +220,40 @@ const validChooseClinicPageCombos: RoutingTestCombo[] = [
     validEligibility: 'valid',
     adjunctiveMatch: 'none',
     validIncome: 'valid',
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   },
   {
     validEligibility: 'valid',
     adjunctiveMatch: 'tanf',
     validIncome: 'valid',
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   },
   {
     validEligibility: 'valid',
     adjunctiveMatch: 'tanf',
     validIncome: 'invalid',
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   },
 ]
 const chooseClinicPageCombos = invalidChooseClinicPageCombos.concat(
   validChooseClinicPageCombos
 )
 it.each(chooseClinicPageCombos)(
-  '/choose-clinic should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income',
-  ({ validEligibility, adjunctiveMatch, validIncome, error, cause }) => {
+  '/choose-clinic should have issues ($hasIssues caused by $redirect) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income',
+  ({
+    validEligibility,
+    adjunctiveMatch,
+    validIncome,
+    hasIssues,
+    showError,
+    redirect,
+  }) => {
     const mockSession = buildRoutingIssuesMockSession(
       validEligibility,
       adjunctiveMatch,
@@ -246,8 +262,9 @@ it.each(chooseClinicPageCombos)(
     const pathname = '/choose-clinic'
     singletonRouter.push(pathname)
     const outcome = hasRoutingIssues(pathname, mockSession)
-    expect(outcome.error).toBe(error)
-    expect(outcome.cause).toBe(cause)
+    expect(outcome.hasIssues).toBe(hasIssues)
+    expect(outcome.showError).toBe(showError)
+    expect(outcome.redirect).toBe(redirect)
   }
 )
 
@@ -270,16 +287,18 @@ const contactInvalidPreviousValid: RoutingTestCombo[] =
   validChooseClinicPageCombos.map((combo) => ({
     ...combo,
     validChooseClinic: 'invalid',
-    error: true,
-    cause: 'choose-clinic',
+    hasIssues: true,
+    showError: true,
+    redirect: 'choose-clinic',
   }))
 // /contact will only be valid if the previous pages are valid AND session.choose-clinic is valid.
 const validContactPageCombos: RoutingTestCombo[] =
   validChooseClinicPageCombos.map((combo) => ({
     ...combo,
     validChooseClinic: 'valid',
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   }))
 // Combine into one testing array.
 const invalidContactPageCombos = contactValidPreviousInvalid
@@ -289,14 +308,15 @@ const contactPageCombos = invalidContactPageCombos.concat(
   validContactPageCombos
 )
 it.each(contactPageCombos)(
-  '/contact should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic',
+  '/contact should have issues ($hasIssues caused by $redirect) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic',
   ({
     validEligibility,
     adjunctiveMatch,
     validIncome,
     validChooseClinic,
-    error,
-    cause,
+    hasIssues,
+    showError,
+    redirect,
   }) => {
     const mockSession = buildRoutingIssuesMockSession(
       validEligibility,
@@ -307,8 +327,9 @@ it.each(contactPageCombos)(
     const pathname = '/contact'
     singletonRouter.push(pathname)
     const outcome = hasRoutingIssues(pathname, mockSession)
-    expect(outcome.error).toBe(error)
-    expect(outcome.cause).toBe(cause)
+    expect(outcome.hasIssues).toBe(hasIssues)
+    expect(outcome.showError).toBe(showError)
+    expect(outcome.redirect).toBe(redirect)
   }
 )
 
@@ -331,16 +352,18 @@ const reviewInvalidPreviousValid: RoutingTestCombo[] =
   validContactPageCombos.map((combo) => ({
     ...combo,
     validContact: 'invalid',
-    error: true,
-    cause: 'contact',
+    hasIssues: true,
+    showError: true,
+    redirect: 'contact',
   }))
 // /review will only be valid if the previous pages are valid AND session.contact is valid.
 const validReviewPageCombos: RoutingTestCombo[] = validContactPageCombos.map(
   (combo) => ({
     ...combo,
     validContact: 'valid',
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   })
 )
 // Combine into one testing array.
@@ -349,15 +372,16 @@ const invalidReviewPageCombos = reviewValidPreviousInvalid
   .concat(reviewInvalidPreviousValid)
 const reviewPageCombos = invalidReviewPageCombos.concat(validReviewPageCombos)
 it.each(reviewPageCombos)(
-  '/review should have issues ($error caused by $cause) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic $validContact contact',
+  '/review should have issues ($hasIssues caused by $redirect) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic $validContact contact',
   ({
     validEligibility,
     adjunctiveMatch,
     validIncome,
     validChooseClinic,
     validContact,
-    error,
-    cause,
+    hasIssues,
+    showError,
+    redirect,
   }) => {
     const mockSession = buildRoutingIssuesMockSession(
       validEligibility,
@@ -369,7 +393,43 @@ it.each(reviewPageCombos)(
     const pathname = '/review'
     singletonRouter.push(pathname)
     const outcome = hasRoutingIssues(pathname, mockSession)
-    expect(outcome.error).toBe(error)
-    expect(outcome.cause).toBe(cause)
+    expect(outcome.hasIssues).toBe(hasIssues)
+    expect(outcome.showError).toBe(showError)
+    expect(outcome.redirect).toBe(redirect)
+  }
+)
+
+// /confirmation is like /review except when it errors,
+// it always redirects to / and never shows an error.
+it.each(reviewPageCombos)(
+  '/confirmation should have issues ($hasIssues caused by $redirect) with $validEligibility eligibility, adjunctive $adjunctiveMatch, $validIncome income, $validChooseClinic choose clinic $validContact contact',
+  ({
+    validEligibility,
+    adjunctiveMatch,
+    validIncome,
+    validChooseClinic,
+    validContact,
+    hasIssues,
+    showError,
+    redirect,
+  }) => {
+    const mockSession = buildRoutingIssuesMockSession(
+      validEligibility,
+      adjunctiveMatch,
+      validIncome,
+      validChooseClinic,
+      validContact
+    )
+    const pathname = '/confirmation'
+    singletonRouter.push(pathname)
+    const outcome = hasRoutingIssues(pathname, mockSession)
+    expect(outcome.hasIssues).toBe(hasIssues)
+    expect(outcome.showError).toBe(false)
+
+    if (hasIssues) {
+      expect(outcome.redirect).toBe('/')
+    } else {
+      expect(outcome.redirect).toBe('')
+    }
   }
 )

@@ -7,7 +7,7 @@ import * as sessionModule from '@src/hooks/useSessionStorage'
 import { initialSessionData } from '@utils/sessionData'
 
 import { setMockSession, setup } from '../helpers/setup'
-import { testAccessibility, testSnapshot } from '../helpers/sharedTests'
+import { testAccessibility } from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -21,13 +21,14 @@ const route = '/confirmation'
 
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
-  testSnapshot(
+  const { container } = render(
     <Confirmation
       sessionKey="mockSessionKey"
       session={mockSession}
       setSession={setMockSession}
     />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {

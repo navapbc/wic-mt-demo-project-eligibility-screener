@@ -1,14 +1,15 @@
-import { Trans } from 'next-i18next'
-import { ReactElement, useState } from 'react'
+import { useState } from 'react'
 
-import { i18nKey } from '@src/types'
+import TransLine from '@components/TransLine'
+
+import { I18nKey } from '@src/types'
 
 export type AccordionProps = {
-  bodyKey: i18nKey
-  headerKey: i18nKey
+  bodyKey: I18nKey
+  headerKey: I18nKey
 }
 
-const Accordion = (props: AccordionProps): ReactElement => {
+const Accordion = (props: AccordionProps) => {
   const { bodyKey, headerKey } = props
   const [isExpanded, setExpanded] = useState(false)
 
@@ -26,11 +27,11 @@ const Accordion = (props: AccordionProps): ReactElement => {
           onClick={handleClick}
           type="button"
         >
-          <Trans i18nKey={headerKey} />
+          <TransLine i18nKey={headerKey} />
         </button>
       </h3>
       <div className="usa-accordion__content" hidden={!isExpanded} id="b-a1">
-        <Trans i18nKey={bodyKey} />
+        <TransLine i18nKey={bodyKey} />
       </div>
     </div>
   )

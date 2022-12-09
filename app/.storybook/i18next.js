@@ -29,6 +29,7 @@ i18n
     ns,
     supportedLngs,
     resources,
+    returnObjects: true,
     backend: {
       loadPath: `${process.env.BASE_PATH ?? ''}/locales/{{lng}}/{{ns}}.json`,
     },

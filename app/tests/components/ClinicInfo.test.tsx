@@ -2,8 +2,6 @@ import { render, screen } from '@testing-library/react'
 
 import ClinicInfo from '@components/ClinicInfo'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const testProps = {
   name: 'clinic name',
   streetAddress: 'clinic address',
@@ -12,9 +10,15 @@ const testProps = {
 }
 
 it('should match snapshot when it is a form element', () => {
-  testSnapshot(<ClinicInfo {...testProps} isFormElement={true} />)
+  const { container } = render(
+    <ClinicInfo {...testProps} isFormElement={true} />
+  )
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot when it is not a form element', () => {
-  testSnapshot(<ClinicInfo {...testProps} isFormElement={false} />)
+  const { container } = render(
+    <ClinicInfo {...testProps} isFormElement={false} />
+  )
+  expect(container).toMatchSnapshot()
 })

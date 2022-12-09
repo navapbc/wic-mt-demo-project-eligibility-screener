@@ -1,16 +1,10 @@
-import { Trans } from 'next-i18next'
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  ReactElement,
-  SetStateAction,
-} from 'react'
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react'
 
 import Button from '@components/Button'
 import ButtonLink, { ButtonLinkProps } from '@components/ButtonLink'
 import ClinicInfo from '@components/ClinicInfo'
 import Required from '@components/Required'
+import TransLine from '@components/TransLine'
 
 import { Clinic } from '@src/types'
 
@@ -24,7 +18,7 @@ export type ClinicSelectionListProps = {
   actionButton: ButtonLinkProps
 }
 
-const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
+const ClinicSelectionList = (props: ClinicSelectionListProps) => {
   const {
     filteredClinics,
     expandList,
@@ -42,12 +36,12 @@ const ClinicSelectionList = (props: ClinicSelectionListProps): ReactElement => {
     setExpandList(true)
   }
 
-  let list: ReactElement = <></>
+  let list = <></>
   if (filteredClinics.length > 0) {
     list = (
       <>
         <h2>
-          <Trans i18nKey="ChooseClinic.listTitle" />
+          <TransLine i18nKey="ChooseClinic.listTitle" />
           <Required />
         </h2>
         <form className="usa-form usa-form--large">
