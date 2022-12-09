@@ -4,7 +4,7 @@
  *
  * There are so many data validation guards on this page. Every form wizard page must
  * be filled out with valid data in order for the user to access this page.
-*/
+ */
 import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
