@@ -7,11 +7,7 @@ import * as sessionModule from '@src/hooks/useSessionStorage'
 import { initialSessionData } from '@utils/sessionData'
 
 import { setMockSession, setup } from '../helpers/setup'
-import {
-  testAccessibility,
-  testBackLink,
-  testSnapshot,
-} from '../helpers/sharedTests'
+import { testAccessibility, testBackLink } from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -27,7 +23,7 @@ const forwardRoute = '/'
 
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
-  testSnapshot(
+  const { container } = render(
     <OtherBenefits
       sessionKey="mockSessionKey"
       setSession={setMockSession}
@@ -36,6 +32,7 @@ it('should match full page snapshot', () => {
       forwardRoute={forwardRoute}
     />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {

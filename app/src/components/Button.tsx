@@ -1,5 +1,5 @@
 import { Trans } from 'next-i18next'
-import React, { MouseEvent, ReactElement } from 'react'
+import React, { MouseEvent } from 'react'
 
 import { i18nKey } from '@src/types'
 
@@ -25,10 +25,7 @@ export type ButtonProps = {
 // be a child component of next/link. For more info, see
 // https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component
 const Button = React.forwardRef(
-  (
-    props: ButtonProps,
-    ref: React.LegacyRef<HTMLButtonElement>
-  ): ReactElement => {
+  (props: ButtonProps, ref: React.LegacyRef<HTMLButtonElement>) => {
     const { disabled, labelKey, style, onClick } = props
 
     let buttonStyle = ''

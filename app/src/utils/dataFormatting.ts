@@ -1,3 +1,7 @@
+/**
+ * A utility file for data formatting functions.
+ */
+
 // Modified from https://stackoverflow.com/a/8358141
 // Expects a 9-digit string
 // Returns a string in the format of: ###-###-####

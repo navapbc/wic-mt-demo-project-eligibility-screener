@@ -1,3 +1,7 @@
+/**
+ * The Eligibility page (/eligibility) is the first editable form page in the form
+ * wizard flow. There are no data validation guards for this page.
+ */
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'

@@ -1,10 +1,11 @@
+import { render } from '@testing-library/react'
+
 import HowItWorks from '@pages/how-it-works'
 
 import { setup } from '../helpers/setup'
 import {
   testAccessibility,
   testActionButtonRoute,
-  testSnapshot,
 } from '../helpers/sharedTests'
 
 /**
@@ -21,7 +22,10 @@ const forwardRoute = '/eligibility'
 
 it('should match full page snapshot', () => {
   setup(route)
-  testSnapshot(<HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />)
+  const { container } = render(
+    <HowItWorks backRoute={backRoute} forwardRoute={forwardRoute} />
+  )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {

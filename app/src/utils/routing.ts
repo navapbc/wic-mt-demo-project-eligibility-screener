@@ -1,11 +1,13 @@
+/**
+ * This utility handles all page routing flows.
+ */
 import { UrlObject } from 'url'
 
 import { SessionData } from '@src/types'
 import {
-  isValidChooseClinic,
-  isValidContact,
   isValidEligibility,
   isValidIncome,
+  isValidSession,
 } from '@utils/dataValidation'
 
 interface RestrictedPages {
@@ -148,73 +150,56 @@ export function hasRoutingIssues(
   session: SessionData | ((value: SessionData) => void)
 ) {
   const pass = {
-    error: false,
-    cause: '',
+    hasIssues: false,
+    showError: false,
+    redirect: '',
   }
   // These pages have restricted access based on user data.
-  // All other pages have no routing issues.
+  // Order matters in these arrays because it will determine which page the
+  // user is redirected to.
   const restrictedPages: RestrictedPages = {
-    '/income': ['/eligibility'],
-    '/choose-clinic': ['/eligibility', '/income'],
-    '/contact': ['/eligibility', '/income', '/choose-clinic'],
-    '/review': ['/eligibility', '/income', '/choose-clinic', '/contact'],
+    '/income': ['eligibility'],
+    '/choose-clinic': ['eligibility', 'income'],
+    '/contact': ['eligibility', 'income', 'choose-clinic'],
+    '/review': ['eligibility', 'income', 'choose-clinic', 'contact'],
+    '/confirmation': [],
   }
+
   if (!Object.keys(restrictedPages).includes(pathname)) {
     return pass
-  } else {
-    // Same as getBackLink(), typescript warns that session might be a function.
-    if (typeof session === 'function') {
-      throw new Error('Routing error: expected a session, but none was found')
-    }
-    // If it's not, handle each restricted page.
-    else {
-      for (let i = 0, len = restrictedPages[pathname].length; i < len; i++) {
-        const check = restrictedPages[pathname][i]
-        // Check first for /eligibility requirements.
-        if (
-          check === '/eligibility' &&
-          !isValidEligibility(session.eligibility)
-        ) {
-          return {
-            error: true,
-            cause: 'eligibility',
-          }
-        }
+  }
 
-        // Then, check for /income requirements.
-        if (
-          check === '/income' &&
-          session.eligibility.adjunctive.includes('none') &&
-          !isValidIncome(session.income)
-        ) {
-          return {
-            error: true,
-            cause: 'income',
-          }
-        }
+  // Same as getBackLink(), typescript warns that session might be a function.
+  if (typeof session === 'function') {
+    throw new Error('Routing error: expected a session, but none was found')
+  }
 
-        // Then, check for /choose-clinic requirements.
-        if (
-          check === '/choose-clinic' &&
-          !isValidChooseClinic(session.chooseClinic)
-        ) {
-          return {
-            error: true,
-            cause: 'choose-clinic',
-          }
-        }
-
-        // Then, check for /contact requirements.
-        if (check === '/contact' && !isValidContact(session.contact)) {
-          return {
-            error: true,
-            cause: 'contact',
-          }
-        }
+  // Handle special edge case for /confirmation, which should redirect
+  // to the index page and not display any errors.
+  if (pathname === '/confirmation') {
+    if (!isValidSession(session)) {
+      return {
+        hasIssues: true,
+        showError: false,
+        redirect: '/',
       }
-
-      // If none of the other checks failed, pass.
+    } else {
       return pass
     }
   }
+
+  // If it's not, handle each restricted page.
+  for (let i = 0, len = restrictedPages[pathname].length; i < len; i++) {
+    const check = restrictedPages[pathname][i]
+    if (!isValidSession(session, check)) {
+      return {
+        hasIssues: true,
+        showError: true,
+        redirect: check,
+      }
+    }
+  }
+
+  // If none of the other checks failed, pass.
+  return pass
 }

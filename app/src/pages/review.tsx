@@ -1,3 +1,10 @@
+/**
+ * The Review page (/review) is the most complicated page because it handles submitting
+ * the form that's been being created throughout the form wizard.
+ *
+ * There are so many data validation guards on this page. Every form wizard page must
+ * be filled out with valid data in order for the user to access this page.
+ */
 import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
@@ -45,9 +52,18 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
 
   const router = useRouter()
 
+  // This is a little silly, but session stores the object keys (e.g. 'pregnant',
+  // 'foster') and we don't want to send that to the api. Instead, we want to send the
+  // human-friendly string to the api (e.g. "I'm pregnant", "I'm the guardian or foster
+  // parent of an infant or child under the age of 5 years old").
   const buildEligibilityArrays = (data: string[]) => {
     return data.map((category) => t(`Eligibility.${category}`))
   }
+
+  // This handleClick is very complicated. It is written to make the fetch() call in
+  // such a way as not to return a dangling promise. If there are no errors with the
+  // api call, the user gets routed to /confirmation via next.js next/router. If there
+  // are errors, then we reload the current page and display an error.
 
   // Note: All router.push() calls have linting disabled on them.
   // See https://nextjs.org/docs/api-reference/next/router#potential-solutions
