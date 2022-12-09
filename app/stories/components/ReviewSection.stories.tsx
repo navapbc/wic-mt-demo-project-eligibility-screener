@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ReviewSectionComponent from '@components/ReviewSection'
 
-import { getMockSessionData } from '../../tests/helpers/mockData'
+import { getMockSessionData } from '@lib/mockData'
 
 export default {
   title: 'Components/ReviewSection',

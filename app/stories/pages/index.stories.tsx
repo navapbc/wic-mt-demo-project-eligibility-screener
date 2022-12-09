@@ -2,9 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import IndexPage from '@pages/index'
 
+import { getEmptyMockSession } from '@lib/mockData'
 import { getForwardRoute } from '@utils/routing'
-
-import { getEmptyMockSession } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Index',

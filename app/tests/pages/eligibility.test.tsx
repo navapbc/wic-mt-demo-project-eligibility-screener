@@ -3,7 +3,8 @@ import singletonRouter from 'next/router'
 
 import Eligibility from '@pages/eligibility'
 
-import { getMockEligibilityData } from '../helpers/mockData'
+import { getMockEligibilityData } from '@lib/mockData'
+
 import { setMockSession, setup } from '../helpers/setup'
 import {
   testAccessibility,

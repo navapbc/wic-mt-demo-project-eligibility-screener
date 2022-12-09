@@ -3,10 +3,9 @@ import userEvent from '@testing-library/user-event'
 import cloneDeep from 'lodash/cloneDeep'
 import mockRouter from 'next-router-mock'
 
+import { getEmptyMockSession } from '@lib/mockData'
 import type { SessionData } from '@src/types'
 import { initialSessionData } from '@utils/sessionData'
-
-import { getEmptyMockSession } from './mockData'
 
 /*
  * Types

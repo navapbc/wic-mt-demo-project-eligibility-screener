@@ -3,12 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import IncomePage from '@pages/income'
 
+import { getEmptyMockSession, getMockSessionData } from '@lib/mockData'
 import { getBackRoute, getForwardRoute } from '@utils/routing'
-
-import {
-  getEmptyMockSession,
-  getMockSessionData,
-} from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Income',
