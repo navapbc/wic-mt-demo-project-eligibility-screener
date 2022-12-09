@@ -1,18 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot 1`] = `
-[
+<div>
   <label
-    className="usa-label"
-    htmlFor="test-id"
+    class="usa-label"
+    for="test-id"
   >
     dropdown label
-  </label>,
+  </label>
   <select
-    className="usa-select"
+    class="usa-select"
     id="test-id"
     name="test-id"
-    onChange={[Function]}
   >
     <option
       value=""
@@ -36,6 +35,6 @@ exports[`should match snapshot 1`] = `
     >
       c
     </option>
-  </select>,
-]
+  </select>
+</div>
 `;

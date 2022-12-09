@@ -9,7 +9,6 @@ import {
   testActionButtonReviewMode,
   testActionButtonRoute,
   testBackLink,
-  testSnapshot,
 } from '../helpers/sharedTests'
 
 /**
@@ -27,7 +26,7 @@ const mockHouseholdSize = '1'
 
 it('should match full page snapshot', () => {
   const { mockSession } = setup(route)
-  testSnapshot(
+  const { container } = render(
     <Income
       session={mockSession}
       setSession={setMockSession}
@@ -35,6 +34,7 @@ it('should match full page snapshot', () => {
       forwardRoute={forwardRoute}
     />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {
