@@ -91,12 +91,10 @@ export default async function handler(
       // Get the API call results.
       const responseBody = (await response.json()) as ApiResponse
 
-      const castStatusCode = responseBody.status_code
-
       // If the API call status is NOT 201, then pass through the status code
       // and return an error message.
-      if (castStatusCode !== 201) {
-        return res.status(castStatusCode).json({
+      if (responseBody.status_code !== 201) {
+        return res.status(responseBody.status_code).json({
           success: false,
           error: 'API endpoint returned errors',
           errorDetails: responseBody,
@@ -107,7 +105,7 @@ export default async function handler(
       // Redirect to /confirmation.
       else {
         return res
-          .status(castStatusCode)
+          .status(responseBody.status_code)
           .json({ success: true, error: '', errorDetails: '' })
       }
     } catch (e: unknown) {
