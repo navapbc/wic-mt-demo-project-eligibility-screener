@@ -1,5 +1,4 @@
 import { Trans } from 'next-i18next'
-import { ReactElement } from 'react'
 
 import { i18nKey } from '@src/types'
 
@@ -11,7 +10,7 @@ export type AlertProps = {
   icon?: boolean
 }
 
-export const Alert = (props: AlertProps): ReactElement => {
+export const Alert = (props: AlertProps) => {
   const { alertBody, type, icon } = props
 
   return (

@@ -2,8 +2,6 @@ import { render, screen } from '@testing-library/react'
 
 import Dropdown, { DropdownProps } from '@components/Dropdown'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const testProps: DropdownProps = {
   handleChange: (e) => {},
   id: 'test-id',
@@ -12,7 +10,8 @@ const testProps: DropdownProps = {
 }
 
 it('should match snapshot', () => {
-  testSnapshot(<Dropdown {...testProps} />)
+  const { container } = render(<Dropdown {...testProps} />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match display required marker if required is true', () => {

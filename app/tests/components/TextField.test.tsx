@@ -3,8 +3,6 @@ import { ChangeEvent } from 'react'
 
 import TextField from '@components/TextField'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const testProps = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
@@ -16,11 +14,13 @@ const testProps = {
 }
 
 it('should match snapshot when it is a textfield', () => {
-  testSnapshot(<TextField {...testProps} type="input" />)
+  const { container } = render(<TextField {...testProps} type="input" />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot when it is a textarea', () => {
-  testSnapshot(<TextField {...testProps} type="textarea" />)
+  const { container } = render(<TextField {...testProps} type="textarea" />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should be a textfield by default', () => {

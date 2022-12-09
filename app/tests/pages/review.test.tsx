@@ -8,11 +8,7 @@ import Review from '@pages/review'
 
 import { getMockSessionData } from '../helpers/mockData'
 import { setMockSession, setup } from '../helpers/setup'
-import {
-  testAccessibility,
-  testBackLink,
-  testSnapshot,
-} from '../helpers/sharedTests'
+import { testAccessibility, testBackLink } from '../helpers/sharedTests'
 
 /**
  * Test setup
@@ -37,7 +33,7 @@ beforeEach(() => {
 it('should match full page snapshot', () => {
   setup(route)
   const mockSession = getMockSessionData()
-  testSnapshot(
+  const { container } = render(
     <Review
       session={mockSession}
       setSession={setMockSession}
@@ -46,6 +42,7 @@ it('should match full page snapshot', () => {
       baseUrl={baseUrl}
     />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it('should pass accessibility scan', async () => {
