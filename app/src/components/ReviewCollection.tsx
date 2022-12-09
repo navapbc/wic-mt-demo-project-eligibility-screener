@@ -1,13 +1,13 @@
-import { Trans } from 'next-i18next'
 import { UrlObject } from 'url'
 
 import ButtonLink from '@components/ButtonLink'
 import ReviewElement, { ReviewElementProps } from '@components/ReviewElement'
+import TransLine from '@components/TransLine'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type ReviewCollectionProps = {
-  headerKey: i18nKey
+  headerKey: I18nKey
   reviewElements: ReviewElementProps[]
   editable: boolean
   editHref: UrlObject | string
@@ -28,7 +28,7 @@ const ReviewCollection = (props: ReviewCollectionProps) => {
   return (
     <div className={`review-collection ${marginTop} border-bottom-1px`}>
       <h2>
-        <Trans i18nKey={headerKey} />
+        <TransLine i18nKey={headerKey} />
         {editable && (
           <div className="float-right">
             <ButtonLink labelKey="edit" href={editHref} style="unstyled" />

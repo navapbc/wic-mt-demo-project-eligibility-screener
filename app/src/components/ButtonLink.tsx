@@ -4,11 +4,11 @@ import { UrlObject } from 'url'
 
 import Button, { buttonStyleOptions } from '@components/Button'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type ButtonLinkProps = {
   disabled?: boolean
-  labelKey: i18nKey
+  labelKey: I18nKey
   href: UrlObject | string
   style?: typeof buttonStyleOptions[number]
   onClick?: (e: MouseEvent<HTMLElement>) => void

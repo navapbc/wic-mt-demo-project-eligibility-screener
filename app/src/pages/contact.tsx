@@ -4,7 +4,6 @@
  * previous form pages with valid data.
  */
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { PatternFormat } from 'react-number-format'
@@ -15,6 +14,7 @@ import ButtonLink from '@components/ButtonLink'
 import Required from '@components/Required'
 import RequiredQuestionStatement from '@components/RequiredQuestionStatement'
 import TextField from '@components/TextField'
+import TransLine from '@components/TransLine'
 
 import type { ContactData, EditablePage } from '@src/types'
 import { isValidContact } from '@utils/dataValidation'
@@ -76,12 +76,12 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
       <BackLink href={backRoute} />
       <form className="usa-form usa-form--large">
         <h1>
-          <Trans i18nKey="Contact.title" />
+          <TransLine i18nKey="Contact.title" />
         </h1>
         <RequiredQuestionStatement />
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.name" />
+            <TransLine i18nKey="Contact.name" />
             <Required />
           </h2>
           <TextField
@@ -101,12 +101,12 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.phoneHeader" />
+            <TransLine i18nKey="Contact.phoneHeader" />
             <Required />
           </h2>
           <Alert alertBody="Contact.phoneAlert" type="info" />
           <label className="usa-label" htmlFor="phone">
-            <Trans i18nKey="Contact.phone" />
+            <TransLine i18nKey="Contact.phone" />
             <Required />
           </label>
           <PatternFormat
@@ -125,7 +125,7 @@ const Contact: NextPage<EditablePage> = (props: EditablePage) => {
         </fieldset>
         <fieldset className="usa-fieldset">
           <h2>
-            <Trans i18nKey="Contact.commentsHeader" />
+            <TransLine i18nKey="Contact.commentsHeader" />
           </h2>
           <TextField
             handleChange={handleChangeEvent}

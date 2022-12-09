@@ -1,11 +1,11 @@
-import { Trans } from 'next-i18next'
+import TransLine from '@components/TransLine'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type AlertTypes = 'error' | 'info' | 'success' | 'warning'
 
 export type AlertProps = {
-  alertBody: i18nKey
+  alertBody: I18nKey
   type: AlertTypes
   icon?: boolean
 }
@@ -22,7 +22,7 @@ export const Alert = (props: AlertProps) => {
     >
       <div className="usa-alert__body">
         <p className="usa-alert__text">
-          <Trans i18nKey={alertBody} />
+          <TransLine i18nKey={alertBody} />
         </p>
       </div>
     </div>

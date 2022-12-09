@@ -9,13 +9,13 @@
  */
 import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
 
 import ButtonLink from '@components/ButtonLink'
 import ReviewSection from '@components/ReviewSection'
 import StyledLink from '@components/StyledLink'
+import TransLine from '@components/TransLine'
 
 import { clearSessionStorage } from '@src/hooks/useSessionStorage'
 import type { ClearablePage } from '@src/types'
@@ -42,14 +42,14 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
   return (
     <>
       <h1>
-        <Trans i18nKey="Confirmation.title" />
+        <TransLine i18nKey="Confirmation.title" />
       </h1>
       <p>
-        <Trans i18nKey="Confirmation.body" />
+        <TransLine i18nKey="Confirmation.body" />
       </p>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
-          <Trans i18nKey="Confirmation.interestedIn" />
+          <TransLine i18nKey="Confirmation.interestedIn" />
         </h2>
         <p>
           <StyledLink
@@ -61,7 +61,7 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
       </div>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
-          <Trans i18nKey="Confirmation.submitAnother" />
+          <TransLine i18nKey="Confirmation.submitAnother" />
         </h2>
         <ButtonLink
           labelKey="Confirmation.startNew"
@@ -72,7 +72,7 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
       </div>
       <div className="content-group-small">
         <h2 className="font-sans-xs">
-          <Trans i18nKey="Confirmation.keepCopy" />
+          <TransLine i18nKey="Confirmation.keepCopy" />
         </h2>
       </div>
       <ReviewSection editable={false} session={form} />

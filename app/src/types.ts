@@ -78,4 +78,4 @@ export type ClearablePage = ClearSession & Page
 /**
  * i18n types.
  */
-export type i18nKey = string
+export type I18nKey = string

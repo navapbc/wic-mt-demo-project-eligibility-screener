@@ -1,7 +1,8 @@
-import { Trans } from 'next-i18next'
 import React, { MouseEvent } from 'react'
 
-import { i18nKey } from '@src/types'
+import TransLine from '@components/TransLine'
+
+import { I18nKey } from '@src/types'
 
 export const buttonStyleOptions = [
   'default',
@@ -16,7 +17,7 @@ export const buttonStyleOptions = [
 
 export type ButtonProps = {
   disabled?: boolean
-  labelKey: i18nKey
+  labelKey: I18nKey
   style?: typeof buttonStyleOptions[number]
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
@@ -44,7 +45,7 @@ const Button = React.forwardRef(
         onClick={onClick}
         ref={ref}
       >
-        <Trans i18nKey={labelKey} />
+        <TransLine i18nKey={labelKey} />
       </button>
     )
   }
