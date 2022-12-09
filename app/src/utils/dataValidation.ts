@@ -103,6 +103,11 @@ export function isValidSession(session: SessionData, check = 'any'): boolean {
     return false
   }
 
+  // This is a complicated bit of business logic. Basically, in order to be eligible for WIC,
+  // an applicant must EITHER have "adjunctive eligibility" by being enrolled in another
+  // qualifying program, such as medicaid, SNAP, or TANF, OR they must meet income requirements.
+  // Having valid income data only matters if the applicant has selected "none of the above"
+  // for the "do you have adjunctive eligibility" (paraphrase) question.
   if (
     (check === 'income' || check === 'any') &&
     (!isDefined(initialIncomeData, session.income) ||

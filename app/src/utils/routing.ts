@@ -57,30 +57,29 @@ export function getForwardRoute(
         'Forward route error: expected a session, but none was found'
       )
     }
+
     // Otherwise, we can do actual checks against user data to get the correct route.
-    else {
-      if (
-        !isValidEligibility(session.eligibility) ||
-        session.eligibility.residential === 'no' ||
-        session.eligibility.categorical.includes('none')
-      ) {
-        return '/other-benefits'
-      } else if (session.eligibility.adjunctive.includes('none')) {
-        if (reviewMode) {
-          if (!isValidIncome(session.income)) {
-            return { pathname: '/income', query: { mode: 'review' } }
-          } else {
-            return '/review'
-          }
+    if (
+      !isValidEligibility(session.eligibility) ||
+      session.eligibility.residential === 'no' ||
+      session.eligibility.categorical.includes('none')
+    ) {
+      return '/other-benefits'
+    } else if (session.eligibility.adjunctive.includes('none')) {
+      if (reviewMode) {
+        if (!isValidIncome(session.income)) {
+          return { pathname: '/income', query: { mode: 'review' } }
         } else {
-          return '/income'
+          return '/review'
         }
       } else {
-        if (reviewMode) {
-          return '/review'
-        } else {
-          return '/choose-clinic'
-        }
+        return '/income'
+      }
+    } else {
+      if (reviewMode) {
+        return '/review'
+      } else {
+        return '/choose-clinic'
       }
     }
   }
