@@ -58,7 +58,6 @@ One time setup:
 2. `yarn install`
 3. `yarn husky-prepare`
 
-
 ### Linting
 
 For linting, this application is leveraging `eslint`, `prettier` and Nava's [eslint-config-nava](https://github.com/navapbc/eslint-config-nava). Although, these will be run on CI, it is still recommended that we tell our code editor to auto-fix eslint and prettier errors on save.
