@@ -1,3 +1,8 @@
+/**
+ * The Contact page (/contact) is an editable form page in the form wizard flow. In
+ * order for a user to be allowed onto this page, they must have filled out all
+ * previous form pages with valid data.
+ */
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useState } from 'react'

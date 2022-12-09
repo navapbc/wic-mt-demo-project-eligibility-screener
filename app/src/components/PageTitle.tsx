@@ -1,12 +1,11 @@
 import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
-import { ReactElement } from 'react'
 
 export type PageTitleProps = {
   pathname: string
 }
 
-const PageTitle = (props: PageTitleProps): ReactElement => {
+const PageTitle = (props: PageTitleProps) => {
   const { pathname } = props
 
   const { t } = useTranslation('common')

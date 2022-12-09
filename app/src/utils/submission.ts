@@ -1,4 +1,7 @@
-// Note: This util is meant to run serverside.
+/**
+ * This utility handles translating our session object into the shape that the mock API
+ * expects. This utility is meant to run serverside.
+ */
 import cloneDeep from 'lodash/cloneDeep'
 
 import { SessionData } from '@src/types'

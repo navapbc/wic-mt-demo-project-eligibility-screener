@@ -1,24 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match full page snapshot 1`] = `
-[
+<div>
   <h1>
     Your confirmation
-  </h1>,
+  </h1>
   <p>
     Thank you for submitting your information. If you're eligible, you should hear from WIC staff at your chosen clinic within 20 days.
-  </p>,
+  </p>
   <div
-    className="content-group-small"
+    class="content-group-small"
   >
     <h2
-      className="font-sans-xs"
+      class="font-sans-xs"
     >
       Interested in other available assistance and benefits?
     </h2>
     <p>
       <a
-        className="usa-link usa-link--external"
+        class="usa-link usa-link--external"
         href="https://dphhs.mt.gov/Assistance"
         rel="noopener noreferrer"
         target="_blank"
@@ -26,42 +26,41 @@ exports[`should match full page snapshot 1`] = `
         Learn about other assistance
       </a>
     </p>
-  </div>,
+  </div>
   <div
-    className="content-group-small"
+    class="content-group-small"
   >
     <h2
-      className="font-sans-xs"
+      class="font-sans-xs"
     >
       Do you need to submit another application for someone else?
     </h2>
     <button
-      className="usa-button usa-button--small display-block usa-button--outline margin-top-1"
-      onClick={[Function]}
+      class="usa-button usa-button--small display-block usa-button--outline margin-top-1"
     >
       Start a new application
     </button>
-  </div>,
+  </div>
   <div
-    className="content-group-small"
+    class="content-group-small"
   >
     <h2
-      className="font-sans-xs"
+      class="font-sans-xs"
     >
       Keep a copy of your confirmation for your records.
     </h2>
-  </div>,
+  </div>
   <div
-    className="review-collection margin-top-6 border-bottom-1px"
+    class="review-collection margin-top-6 border-bottom-1px"
   >
     <h2>
       Eligibility questions
     </h2>
     <dl
-      className="margin-bottom-2"
+      class="margin-bottom-2"
     >
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -69,13 +68,13 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         >
           Eligibility.
         </dd>
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -83,13 +82,13 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         >
           <ul />
         </dd>
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -97,13 +96,13 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         >
           Eligibility.
         </dd>
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -111,24 +110,24 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         >
           <ul />
         </dd>
       </div>
     </dl>
-  </div>,
+  </div>
   <div
-    className="review-collection margin-top-6 border-bottom-1px"
+    class="review-collection margin-top-6 border-bottom-1px"
   >
     <h2>
       Choose a clinic
     </h2>
     <dl
-      className="margin-bottom-2"
+      class="margin-bottom-2"
     >
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -136,13 +135,13 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         >
           <div />
         </dd>
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -150,22 +149,22 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         />
       </div>
     </dl>
-  </div>,
+  </div>
   <div
-    className="review-collection margin-top-6 border-bottom-1px"
+    class="review-collection margin-top-6 border-bottom-1px"
   >
     <h2>
       Contact information
     </h2>
     <dl
-      className="margin-bottom-2"
+      class="margin-bottom-2"
     >
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -173,11 +172,11 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         />
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -185,11 +184,11 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         />
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -197,11 +196,11 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         />
       </div>
       <div
-        className="review-element margin-bottom-3"
+        class="review-element margin-bottom-3"
       >
         <dt>
           <strong>
@@ -209,10 +208,10 @@ exports[`should match full page snapshot 1`] = `
           </strong>
         </dt>
         <dd
-          className="margin-left-0"
+          class="margin-left-0"
         />
       </div>
     </dl>
-  </div>,
-]
+  </div>
+</div>
 `;

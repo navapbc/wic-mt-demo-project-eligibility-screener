@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement } from 'react'
+import { ChangeEvent } from 'react'
 
 import Required from '@components/Required'
 import TransLine from '@components/TransLine'
@@ -15,8 +15,8 @@ export interface DropdownProps {
 }
 
 // @TODO: This component expects pre-translated option strings.
-//        It should be refactored if itos ever used with non-integer options.
-const Dropdown = (props: DropdownProps): ReactElement => {
+//        It should be refactored if it's ever used with non-integer options.
+const Dropdown = (props: DropdownProps) => {
   const { handleChange, id, labelKey, options, required, selectedOption } =
     props
 

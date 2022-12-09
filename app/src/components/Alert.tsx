@@ -1,5 +1,3 @@
-import { ReactElement } from 'react'
-
 import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
@@ -12,7 +10,7 @@ export type AlertProps = {
   icon?: boolean
 }
 
-export const Alert = (props: AlertProps): ReactElement => {
+export const Alert = (props: AlertProps) => {
   const { alertBody, type, icon } = props
 
   return (

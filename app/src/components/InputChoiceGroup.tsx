@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement } from 'react'
+import { ChangeEvent } from 'react'
 
 import Accordion from '@components/Accordion'
 import Required from '@components/Required'
@@ -25,7 +25,7 @@ export type InputChoiceGroupProps = {
   type: 'checkbox' | 'radio'
 }
 
-const InputChoiceGroup = (props: InputChoiceGroupProps): ReactElement => {
+const InputChoiceGroup = (props: InputChoiceGroupProps) => {
   const { accordion, choices, titleKey, required, type } = props
 
   return (

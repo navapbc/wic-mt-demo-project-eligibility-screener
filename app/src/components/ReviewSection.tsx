@@ -1,5 +1,3 @@
-import { ReactElement } from 'react'
-
 import ClinicInfo from '@components/ClinicInfo'
 import List from '@components/List'
 import ReviewCollection from '@components/ReviewCollection'
@@ -20,7 +18,7 @@ export type ReviewSectionProps = {
   session: SessionData
 }
 
-const ReviewSection = (props: ReviewSectionProps): ReactElement => {
+const ReviewSection = (props: ReviewSectionProps) => {
   const { editable, session } = props
 
   const reviewMode = { mode: 'review' }

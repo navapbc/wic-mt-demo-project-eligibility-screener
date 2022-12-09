@@ -1,3 +1,8 @@
+/**
+ * The index page (/) is the homepage for the eligibility screener. It is a content-
+ * only page that has no back link. There are no data validation guards for this page
+ * because it is the first page in the form wizard flow.
+ */
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 

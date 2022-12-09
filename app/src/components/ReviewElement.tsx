@@ -9,7 +9,7 @@ export type ReviewElementProps = {
   children: ReactElement | string | null
 }
 
-const ReviewElement = (props: ReviewElementProps): ReactElement => {
+const ReviewElement = (props: ReviewElementProps) => {
   const { labelKey, children } = props
 
   return (

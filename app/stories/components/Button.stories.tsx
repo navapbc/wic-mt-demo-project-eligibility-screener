@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import ButtonComponent, { buttonStyleOptions } from '@components/Button'
+import ButtonComponent from '@components/Button'
 
 export default {
   title: 'Components',
@@ -8,7 +8,6 @@ export default {
   argTypes: {
     style: {
       control: 'select',
-      options: buttonStyleOptions,
     },
   },
 } as ComponentMeta<typeof ButtonComponent>

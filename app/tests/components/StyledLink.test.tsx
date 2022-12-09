@@ -1,6 +1,6 @@
-import StyledLink from '@components/StyledLink'
+import { render } from '@testing-library/react'
 
-import { testSnapshot } from '../helpers/sharedTests'
+import StyledLink from '@components/StyledLink'
 
 const testProps = {
   href: '/somewhere',
@@ -9,11 +9,11 @@ const testProps = {
 }
 
 it('should match snapshot for internal link', () => {
-  const element = <StyledLink {...testProps} />
-  testSnapshot(element)
+  const { container } = render(<StyledLink {...testProps} />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot for external link', () => {
-  const element = <StyledLink {...testProps} external={true} />
-  testSnapshot(element)
+  const { container } = render(<StyledLink {...testProps} external={true} />)
+  expect(container).toMatchSnapshot()
 })

@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactElement } from 'react'
+import React, { MouseEvent } from 'react'
 
 import TransLine from '@components/TransLine'
 
@@ -13,12 +13,12 @@ export const buttonStyleOptions = [
   'base',
   'outline',
   'big',
-]
+] as const
 
 export type ButtonProps = {
   disabled?: boolean
   labelKey: I18nKey
-  style?: string
+  style?: typeof buttonStyleOptions[number]
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
@@ -26,10 +26,7 @@ export type ButtonProps = {
 // be a child component of next/link. For more info, see
 // https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component
 const Button = React.forwardRef(
-  (
-    props: ButtonProps,
-    ref: React.LegacyRef<HTMLButtonElement>
-  ): ReactElement => {
+  (props: ButtonProps, ref: React.LegacyRef<HTMLButtonElement>) => {
     const { disabled, labelKey, style, onClick } = props
 
     let buttonStyle = ''
