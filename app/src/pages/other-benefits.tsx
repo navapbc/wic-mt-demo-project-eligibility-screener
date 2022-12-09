@@ -1,3 +1,13 @@
+/**
+ * The OtherBenefits page (/other-benefits) is one of two "clearable" pages, pages
+ * where the user can click a button and their session storage will be manually cleared
+ * (both the session storage and the session state). This page is only shown to the
+ * user if they have indicated that they are likely ineligible for WIC through their
+ * answers on /eligibility.
+ *
+ * There are no data validation guards for this page because it is a page intended to
+ * facilitate deleting data.
+ */
 import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'
