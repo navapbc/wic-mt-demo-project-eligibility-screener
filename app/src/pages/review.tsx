@@ -71,8 +71,13 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault()
 
-    // Do not resubmit if already submitted.
-    if (session.submitted) {
+    // Next.js can expose environment variables prefixed with NEXT_PUBLIC_ to the browser.
+    // See https://nextjs.org/docs/basic-features/environment-variables
+    const demoMode = process.env.NEXT_PUBLIC_DEMO_MODE ?? 'false'
+
+    // Do not resubmit if already submitted OR
+    // if in demo mode, go directly to next page.
+    if (session.submitted || demoMode === 'true') {
       // Route to next page.
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push(forwardRoute)
@@ -155,7 +160,7 @@ const Review: NextPage<ReviewProps> = (props: ReviewProps) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const baseUrl = process.env.BASE_URL || ''
+  const baseUrl = process.env.BASE_URL ?? ''
 
   return {
     props: {

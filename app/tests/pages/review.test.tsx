@@ -212,3 +212,35 @@ it('should handle fetch errors', async () => {
 
   restore()
 })
+
+it('should skip submitting when in demo mode', async () => {
+  // Mock process.env
+  const restore = mockEnv({
+    BASE_URL: 'http://something.com',
+    NEXT_PUBLIC_DEMO_MODE: 'true',
+  })
+
+  const { mockSession, user } = setup(route)
+  render(
+    <Review
+      session={mockSession}
+      setSession={setMockSession}
+      backRoute={backRoute}
+      forwardRoute={forwardRoute}
+      baseUrl={baseUrl}
+    />
+  )
+
+  fetchMock.doMockOnce().mockOnce(JSON.stringify({ foo: 'bar' }))
+  const button = screen.getByRole('button', { name: /Submit/i })
+  await user.click(button)
+
+  // Must waitFor() the result since we rely on route changes in this case to be async.
+  // See https://github.com/scottrippey/next-router-mock#sync-vs-async
+  await waitFor(() => {
+    expect(fetchMock.mock.calls.length).toEqual(0)
+    expect(singletonRouter).toMatchObject({ asPath: '/confirmation' })
+  })
+
+  restore()
+})

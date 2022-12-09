@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { ReactElement } from 'react'
 
+import Alert from '@components/Alert'
 import TransLine from '@components/TransLine'
 
 type Props = {
@@ -10,6 +11,14 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <div className="container">
+      {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
+        <Alert
+          alertBody="demoAlertBanner.text"
+          type="warning"
+          icon={true}
+          slim={true}
+        />
+      )}
       <header className="header usa-header usa-header--basic" role="banner">
         <div className="usa-navbar">
           <div className="grid-row">
