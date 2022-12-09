@@ -28,7 +28,7 @@
     "react-i18next": "^11.18.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.0",
+    "@babel/core": "^7.20.5",
     "@babel/preset-typescript": "^7.17.12",
     "@playwright/test": "^1.27.1",
     "@storybook/addon-essentials": "^6.5.9",
