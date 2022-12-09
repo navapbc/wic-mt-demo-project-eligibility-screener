@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MouseEvent, ReactElement } from 'react'
+import { MouseEvent } from 'react'
 import { UrlObject } from 'url'
 
 import Button from '@components/Button'
@@ -14,7 +14,7 @@ export type ButtonLinkProps = {
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
-const ButtonLink = (props: ButtonLinkProps): ReactElement => {
+const ButtonLink = (props: ButtonLinkProps) => {
   const { disabled, href, labelKey, style, onClick } = props
 
   return (
