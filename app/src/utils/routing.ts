@@ -1,3 +1,6 @@
+/**
+ * This utility handles all page routing flows.
+ */
 import { UrlObject } from 'url'
 
 import { SessionData } from '@src/types'

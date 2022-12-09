@@ -1,3 +1,7 @@
+/**
+ * A utility file for all user data validation, including one function for each form
+ * wizard page.
+ */
 import incomeData from '@public/data/income.json'
 
 import type {

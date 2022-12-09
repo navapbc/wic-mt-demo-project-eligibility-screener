@@ -1,3 +1,6 @@
+/**
+ * A custom hook to handle storing data in the browser's session storage.
+ */
 import { useState } from 'react'
 
 import { SessionData } from '@src/types'
