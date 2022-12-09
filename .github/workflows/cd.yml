@@ -8,7 +8,7 @@
 #
 # The underlying terraform is managed in the wic-mt-demo-project repo and references the uploaded docker image.
 
-name: Eligibility Screener Deploy
+name: NextJS CD
 on:
   workflow_dispatch:
     inputs:

@@ -1,3 +1,11 @@
+/**
+ * The Income page (/income) is an editable form page in the form wizard flow. In order
+ * for a user to be allowed onto this page, they must have filled out all previous form
+ * pages with valid data.
+ *
+ * Routing is conditional for this page: The user is only routed here if they indicate
+ * that they are not enrolled in any qualifying adjunctive programs (such as medicaid).
+ */
 import incomeData from '@public/data/income.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'

@@ -1,3 +1,7 @@
+/**
+ * A utility file for data formatting functions.
+ */
+
 // Modified from https://stackoverflow.com/a/8358141
 export function formatPhone(phone: string) {
   const stripNonNumbers = ('' + phone).replace(/\D/g, '')

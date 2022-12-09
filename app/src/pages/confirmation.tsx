@@ -1,3 +1,12 @@
+/**
+ * The Confirmation page (/confirmation) is the second of two "clearable" pages, pages
+ * where the user can click a button and their session storage will be manually cleared
+ * (both the session storage and the session state).
+ *
+ * This page has no back link and the call to action button ("start a new application")
+ * routes the user to /. There are no data validation guards for this page because it
+ * is a page intended to facilitate deleting data.
+ */
 import cloneDeep from 'lodash/cloneDeep'
 import type { GetServerSideProps, NextPage } from 'next'
 import { Trans } from 'next-i18next'

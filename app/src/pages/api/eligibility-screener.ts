@@ -1,3 +1,10 @@
+/**
+ * When the user clicks "submit" on /review, we make a client-side call to this next.js
+ * API endpoint. This API endpoint prepares the data to be sent on to an external api
+ * (specifically this one: https://github.com/navapbc/wic-mt-demo-project-mock-api).
+ * This API handles building the body, using fetch() to connect to the mock API, and
+ * calling the mock API's endpoint.
+ */
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { SessionData } from '@src/types'
@@ -84,12 +91,10 @@ export default async function handler(
       // Get the API call results.
       const responseBody = (await response.json()) as ApiResponse
 
-      const castStatusCode = responseBody.status_code
-
       // If the API call status is NOT 201, then pass through the status code
       // and return an error message.
-      if (castStatusCode !== 201) {
-        return res.status(castStatusCode).json({
+      if (responseBody.status_code !== 201) {
+        return res.status(responseBody.status_code).json({
           success: false,
           error: 'API endpoint returned errors',
           errorDetails: responseBody,
@@ -100,7 +105,7 @@ export default async function handler(
       // Redirect to /confirmation.
       else {
         return res
-          .status(castStatusCode)
+          .status(responseBody.status_code)
           .json({ success: true, error: '', errorDetails: '' })
       }
     } catch (e: unknown) {
