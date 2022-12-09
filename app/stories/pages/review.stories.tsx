@@ -3,9 +3,8 @@ import { useState } from 'react'
 
 import ReviewPage from '@pages/review'
 
+import { getMockSessionData } from '@lib/mockData'
 import { getBackRoute, getForwardRoute } from '@utils/routing'
-
-import { getMockSessionData } from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Review',

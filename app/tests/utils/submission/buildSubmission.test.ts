@@ -1,7 +1,6 @@
+import { getMockIncomeData, getMockSessionData } from '@lib/mockData'
 import { formatPhone } from '@utils/dataFormatting'
 import { buildSubmission } from '@utils/submission'
-
-import { getMockIncomeData, getMockSessionData } from '../../helpers/mockData'
 
 it('should build the expected object that does not include income data', () => {
   const mockSession = getMockSessionData()

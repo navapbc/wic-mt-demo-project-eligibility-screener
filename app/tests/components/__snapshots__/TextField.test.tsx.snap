@@ -1,39 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot when it is a textarea 1`] = `
-[
+<div>
   <label
-    className="usa-label"
-    htmlFor="input-id"
+    class="usa-label"
+    for="input-id"
   >
     input label
-  </label>,
+  </label>
   <textarea
-    className="usa-textarea"
+    class="usa-textarea"
     id="input-id"
     name="input-id"
-    onChange={[Function]}
     role="textbox"
-    value=""
-  />,
-]
+  />
+</div>
 `;
 
 exports[`should match snapshot when it is a textfield 1`] = `
-[
+<div>
   <label
-    className="usa-label"
-    htmlFor="input-id"
+    class="usa-label"
+    for="input-id"
   >
     input label
-  </label>,
+  </label>
   <input
-    className="usa-input"
+    class="usa-input"
     id="input-id"
     name="input-id"
-    onChange={[Function]}
     role="textbox"
     value=""
-  />,
-]
+  />
+</div>
 `;

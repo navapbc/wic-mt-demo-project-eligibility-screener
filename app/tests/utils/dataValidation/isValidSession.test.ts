@@ -1,5 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 
+import { getEmptyMockSession, getMockSessionData } from '@lib/mockData'
 import { isValidSession } from '@utils/dataValidation'
 import {
   initialChooseClinicData,
@@ -8,8 +9,6 @@ import {
   initialIncomeData,
   initialSessionData,
 } from '@utils/sessionData'
-
-import { getEmptyMockSession, getMockSessionData } from '../../helpers/mockData'
 
 const topLevel = Object.keys(initialSessionData).map((x) => [x])
 it.each(topLevel)('should return false if %s is undefined', (attr) => {

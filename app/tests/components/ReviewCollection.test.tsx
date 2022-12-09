@@ -2,8 +2,6 @@ import { render, screen } from '@testing-library/react'
 
 import ReviewCollection from '@components/ReviewCollection'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const reviewElements = [
   { labelKey: 'element a', children: 'child a' },
   { labelKey: 'element b', children: 'child b' },
@@ -18,9 +16,15 @@ const testProps = {
 }
 
 it('should match snapshot when it is the first element', () => {
-  testSnapshot(<ReviewCollection {...testProps} firstElement={true} />)
+  const { container } = render(
+    <ReviewCollection {...testProps} firstElement={true} />
+  )
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot when it is not the first element', () => {
-  testSnapshot(<ReviewCollection {...testProps} firstElement={false} />)
+  const { container } = render(
+    <ReviewCollection {...testProps} firstElement={false} />
+  )
+  expect(container).toMatchSnapshot()
 })

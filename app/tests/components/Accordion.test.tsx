@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react'
 import Accordion from '@components/Accordion'
 
 import { setupUserEvent } from '../helpers/setup'
-import { testSnapshot } from '../helpers/sharedTests'
 
 const testProps = {
   bodyKey: 'body',
@@ -11,7 +10,8 @@ const testProps = {
 }
 
 it('should match snapshot', () => {
-  testSnapshot(<Accordion {...testProps} />)
+  const { container } = render(<Accordion {...testProps} />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should expand the accordion on click', async () => {

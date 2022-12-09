@@ -1,3 +1,7 @@
+/**
+ * The Eligibility page (/eligibility) is the first editable form page in the form
+ * wizard flow. There are no data validation guards for this page.
+ */
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -37,7 +41,6 @@ const Eligibility: NextPage<EditablePage> = (props: EditablePage) => {
   // Set a state for whether the form requirements have been met and the
   // form can be submitted. Otherwise, disable the submit button.
   const [disabled, setDisabled] = useState(true)
-  // Use useEffect() to properly load the data from session storage during react hydration
   // Since we need to use useEffect to update the enabled/disabled state for the button,
   // this also handles anytime the form state is updated, so we don't need to call
   // setDisabled during handleChange()

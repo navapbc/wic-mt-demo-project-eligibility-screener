@@ -2,13 +2,11 @@ import { render, screen } from '@testing-library/react'
 
 import ReviewElement from '@components/ReviewElement'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 it('should match snapshot', () => {
-  const element = (
+  const { container } = render(
     <ReviewElement labelKey="label">This is a child</ReviewElement>
   )
-  testSnapshot(element)
+  expect(container).toMatchSnapshot()
 })
 
 it('should render children', () => {

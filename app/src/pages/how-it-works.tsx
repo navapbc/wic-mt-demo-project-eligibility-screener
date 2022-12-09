@@ -1,3 +1,7 @@
+/**
+ * The HowItWorks page (/how-it-works) is a content-only page. There are no data
+ * validation guards for this page.
+ */
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ReactElement } from 'react'
 
 import TransLine from '@components/TransLine'
 
@@ -11,7 +10,7 @@ export type StyledLinkProps = {
   external?: boolean
 }
 
-export const StyledLink = (props: StyledLinkProps): ReactElement => {
+export const StyledLink = (props: StyledLinkProps) => {
   const { href, textKey, external = false } = props
   if (external) {
     return (

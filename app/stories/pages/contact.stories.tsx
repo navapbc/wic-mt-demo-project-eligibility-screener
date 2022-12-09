@@ -3,12 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ContactPage from '@pages/contact'
 
+import { getEmptyMockSession, getMockSessionData } from '@lib/mockData'
 import { getBackRoute, getForwardRoute } from '@utils/routing'
-
-import {
-  getEmptyMockSession,
-  getMockSessionData,
-} from '../../tests/helpers/mockData'
 
 export default {
   title: 'Pages/Contact',

@@ -1,5 +1,3 @@
-import { ReactElement } from 'react'
-
 import TransLine from '@components/TransLine'
 
 import { I18nKey } from '@src/types'
@@ -13,7 +11,7 @@ export type AlertProps = {
   slim?: boolean
 }
 
-export const Alert = (props: AlertProps): ReactElement => {
+export const Alert = (props: AlertProps) => {
   const { alertBody, type, icon, slim } = props
 
   const classNames = `usa-alert usa-alert--${type} ${

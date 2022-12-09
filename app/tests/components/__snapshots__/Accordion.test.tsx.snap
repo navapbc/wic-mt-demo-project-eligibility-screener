@@ -1,28 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot 1`] = `
-<div
-  className="usa-accordion usa-accordion--bordered"
->
-  <h3
-    className="usa-accordion__heading"
-  >
-    <button
-      aria-controls="b-a1"
-      aria-expanded={false}
-      className="usa-accordion__button"
-      onClick={[Function]}
-      type="button"
-    >
-      header
-    </button>
-  </h3>
+<div>
   <div
-    className="usa-accordion__content"
-    hidden={true}
-    id="b-a1"
+    class="usa-accordion usa-accordion--bordered"
   >
-    body
+    <h3
+      class="usa-accordion__heading"
+    >
+      <button
+        aria-controls="b-a1"
+        aria-expanded="false"
+        class="usa-accordion__button"
+        type="button"
+      >
+        header
+      </button>
+    </h3>
+    <div
+      class="usa-accordion__content"
+      hidden=""
+      id="b-a1"
+    >
+      body
+    </div>
   </div>
 </div>
 `;

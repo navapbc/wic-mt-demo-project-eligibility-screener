@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { useState } from 'react'
 
 import TransLine from '@components/TransLine'
 
@@ -9,7 +9,7 @@ export type AccordionProps = {
   headerKey: I18nKey
 }
 
-const Accordion = (props: AccordionProps): ReactElement => {
+const Accordion = (props: AccordionProps) => {
   const { bodyKey, headerKey } = props
   const [isExpanded, setExpanded] = useState(false)
 

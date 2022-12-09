@@ -1,3 +1,8 @@
+/**
+ * The ChooseClinic page (/choose-clinic) is an editable form page in the form wizard
+ * flow. In order for a user to be allowed onto this page, they must have filled out
+ * all previous form pages with valid data.
+ */
 import clinics from '@public/clinic-output/clinics-with-ids.json'
 import type { GetServerSideProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'

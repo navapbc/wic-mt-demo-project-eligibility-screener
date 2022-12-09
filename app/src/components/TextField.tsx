@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement } from 'react'
+import { ChangeEvent } from 'react'
 
 import Required from '@components/Required'
 import TransLine from '@components/TransLine'
@@ -16,9 +16,9 @@ export type TextFieldProps = {
   value: string
 }
 
-const TextField = (props: TextFieldProps): ReactElement => {
+const TextField = (props: TextFieldProps) => {
   const { handleChange, id, labelKey, required, type, value } = props
-  let textfield: ReactElement
+  let textfield = <></>
   if (type === 'textarea') {
     textfield = (
       <textarea

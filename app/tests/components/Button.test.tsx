@@ -2,14 +2,13 @@ import { render, screen } from '@testing-library/react'
 
 import Button, { buttonStyleOptions } from '@components/Button'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const styleOptions = buttonStyleOptions.map((style) => [style])
 
 it.each(styleOptions)('should match snapshot for %s style', (style) => {
-  testSnapshot(
+  const { container } = render(
     <Button disabled={false} labelKey="button label" style={style} />
   )
+  expect(container).toMatchSnapshot()
 })
 
 it.each(styleOptions)(

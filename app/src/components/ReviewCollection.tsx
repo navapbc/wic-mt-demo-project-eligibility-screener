@@ -1,4 +1,3 @@
-import { ReactElement } from 'react'
 import { UrlObject } from 'url'
 
 import ButtonLink from '@components/ButtonLink'
@@ -15,7 +14,7 @@ export type ReviewCollectionProps = {
   firstElement?: boolean
 }
 
-const ReviewCollection = (props: ReviewCollectionProps): ReactElement => {
+const ReviewCollection = (props: ReviewCollectionProps) => {
   const {
     headerKey,
     reviewElements,

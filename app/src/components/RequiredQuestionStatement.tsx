@@ -1,8 +1,6 @@
-import { ReactElement } from 'react'
-
 import TransLine from '@components/TransLine'
 
-export const RequiredQuestionStatement = (): ReactElement => {
+export const RequiredQuestionStatement = () => {
   return (
     <p>
       <TransLine i18nKey="asterisk" /> (
