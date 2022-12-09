@@ -1,14 +1,12 @@
-import { ReactElement } from 'react'
-
 import Alert from '@components/Alert'
 
-import { i18nKey } from '@src/types'
+import { I18nKey } from '@src/types'
 
 export type PageErrorProps = {
-  alertBody: i18nKey
+  alertBody: I18nKey
 }
 
-export const PageError = (props: PageErrorProps): ReactElement => {
+export const PageError = (props: PageErrorProps) => {
   const { alertBody } = props
   return (
     <div className="margin-bottom-3">

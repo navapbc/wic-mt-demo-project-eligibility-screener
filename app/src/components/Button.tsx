@@ -1,7 +1,8 @@
-import { Trans } from 'next-i18next'
-import React, { MouseEvent, ReactElement } from 'react'
+import React, { MouseEvent } from 'react'
 
-import { i18nKey } from '@src/types'
+import TransLine from '@components/TransLine'
+
+import { I18nKey } from '@src/types'
 
 export const buttonStyleOptions = [
   'default',
@@ -12,12 +13,12 @@ export const buttonStyleOptions = [
   'base',
   'outline',
   'big',
-]
+] as const
 
 export type ButtonProps = {
   disabled?: boolean
-  labelKey: i18nKey
-  style?: string
+  labelKey: I18nKey
+  style?: typeof buttonStyleOptions[number]
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
@@ -25,10 +26,7 @@ export type ButtonProps = {
 // be a child component of next/link. For more info, see
 // https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component
 const Button = React.forwardRef(
-  (
-    props: ButtonProps,
-    ref: React.LegacyRef<HTMLButtonElement>
-  ): ReactElement => {
+  (props: ButtonProps, ref: React.LegacyRef<HTMLButtonElement>) => {
     const { disabled, labelKey, style, onClick } = props
 
     let buttonStyle = ''
@@ -47,7 +45,7 @@ const Button = React.forwardRef(
         onClick={onClick}
         ref={ref}
       >
-        <Trans i18nKey={labelKey} />
+        <TransLine i18nKey={labelKey} />
       </button>
     )
   }

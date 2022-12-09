@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import { ReactElement } from 'react'
 
 export type IncomeRowProps = {
   periods: string[]
@@ -9,7 +8,7 @@ export type IncomeRowProps = {
   }
 }
 
-const IncomeRow = (props: IncomeRowProps): ReactElement => {
+const IncomeRow = (props: IncomeRowProps) => {
   const { periods, householdSize, incomeForHouseholdSize } = props
 
   // If the householdSize is not an empty string, then use it

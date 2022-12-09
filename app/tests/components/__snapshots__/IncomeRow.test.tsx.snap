@@ -1,41 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match snapshot when householdSize is an empty string 1`] = `
-<tr>
-  <td
-    data-label="Weekly"
-  >
-    $XX,XXX
-  </td>
-  <td
-    data-label="Monthly"
-  >
-    $XX,XXX
-  </td>
-  <td
-    data-label="Annual"
-  >
-    $XX,XXX
-  </td>
-</tr>
+<div>
+  <tr>
+    <td
+      data-label="Weekly"
+    >
+      $XX,XXX
+    </td>
+    <td
+      data-label="Monthly"
+    >
+      $XX,XXX
+    </td>
+    <td
+      data-label="Annual"
+    >
+      $XX,XXX
+    </td>
+  </tr>
+</div>
 `;
 
 exports[`should match snapshot when householdSize is not empty string 1`] = `
-<tr>
-  <td
-    data-label="Weekly"
-  >
-    $100
-  </td>
-  <td
-    data-label="Monthly"
-  >
-    $200
-  </td>
-  <td
-    data-label="Annual"
-  >
-    $300
-  </td>
-</tr>
+<div>
+  <tr>
+    <td
+      data-label="Weekly"
+    >
+      $100
+    </td>
+    <td
+      data-label="Monthly"
+    >
+      $200
+    </td>
+    <td
+      data-label="Annual"
+    >
+      $300
+    </td>
+  </tr>
+</div>
 `;

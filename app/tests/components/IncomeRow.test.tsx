@@ -2,8 +2,6 @@ import { render, screen } from '@testing-library/react'
 
 import IncomeRow from '@components/IncomeRow'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 const testProps = {
   periods: ['weekly', 'monthly', 'annual'],
   householdSize: '1',
@@ -15,9 +13,11 @@ const testProps = {
 }
 
 it('should match snapshot when householdSize is not empty string', () => {
-  testSnapshot(<IncomeRow {...testProps} />)
+  const { container } = render(<IncomeRow {...testProps} />)
+  expect(container).toMatchSnapshot()
 })
 
 it('should match snapshot when householdSize is an empty string', () => {
-  testSnapshot(<IncomeRow {...testProps} householdSize="" />)
+  const { container } = render(<IncomeRow {...testProps} householdSize="" />)
+  expect(container).toMatchSnapshot()
 })

@@ -1,7 +1,8 @@
+import { render } from '@testing-library/react'
+
 import Required from '@components/Required'
 
-import { testSnapshot } from '../helpers/sharedTests'
-
 it('should match snapshot', () => {
-  testSnapshot(<Required />)
+  const { container } = render(<Required />)
+  expect(container).toMatchSnapshot()
 })

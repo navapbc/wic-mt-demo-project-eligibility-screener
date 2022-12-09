@@ -12,6 +12,32 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       common: enCommon,
+      test: {
+        transLine: {
+          plainString: 'just text',
+          plainStringOneLink: {
+            text: 'first <0>second</0> third',
+            links: ['https://external.com'],
+          },
+          plainStringLinks: {
+            text: 'first <0>second</0> <1>third</1>',
+            links: ['https://external.com', '/relative/link'],
+          },
+          plainStringLinksComplicated: {
+            text: '<1>first</1> <0>second</0> third <0>fourth</0> <1>fifth</1>',
+            links: ['https://external.com', '/relative/link'],
+          },
+          styledString: 'first <strong>second</strong> third',
+          styledStringOneLink: {
+            text: 'first <strong>second</strong> <0>third</0>',
+            links: ['https://external.com'],
+          },
+          styledLink: {
+            text: 'first <strong><0>second</0></strong>',
+            links: ['https://external.com'],
+          },
+        },
+      },
     },
     es: { common: esCommon },
   },

@@ -1,31 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match full page snapshot 1`] = `
-[
+<div>
   <a
-    className="usa-link"
+    class="usa-link"
     href="/eligibility"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onTouchStart={[Function]}
   >
     Back
-  </a>,
+  </a>
   <h1>
     Check your eligibility
-  </h1>,
+  </h1>
   <p>
     All required questions are marked with an asterisk
      (
     <abbr
-      className="usa-hint usa-hint--required"
+      class="usa-hint usa-hint--required"
     >
       *
     </abbr>
     ).
-  </p>,
+  </p>
   <div
-    className="content-group"
+    class="content-group"
   >
     <h2>
       To be eligible for WIC, your 
@@ -70,35 +67,34 @@ exports[`should match full page snapshot 1`] = `
       </strong>
        A WIC staff member can answer more specific questions about your situation.
     </p>
-  </div>,
+  </div>
   <form
-    className="usa-form usa-form--large"
+    class="usa-form usa-form--large"
   >
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <h2>
         What is your household size?
       </h2>
       <div
-        className="usa-accordion usa-accordion--bordered"
+        class="usa-accordion usa-accordion--bordered"
       >
         <h3
-          className="usa-accordion__heading"
+          class="usa-accordion__heading"
         >
           <button
             aria-controls="b-a1"
-            aria-expanded={false}
-            className="usa-accordion__button"
-            onClick={[Function]}
+            aria-expanded="false"
+            class="usa-accordion__button"
             type="button"
           >
             Who counts in my household?
           </button>
         </h3>
         <div
-          className="usa-accordion__content"
-          hidden={true}
+          class="usa-accordion__content"
+          hidden=""
           id="b-a1"
         >
           <p>
@@ -110,22 +106,20 @@ exports[`should match full page snapshot 1`] = `
         </div>
       </div>
       <label
-        className="usa-label"
-        htmlFor="householdSize"
+        class="usa-label"
+        for="householdSize"
       >
         Household size
         <abbr
-          className="usa-hint usa-hint--required"
+          class="usa-hint usa-hint--required"
         >
            *
         </abbr>
       </label>
       <select
-        className="usa-select"
+        class="usa-select"
         id="householdSize"
         name="householdSize"
-        onChange={[Function]}
-        value=""
       >
         <option
           value=""
@@ -177,10 +171,10 @@ exports[`should match full page snapshot 1`] = `
       </select>
     </fieldset>
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <table
-        className="usa-table usa-table--stacked usa-table--borderless"
+        class="usa-table usa-table--stacked usa-table--borderless"
       >
         <caption>
           <h2>
@@ -215,7 +209,7 @@ exports[`should match full page snapshot 1`] = `
       </table>
       <p>
         <a
-          className="usa-link usa-link--external"
+          class="usa-link usa-link--external"
           href="https://dphhs.mt.gov/Assistance"
           rel="noopener noreferrer"
           target="_blank"
@@ -225,12 +219,11 @@ exports[`should match full page snapshot 1`] = `
       </p>
     </fieldset>
     <button
-      className="usa-button usa-button--small display-block margin-top-6"
-      disabled={true}
-      onClick={[Function]}
+      class="usa-button usa-button--small display-block margin-top-6"
+      disabled=""
     >
       Continue
     </button>
-  </form>,
-]
+  </form>
+</div>
 `;

@@ -1,8 +1,13 @@
+/**
+ * The index page (/) is the homepage for the eligibility screener. It is a content-
+ * only page that has no back link. There are no data validation guards for this page
+ * because it is the first page in the form wizard flow.
+ */
 import type { GetServerSideProps, NextPage } from 'next'
-import { Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ButtonLink from '@components/ButtonLink'
+import TransLine from '@components/TransLine'
 
 import type { Page } from '@src/types'
 
@@ -17,17 +22,17 @@ const Index: NextPage<Page> = (props: Page) => {
   return (
     <>
       <h1>
-        <Trans i18nKey="Index.title" />
+        <TransLine i18nKey="Index.title" />
       </h1>
-      <Trans i18nKey="Index.header" />
+      <TransLine i18nKey="Index.header" />
       <ul className="usa-list">
         {listCopyKeys.map((key: string) => (
           <li key={key}>
-            <Trans i18nKey={`Index.${key}`} />
+            <TransLine i18nKey={`Index.${key}`} />
           </li>
         ))}
       </ul>
-      <Trans i18nKey="Index.time" />
+      <TransLine i18nKey="Index.time" />
       <ButtonLink href={forwardRoute} labelKey="Index.button" />
     </>
   )

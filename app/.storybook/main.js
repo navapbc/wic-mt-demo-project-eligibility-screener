@@ -2,6 +2,8 @@ const nextConfig = require('../next.config')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const path = require('path')
 
+const BASE_PATH = process.env.BASE_PATH ?? ''
+
 module.exports = {
   stories: ['../stories/**/*.stories.@(mdx|js|jsx|ts|tsx)'],
   addons: [
@@ -18,6 +20,14 @@ module.exports = {
   // Tell storybook where to find USWDS static assets
   staticDirs: ['../public'],
 
+  // Support deploying Storybook to a subdirectory (like GitHub Pages).
+  // This makes `process.env.BASE_PATH` available to our source code.
+  // @ts-expect-error - https://github.com/storybookjs/storybook/issues/19294
+  env: (config) => ({
+    ...config,
+    BASE_PATH,
+  }),
+
   // Configure Storybook's final Webpack configuration in order to re-use the Next.js config/dependencies.
   webpackFinal: (config) => {
     config.module?.rules?.push({
@@ -25,6 +35,17 @@ module.exports = {
       use: [
         'style-loader',
         'css-loader',
+        {
+          loader: 'string-replace-loader',
+          options: {
+            // Support deploying Storybook to a subdirectory (like GitHub Pages).
+            // This adds the BASE_PATH to the beginning of all relative URLs in the CSS.
+            search: /url\(("?)\//g,
+            replace(match, p1, offset, string) {
+              return `url(${p1}${BASE_PATH}/`
+            },
+          },
+        },
         {
           /**
            * Next.js sets this automatically for us, but we need to manually set it here for Storybook.
@@ -66,6 +87,13 @@ module.exports = {
       fs: false,
       path: false,
       os: false,
+    }
+
+    // Support deploying Storybook to a subdirectory (like GitHub Pages).
+    // This makes the Storybook JS bundles load correctly.
+    if (BASE_PATH) {
+      config.output = config.output ?? {}
+      config.output.publicPath = `${BASE_PATH}/`
     }
 
     return config

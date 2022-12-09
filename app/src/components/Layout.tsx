@@ -1,12 +1,13 @@
-import { Trans } from 'next-i18next'
 import Image from 'next/image'
 import { ReactElement } from 'react'
+
+import TransLine from '@components/TransLine'
 
 type Props = {
   children: ReactElement
 }
 
-const Layout = ({ children }: Props): ReactElement => {
+const Layout = ({ children }: Props) => {
   return (
     <div className="container">
       <header className="header usa-header usa-header--basic" role="banner">
@@ -15,7 +16,7 @@ const Layout = ({ children }: Props): ReactElement => {
             <div className="desktop:grid-col-8">
               <div className="usa-logo margin-left-2">
                 <em className="usa-logo__text">
-                  <Trans i18nKey="Layout.header" />
+                  <TransLine i18nKey="Layout.header" />
                 </em>
               </div>
             </div>
@@ -35,13 +36,13 @@ const Layout = ({ children }: Props): ReactElement => {
             <div className="desktop:grid-col-8 padding-2">
               <div className="logos">
                 <Image
-                  src="/img/wic-logo.svg"
+                  src={`${process.env.BASE_PATH ?? ''}/img/wic-logo.svg`}
                   alt="WIC logo"
                   width={64.52}
                   height={32}
                 />
                 <Image
-                  src="/img/montana-logo.svg"
+                  src={`${process.env.BASE_PATH ?? ''}/img/montana-logo.svg`}
                   alt="Monthana DPHHS logo"
                   width={46.22}
                   height={32}
@@ -49,39 +50,10 @@ const Layout = ({ children }: Props): ReactElement => {
               </div>
               <div className="font-body-3xs">
                 <p>
-                  <Trans
-                    components={[
-                      <a
-                        key="0"
-                        href="https://dphhs.mt.gov/ecfsd/wic/index"
-                        className="usa-link usa-link--external"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />,
-                      <a
-                        key="1"
-                        href="https://www.signupwic.com/"
-                        className="usa-link usa-link--external"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />,
-                    ]}
-                    i18nKey={'Layout.footer1'}
-                  />
+                  <TransLine i18nKey="Layout.footer1.text" />
                 </p>
                 <p>
-                  <Trans
-                    components={[
-                      <a
-                        key="0"
-                        href="https://www.fns.usda.gov/civil-rights/usda-nondiscrimination-statement-other-fns-programs"
-                        className="usa-link usa-link--external"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      />,
-                    ]}
-                    i18nKey={'Layout.footer2'}
-                  />
+                  <TransLine i18nKey="Layout.footer2.text" />
                 </p>
               </div>
             </div>

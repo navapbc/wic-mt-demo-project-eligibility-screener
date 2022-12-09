@@ -1,18 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should match full page snapshot 1`] = `
-[
+<div>
   <a
-    className="usa-link"
+    class="usa-link"
     href="/choose-clinic"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onTouchStart={[Function]}
   >
     Back
-  </a>,
+  </a>
   <form
-    className="usa-form usa-form--large"
+    class="usa-form usa-form--large"
   >
     <h1>
       Contact information
@@ -21,141 +18,131 @@ exports[`should match full page snapshot 1`] = `
       All required questions are marked with an asterisk
        (
       <abbr
-        className="usa-hint usa-hint--required"
+        class="usa-hint usa-hint--required"
       >
         *
       </abbr>
       ).
     </p>
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <h2>
         What's your name?
         <abbr
-          className="usa-hint usa-hint--required"
+          class="usa-hint usa-hint--required"
         >
            *
         </abbr>
       </h2>
       <label
-        className="usa-label"
-        htmlFor="firstName"
+        class="usa-label"
+        for="firstName"
       >
         First name
         <abbr
-          className="usa-hint usa-hint--required"
+          class="usa-hint usa-hint--required"
         >
            *
         </abbr>
       </label>
       <input
-        className="usa-input"
+        class="usa-input"
         id="firstName"
         name="firstName"
-        onChange={[Function]}
         role="textbox"
         value=""
       />
       <label
-        className="usa-label"
-        htmlFor="lastName"
+        class="usa-label"
+        for="lastName"
       >
         Last name
         <abbr
-          className="usa-hint usa-hint--required"
+          class="usa-hint usa-hint--required"
         >
            *
         </abbr>
       </label>
       <input
-        className="usa-input"
+        class="usa-input"
         id="lastName"
         name="lastName"
-        onChange={[Function]}
         role="textbox"
         value=""
       />
     </fieldset>
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <h2>
         What's the best phone number to reach you at?
         <abbr
-          className="usa-hint usa-hint--required"
+          class="usa-hint usa-hint--required"
         >
            *
         </abbr>
       </h2>
       <div
-        className="usa-alert usa-alert--info usa-alert--no-icon"
+        class="usa-alert usa-alert--info usa-alert--no-icon"
         role="alert"
       >
         <div
-          className="usa-alert__body"
+          class="usa-alert__body"
         >
           <p
-            className="usa-alert__text"
+            class="usa-alert__text"
           >
             Your chosen WIC clinic will contact you via phone to set up a time for a certification appointment during business hours.
           </p>
         </div>
       </div>
       <label
-        className="usa-label"
-        htmlFor="phone"
+        class="usa-label"
+        for="phone"
       >
         Phone number
         <abbr
-          className="usa-hint usa-hint--required"
+          class="usa-hint usa-hint--required"
         >
            *
         </abbr>
       </label>
       <input
-        className="usa-input"
+        class="usa-input"
         id="phone"
-        inputMode="numeric"
+        inputmode="numeric"
         name="phone"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseUp={[Function]}
         role="textbox"
         type="text"
         value=""
       />
     </fieldset>
     <fieldset
-      className="usa-fieldset"
+      class="usa-fieldset"
     >
       <h2>
         Is there anything else you'd like to share with us?
       </h2>
       <label
-        className="usa-label"
-        htmlFor="comments"
+        class="usa-label"
+        for="comments"
       >
         Comments, questions, other information
       </label>
       <textarea
-        className="usa-textarea"
+        class="usa-textarea"
         id="comments"
         name="comments"
-        onChange={[Function]}
         role="textbox"
-        value=""
       />
     </fieldset>
     <button
-      className="usa-button usa-button--small display-block margin-top-6"
-      disabled={true}
-      onClick={[Function]}
+      class="usa-button usa-button--small display-block margin-top-6"
+      disabled=""
     >
       Continue
     </button>
-  </form>,
-]
+  </form>
+</div>
 `;
