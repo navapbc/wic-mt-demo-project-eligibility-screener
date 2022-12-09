@@ -1,5 +1,4 @@
 import { Trans } from 'next-i18next'
-import { ReactElement } from 'react'
 
 import { i18nKey } from '@src/types'
 
@@ -7,7 +6,7 @@ export type ListProps = {
   i18nKeys: i18nKey[]
 }
 
-export const List = (props: ListProps): ReactElement => {
+export const List = (props: ListProps) => {
   const { i18nKeys } = props
 
   return (

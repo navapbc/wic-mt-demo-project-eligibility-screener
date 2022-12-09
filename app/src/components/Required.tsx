@@ -1,6 +1,4 @@
-import { ReactElement } from 'react'
-
-export const Required = (): ReactElement => {
+export const Required = () => {
   return <abbr className="usa-hint usa-hint--required"> *</abbr>
 }
 
