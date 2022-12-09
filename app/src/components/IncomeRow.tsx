@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 export type IncomeRowProps = {
   periods: string[]
   householdSize: string
@@ -13,10 +15,12 @@ const IncomeRow = (props: IncomeRowProps) => {
   // to lookup the income amounts for each time period.
   // Otherwise, return a placeholder row.
 
+  const { t } = useTranslation('common')
+
   return (
     <tr>
       {periods.map((period: string) => (
-        <td key={period}>
+        <td key={period} data-label={t(`Income.incomePeriods.${period}`)}>
           {householdSize !== '' ? incomeForHouseholdSize[period] : '$XX,XXX'}
         </td>
       ))}
