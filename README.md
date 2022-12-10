@@ -12,6 +12,17 @@ This template includes setup for:
 
 ## How to Run
 
+### Environment Variables
+
+The eligibility screener application is designed to send data it collects to an API (see [example](https://github.com/navapbc/wic-mt-demo-project-mock-api)). To do so, configure the following environment variables:
+
+- `API_HOST`: The url of the API including http/s protocool
+- `API_AUTH_TOKEN`: The authentication token required to connect to the API
+
+If you are not running the application in tandem with an API, then set the following environment variable to `true`
+
+- `NEXT_PUBLIC_DEMO_MODE`: `true` will run the eligibility screener in demo mode, where data will not be collected or sent. `false` requires the above environment variables to be set
+
 ### Without Docker
 
 You can run the Next.js app without docker as follows:
