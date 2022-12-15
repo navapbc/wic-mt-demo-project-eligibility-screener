@@ -9,9 +9,11 @@ type Props = {
 }
 
 const Layout = ({ children }: Props) => {
+  const demoMode = process.env.NEXT_PUBLIC_DEMO_MODE ?? 'false'
+
   return (
     <div className="container">
-      {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
+      {demoMode === 'true' && (
         <Alert
           alertBody="demoAlertBanner.text"
           type="warning"

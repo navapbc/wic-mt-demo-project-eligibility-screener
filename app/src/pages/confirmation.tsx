@@ -40,12 +40,14 @@ const Confirmation: NextPage<ClearablePage> = (props: ClearablePage) => {
     setSession(cloneDeep(initialSessionData))
   }
 
+  const demoMode = process.env.NEXT_PUBLIC_DEMO_MODE ?? 'false'
+
   return (
     <>
       <h1>
         <TransLine i18nKey="Confirmation.title" />
       </h1>
-      {process.env.NEXT_PUBLIC_DEMO_MODE === 'true' && (
+      {demoMode === 'true' && (
         <Alert alertBody="demoAlertNotice.text" type="warning" icon={true} />
       )}
       <p>
