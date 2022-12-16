@@ -12,16 +12,19 @@ This template includes setup for:
 
 ## How to Run
 
-### Environment Variables
+### Connecting to API
 
-The eligibility screener application is designed to send data it collects to an API (see [example](https://github.com/navapbc/wic-mt-demo-project-mock-api)). To do so, configure the following environment variables:
+The eligibility screener application is designed to send data it collects to an API (see [example](https://github.com/navapbc/wic-mt-demo-project-mock-api)). However, by default, this application assumes that the application is NOT running in tandem with an API and will run in "demo mode".
+
+To turn off demo mode, configure the following environment variables:
 
 - `API_HOST`: The url of the API including http/s protocool
 - `API_AUTH_TOKEN`: The authentication token required to connect to the API
 
-If you are not running the application in tandem with an API, then set the following environment variable to `true`
+If you are running in development (i.e. using `yarn dev`), then set the environment variable `NEXT_PUBLIC_DEMO_MODE` to `"false"`.
+If you are running in production (i.e. using `yarn start`), then set the docker build argument `NEXT_PUBLIC_DEMO_MODE` to `"false"`. Do not set the environment variable when in production. Nextjs will report console errors if you do.
 
-- `NEXT_PUBLIC_DEMO_MODE`: `true` will run the eligibility screener in demo mode, where data will not be collected or sent. `false` requires the above environment variables to be set
+See `/docker-compose.yml` and `/app/Dockerfile` for more details.
 
 ### Without Docker
 

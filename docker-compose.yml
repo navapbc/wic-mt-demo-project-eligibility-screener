@@ -2,14 +2,25 @@
 # See https://docs.docker.com/compose/compose-file/compose-versioning/
 version: '3'
 
+# For this application, we are using Next.js's environment variable feature to expose
+# an environment variable to the browser. See:
+# https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser
+# By default, this argument is set in the Dockerfile.
+# If you are using `yarn dev` (development mode), then you can override this as an
+# environment variable using docker compose's `environment` control.
+# If you are using `yarn start` (production mode), then you can override this as a build argument.
 services:
   # Define a service for the Next.js application.
   nextjs:
-    build: ./app
+    build:
+      context: ./app
+      # Uncomment to turn off demo mode when using `yarn start`
+      # args:
+      #   - NEXT_PUBLIC_DEMO_MODE="false"
     command: ["yarn", "dev"]
-    environment:
-      # Comment out the next line to test connecting with the API.
-      - NEXT_PUBLIC_DEMO_MODE=true
+    # Uncomment to turn off demo mode when using `yarn dev`
+    # environment:
+    #   - NEXT_PUBLIC_DEMO_MODE="false"
     ports:
       # Expose a port to access the application.
       - 3000:3000
