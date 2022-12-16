@@ -59,7 +59,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-storybook": "^0.6.1",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
     "jest": "^28.1.0",
