@@ -55,3 +55,6 @@ A `docker-compose.yml` has been included to support local development. Take a lo
 To support local development, the `docker-compose.yml` runs the `nextjs` container in development mode (i.e. `yarn dev`) instead of production mode (i.e. `yarn start`). This allows Next.js to do things like hot reload.
 
 The docker-compose file bind mounts `app` on the host machine to `/srv` in the guest machine. However, to ensure that the container uses the correct packages in `node_modules`, we use a named docker volume for the `node_modules` dir. The named volume will take precedence over the bind mount, so that the `node_modules` dir in the guest machine will not be overwritten with the host machine's `node_modules` dir. This also means that if you run `yarn add <package>` on the host machine in development (which will update `yarn.lock`), you'll also need to run `docker-compose exec nextjs yarn install --frozen-lockfile` to update `node_modules` in the guest machine.
+
+## Disclaimer
+This public repository exists purely for the purposes of hosting a snapshot of code to serve as a reference for similar efforts and is therefore not actively maintained. Entities wishing to use this code should do standard security due diligence and make sure to use up-to-date dependencies.
