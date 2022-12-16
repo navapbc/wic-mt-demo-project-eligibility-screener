@@ -22,7 +22,7 @@ To turn off demo mode, configure the following environment variables:
 - `API_AUTH_TOKEN`: The authentication token required to connect to the API
 
 If you are running in development (i.e. using `yarn dev`), then set the environment variable `NEXT_PUBLIC_DEMO_MODE` to `"false"`.
-If you are running in production (i.e. using `yarn start`), then set the docker build argument `NEXT_PUBLIC_DEMO_MODE` to `"false"`.
+If you are running in production (i.e. using `yarn start`), then set the docker build argument `NEXT_PUBLIC_DEMO_MODE` to `"false"`. Do not set the environment variable when in production. Nextjs will report console errors if you do.
 
 See `/docker-compose.yml` and `/app/Dockerfile` for more details.
 
