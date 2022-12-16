@@ -31,7 +31,7 @@
     "@babel/core": "^7.18.0",
     "@babel/preset-typescript": "^7.17.12",
     "@playwright/test": "^1.27.1",
-    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.14",
     "@storybook/builder-webpack5": "^6.5.9",
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/react": "^6.5.12",
