@@ -23,3 +23,5 @@ module "template" {
   source           = "../../template"
   environment_name = local.environment_name
 }
+# check template for additional settings to see if its necessary for different envs
+# pull in lifecycle policy
