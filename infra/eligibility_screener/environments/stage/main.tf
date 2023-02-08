@@ -1,5 +1,5 @@
 locals {
-  environment_name = "test"
+  environment_name = "stage"
 }
 
 provider "aws" {
@@ -12,7 +12,7 @@ terraform {
 
   backend "s3" {
     bucket         = "wic-mt-tf-state"
-    key            = "terraform/screener/test.tfstate"
+    key            = "terraform/screener/stage.tfstate"
     region         = "us-east-1"
     encrypt        = "true"
     dynamodb_table = "wic_terraform_locks"
@@ -23,5 +23,3 @@ module "template" {
   source           = "../../template"
   environment_name = local.environment_name
 }
-# check template for additional settings to see if its necessary for different envs
-# pull in lifecycle policy
