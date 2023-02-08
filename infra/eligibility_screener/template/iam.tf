@@ -1,8 +1,45 @@
-# ECR repository
+# ----------------------------------------------------------
+# 
+# IAM Deployment Role
+#
+# ----------------------------------------------------------
+
+data "aws_iam_user" "github_actions" {
+  user_name = "wic-mt-github-actions"
+}
+data "aws_iam_role" "github_actions" {
+  name               = "deployment-action"
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions" {
+  role       = data.aws_iam_role.github_actions.name
+  policy_arn = aws_iam_policy.deploy_action.arn
+}
+
+resource "aws_iam_policy" "deploy_action" {
+  name   = "${var.environment_name}-wic-mt-deploy"
+  policy = data.aws_iam_policy_document.deploy_action.json
+}
+
+resource "aws_iam_user_policy_attachment" "deploy_action" {
+  user       = data.aws_iam_user.github_actions.user_name
+  policy_arn = aws_iam_policy.deploy_action.arn
+}
+# ----------------------------------------------------------
+# 
+# ECR Repo
+#
+# ----------------------------------------------------------
+
 data "aws_ecr_repository" "eligibility-screener-repository"{
   name                 = "eligibility-screener-repo"
 }
 
+# ----------------------------------------------------------
+# 
+# IAM for ECR
+#
+# ----------------------------------------------------------
 resource "aws_ecr_repository_policy" "eligibility-screener-repo-policy" {
   repository = data.aws_ecr_repository.eligibility-screener-repository.name
   policy     = data.aws_iam_policy_document.ecr-perms.json

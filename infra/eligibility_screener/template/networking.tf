@@ -4,7 +4,7 @@
 #
 # ---------------------------------------
 resource "aws_security_group" "allow-screener-traffic" {
-  name        = "allow_screener_traffic"
+  name       = "${var.environment_name}_allow_screener_traffic"
   description = "This rule blocks all traffic unless it is HTTPS for the eligibility screener"
   vpc_id      = module.constants.vpc_id
 
@@ -23,10 +23,14 @@ resource "aws_security_group" "allow-screener-traffic" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_security_group" "allow-lb-traffic" {
-  name        = "screener_load_balancer_sg"
+  name        = "${var.environment_name}_screener_load_balancer_sg"
   description = "Allows load balancers to communicate with tasks"
   vpc_id      = module.constants.vpc_id
 
@@ -53,6 +57,10 @@ resource "aws_security_group" "allow-lb-traffic" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 
