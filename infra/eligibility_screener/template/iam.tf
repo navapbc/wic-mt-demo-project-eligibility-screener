@@ -1,5 +1,10 @@
+# ECR repository
+data "aws_ecr_repository" "eligibility-screener-repository"{
+  name                 = "eligibility-screener-repo"
+}
+
 resource "aws_ecr_repository_policy" "eligibility-screener-repo-policy" {
-  repository = aws_ecr_repository.eligibility-screener-repository.name
+  repository = data.aws_ecr_repository.eligibility-screener-repository.name
   policy     = data.aws_iam_policy_document.ecr-perms.json
 }
 
@@ -32,7 +37,7 @@ data "aws_iam_policy_document" "deploy_action" {
     resources = [
       "arn:aws:ecs:us-east-1:546642427916:service/${var.environment_name}/*",
       "arn:aws:ecs:us-east-1:546642427916:cluster/${var.environment_name}",
-      aws_ecr_repository.eligibility-screener-repository.arn,
+      data.aws_ecr_repository.eligibility-screener-repository.arn,
     ]
   }
   statement {
