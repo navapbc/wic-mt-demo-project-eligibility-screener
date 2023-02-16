@@ -31,6 +31,25 @@ services:
       - ./app:/srv
       # Use a named volume for the node_modules so that the container uses the guest machine's node_modules dir instead of the host machine's node_modules directory, which might be divergent.
       - nextjs_nodemodules:/srv/node_modules
-
+  # eligibility-screener:
+  #   build:
+  #     context: ./eligibility-screener/app
+  #   # Run in development mode
+  #   command: ["yarn", "dev"]
+  #   # Load environment variables for local development
+  #   env_file: ./mock-api/app/local.env
+  #   environment:
+  #     - API_HOST=http://mock-api:8080
+  #     - NEXT_PUBLIC_DEMO_MODE="false"
+  #   # Fix running on Apple silicon
+  #   platform: linux/amd64
+  #   ports:
+  #     # Expose a port to access the application.
+  #     - 3000:3000
+  #     # Expose a port for storybook.
+  #     - 6006:6006
+  #   volumes:
+  #     # Use a named volume for the node_modules so that the container uses the guest machine's node_modules dir instead of the host machine's node_modules directory, which might be divergent.
+  #     - nextjs_nodemodules:/srv/node_modules
 volumes:
   nextjs_nodemodules:
