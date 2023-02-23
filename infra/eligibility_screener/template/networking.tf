@@ -63,6 +63,12 @@ resource "aws_security_group" "allow-lb-traffic" {
     create_before_destroy = true
   }
 }
+# copy over everything in the template-infra repository in here. Have the current infra match what's in the template
+# e.g. the Makefile and the bin folder
+# use the image_tag file from the template here
+# do some desk research on template-infra. Tell Rocket what they're doing and why
+# use as much of the template as possible 
+# make a list of new things, and compare them to what we currently have
 
 # ---------------------------------------
 #
