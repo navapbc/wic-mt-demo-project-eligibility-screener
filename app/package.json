@@ -18,7 +18,7 @@
     "ts-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@uswds/uswds": "^3.1.0",
+    "@uswds/uswds": "^3.4.1",
     "i18next": "^21.9.2",
     "lodash": "^4.17.21",
     "next": "^12.3.1",
